@@ -1,0 +1,646 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Tournament Winners</title>
+<style>
+body { font-family: Arial, sans-serif; background:#f5f5f5; margin:0; padding:20px; }
+
+.dashboard {
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+.stat {
+    background:#adb8fb;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    flex:1;
+    min-width:180px;
+    text-align:center;
+}
+
+.stat h3 {
+    margin:0;
+    font-size:28px;
+}
+
+.stat p {
+    margin:8px 0 0 0;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.card {
+    background:#fff;
+    border-radius:8px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom:20px;
+    padding:16px;
+}
+
+.card h2 { margin-top:0; }
+
+table {
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+    table-layout: fixed;
+}
+
+th, td {
+    padding:8px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+    word-wrap: break-word;
+}
+
+th { background:#f0f0f0; }
+
+th:nth-child(1), td:nth-child(1) { width: 30%; }
+th:nth-child(2), td:nth-child(2) { width: 20%; }
+th:nth-child(3), td:nth-child(3) { width: 50%; }
+</style>
+</head>
+<body>
+<div id="header-banner">
+    <div class="header-content">
+
+        <!-- Title -->
+        <span class="title">GB Tennis Data</span>
+
+        <!-- Main navigation -->
+        <nav class="nav-main">
+            <a class="nav-pill" href="index.html">Home</a>
+            <a class="nav-pill" onclick="toggleDropdown('women')">Women</a>
+            <a class="nav-pill" onclick="toggleDropdown('men')">Men</a>
+        </nav>
+
+        <!-- Dropdown container (fixed height) -->
+        <div class="nav-container">
+
+            <!-- Women dropdown -->
+            <div id="dropdown-women" class="dropdown hidden">
+                <span class="dropdown-title">Women</span>
+                <div class="dropdown-links">
+                    <a href="womenSummary.html">Summary</a>
+                    <a href="women_singles_by_player.html">Singles by player</a>
+                    <a href="women_singles_by_week.html">Singles by week</a>
+                    <a href="women_doubles_by_player.html">Doubles by player</a>
+                    <a href="women_doubles_by_week.html">Doubles by week</a>
+                </div>
+            </div>
+
+            <!-- Men dropdown -->
+            <div id="dropdown-men" class="dropdown hidden">
+                <span class="dropdown-title">Men</span>
+                <div class="dropdown-links">
+                    <span class="coming-soon">To come later</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<style>
+    /* Sticky header */
+    #header-banner {
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        background: #3a7;
+        color: #fff;
+        padding: 18px 25px;
+        font-family: Arial, sans-serif;
+        border-bottom: 3px solid #2a5;
+    }
+
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .title {
+        font-size: 32px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+
+    /* Main nav pills */
+    .nav-main {
+        display: flex;
+        gap: 15px;
+    }
+
+    .nav-pill {
+        background: #fff;
+        color: #3a7;
+        padding: 6px 18px;
+        border-radius: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        border: 2px solid #fff;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+
+    .nav-pill:hover {
+        background: #2a5;
+        color: #fff;
+    }
+
+    /* Dropdown container */
+    .nav-container {
+        position: relative;
+        width: 100%;
+        margin-top: 10px;
+        height: 50px; /* Women & Men dropdown appear at same height */
+    }
+
+    /* Dropdown */
+    .dropdown {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #3a7;
+        padding: 10px 20px;
+        border-radius: 10px;
+        opacity: 1;
+        transition: opacity 0.25s ease-in-out;
+        pointer-events: auto;
+        white-space: nowrap;
+    }
+
+    .dropdown.hidden {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+    }
+
+    .dropdown-title {
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-right: 15px;
+    }
+
+    .dropdown-links a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        margin-right: 15px;
+        padding: 4px 10px;
+        border-radius: 10px;
+        transition: 0.2s;
+    }
+
+    .dropdown-links a:hover {
+        background: rgba(255,255,255,0.25);
+    }
+
+    .coming-soon {
+        font-size: 16px;
+        opacity: 0.8;
+    }
+
+    /* Responsive: collapse into dropdown when screen too narrow */
+    @media (max-width: 900px) {
+        .dropdown-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .dropdown {
+            white-space: normal;
+            width: 90%;
+        }
+    }
+</style>
+
+<script>
+function toggleDropdown(section) {
+    const women = document.getElementById("dropdown-women");
+    const men = document.getElementById("dropdown-men");
+
+    if (section === "women") {
+        women.classList.toggle("hidden");
+        men.classList.add("hidden");
+    } else if (section === "men") {
+        men.classList.toggle("hidden");
+        women.classList.add("hidden");
+    }
+}
+</script>
+
+<h1>Doubles Tournament Winners (last 52 weeks)</h1>
+
+<div class="dashboard">
+    <div class="stat">
+        <h3>Total Titles</h3>
+        <p>42</p>
+    </div>
+
+    <div class="stat">
+        <h3>GS</h3>
+        <p>0</p>
+    </div>
+
+    <div class="stat">
+        <h3>WTA1000</h3>
+        <p>0</p>
+    </div>
+
+    <div class="stat">
+        <h3>WTA500</h3>
+        <p>1</p>
+    </div>
+
+    <div class="stat">
+        <h3>WTA250</h3>
+        <p>1</p>
+    </div>
+
+    <div class="stat">
+        <h3>WTA125</h3>
+        <p>5</p>
+    </div>
+
+    <div class="stat">
+        <h3>W100</h3>
+        <p>3</p>
+    </div>
+
+    <div class="stat">
+        <h3>W75</h3>
+        <p>6</p>
+    </div>
+
+    <div class="stat">
+        <h3>W50</h3>
+        <p>5</p>
+    </div>
+
+    <div class="stat">
+        <h3>W35</h3>
+        <p>12</p>
+    </div>
+
+    <div class="stat">
+        <h3>W15</h3>
+        <p>9</p>
+    </div>
+</div>
+
+<h2>Most titles</h2>
+<div class="dashboard">
+
+        <div class="stat">
+            <h3>Alicia Dudeney</h3>
+            <p>8 titles</p>
+        </div>
+        
+        <div class="stat">
+            <h3>Amelia Rajecki</h3>
+            <p>6 titles</p>
+        </div>
+        
+        <div class="stat">
+            <h3>Freya Christie</h3>
+            <p>5 titles</p>
+        </div>
+        </div><div class="card">
+<h2>WTA500</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Olivia Nicholls</td>
+      <td>WTA500 London</td>
+      <td>June 2026</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="card">
+<h2>WTA250</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Maia Lumsden & Harriet Dart</td>
+      <td>WTA250 Nottingham</td>
+      <td>June 2026</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="card">
+<h2>WTA125</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Harriet Dart</td>
+      <td>WTA125 Caldas da Rainha</td>
+      <td>September 2025</td>
+    </tr>
+    <tr>
+      <td>Maia Lumsden</td>
+      <td>WTA125 Caldas da Rainha</td>
+      <td>September 2025</td>
+    </tr>
+    <tr>
+      <td>Amelia Rajecki</td>
+      <td>WTA125 Tampico</td>
+      <td>October 2025</td>
+    </tr>
+    <tr>
+      <td>Maia Lumsden</td>
+      <td>WTA125 Saint Malo</td>
+      <td>April 2026</td>
+    </tr>
+    <tr>
+      <td>Freya Christie & Eden Silva</td>
+      <td>WTA125 Ilkley</td>
+      <td>June 2026</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="card">
+<h2>W100</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Mimi Xu & Ella Mcdonald</td>
+      <td>W100 Wrexham</td>
+      <td>October 2025</td>
+    </tr>
+    <tr>
+      <td>Maia Lumsden & Harriet Dart</td>
+      <td>W100 Fujairah</td>
+      <td>January 2026</td>
+    </tr>
+    <tr>
+      <td>Harriet Dart & Heather Watson</td>
+      <td>W100 Gifu</td>
+      <td>April 2026</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="card">
+<h2>W75</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Naiktha Bains</td>
+      <td>W75 Le Neubourg</td>
+      <td>September 2025</td>
+    </tr>
+    <tr>
+      <td>Lily Miyazaki</td>
+      <td>W75 Bratislava</td>
+      <td>September 2025</td>
+    </tr>
+    <tr>
+      <td>Emily Appleton</td>
+      <td>W75 Pentange</td>
+      <td>November 2025</td>
+    </tr>
+    <tr>
+      <td>Madeleine Brooks & Amelia Rajecki</td>
+      <td>W75 Leszno</td>
+      <td>January 2026</td>
+    </tr>
+    <tr>
+      <td>Madeleine Brooks</td>
+      <td>W75 Kosice</td>
+      <td>May 2026</td>
+    </tr>
+    <tr>
+      <td>Freya Christie & Eden Silva</td>
+      <td>W75 Caserta</td>
+      <td>June 2026</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="card">
+<h2>W50</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Amelia Rajecki & Vic Allen</td>
+      <td>W50 Nottingham</td>
+      <td>July 2025</td>
+    </tr>
+    <tr>
+      <td>Ella Mcdonald & Holly Hutchinson</td>
+      <td>W50 Funchal</td>
+      <td>November 2025</td>
+    </tr>
+    <tr>
+      <td>Alicia Dudeney</td>
+      <td>W50 Manchester</td>
+      <td>January 2026</td>
+    </tr>
+    <tr>
+      <td>Mika Stojsavljevic</td>
+      <td>W50 Croissy-Beaubourg</td>
+      <td>March 2026</td>
+    </tr>
+    <tr>
+      <td>Freya Christie & Eden Silva</td>
+      <td>W50 Roehampton</td>
+      <td>April 2026</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="card">
+<h2>W35</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Alicia Dudeney</td>
+      <td>W35 Monastir</td>
+      <td>July 2025</td>
+    </tr>
+    <tr>
+      <td>Amelia Rajecki & Alicia Dudeney</td>
+      <td>W35 Roehampton</td>
+      <td>July 2025</td>
+    </tr>
+    <tr>
+      <td>Naiktha Bains</td>
+      <td>W35 Roehampton</td>
+      <td>August 2025</td>
+    </tr>
+    <tr>
+      <td>Mika Stojsavljevic</td>
+      <td>W35 Monastir</td>
+      <td>September 2025</td>
+    </tr>
+    <tr>
+      <td>Brooke Black</td>
+      <td>W35 Darwin</td>
+      <td>October 2025</td>
+    </tr>
+    <tr>
+      <td>Mimi Xu</td>
+      <td>W35 Birmingham</td>
+      <td>October 2025</td>
+    </tr>
+    <tr>
+      <td>Alicia Dudeney</td>
+      <td>W35 Monastir</td>
+      <td>December 2025</td>
+    </tr>
+    <tr>
+      <td>Amelia Rajecki</td>
+      <td>W35 Sheffield</td>
+      <td>February 2026</td>
+    </tr>
+    <tr>
+      <td>Freya Christie & Eden Silva</td>
+      <td>W35 Nottingham</td>
+      <td>April 2026</td>
+    </tr>
+    <tr>
+      <td>Freya Christie & Eden Silva</td>
+      <td>W35 Nottingham</td>
+      <td>May 2026</td>
+    </tr>
+    <tr>
+      <td>Alicia Dudeney</td>
+      <td>W35 Estepona</td>
+      <td>May 2026</td>
+    </tr>
+    <tr>
+      <td>Lauryn John-Baptiste</td>
+      <td>W35 Sheffield</td>
+      <td>August 2026</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="card">
+<h2>W15</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Esther Adeshina</td>
+      <td>W15 Kayseri</td>
+      <td>June 2025</td>
+    </tr>
+    <tr>
+      <td>Vic Allen</td>
+      <td>W15 Las Palmas</td>
+      <td>July 2025</td>
+    </tr>
+    <tr>
+      <td>Vic Allen & Esther Adeshina</td>
+      <td>W15 Dublin</td>
+      <td>July 2025</td>
+    </tr>
+    <tr>
+      <td>Alicia Dudeney</td>
+      <td>W15 Monastir</td>
+      <td>September 2025</td>
+    </tr>
+    <tr>
+      <td>Alicia Dudeney</td>
+      <td>W15 Trnava</td>
+      <td>November 2025</td>
+    </tr>
+    <tr>
+      <td>Amelia Rajecki</td>
+      <td>W15 Oslo</td>
+      <td>January 2026</td>
+    </tr>
+    <tr>
+      <td>Esther Adeshina</td>
+      <td>W15 Manacor</td>
+      <td>February 2026</td>
+    </tr>
+    <tr>
+      <td>Alicia Dudeney</td>
+      <td>W15 Hagetmau</td>
+      <td>March 2026</td>
+    </tr>
+    <tr>
+      <td>Esther Adeshina</td>
+      <td>W15 Victoriaville</td>
+      <td>March 2026</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body></html>
