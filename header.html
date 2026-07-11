@@ -1,0 +1,183 @@
+<div id="header-banner">
+    <div class="header-content">
+
+        <!-- Title -->
+        <span class="title">GB Tennis Data</span>
+
+        <!-- Main navigation -->
+        <nav class="nav-main">
+            <a class="nav-pill" href="index.html">Home</a>
+            <a class="nav-pill" onclick="toggleDropdown('women')">Women</a>
+            <a class="nav-pill" onclick="toggleDropdown('men')">Men</a>
+        </nav>
+
+        <!-- Dropdown container (fixed height) -->
+        <div class="nav-container">
+
+            <!-- Women dropdown -->
+            <div id="dropdown-women" class="dropdown hidden">
+                <span class="dropdown-title">Women</span>
+                <div class="dropdown-links">
+                    <a href="women_summary.html">Summary</a>
+                    <a href="women_singles_by_player.html">Singles by player</a>
+                    <a href="women_singles_by_week.html">Singles by week</a>
+                    <a href="women_doubles_by_player.html">Doubles by player</a>
+                    <a href="women_doubles_by_week.html">Doubles by week</a>
+                    <a href="women_singles_winners.html">Singles winners</a>
+                    <a href="women_doubles_winners.html">Doubles winners</a>
+                </div>
+            </div>
+
+            <!-- Men dropdown -->
+            <div id="dropdown-men" class="dropdown hidden">
+                <span class="dropdown-title">Men</span>
+                <div class="dropdown-links">
+                    <a href="men_summary.html">Summary</a>
+                    <a href="men_singles_by_player.html">Singles by player</a>
+                    <a href="men_singles_by_week.html">Singles by week</a>
+<!--                    <a href="men_doubles_by_player.html">Doubles by player</a>
+                    <a href="men_doubles_by_week.html">Doubles by week</a>
+ -->                   <a href="men_singles_winners.html">Singles winners</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<style>
+    /* Sticky header */
+    #header-banner {
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        background: #3a7;
+        color: #fff;
+        padding: 18px 25px;
+        font-family: Arial, sans-serif;
+        border-bottom: 3px solid #2a5;
+    }
+
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .title {
+        font-size: 32px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+
+    /* Main nav pills */
+    .nav-main {
+        display: flex;
+        gap: 15px;
+    }
+
+    .nav-pill {
+        background: #fff;
+        color: #3a7;
+        padding: 6px 18px;
+        border-radius: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        border: 2px solid #fff;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+
+    .nav-pill:hover {
+        background: #2a5;
+        color: #fff;
+    }
+
+    /* Dropdown container */
+    .nav-container {
+        position: relative;
+        width: 100%;
+        margin-top: 10px;
+        height: 50px; /* Women & Men dropdown appear at same height */
+    }
+
+    /* Dropdown */
+    .dropdown {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #3a7;
+        padding: 10px 20px;
+        border-radius: 10px;
+        opacity: 1;
+        transition: opacity 0.25s ease-in-out;
+        pointer-events: auto;
+        white-space: nowrap;
+    }
+
+    .dropdown.hidden {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+    }
+
+    .dropdown-title {
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-right: 15px;
+    }
+
+    .dropdown-links a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        margin-right: 15px;
+        padding: 4px 10px;
+        border-radius: 10px;
+        transition: 0.2s;
+    }
+
+    .dropdown-links a:hover {
+        background: rgba(255,255,255,0.25);
+    }
+
+    .coming-soon {
+        font-size: 16px;
+        opacity: 0.8;
+    }
+
+    /* Responsive: collapse into dropdown when screen too narrow */
+    @media (max-width: 900px) {
+        .dropdown-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .dropdown {
+            white-space: normal;
+            width: 90%;
+        }
+    }
+</style>
+
+<script>
+function toggleDropdown(section) {
+    const women = document.getElementById("dropdown-women");
+    const men = document.getElementById("dropdown-men");
+
+    if (section === "women") {
+        women.classList.toggle("hidden");
+        men.classList.add("hidden");
+    } else if (section === "men") {
+        men.classList.toggle("hidden");
+        women.classList.add("hidden");
+    }
+}
+</script>
