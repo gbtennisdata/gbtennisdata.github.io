@@ -91,14 +91,23 @@
 <div class="section">
     <h2>Men</h2>
     <div class="link-grid">
-		<h3><center>To come later...</center></h3>
- <!--       <a class="link-box" href="MEN_SUMMARY_URL">Summary</a>
-        <a class="link-box" href="MEN_SINGLES_PLAYER_URL">Singles by Player</a>
-        <a class="link-box" href="MEN_SINGLES_WEEK_URL">Singles by Week</a>
-        <a class="link-box" href="MEN_DOUBLES_PLAYER_URL">Doubles by Player</a>
-        <a class="link-box" href="MEN_DOUBLES_WEEK_URL">Doubles by Week</a>
- -->   </div>
+        <a class="link-box" href="men_summary.html">Summary</a>
+        <a class="link-box" href="men_singles_by_player.html">Singles by Player</a>
+        <a class="link-box" href="men_singles_by_week.html">Singles by Week</a>
+<!--        <a class="link-box" href="men_doubles_by_player.html">Doubles by Player</a>
+        <a class="link-box" href="men_singles_by_week.html">Doubles by Week</a>
+-->        <a class="link-box" href="men_singles_winners.html">Singles winners</a>
+ <!--       <a class="link-box" href="men_doubles_winners.html">Doubles winners</a>
+        <a class="link-box" href="men_us_college.html">US College rosters</a> -->   </div>
 </div>
+<div id="footer"></div>
+<script>
+  async function loadFragment(id, file) {{
+    const html = await fetch(file).then(r => r.text());
+    document.getElementById(id).innerHTML = html;
+  }}
 
+  loadFragment("footer", "./footer.html");
+</script>
 </body>
 </html>

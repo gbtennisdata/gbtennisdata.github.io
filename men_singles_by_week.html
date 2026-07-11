@@ -1,0 +1,777 @@
+
+    <style>
+    body { font-family: Arial, sans-serif; }
+    table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+    th, td { border: 1px solid #ccc; padding: 6px; text-align: center; }
+    th { background: #3a7; color: #fff; cursor: pointer; position: relative; }
+    th .arrow { font-size: 12px; margin-left: 4px; }
+    tr:nth-child(even) { background: #f7f7f7; }
+    .card { border:1px solid #ccc; border-radius:8px; padding:15px; margin:15px 0; }
+    summary { font-weight:bold; cursor:pointer; font-size: 18px; }
+    #player-select-container {
+        position: sticky;
+        top: var(--header-height);
+        z-index: 9998;
+        background: #fff;
+        padding: 12px;
+        border-bottom: 2px solid #ccc;
+        margin-bottom: 60px;
+    }
+
+    #playerSelect {
+        
+        font-size: 16px;
+        padding: 6px;
+    }
+    </style>
+
+    <script>
+    function sortTable(tableId, colIndex) {
+        var table = document.getElementById(tableId);
+        var rows = Array.from(table.rows).slice(1);
+        var asc = table.getAttribute("data-sort-asc") === "true" ? false : true;
+
+        rows.sort(function(a, b) {
+            var A = a.cells[colIndex].getAttribute("data-sort") || a.cells[colIndex].innerText;
+            var B = b.cells[colIndex].getAttribute("data-sort") || b.cells[colIndex].innerText;
+
+            var numA = parseFloat(A);
+            var numB = parseFloat(B);
+
+            if (!isNaN(numA) && !isNaN(numB)) {
+                return asc ? numA - numB : numB - numA;
+            }
+            return asc ? A.localeCompare(B) : B.localeCompare(A);
+        });
+
+        rows.forEach(r => table.tBodies[0].appendChild(r));
+        table.setAttribute("data-sort-asc", asc ? "true" : "false");
+
+        var th = table.querySelectorAll("th");
+        th.forEach((h, i) => {
+            h.querySelector(".arrow").innerText = (i === colIndex ? (asc ? "▲" : "▼") : "");
+        });
+    }
+
+    function toggleArrow(detailsId, arrowId) {
+        var details = document.getElementById(detailsId);
+        var arrow = document.getElementById(arrowId);
+        arrow.innerText = details.open ? "▲" : "▼";
+    }
+    </script>
+    
+        <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const header = document.getElementById("header-banner");
+
+    function updateHeaderHeight() {
+        const h = header.offsetHeight;
+        document.documentElement.style.setProperty("--header-height", h + "px");
+    }
+
+    updateHeaderHeight();
+    window.addEventListener("resize", updateHeaderHeight);
+});
+</script>
+
+<script>
+function scrollToPlayer(id) {
+    const el = document.getElementById(id);
+    const header = document.getElementById("header-banner");
+    const dropdown = document.getElementById("player-select-container");
+
+    if (!el) return;
+
+    const headerHeight = header.offsetHeight;
+    const dropdownHeight = dropdown.offsetHeight;
+
+    const totalOffset = headerHeight + dropdownHeight + 20; // extra padding
+
+    const elementTop = el.getBoundingClientRect().top + window.scrollY;
+
+    window.scrollTo({
+        top: elementTop - totalOffset,
+        behavior: 'smooth'
+    });
+}
+</script>
+
+    <div id="header-banner">
+    <div class="header-content">
+
+        <!-- Title -->
+        <span class="title">GB Tennis Data</span>
+
+        <!-- Main navigation -->
+        <nav class="nav-main">
+            <a class="nav-pill" href="index.html">Home</a>
+            <a class="nav-pill" onclick="toggleDropdown('women')">Women</a>
+            <a class="nav-pill" onclick="toggleDropdown('men')">Men</a>
+        </nav>
+
+        <!-- Dropdown container (fixed height) -->
+        <div class="nav-container">
+
+            <!-- Women dropdown -->
+            <div id="dropdown-women" class="dropdown hidden">
+                <span class="dropdown-title">Women</span>
+                <div class="dropdown-links">
+                    <a href="women_summary.html">Summary</a>
+                    <a href="women_singles_by_player.html">Singles by player</a>
+                    <a href="women_singles_by_week.html">Singles by week</a>
+                    <a href="women_doubles_by_player.html">Doubles by player</a>
+                    <a href="women_doubles_by_week.html">Doubles by week</a>
+                    <a href="women_singles_winners.html">Singles winners</a>
+                    <a href="women_doubles_winners.html">Doubles winners</a>
+                </div>
+            </div>
+
+            <!-- Men dropdown -->
+            <div id="dropdown-men" class="dropdown hidden">
+                <span class="dropdown-title">Men</span>
+                <div class="dropdown-links">
+                    <span class="coming-soon">To come later</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<style>
+    /* Sticky header */
+    #header-banner {
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        background: #3a7;
+        color: #fff;
+        padding: 18px 25px;
+        font-family: Arial, sans-serif;
+        border-bottom: 3px solid #2a5;
+    }
+
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .title {
+        font-size: 32px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+
+    /* Main nav pills */
+    .nav-main {
+        display: flex;
+        gap: 15px;
+    }
+
+    .nav-pill {
+        background: #fff;
+        color: #3a7;
+        padding: 6px 18px;
+        border-radius: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        border: 2px solid #fff;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+
+    .nav-pill:hover {
+        background: #2a5;
+        color: #fff;
+    }
+
+    /* Dropdown container */
+    .nav-container {
+        position: relative;
+        width: 100%;
+        margin-top: 10px;
+        height: 50px; /* Women & Men dropdown appear at same height */
+    }
+
+    /* Dropdown */
+    .dropdown {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #3a7;
+        padding: 10px 20px;
+        border-radius: 10px;
+        opacity: 1;
+        transition: opacity 0.25s ease-in-out;
+        pointer-events: auto;
+        white-space: nowrap;
+    }
+
+    .dropdown.hidden {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+    }
+
+    .dropdown-title {
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-right: 15px;
+    }
+
+    .dropdown-links a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        margin-right: 15px;
+        padding: 4px 10px;
+        border-radius: 10px;
+        transition: 0.2s;
+    }
+
+    .dropdown-links a:hover {
+        background: rgba(255,255,255,0.25);
+    }
+
+    .coming-soon {
+        font-size: 16px;
+        opacity: 0.8;
+    }
+
+    /* Responsive: collapse into dropdown when screen too narrow */
+    @media (max-width: 900px) {
+        .dropdown-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .dropdown {
+            white-space: normal;
+            width: 90%;
+        }
+    }
+</style>
+
+<script>
+function toggleDropdown(section) {
+    const women = document.getElementById("dropdown-women");
+    const men = document.getElementById("dropdown-men");
+
+    if (section === "women") {
+        women.classList.toggle("hidden");
+        men.classList.add("hidden");
+    } else if (section === "men") {
+        men.classList.toggle("hidden");
+        women.classList.add("hidden");
+    }
+}
+</script>
+
+    <div id='player-select-container'>
+        <label for='playerSelect'><strong>Select Week:</strong></label>
+        <select id='playerSelect' onchange="scrollToPlayer(this.value)">
+            <option value='' disabled selected>Choose...</option>
+            <option value='week_0'>Monday 13 July 2026</option><option value='week_1'>Monday 20 July 2026</option><option value='week_2'>Monday 27 July 2026</option><option value='week_3'>Monday 03 August 2026</option><option value='week_4'>Monday 10 August 2026</option><option value='week_5'>Monday 17 August 2026</option><option value='week_6'>Monday 24 August 2026</option><option value='week_7'>Monday 07 September 2026</option><option value='week_8'>Monday 14 September 2026</option><option value='week_9'>Monday 21 September 2026</option><option value='week_10'>Monday 28 September 2026</option><option value='week_11'>Monday 05 October 2026</option><option value='week_12'>Monday 12 October 2026</option><option value='week_13'>Monday 19 October 2026</option><option value='week_14'>Monday 26 October 2026</option><option value='week_15'>Monday 02 November 2026</option><option value='week_16'>Monday 09 November 2026</option><option value='week_17'>Monday 16 November 2026</option><option value='week_18'>Monday 23 November 2026</option><option value='week_19'>Monday 30 November 2026</option><option value='week_20'>Monday 07 December 2026</option><option value='week_21'>Monday 11 January 2027</option><option value='week_22'>Monday 18 January 2027</option><option value='week_23'>Monday 25 January 2027</option><option value='week_24'>Monday 01 February 2027</option><option value='week_25'>Monday 08 February 2027</option><option value='week_26'>Monday 15 February 2027</option><option value='week_27'>Monday 22 February 2027</option><option value='week_28'>Monday 01 March 2027</option><option value='week_29'>Monday 15 March 2027</option><option value='week_30'>Monday 29 March 2027</option><option value='week_31'>Monday 05 April 2027</option><option value='week_32'>Monday 12 April 2027</option><option value='week_33'>Monday 19 April 2027</option><option value='week_34'>Monday 26 April 2027</option><option value='week_35'>Monday 03 May 2027</option><option value='week_36'>Monday 17 May 2027</option><option value='week_37'>Monday 24 May 2027</option><option value='week_38'>Monday 07 June 2027</option><option value='week_39'>Monday 14 June 2027</option><option value='week_40'>Monday 21 June 2027</option><option value='week_41'>Monday 28 June 2027</option>
+        </select>
+    </div>
+    <h2>Points dropping by week</h2><div class='card' id='week_0'><h2>Monday 13 July 2026</h2><p><strong>Total drops:</strong> 39</p>
+        <details id="details_counted_0" open
+                 onclick="toggleArrow('details_counted_0', 'arrow_counted_0')">
+            <summary>
+                Counted drops (31)
+            </summary>
+        <table id='counted_0' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_0",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_0",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_0",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_0",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Oliver Crawford</td><td> Wimbledon</td><td>R128</td><td data-sort='-'>-</td></tr><tr><td>Jay Clarke</td><td> Wimbledon</td><td>R128</td><td data-sort='-'>-</td></tr><tr><td>Oliver Crawford</td><td>Challenger  Nottingham</td><td>SF</td><td data-sort='14'>14</td></tr><tr><td>Johannus Monday</td><td>Challenger  Nottingham</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>George Loffhagen</td><td>Challenger  Hersonissos</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Henry Searle</td><td> Wimbledon</td><td>R128</td><td data-sort='-'>-</td></tr><tr><td>George Loffhagen</td><td> Wimbledon</td><td>R128 (WC)</td><td data-sort='-'>-</td></tr><tr><td>Arthur Fery</td><td> Wimbledon</td><td>R64</td><td data-sort='50'>50</td></tr><tr><td>Jan Choinski</td><td>Challenger 125 Troyes</td><td>Winner</td><td data-sort='50'>50</td></tr><tr><td>Felix Gill</td><td>M15 Getxo</td><td>F</td><td data-sort='8'>8</td></tr><tr><td>Henry Searle</td><td>Challenger  Nottingham</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Jack Draper</td><td> Wimbledon</td><td>R64</td><td data-sort='50'>50</td></tr><tr><td>Ryan Peniston</td><td> Wimbledon</td><td>QR2</td><td data-sort='8'>8</td></tr><tr><td>Ryan Peniston</td><td>Challenger  Nottingham</td><td>QF</td><td data-sort='8'>8</td></tr><tr><td>Billy Harris</td><td> Wimbledon</td><td>R64</td><td data-sort='50'>50</td></tr><tr><td>Dan Evans</td><td> Wimbledon</td><td>R64</td><td data-sort='50'>50</td></tr><tr><td>Ollie Tarvet</td><td> Wimbledon</td><td>R64 (Q)</td><td data-sort='80'>80</td></tr><tr><td>Jack Pinnington Jones</td><td> Wimbledon</td><td>R64</td><td data-sort='50'>50</td></tr><tr><td>Jack Pinnington Jones</td><td>Challenger 50 Nottingham</td><td>Winner</td><td data-sort='50'>50</td></tr><tr><td>Jake Fearnley</td><td> Wimbledon</td><td>R128</td><td data-sort='10'>10</td></tr><tr><td>Paul Jubb</td><td> Wimbledon</td><td>QR2 (WC)</td><td data-sort='8'>8</td></tr><tr><td>Cameron Norrie</td><td> Wimbledon</td><td>QF</td><td data-sort='400'>400</td></tr><tr><td>Harry Wendelken</td><td>Challenger  Nottingham</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Lui Maxted</td><td>Challenger  Nottingham</td><td>R16 (Q)</td><td data-sort='7'>7</td></tr><tr><td>Paul Jubb</td><td>Challenger  Winnipeg</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Aidan McHugh</td><td>M25 Laval</td><td>SF</td><td data-sort='8'>8</td></tr><tr><td>Hamish Stewart</td><td> Wimbledon</td><td>QR3</td><td data-sort='16'>16</td></tr><tr><td>Johannus Monday</td><td> Wimbledon</td><td>R128 (WC)</td><td data-sort='-'>-</td></tr><tr><td>Giles Hussey</td><td>M25+H Ajaccio</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Alastair Gray</td><td>Challenger  Nottingham</td><td>QF</td><td data-sort='8'>8</td></tr><tr><td>Hamish Stewart</td><td>Challenger  Nottingham</td><td>SF</td><td data-sort='14'>14</td></tr></tbody></table></details>
+            <details id="details_notcounted_0"
+                     onclick="toggleArrow('details_notcounted_0', 'arrow_notcounted_0')">
+                <summary>
+                    Not counted drops (8)
+                </summary>
+            <table id='notcounted_0' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_0",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_0",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_0",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_0",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jan Choinski</td><td>CH Brauschweig</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jan Choinski</td><td>GS Wimbledon</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Liam Broady</td><td>M25 Elvas</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Charles Broom</td><td>Challenger  Nottingham</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Liam Broady</td><td>Challenger  Nottingham</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Liam Broady</td><td>M25 Figueira da Foz</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Alastair Gray</td><td>GS Wimbledon</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Giles Hussey</td><td>GS Wimbledon</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_1'><h2>Monday 20 July 2026</h2><p><strong>Total drops:</strong> 7</p>
+        <details id="details_counted_1" open
+                 onclick="toggleArrow('details_counted_1', 'arrow_counted_1')">
+            <summary>
+                Counted drops (6)
+            </summary>
+        <table id='counted_1' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_1",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_1",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_1",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_1",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jan Choinski</td><td>Challenger 75 Bunschoten</td><td>Winner</td><td data-sort='75'>75</td></tr><tr><td>Ryan Peniston</td><td>Challenger  Pozoblanco</td><td>R16 (Q)</td><td data-sort='10'>10</td></tr><tr><td>Anton Matusevich</td><td>Challenger  Bunschoten</td><td>R32</td><td data-sort='4'>4</td></tr><tr><td>Aidan McHugh</td><td>M25 Dallas</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Oliver Crawford</td><td>CH Pozoblanco</td><td>SF</td><td data-sort='22'>22</td></tr><tr><td>Johannus Monday</td><td>CH Pozoblanco</td><td>QF</td><td data-sort='12'>12</td></tr></tbody></table></details>
+            <details id="details_notcounted_1"
+                     onclick="toggleArrow('details_notcounted_1', 'arrow_notcounted_1')">
+                <summary>
+                    Not counted drops (1)
+                </summary>
+            <table id='notcounted_1' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_1",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_1",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_1",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_1",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Paul Jubb</td><td>Challenger  Granby</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_2'><h2>Monday 27 July 2026</h2><p><strong>Total drops:</strong> 14</p>
+        <details id="details_counted_2" open
+                 onclick="toggleArrow('details_counted_2', 'arrow_counted_2')">
+            <summary>
+                Counted drops (11)
+            </summary>
+        <table id='counted_2' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_2",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_2",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_2",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_2",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Billy Harris</td><td>ATP 500 Washington DC</td><td>R64 (Q)</td><td data-sort='16'>16</td></tr><tr><td>Dan Evans</td><td>ATP 500 Washington DC</td><td>R64</td><td data-sort='50'>50</td></tr><tr><td>Oliver Crawford</td><td>CH Segovia</td><td>QF</td><td data-sort='12'>12</td></tr><tr><td>George Loffhagen</td><td>Challenger 75 Segovia</td><td>Winner</td><td data-sort='75'>75</td></tr><tr><td>Cameron Norrie</td><td>ATP 500 Washington DC</td><td>R16</td><td data-sort='50'>50</td></tr><tr><td>Aidan McHugh</td><td>M25 Louisville</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Arthur Fery</td><td>CH Bloomfield Hills</td><td>QF (Q)</td><td data-sort='18'>18</td></tr><tr><td>Max Basing</td><td>M15 Nakhon Pathom</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Johannus Monday</td><td>CH Segovia</td><td>QF</td><td data-sort='12'>12</td></tr><tr><td>Ryan Peniston</td><td>Challenger  Segovia</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Charles Broom</td><td>M25 Castelo Branco</td><td>Winner</td><td data-sort='25'>25</td></tr></tbody></table></details>
+            <details id="details_notcounted_2"
+                     onclick="toggleArrow('details_notcounted_2', 'arrow_notcounted_2')">
+                <summary>
+                    Not counted drops (3)
+                </summary>
+            <table id='notcounted_2' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_2",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_2",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_2",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_2",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Giles Hussey</td><td>M25 Louisville</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jay Clarke</td><td>CH Tampere</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Harry Wendelken</td><td>M25 Castelo Branco</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_3'><h2>Monday 03 August 2026</h2><p><strong>Total drops:</strong> 15</p>
+        <details id="details_counted_3" open
+                 onclick="toggleArrow('details_counted_3', 'arrow_counted_3')">
+            <summary>
+                Counted drops (12)
+            </summary>
+        <table id='counted_3' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_3",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_3",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_3",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_3",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jake Fearnley</td><td>ATP Masters 1000 Canada</td><td>R128</td><td data-sort='10'>10</td></tr><tr><td>Aidan McHugh</td><td>M25 Champaign</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Giles Hussey</td><td>CH Lexington</td><td>QF</td><td data-sort='16'>16</td></tr><tr><td>Jack Draper</td><td>ATP Masters 1000 Canada</td><td>None</td><td data-sort='0'>0</td></tr><tr><td>Henry Searle</td><td>CH Porto</td><td>R32 (Q)</td><td data-sort='4'>4</td></tr><tr><td>Dan Evans</td><td>Challenger  Lexington</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Paul Jubb</td><td>M25 Champaign</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>George Loffhagen</td><td>CH Porto</td><td>R16</td><td data-sort='7'>7</td></tr><tr><td>Anton Matusevich</td><td>M25 Metzingen</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Anton Matusevich</td><td>Challenger  Hagen</td><td>R32</td><td data-sort='4'>4</td></tr><tr><td>Jack Pinnington Jones</td><td>CH Liberec</td><td>QF</td><td data-sort='12'>12</td></tr><tr><td>Jan Choinski</td><td>Challenger  Hagen</td><td>QF</td><td data-sort='12'>12</td></tr></tbody></table></details>
+            <details id="details_notcounted_3"
+                     onclick="toggleArrow('details_notcounted_3', 'arrow_notcounted_3')">
+                <summary>
+                    Not counted drops (3)
+                </summary>
+            <table id='notcounted_3' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_3",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_3",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_3",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_3",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Giles Hussey</td><td>M25 Champaign</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Billy Harris</td><td>CH Lexington</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Cameron Norrie</td><td>ATP Masters 1000 Canada</td><td>R64</td><td data-sort='10'>10</td></tr></tbody></table></details></div><div class='card' id='week_4'><h2>Monday 10 August 2026</h2><p><strong>Total drops:</strong> 2</p>
+        <details id="details_counted_4" open
+                 onclick="toggleArrow('details_counted_4', 'arrow_counted_4')">
+            <summary>
+                Counted drops (1)
+            </summary>
+        <table id='counted_4' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_4",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_4",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_4",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_4",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Arthur Fery</td><td>ATP Masters 1000 Cincinnati</td><td>QR2</td><td data-sort='10'>10</td></tr></tbody></table></details>
+            <details id="details_notcounted_4"
+                     onclick="toggleArrow('details_notcounted_4', 'arrow_notcounted_4')">
+                <summary>
+                    Not counted drops (1)
+                </summary>
+            <table id='notcounted_4' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_4",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_4",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_4",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_4",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Cameron Norrie</td><td>ATP Masters 1000 Cincinnati</td><td>R64</td><td data-sort='10'>10</td></tr></tbody></table></details></div><div class='card' id='week_5'><h2>Monday 17 August 2026</h2><p><strong>Total drops:</strong> 24</p>
+        <details id="details_counted_5" open
+                 onclick="toggleArrow('details_counted_5', 'arrow_counted_5')">
+            <summary>
+                Counted drops (20)
+            </summary>
+        <table id='counted_5' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_5",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_5",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_5",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_5",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Harry Wendelken</td><td>M25 Roehampton</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Jay Clarke</td><td>CH Cordenons</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>George Loffhagen</td><td>CH Hersonissos</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Johannus Monday</td><td>CH Grodzisk Mazowiecki</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Ollie Tarvet</td><td>M25 Roehampton</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Toby Samuel</td><td>M25 Gentofte</td><td>SF</td><td data-sort='8'>8</td></tr><tr><td>Max Basing</td><td>M25 Bali</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Harry Wendelken</td><td>CH Hersonissos</td><td>QF</td><td data-sort='8'>8</td></tr><tr><td>Ollie Tarvet</td><td>Challenger  Hersonissos</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Alastair Gray</td><td>M15 Dublin</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Dan Evans</td><td>Challenger  Sumnter</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Max Basing</td><td>M15 Bali</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Jake Fearnley</td><td>ATP Masters 1000 Cincinnati</td><td>R128</td><td data-sort='10'>10</td></tr><tr><td>Henry Searle</td><td>M25 Roehampton</td><td>SF</td><td data-sort='8'>8</td></tr><tr><td>Giles Hussey</td><td>M25 Chicago</td><td>QF</td><td data-sort='14'>14</td></tr><tr><td>Arthur Fery</td><td>Challenger 75 Barranquilla</td><td>Winner</td><td data-sort='75'>75</td></tr><tr><td>Paul Jubb</td><td>M25 Roehampton</td><td>F</td><td data-sort='16'>16</td></tr><tr><td>Hamish Stewart</td><td>M15 Dublin</td><td>SF</td><td data-sort='4'>4</td></tr><tr><td>Aidan McHugh</td><td>M25 Edwardsville</td><td>F</td><td data-sort='16'>16</td></tr><tr><td>Jack Draper</td><td>ATP Masters 1000 Cincinnati</td><td>None</td><td data-sort='0'>0</td></tr></tbody></table></details>
+            <details id="details_notcounted_5"
+                     onclick="toggleArrow('details_notcounted_5', 'arrow_notcounted_5')">
+                <summary>
+                    Not counted drops (4)
+                </summary>
+            <table id='notcounted_5' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_5",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_5",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_5",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_5",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Billy Harris</td><td>CH Chicago</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Charles Broom</td><td>M25 Roehampton</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Jake Fearnley</td><td>Challenger  Sumnter</td><td>R32 (Q)</td><td data-sort='5'>5</td></tr><tr><td>Jan Choinski</td><td>CH Bonn</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_6'><h2>Monday 24 August 2026</h2><p><strong>Total drops:</strong> 13</p>
+        <details id="details_counted_6" open
+                 onclick="toggleArrow('details_counted_6', 'arrow_counted_6')">
+            <summary>
+                Counted drops (8)
+            </summary>
+        <table id='counted_6' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_6",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_6",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_6",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_6",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Paul Jubb</td><td>M25 Aldershot</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Toby Samuel</td><td>M25 Aldershot</td><td>F</td><td data-sort='16'>16</td></tr><tr><td>Henry Searle</td><td>Challenger  Hersonissos</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Henry Searle</td><td>M25 Aldershot</td><td>SF</td><td data-sort='8'>8</td></tr><tr><td>Max Basing</td><td>M25 Bali</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Charles Broom</td><td>M25 Aldershot</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Anton Matusevich</td><td>M25 Aldershot</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Lui Maxted</td><td>M25 Aldershot</td><td>QF</td><td data-sort='3'>3</td></tr></tbody></table></details>
+            <details id="details_notcounted_6"
+                     onclick="toggleArrow('details_notcounted_6', 'arrow_notcounted_6')">
+                <summary>
+                    Not counted drops (5)
+                </summary>
+            <table id='notcounted_6' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_6",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_6",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_6",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_6",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Liam Broady</td><td>Challenger  Hersonissos</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Harry Wendelken</td><td>Challenger  Hersonissos</td><td>R32 (Q)</td><td data-sort='3'>3</td></tr><tr><td>Jake Fearnley</td><td>ATP 250 Winston Salem</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Johannus Monday</td><td>GS US Open</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Hamish Stewart</td><td>M25 Idanha-a-Nova</td><td>QF</td><td data-sort='3'>3</td></tr></tbody></table></details></div><div class='card' id='week_7'><h2>Monday 07 September 2026</h2><p><strong>Total drops:</strong> 28</p>
+        <details id="details_counted_7" open
+                 onclick="toggleArrow('details_counted_7', 'arrow_counted_7')">
+            <summary>
+                Counted drops (24)
+            </summary>
+        <table id='counted_7' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_7",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_7",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_7",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_7",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>George Loffhagen</td><td>Challenger  Monastir</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Lui Maxted</td><td>M15 Monastir</td><td>SF</td><td data-sort='4'>4</td></tr><tr><td>Dan Evans</td><td>Challenger  Shanghai</td><td>R16</td><td data-sort='7'>7</td></tr><tr><td>Max Basing</td><td>M15 Nakhon Pathom</td><td>QF</td><td data-sort='2'>2</td></tr><tr><td>Dan Evans</td><td> US Open</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Lui Maxted</td><td>M15 Monastir</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Jack Draper</td><td> US Open</td><td>R64</td><td data-sort='50'>50</td></tr><tr><td>Oliver Crawford</td><td>Challenger  Shanghai</td><td>R16</td><td data-sort='7'>7</td></tr><tr><td>Hamish Stewart</td><td>CH Cassis</td><td>R16 (Q)</td><td data-sort='10'>10</td></tr><tr><td>Oliver Crawford</td><td>CH Zhangjiagang</td><td>F</td><td data-sort='44'>44</td></tr><tr><td>Hamish Stewart</td><td>Challenger  Manacor</td><td>R16 (Q)</td><td data-sort='10'>10</td></tr><tr><td>Oliver Crawford</td><td> US Open</td><td>QR2</td><td data-sort='8'>8</td></tr><tr><td>Max Basing</td><td>M25 Nakhon Pathom</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Billy Harris</td><td> US Open</td><td>R128 (Q)</td><td data-sort='26'>26</td></tr><tr><td>Jay Clarke</td><td> US Open</td><td>QR2</td><td data-sort='8'>8</td></tr><tr><td>Jan Choinski</td><td>Challenger  Tulln</td><td>R16</td><td data-sort='7'>7</td></tr><tr><td>Billy Harris</td><td>Challenger 75 Cassis</td><td>Winner</td><td data-sort='75'>75</td></tr><tr><td>Arthur Fery</td><td>CH Cassis</td><td>QF</td><td data-sort='12'>12</td></tr><tr><td>Liam Broady</td><td>M15 Budapest</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Anton Matusevich</td><td>Challenger  Tulin</td><td>QR2</td><td data-sort='2'>2</td></tr><tr><td>Alastair Gray</td><td>CH Istanbul</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Ryan Peniston</td><td>Challenger  Manacor</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jake Fearnley</td><td> US Open</td><td>R64</td><td data-sort='50'>50</td></tr><tr><td>Cameron Norrie</td><td> US Open</td><td>R32</td><td data-sort='100'>100</td></tr></tbody></table></details>
+            <details id="details_notcounted_7"
+                     onclick="toggleArrow('details_notcounted_7', 'arrow_notcounted_7')">
+                <summary>
+                    Not counted drops (4)
+                </summary>
+            <table id='notcounted_7' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_7",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_7",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_7",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_7",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Charles Broom</td><td>M25 Taipei</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>George Loffhagen</td><td>GS US Open</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Jan Choinski</td><td>GS US Open</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Jack Pinnington Jones</td><td>GS US Open</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_8'><h2>Monday 14 September 2026</h2><p><strong>Total drops:</strong> 11</p>
+        <details id="details_counted_8" open
+                 onclick="toggleArrow('details_counted_8', 'arrow_counted_8')">
+            <summary>
+                Counted drops (9)
+            </summary>
+        <table id='counted_8' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_8",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_8",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_8",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_8",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Felix Gill</td><td>M15 Kursumlijska Banja</td><td>SF</td><td data-sort='4'>4</td></tr><tr><td>Jay Clarke</td><td>CH Targu Mures</td><td>SF</td><td data-sort='14'>14</td></tr><tr><td>Billy Harris</td><td>Challenger  Guangzhou</td><td>SF</td><td data-sort='25'>25</td></tr><tr><td>Jack Pinnington Jones</td><td>Challenger 75 Winston Salem</td><td>Winner</td><td data-sort='75'>75</td></tr><tr><td>Dan Evans</td><td>Challenger  Guangzhou</td><td>QF</td><td data-sort='14'>14</td></tr><tr><td>Charles Broom</td><td>M25 Sapporo</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Johannus Monday</td><td>CH Winston Salem</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Max Basing</td><td>M25 Bali</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Oliver Crawford</td><td>Challenger  Guangzhou</td><td>R16</td><td data-sort='7'>7</td></tr></tbody></table></details>
+            <details id="details_notcounted_8"
+                     onclick="toggleArrow('details_notcounted_8', 'arrow_notcounted_8')">
+                <summary>
+                    Not counted drops (2)
+                </summary>
+            <table id='notcounted_8' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_8",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_8",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_8",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_8",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jan Choinski</td><td>CH Szczecin</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Lui Maxted</td><td>M25 Cassis</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_9'><h2>Monday 21 September 2026</h2><p><strong>Total drops:</strong> 16</p>
+        <details id="details_counted_9" open
+                 onclick="toggleArrow('details_counted_9', 'arrow_counted_9')">
+            <summary>
+                Counted drops (12)
+            </summary>
+        <table id='counted_9' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_9",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_9",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_9",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_9",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jan Choinski</td><td>Challenger 125 Bad Waltersdorf</td><td>Winner</td><td data-sort='125'>125</td></tr><tr><td>Jay Clarke</td><td>CH Targu Mures</td><td>F</td><td data-sort='25'>25</td></tr><tr><td>Ryan Peniston</td><td>M25 Pozzuoli</td><td>F</td><td data-sort='16'>16</td></tr><tr><td>Toby Samuel</td><td>M15 Hurghada</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Aidan McHugh</td><td>M25 Pozzuoli</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Hamish Stewart</td><td>M25+H Plaisir</td><td>F</td><td data-sort='16'>16</td></tr><tr><td>Harry Wendelken</td><td>M25+H Plaisir</td><td>SF</td><td data-sort='8'>8</td></tr><tr><td>Giles Hussey</td><td>M15 Madrid</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Billy Harris</td><td>ATP 250 Chengdu</td><td>R32 (Q)</td><td data-sort='7'>7</td></tr><tr><td>Charles Broom</td><td>M25 Sapporo</td><td>SF</td><td data-sort='8'>8</td></tr><tr><td>Max Basing</td><td>M25 Bali</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Johannus Monday</td><td>CH Columbus</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details>
+            <details id="details_notcounted_9"
+                     onclick="toggleArrow('details_notcounted_9', 'arrow_notcounted_9')">
+                <summary>
+                    Not counted drops (4)
+                </summary>
+            <table id='notcounted_9' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_9",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_9",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_9",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_9",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Alastair Gray</td><td>M25+H Plaisir</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Cameron Norrie</td><td>ATP 250 Chengdu</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Liam Broady</td><td>M15 Hurghada</td><td>SF</td><td data-sort='4'>4</td></tr><tr><td>Henry Searle</td><td>M25 Pozzuoli</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_10'><h2>Monday 28 September 2026</h2><p><strong>Total drops:</strong> 15</p>
+        <details id="details_counted_10" open
+                 onclick="toggleArrow('details_counted_10', 'arrow_counted_10')">
+            <summary>
+                Counted drops (11)
+            </summary>
+        <table id='counted_10' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_10",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_10",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_10",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_10",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jan Choinski</td><td>CH Lisbon</td><td>R16</td><td data-sort='7'>7</td></tr><tr><td>Ryan Peniston</td><td>M25 Setubal</td><td>SF</td><td data-sort='8'>8</td></tr><tr><td>Henry Searle</td><td>M25 Setubal</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Johannus Monday</td><td>CH Las Vegas</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Billy Harris</td><td>CH Jingshan</td><td>QF</td><td data-sort='14'>14</td></tr><tr><td>Felix Gill</td><td>M15 Kursumlijska Banja</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Jack Draper</td><td>ATP 500 Beijing</td><td>None</td><td data-sort='0'>0</td></tr><tr><td>Jack Pinnington Jones</td><td>CH Las Vegas</td><td>R32</td><td data-sort='0'>0</td></tr><tr><td>Toby Samuel</td><td>M15 Hurghada</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Lui Maxted</td><td>M25 Setubal</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Liam Broady</td><td>M15 Hurghada</td><td>F</td><td data-sort='8'>8</td></tr></tbody></table></details>
+            <details id="details_notcounted_10"
+                     onclick="toggleArrow('details_notcounted_10', 'arrow_notcounted_10')">
+                <summary>
+                    Not counted drops (4)
+                </summary>
+            <table id='notcounted_10' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_10",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_10",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_10",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_10",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Cameron Norrie</td><td>ATP 500 Beijing</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Harry Wendelken</td><td>M25 Nevers</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Giles Hussey</td><td>M25 Setubal</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jay Clarke</td><td>CH Lisbon</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_11'><h2>Monday 05 October 2026</h2><p><strong>Total drops:</strong> 2</p>
+        <details id="details_counted_11" open
+                 onclick="toggleArrow('details_counted_11', 'arrow_counted_11')">
+            <summary>
+                Counted drops (2)
+            </summary>
+        <table id='counted_11' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_11",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_11",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_11",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_11",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Oliver Crawford</td><td>Challenger  Villena</td><td>R16</td><td data-sort='7'>7</td></tr><tr><td>Jack Pinnington Jones</td><td>Challenger  Tiburon</td><td>R16</td><td data-sort='6'>6</td></tr></tbody></table></details></div><div class='card' id='week_12'><h2>Monday 12 October 2026</h2><p><strong>Total drops:</strong> 31</p>
+        <details id="details_counted_12" open
+                 onclick="toggleArrow('details_counted_12', 'arrow_counted_12')">
+            <summary>
+                Counted drops (24)
+            </summary>
+        <table id='counted_12' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_12",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_12",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_12",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_12",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Hamish Stewart</td><td>CH Mouilleron le Captif</td><td>R32 (Q)</td><td data-sort='4'>4</td></tr><tr><td>Felix Gill</td><td>M25 Zlatibor</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Cameron Norrie</td><td>ATP Masters 1000 Shanghai</td><td>R32</td><td data-sort='50'>50</td></tr><tr><td>Max Basing</td><td>Challenger  Hersonissos</td><td>R32 (Q)</td><td data-sort='3'>3</td></tr><tr><td>Aidan McHugh</td><td>M25 Falun</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Johannus Monday</td><td>Challenger  Tiburon</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>George Loffhagen</td><td>Challenger  Hersonissos</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>George Loffhagen</td><td>M25 Falun</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Toby Samuel</td><td>Challenger  Hersonissos</td><td>R16 (Q)</td><td data-sort='7'>7</td></tr><tr><td>Harry Wendelken</td><td>Challenger  Hersonissos</td><td>QF (Q)</td><td data-sort='11'>11</td></tr><tr><td>George Loffhagen</td><td>Challenger  Villena</td><td>QF</td><td data-sort='14'>14</td></tr><tr><td>Ryan Peniston</td><td>Challenger  Villena</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Charles Broom</td><td>Challenger  Hersonissos</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Jack Draper</td><td>ATP Masters 1000 Shanghai</td><td>None</td><td data-sort='0'>0</td></tr><tr><td>Ollie Tarvet</td><td>Challenger  Fairfield</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Arthur Fery</td><td>CH Mouilleron le Captif</td><td>QF</td><td data-sort='12'>12</td></tr><tr><td>Ollie Tarvet</td><td>Challenger  Tiburon</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jan Choinski</td><td>Challenger 125 Valencia</td><td>Winner</td><td data-sort='125'>125</td></tr><tr><td>Ryan Peniston</td><td>Challenger 50 Hersonissos</td><td>Winner</td><td data-sort='50'>50</td></tr><tr><td>Jake Fearnley</td><td>CH Roanne</td><td>R16</td><td data-sort='7'>7</td></tr><tr><td>Liam Broady</td><td>M15 Budapest</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Billy Harris</td><td>CH Jinan</td><td>R16</td><td data-sort='8'>8</td></tr><tr><td>Billy Harris</td><td>ATP Masters 1000 Shanghai</td><td>QR2</td><td data-sort='10'>10</td></tr><tr><td>Jake Fearnley</td><td>ATP Masters 1000 Shanghai</td><td>None</td><td data-sort='0'>0</td></tr></tbody></table></details>
+            <details id="details_notcounted_12"
+                     onclick="toggleArrow('details_notcounted_12', 'arrow_notcounted_12')">
+                <summary>
+                    Not counted drops (7)
+                </summary>
+            <table id='notcounted_12' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_12",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_12",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_12",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_12",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jay Clarke</td><td>CH Braga</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Giles Hussey</td><td>Challenger  Villena</td><td>R32 (Q)</td><td data-sort='2'>2</td></tr><tr><td>Lui Maxted</td><td>M25 Mouilleron le Captif</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Harry Wendelken</td><td>CH Mouilleron le Captif</td><td>QR2</td><td data-sort='2'>2</td></tr><tr><td>Hamish Stewart</td><td>Challenger  Hersonissos</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Giles Hussey</td><td>Challenger  Hersonissos</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Henry Searle</td><td>CH Mouilleron le Captif</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_13'><h2>Monday 19 October 2026</h2><p><strong>Total drops:</strong> 19</p>
+        <details id="details_counted_13" open
+                 onclick="toggleArrow('details_counted_13', 'arrow_counted_13')">
+            <summary>
+                Counted drops (16)
+            </summary>
+        <table id='counted_13' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_13",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_13",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_13",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_13",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Max Basing</td><td>Challenger  Hersonissos</td><td>QF</td><td data-sort='11'>11</td></tr><tr><td>Ollie Tarvet</td><td>Challenger  Lincoln</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Johannus Monday</td><td>Challenger  Lincoln</td><td>SF</td><td data-sort='22'>22</td></tr><tr><td>Jake Fearnley</td><td>ATP 250 Stockholm</td><td>R16</td><td data-sort='25'>25</td></tr><tr><td>Jay Clarke</td><td>ATP 250 Stockholm</td><td>QR2</td><td data-sort='7'>7</td></tr><tr><td>Giles Hussey</td><td>Challenger  Hersonissos</td><td>QF</td><td data-sort='8'>8</td></tr><tr><td>Charles Broom</td><td>Challenger  Hersonissos</td><td>R16 (Q)</td><td data-sort='7'>7</td></tr><tr><td>Harry Wendelken</td><td>Challenger 50 Hersonissos</td><td>Winner (LL)</td><td data-sort='51'>51</td></tr><tr><td>Aidan McHugh</td><td>Challenger  Lincoln</td><td>QR2</td><td data-sort='2'>2</td></tr><tr><td>Liam Broady</td><td>M15+H Rodez</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Ryan Peniston</td><td>Challenger  Hersonissos</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Arthur Fery</td><td>ATP 250 Stockholm</td><td>R32 (Q)</td><td data-sort='13'>13</td></tr><tr><td>Hamish Stewart</td><td>Challenger  Hersonissos</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Felix Gill</td><td>M25 Santa Margherita di Pula</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Lui Maxted</td><td>M25 Monastir</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Jack Pinnington Jones</td><td>Challenger  Lincoln</td><td>R16</td><td data-sort='6'>6</td></tr></tbody></table></details>
+            <details id="details_notcounted_13"
+                     onclick="toggleArrow('details_notcounted_13', 'arrow_notcounted_13')">
+                <summary>
+                    Not counted drops (3)
+                </summary>
+            <table id='notcounted_13' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_13",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_13",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_13",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_13",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Max Basing</td><td>Challenger  Hersonissos</td><td>None</td><td data-sort='-'>-</td></tr><tr><td>Billy Harris</td><td>ATP 250 Almaty</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Oliver Crawford</td><td>Challenger  Hersonissos</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_14'><h2>Monday 26 October 2026</h2><p><strong>Total drops:</strong> 15</p>
+        <details id="details_counted_14" open
+                 onclick="toggleArrow('details_counted_14', 'arrow_counted_14')">
+            <summary>
+                Counted drops (11)
+            </summary>
+        <table id='counted_14' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_14",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_14",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_14",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_14",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jack Pinnington Jones</td><td>Challenger  Sioux Falls</td><td>R32</td><td data-sort='0'>0</td></tr><tr><td>Arthur Fery</td><td>CH Brest</td><td>QF (Q)</td><td data-sort='18'>18</td></tr><tr><td>Ollie Tarvet</td><td>Challenger  Sioux Falls</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jack Draper</td><td>ATP 500 Basel</td><td>None</td><td data-sort='0'>0</td></tr><tr><td>Johannus Monday</td><td>Challenger  Sioux Falls</td><td>F</td><td data-sort='50'>50</td></tr><tr><td>Cameron Norrie</td><td>ATP 500 Vienna</td><td>R16</td><td data-sort='50'>50</td></tr><tr><td>Liam Broady</td><td>M15 Villers-les-Nancy</td><td>F</td><td data-sort='8'>8</td></tr><tr><td>Lui Maxted</td><td>M25 Monastir</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Jake Fearnley</td><td>ATP 500 Vienna</td><td>R32 (Q)</td><td data-sort='25'>25</td></tr><tr><td>George Loffhagen</td><td>CH Hamburg</td><td>SF</td><td data-sort='14'>14</td></tr><tr><td>Aidan McHugh</td><td>Challenger  Sioux Falls</td><td>R32</td><td data-sort='4'>4</td></tr></tbody></table></details>
+            <details id="details_notcounted_14"
+                     onclick="toggleArrow('details_notcounted_14', 'arrow_notcounted_14')">
+                <summary>
+                    Not counted drops (4)
+                </summary>
+            <table id='notcounted_14' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_14",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_14",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_14",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_14",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jay Clarke</td><td>Challenger  Sioux Falls</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Alastair Gray</td><td>CH Hamburg</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Harry Wendelken</td><td>CH Brest</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Oliver Crawford</td><td>Challenger  Hersonissos</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_15'><h2>Monday 02 November 2026</h2><p><strong>Total drops:</strong> 16</p>
+        <details id="details_counted_15" open
+                 onclick="toggleArrow('details_counted_15', 'arrow_counted_15')">
+            <summary>
+                Counted drops (12)
+            </summary>
+        <table id='counted_15' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_15",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_15",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_15",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_15",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jay Clarke</td><td>Challenger  Charlottesville</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Hamish Stewart</td><td>M25 Sheffield</td><td>SF</td><td data-sort='8'>8</td></tr><tr><td>Jake Fearnley</td><td>ATP Masters 1000 Paris</td><td>R64 (Q)</td><td data-sort='40'>40</td></tr><tr><td>Oliver Crawford</td><td>Challenger  Seoul</td><td>R16</td><td data-sort='7'>7</td></tr><tr><td>Ollie Tarvet</td><td>Challenger  Charlottesville</td><td>QF</td><td data-sort='12'>12</td></tr><tr><td>Jack Draper</td><td>ATP Masters 1000 Paris</td><td>None</td><td data-sort='0'>0</td></tr><tr><td>Lui Maxted</td><td>M25 Sheffield</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Anton Matusevich</td><td>M25 Sheffield</td><td>F</td><td data-sort='16'>16</td></tr><tr><td>George Loffhagen</td><td>CH Monastir</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Billy Harris</td><td>Challenger  Bratislava</td><td>R16</td><td data-sort='8'>8</td></tr><tr><td>Cameron Norrie</td><td>ATP Masters 1000 Paris</td><td>R16</td><td data-sort='100'>100</td></tr><tr><td>Johannus Monday</td><td>Challenger  Charlottesville</td><td>SF</td><td data-sort='22'>22</td></tr></tbody></table></details>
+            <details id="details_notcounted_15"
+                     onclick="toggleArrow('details_notcounted_15', 'arrow_notcounted_15')">
+                <summary>
+                    Not counted drops (4)
+                </summary>
+            <table id='notcounted_15' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_15",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_15",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_15",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_15",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Giles Hussey</td><td>CH Monastir</td><td>R32 (Q)</td><td data-sort='3'>3</td></tr><tr><td>Felix Gill</td><td>M25 Santa Margherita di Pula</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Jan Choinski</td><td>Challenger  Bratislava</td><td>R32 (Q)</td><td data-sort='5'>5</td></tr><tr><td>Charles Broom</td><td>Challenger  Charlottesville</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_16'><h2>Monday 09 November 2026</h2><p><strong>Total drops:</strong> 18</p>
+        <details id="details_counted_16" open
+                 onclick="toggleArrow('details_counted_16', 'arrow_counted_16')">
+            <summary>
+                Counted drops (13)
+            </summary>
+        <table id='counted_16' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_16",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_16",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_16",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_16",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Henry Searle</td><td>M25 Harlingen</td><td>SF</td><td data-sort='8'>8</td></tr><tr><td>Max Basing</td><td>Challenger  Matsuyama</td><td>R16 (Q)</td><td data-sort='10'>10</td></tr><tr><td>Harry Wendelken</td><td>M25 Glasgow</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Hamish Stewart</td><td>M25 Glasgow</td><td>SF</td><td data-sort='8'>8</td></tr><tr><td>Jan Choinski</td><td>ATP 250 Metz</td><td>R32 (Q)</td><td data-sort='13'>13</td></tr><tr><td>Aidan McHugh</td><td>M25 Harlingen</td><td>F</td><td data-sort='16'>16</td></tr><tr><td>Cameron Norrie</td><td>ATP 250 Metz</td><td>F</td><td data-sort='165'>165</td></tr><tr><td>Ryan Peniston</td><td>Challenger  Matsuyama</td><td>SF</td><td data-sort='22'>22</td></tr><tr><td>Oliver Crawford</td><td>Challenger  Matsuyama</td><td>QF</td><td data-sort='12'>12</td></tr><tr><td>Ollie Tarvet</td><td>Challenger  Knoxville</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Jay Clarke</td><td>CH Knoxville</td><td>QF</td><td data-sort='8'>8</td></tr><tr><td>Alastair Gray</td><td>M25 Glasgow</td><td>SF</td><td data-sort='8'>8</td></tr><tr><td>Toby Samuel</td><td>M15 Malta</td><td>F</td><td data-sort='8'>8</td></tr></tbody></table></details>
+            <details id="details_notcounted_16"
+                     onclick="toggleArrow('details_notcounted_16', 'arrow_notcounted_16')">
+                <summary>
+                    Not counted drops (5)
+                </summary>
+            <table id='notcounted_16' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_16",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_16",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_16",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_16",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Billy Harris</td><td>ATP 250 Metz</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Jake Fearnley</td><td>ATP 250 Athens</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Liam Broady</td><td>M25 Glasgow</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Charles Broom</td><td>CH Knoxville</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Anton Matusevich</td><td>M25 Glasgow</td><td>R16</td><td data-sort='1'>1</td></tr></tbody></table></details></div><div class='card' id='week_17'><h2>Monday 16 November 2026</h2><p><strong>Total drops:</strong> 16</p>
+        <details id="details_counted_17" open
+                 onclick="toggleArrow('details_counted_17', 'arrow_counted_17')">
+            <summary>
+                Counted drops (11)
+            </summary>
+        <table id='counted_17' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_17",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_17",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_17",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_17",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Lui Maxted</td><td>Challenger  Champaign</td><td>R32 (Q)</td><td data-sort='4'>4</td></tr><tr><td>Johannus Monday</td><td>Challenger  Champaign</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Liam Broady</td><td>Challenger  Lyon (Decines-Charpieu)</td><td>F (Q)</td><td data-sort='48'>48</td></tr><tr><td>Aidan McHugh</td><td>M25 East Lansing</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>George Loffhagen</td><td>Challenger  Lyon (Decines-Charpieu)</td><td>QR2</td><td data-sort='2'>2</td></tr><tr><td>Charles Broom</td><td>Challenger  Drummondville</td><td>SF</td><td data-sort='22'>22</td></tr><tr><td>Aidan McHugh</td><td>Challenger  Champaign</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Toby Samuel</td><td>M15 Sharm ElSheikh</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Oliver Crawford</td><td>Challenger  Kobe</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Max Basing</td><td>Challenger  Kobe</td><td>R32 (Q)</td><td data-sort='4'>4</td></tr><tr><td>Ryan Peniston</td><td>Challenger  Kobe</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details>
+            <details id="details_notcounted_17"
+                     onclick="toggleArrow('details_notcounted_17', 'arrow_notcounted_17')">
+                <summary>
+                    Not counted drops (5)
+                </summary>
+            <table id='notcounted_17' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_17",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_17",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_17",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_17",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Felix Gill</td><td>M25 Valencia</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Billy Harris</td><td>Challenger  Lyon (Decines-Charpieu)</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Arthur Fery</td><td>Challenger  Lyon (Decines-Charpieu)</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Paul Jubb</td><td>M25 East Lansing</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Giles Hussey</td><td>M15 Manama</td><td>QF</td><td data-sort='2'>2</td></tr></tbody></table></details></div><div class='card' id='week_18'><h2>Monday 23 November 2026</h2><p><strong>Total drops:</strong> 13</p>
+        <details id="details_counted_18" open
+                 onclick="toggleArrow('details_counted_18', 'arrow_counted_18')">
+            <summary>
+                Counted drops (8)
+            </summary>
+        <table id='counted_18' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_18",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_18",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_18",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_18",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jay Clarke</td><td>CH Soma Bay</td><td>F</td><td data-sort='25'>25</td></tr><tr><td>Henry Searle</td><td>M25 Columbus</td><td>SF</td><td data-sort='8'>8</td></tr><tr><td>Paul Jubb</td><td>M25 Columbus</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Felix Gill</td><td>M15 Antalya</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Alastair Gray</td><td>M25 Vale do Lobo</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Toby Samuel</td><td>Challenger 50 Soma Bay</td><td>Winner</td><td data-sort='50'>50</td></tr><tr><td>Giles Hussey</td><td>CH Soma Bay</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Anton Matusevich</td><td>CH Bergamo</td><td>QR2</td><td data-sort='2'>2</td></tr></tbody></table></details>
+            <details id="details_notcounted_18"
+                     onclick="toggleArrow('details_notcounted_18', 'arrow_notcounted_18')">
+                <summary>
+                    Not counted drops (5)
+                </summary>
+            <table id='notcounted_18' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_18",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_18",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_18",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_18",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jan Choinski</td><td>CH Bergamo</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Max Basing</td><td>Challenger  Yokohama</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Hamish Stewart</td><td>M25 Vale do Lobo</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Hamish Stewart</td><td>CH Bergamo</td><td>R32 (Q)</td><td data-sort='4'>4</td></tr><tr><td>Billy Harris</td><td>CH Bergamo</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_19'><h2>Monday 30 November 2026</h2><p><strong>Total drops:</strong> 12</p>
+        <details id="details_counted_19" open
+                 onclick="toggleArrow('details_counted_19', 'arrow_counted_19')">
+            <summary>
+                Counted drops (9)
+            </summary>
+        <table id='counted_19' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_19",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_19",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_19",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_19",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Felix Gill</td><td>M25 Antalya</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Jay Clarke</td><td>Challenger 50 Islamabad</td><td>Winner</td><td data-sort='50'>50</td></tr><tr><td>Toby Samuel</td><td>Challenger 50 Manama</td><td>Winner</td><td data-sort='50'>50</td></tr><tr><td>Lui Maxted</td><td>M25 Austin</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Arthur Fery</td><td>CH Athens</td><td>F</td><td data-sort='25'>25</td></tr><tr><td>Aidan McHugh</td><td>M25 Austin</td><td>SF</td><td data-sort='8'>8</td></tr><tr><td>Jan Choinski</td><td>CH Maia</td><td>QF</td><td data-sort='14'>14</td></tr><tr><td>Alastair Gray</td><td>M25 Vale do Lobo</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Harry Wendelken</td><td>M25 Heraklion</td><td>SF</td><td data-sort='8'>8</td></tr></tbody></table></details>
+            <details id="details_notcounted_19"
+                     onclick="toggleArrow('details_notcounted_19', 'arrow_notcounted_19')">
+                <summary>
+                    Not counted drops (3)
+                </summary>
+            <table id='notcounted_19' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_19",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_19",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_19",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_19",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Harry Wendelken</td><td>CH Athens</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Oliver Crawford</td><td>Challenger  Yokohama</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Giles Hussey</td><td>CH Athens</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_20'><h2>Monday 07 December 2026</h2><p><strong>Total drops:</strong> 4</p>
+        <details id="details_counted_20" open
+                 onclick="toggleArrow('details_counted_20', 'arrow_counted_20')">
+            <summary>
+                Counted drops (2)
+            </summary>
+        <table id='counted_20' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_20",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_20",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_20",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_20",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Charles Broom</td><td>M25 Hradec Kralove</td><td>SF</td><td data-sort='8'>8</td></tr><tr><td>Liam Broady</td><td>M25 Hradec Kralove</td><td>SF</td><td data-sort='8'>8</td></tr></tbody></table></details>
+            <details id="details_notcounted_20"
+                     onclick="toggleArrow('details_notcounted_20', 'arrow_notcounted_20')">
+                <summary>
+                    Not counted drops (2)
+                </summary>
+            <table id='notcounted_20' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_20",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_20",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_20",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_20",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Felix Gill</td><td>M25 Antalya</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Anton Matusevich</td><td>M25 Hradec Kralove</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_21'><h2>Monday 11 January 2027</h2><p><strong>Total drops:</strong> 19</p>
+        <details id="details_counted_21" open
+                 onclick="toggleArrow('details_counted_21', 'arrow_counted_21')">
+            <summary>
+                Counted drops (13)
+            </summary>
+        <table id='counted_21' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_21",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_21",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_21",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_21",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Paul Jubb</td><td>Challenger 50 Nottingham</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Jack Pinnington Jones</td><td>Challenger 125 Canberra</td><td>R16 (Q)</td><td data-sort='13'>13</td></tr><tr><td>Ryan Peniston</td><td>Challenger  Noumea</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Billy Harris</td><td>UC United Cup</td><td>RR</td><td data-sort='25'>25</td></tr><tr><td>Cameron Norrie</td><td>ATP 250 Brisbane</td><td>R16</td><td data-sort='25'>25</td></tr><tr><td>Charles Broom</td><td>Challenger 50 Nottingham</td><td>QF</td><td data-sort='8'>8</td></tr><tr><td>Anton Matusevich</td><td>Challenger 50 Nottingham</td><td>R32 (Q)</td><td data-sort='3'>3</td></tr><tr><td>Toby Samuel</td><td>Challenger 50 Nottingham</td><td>SF</td><td data-sort='14'>14</td></tr><tr><td>Aidan McHugh</td><td>Challenger 50 Nottingham</td><td>QR2</td><td data-sort='1'>1</td></tr><tr><td>Giles Hussey</td><td>Challenger 50 Nottingham</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Lui Maxted</td><td>Challenger  Nottingham</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Johannus Monday</td><td>Challenger 50 Nottingham</td><td>F</td><td data-sort='25'>25</td></tr><tr><td>Alastair Gray</td><td>Challenger 50 Nottingham</td><td>R16</td><td data-sort='4'>4</td></tr></tbody></table></details>
+            <details id="details_notcounted_21"
+                     onclick="toggleArrow('details_notcounted_21', 'arrow_notcounted_21')">
+                <summary>
+                    Not counted drops (6)
+                </summary>
+            <table id='notcounted_21' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_21",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_21",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_21",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_21",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Liam Broady</td><td>Challenger 50 Nottingham</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Henry Searle</td><td>Challenger 50 Nottingham</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jay Clarke</td><td>Challenger 125 Bengaluru</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>George Loffhagen</td><td>Challenger 125 Canberra</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Arthur Fery</td><td>Challenger 125 Canberra</td><td>QR2</td><td data-sort='3'>3</td></tr><tr><td>Harry Wendelken</td><td>Challenger 50 Nottingham</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_22'><h2>Monday 18 January 2027</h2><p><strong>Total drops:</strong> 13</p>
+        <details id="details_counted_22" open
+                 onclick="toggleArrow('details_counted_22', 'arrow_counted_22')">
+            <summary>
+                Counted drops (9)
+            </summary>
+        <table id='counted_22' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_22",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_22",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_22",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_22",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Johannus Monday</td><td>Challenger 50 Glasgow</td><td>QF</td><td data-sort='8'>8</td></tr><tr><td>Charles Broom</td><td>Challenger 50 Glasgow</td><td>QF</td><td data-sort='8'>8</td></tr><tr><td>Felix Gill</td><td>M25 Antalya</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Alastair Gray</td><td>Challenger 50 Glasgow</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Lui Maxted</td><td>Challenger  Glasgow</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Liam Broady</td><td>Challenger 50 Glasgow</td><td>QF</td><td data-sort='8'>8</td></tr><tr><td>Jake Fearnley</td><td>ATP 250 Adelaide</td><td>R32</td><td data-sort='7'>7</td></tr><tr><td>Cameron Norrie</td><td>ATP 250 Auckland</td><td>R16</td><td data-sort='25'>25</td></tr><tr><td>Harry Wendelken</td><td>Challenger 50 Glasgow</td><td>R16</td><td data-sort='4'>4</td></tr></tbody></table></details>
+            <details id="details_notcounted_22"
+                     onclick="toggleArrow('details_notcounted_22', 'arrow_notcounted_22')">
+                <summary>
+                    Not counted drops (4)
+                </summary>
+            <table id='notcounted_22' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_22",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_22",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_22",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_22",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Paul Jubb</td><td>Challenger  Glasgow</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Henry Searle</td><td>Challenger 50 Glasgow</td><td>R32 (Q)</td><td data-sort='3'>3</td></tr><tr><td>Anton Matusevich</td><td>Challenger 50 Glasgow</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Giles Hussey</td><td>Challenger 50 Glasgow</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_23'><h2>Monday 25 January 2027</h2><p><strong>Total drops:</strong> 1</p>
+        <details id="details_counted_23" open
+                 onclick="toggleArrow('details_counted_23', 'arrow_counted_23')">
+            <summary>
+                Counted drops (0)
+            </summary>
+        <table id='counted_23' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_23",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_23",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_23",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_23",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody></tbody></table></details>
+            <details id="details_notcounted_23"
+                     onclick="toggleArrow('details_notcounted_23', 'arrow_notcounted_23')">
+                <summary>
+                    Not counted drops (1)
+                </summary>
+            <table id='notcounted_23' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_23",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_23",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_23",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_23",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Oliver Crawford</td><td>GS Australian Open</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_24'><h2>Monday 01 February 2027</h2><p><strong>Total drops:</strong> 26</p>
+        <details id="details_counted_24" open
+                 onclick="toggleArrow('details_counted_24', 'arrow_counted_24')">
+            <summary>
+                Counted drops (16)
+            </summary>
+        <table id='counted_24' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_24",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_24",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_24",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_24",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Max Basing</td><td>M15 Manacor</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Jake Fearnley</td><td>Challenger 125 Manama</td><td>QF</td><td data-sort='16'>16</td></tr><tr><td>Felix Gill</td><td>M25 Antalya</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Jack Pinnington Jones</td><td>Challenger 75 Soma Bay</td><td>F</td><td data-sort='44'>44</td></tr><tr><td>Max Basing</td><td>M15 Manacor</td><td>QF</td><td data-sort='2'>2</td></tr><tr><td>George Loffhagen</td><td> Australian Open</td><td>QR3</td><td data-sort='16'>16</td></tr><tr><td>Cameron Norrie</td><td> Australian Open</td><td>R32</td><td data-sort='100'>100</td></tr><tr><td>Ryan Peniston</td><td>Challenger 125 Manama</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Arthur Fery</td><td> Australian Open</td><td>R64 (Q)</td><td data-sort='80'>80</td></tr><tr><td>Billy Harris</td><td>Challenger 125 Quimper</td><td>R16</td><td data-sort='8'>8</td></tr><tr><td>Ryan Peniston</td><td>Challenger 50 Phan Thiet</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Toby Samuel</td><td>Challenger 100 San Diego</td><td>R16</td><td data-sort='7'>7</td></tr><tr><td>Dan Evans</td><td> Australian Open</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Jack Draper</td><td> Australian Open</td><td>None</td><td data-sort='0'>0</td></tr><tr><td>Ryan Peniston</td><td> Australian Open</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Jake Fearnley</td><td> Australian Open</td><td>R128</td><td data-sort='10'>10</td></tr></tbody></table></details>
+            <details id="details_notcounted_24"
+                     onclick="toggleArrow('details_notcounted_24', 'arrow_notcounted_24')">
+                <summary>
+                    Not counted drops (10)
+                </summary>
+            <table id='notcounted_24' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_24",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_24",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_24",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_24",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Billy Harris</td><td>Challenger 100 Oeiras</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jay Clarke</td><td>GS Australian Open</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Alastair Gray</td><td>Challenger 75 Oeiras</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Billy Harris</td><td>GS Australian Open</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Jack Pinnington Jones</td><td>GS Australian Open</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Felix Gill</td><td>M25 Antalya</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Oliver Crawford</td><td>Challenger 50 Phan Thiet</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jan Choinski</td><td>GS Australian Open</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Jay Clarke</td><td>Challenger 75 Soma Bay</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Liam Broady</td><td>Challenger 100 Oeiras</td><td>QR2</td><td data-sort='2'>2</td></tr></tbody></table></details></div><div class='card' id='week_25'><h2>Monday 08 February 2027</h2><p><strong>Total drops:</strong> 14</p>
+        <details id="details_counted_25" open
+                 onclick="toggleArrow('details_counted_25', 'arrow_counted_25')">
+            <summary>
+                Counted drops (8)
+            </summary>
+        <table id='counted_25' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_25",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_25",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_25",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_25",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Paul Jubb</td><td>M25 Glasgow</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Charles Broom</td><td>M25 Glasgow</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Giles Hussey</td><td>M25 Glasgow</td><td>SF</td><td data-sort='7'>7</td></tr><tr><td>George Loffhagen</td><td>Challenger 75 Tenerife</td><td>QF</td><td data-sort='12'>12</td></tr><tr><td>Johannus Monday</td><td>Challenger  Koblenz</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Lui Maxted</td><td>M25 Glasgow</td><td>F</td><td data-sort='14'>14</td></tr><tr><td>Anton Matusevich</td><td>M25 Glasgow</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Charles Broom</td><td>Challenger 50 Cesenatico</td><td>R16</td><td data-sort='4'>4</td></tr></tbody></table></details>
+            <details id="details_notcounted_25"
+                     onclick="toggleArrow('details_notcounted_25', 'arrow_notcounted_25')">
+                <summary>
+                    Not counted drops (6)
+                </summary>
+            <table id='notcounted_25' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_25",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_25",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_25",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_25",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Billy Harris</td><td>ATP 250 Montpellier</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Toby Samuel</td><td>Challenger 75 Tenerife</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Harry Wendelken</td><td>M25 Glasgow</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Jan Choinski</td><td>ATP 250 Montpellier</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Oliver Crawford</td><td>Challenger 50 Phan Thiet</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Henry Searle</td><td>M25 Glasgow</td><td>QF</td><td data-sort='3'>3</td></tr></tbody></table></details></div><div class='card' id='week_26'><h2>Monday 15 February 2027</h2><p><strong>Total drops:</strong> 19</p>
+        <details id="details_counted_26" open
+                 onclick="toggleArrow('details_counted_26', 'arrow_counted_26')">
+            <summary>
+                Counted drops (10)
+            </summary>
+        <table id='counted_26' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_26",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_26",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_26",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_26",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Anton Matusevich</td><td>M25 Sheffield</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Ryan Peniston</td><td>Challenger 75 Tenerife</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Cameron Norrie</td><td>ATP 500 Rotterdam</td><td>R16</td><td data-sort='50'>50</td></tr><tr><td>Paul Jubb</td><td>M25 Sheffield</td><td>F</td><td data-sort='14'>14</td></tr><tr><td>Jack Pinnington Jones</td><td>ATP 500 Dallas</td><td>QF (Q)</td><td data-sort='125'>125</td></tr><tr><td>George Loffhagen</td><td>Challenger 75 Tenerife</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Giles Hussey</td><td>Challenger 75 Tenerife</td><td>R16 (Q)</td><td data-sort='10'>10</td></tr><tr><td>Lui Maxted</td><td>M25 Sheffield</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Harry Wendelken</td><td>M25 Sheffield</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Max Basing</td><td>M25 Sheffield</td><td>R16</td><td data-sort='1'>1</td></tr></tbody></table></details>
+            <details id="details_notcounted_26"
+                     onclick="toggleArrow('details_notcounted_26', 'arrow_notcounted_26')">
+                <summary>
+                    Not counted drops (9)
+                </summary>
+            <table id='notcounted_26' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_26",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_26",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_26",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_26",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jan Choinski</td><td>ATP 500 Rotterdam</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Alastair Gray</td><td>Challenger 50 Chennai</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Toby Samuel</td><td>Challenger 75 Tenerife</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Jay Clarke</td><td>Challenger 50 Chennai</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Henry Searle</td><td>M25 Sheffield</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Giles Hussey</td><td>M25 Sheffield</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Billy Harris</td><td>ATP 500 Rotterdam</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Felix Gill</td><td>Challenger 50 Chennai</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Oliver Crawford</td><td>Challenger 50 Chennai</td><td>R16</td><td data-sort='4'>4</td></tr></tbody></table></details></div><div class='card' id='week_27'><h2>Monday 22 February 2027</h2><p><strong>Total drops:</strong> 11</p>
+        <details id="details_counted_27" open
+                 onclick="toggleArrow('details_counted_27', 'arrow_counted_27')">
+            <summary>
+                Counted drops (10)
+            </summary>
+        <table id='counted_27' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_27",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_27",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_27",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_27",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Max Basing</td><td>M25 Vila Real de Santo Antonio</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Jay Clarke</td><td>Challenger 75 New Delhi</td><td>QF</td><td data-sort='12'>12</td></tr><tr><td>Felix Gill</td><td>Challenger 75 New Delhi</td><td>SF</td><td data-sort='22'>22</td></tr><tr><td>Alastair Gray</td><td>Challenger 75 New Delhi</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Jan Choinski</td><td>ATP 500 Doha</td><td>R32 (Q)</td><td data-sort='25'>25</td></tr><tr><td>Lui Maxted</td><td>M25 Vila Real de Santo Antonio</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Paul Jubb</td><td>M15 Oberhaching</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Liam Broady</td><td>M25 Vila Real de Santo Antonio</td><td>SF</td><td data-sort='7'>7</td></tr><tr><td>Oliver Crawford</td><td>Challenger 75 New Delhi</td><td>F</td><td data-sort='44'>44</td></tr><tr><td>Billy Harris</td><td>ATP 500 Doha</td><td>QR2</td><td data-sort='13'>13</td></tr></tbody></table></details>
+            <details id="details_notcounted_27"
+                     onclick="toggleArrow('details_notcounted_27', 'arrow_notcounted_27')">
+                <summary>
+                    Not counted drops (1)
+                </summary>
+            <table id='notcounted_27' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_27",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_27",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_27",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_27",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jake Fearnley</td><td>Challenger 125 Lille</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_28'><h2>Monday 01 March 2027</h2><p><strong>Total drops:</strong> 17</p>
+        <details id="details_counted_28" open
+                 onclick="toggleArrow('details_counted_28', 'arrow_counted_28')">
+            <summary>
+                Counted drops (10)
+            </summary>
+        <table id='counted_28' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_28",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_28",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_28",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_28",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Oliver Crawford</td><td>Challenger 75 Pune</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Felix Gill</td><td>Challenger 75 Pune</td><td>F</td><td data-sort='44'>44</td></tr><tr><td>George Loffhagen</td><td>CH St. Brieuc</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Lui Maxted</td><td>M25 Vila Real de Santo Antonio</td><td>F</td><td data-sort='14'>14</td></tr><tr><td>Max Basing</td><td>M25 Vila Real de Santo Antonio</td><td>SF</td><td data-sort='7'>7</td></tr><tr><td>Ryan Peniston</td><td>M25 Vila Real de Santo Antonio</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Alastair Gray</td><td>Challenger 75 Pune</td><td>QF</td><td data-sort='12'>12</td></tr><tr><td>Jan Choinski</td><td>ATP 500 Dubai</td><td>QR2</td><td data-sort='13'>13</td></tr><tr><td>Anton Matusevich</td><td>M15 The Hague</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Jack Draper</td><td>ATP 500 Dubai</td><td>R16</td><td data-sort='50'>50</td></tr></tbody></table></details>
+            <details id="details_notcounted_28"
+                     onclick="toggleArrow('details_notcounted_28', 'arrow_notcounted_28')">
+                <summary>
+                    Not counted drops (7)
+                </summary>
+            <table id='notcounted_28' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_28",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_28",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_28",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_28",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Harry Wendelken</td><td>M25 Trento</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Henry Searle</td><td>M25 Vila Real de Santo Antonio</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Charles Broom</td><td>Challenger 100 St. Brieuc</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jake Fearnley</td><td>Challenger 100 St. Brieuc</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jay Clarke</td><td>Challenger 75 Pune</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Liam Broady</td><td>M25 Vila Real de Santo Antonio</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Cameron Norrie</td><td>ATP 500 Acapulco</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_29'><h2>Monday 15 March 2027</h2><p><strong>Total drops:</strong> 32</p>
+        <details id="details_counted_29" open
+                 onclick="toggleArrow('details_counted_29', 'arrow_counted_29')">
+            <summary>
+                Counted drops (23)
+            </summary>
+        <table id='counted_29' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_29",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_29",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_29",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_29",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Harry Wendelken</td><td>M25 Pszczyna</td><td>SF</td><td data-sort='7'>7</td></tr><tr><td>George Loffhagen</td><td>Challenger 100 Thionville</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Giles Hussey</td><td>M15 Vale do Lobo</td><td>F</td><td data-sort='14'>14</td></tr><tr><td>Jay Clarke</td><td>Challenger 100 Kigali</td><td>R16</td><td data-sort='7'>7</td></tr><tr><td>Harry Wendelken</td><td>Challenger 50 Hersonissos</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Harry Wendelken</td><td>Challenger 50 Hersonissos</td><td>F</td><td data-sort='25'>25</td></tr><tr><td>Henry Searle</td><td>M25 Vale do Lobo</td><td>qf</td><td data-sort='3'>3</td></tr><tr><td>Toby Samuel</td><td>M25 Vale do Lobo</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Jake Fearnley</td><td>ATP Masters 1000 Indian Wells</td><td>R64</td><td data-sort='30'>30</td></tr><tr><td>Paul Jubb</td><td>M15 Villena</td><td>SF</td><td data-sort='4'>4</td></tr><tr><td>Liam Broady</td><td>M25 Faro</td><td>SF</td><td data-sort='7'>7</td></tr><tr><td>Cameron Norrie</td><td>ATP Masters 1000 Indian Wells</td><td>QF</td><td data-sort='200'>200</td></tr><tr><td>Billy Harris</td><td>Challenger 175 Phoenix</td><td>SF</td><td data-sort='50'>50</td></tr><tr><td>Lui Maxted</td><td>Challenger  Hersonissos</td><td>QR2</td><td data-sort='1'>1</td></tr><tr><td>Paul Jubb</td><td>Challenger 50 Hersonissos</td><td>SF</td><td data-sort='14'>14</td></tr><tr><td>Jan Choinski</td><td>Challenger 100 Thionville</td><td>QF</td><td data-sort='14'>14</td></tr><tr><td>Charles Broom</td><td>Challenger 100 Thionville</td><td>R32 (Q)</td><td data-sort='4'>4</td></tr><tr><td>Jack Draper</td><td>ATP Masters 1000 Indian Wells</td><td>QF</td><td data-sort='200'>200</td></tr><tr><td>Lui Maxted</td><td>Challenger  Hersonissos</td><td>R32 (Q)</td><td data-sort='3'>3</td></tr><tr><td>Toby Samuel</td><td>Challenger 50 Hersonissos</td><td>Winner</td><td data-sort='50'>50</td></tr><tr><td>Toby Samuel</td><td>Challenger 50 Hersonissos</td><td>Winner</td><td data-sort='50'>50</td></tr><tr><td>Anton Matusevich</td><td>M15 Poitiers</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Hamish Stewart</td><td>M25 Trimbach</td><td>SF</td><td data-sort='7'>7</td></tr></tbody></table></details>
+            <details id="details_notcounted_29"
+                     onclick="toggleArrow('details_notcounted_29', 'arrow_notcounted_29')">
+                <summary>
+                    Not counted drops (9)
+                </summary>
+            <table id='notcounted_29' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_29",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_29",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_29",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_29",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Max Basing</td><td>Challenger 50 Fujairah</td><td>None</td><td data-sort='-'>-</td></tr><tr><td>Jay Clarke</td><td>Challenger 75 Kigali</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Billy Harris</td><td>ATP Masters 1000 Indian Wells</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Giles Hussey</td><td>Challenger 50 Hersonissos</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jake Fearnley</td><td>Challenger 175 Phoenix</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Arthur Fery</td><td>Challenger 175 Cap Cana</td><td>QR2</td><td data-sort='3'>3</td></tr><tr><td>Liam Broady</td><td>M25 Vale do Lobo</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Felix Gill</td><td>Challenger 50 Fujairah</td><td>None</td><td data-sort='-'>-</td></tr><tr><td>Hamish Stewart</td><td>M25 Pszczyna</td><td>R16</td><td data-sort='1'>1</td></tr></tbody></table></details></div><div class='card' id='week_30'><h2>Monday 29 March 2027</h2><p><strong>Total drops:</strong> 22</p>
+        <details id="details_counted_30" open
+                 onclick="toggleArrow('details_counted_30', 'arrow_counted_30')">
+            <summary>
+                Counted drops (16)
+            </summary>
+        <table id='counted_30' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_30",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_30",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_30",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_30",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Liam Broady</td><td>Challenger 50 Yokkaichi</td><td>QF</td><td data-sort='8'>8</td></tr><tr><td>Paul Jubb</td><td>Challenger 50 Yokkaichi</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Oliver Crawford</td><td>Challenger 75 Cuernavaca</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Henry Searle</td><td>M25 Heraklion</td><td>SF</td><td data-sort='7'>7</td></tr><tr><td>Anton Matusevich</td><td>M25 Creteil</td><td>SF</td><td data-sort='7'>7</td></tr><tr><td>Jan Choinski</td><td>Challenger 100 Alicante</td><td>R16</td><td data-sort='7'>7</td></tr><tr><td>Harry Wendelken</td><td>Challenger 50 Yokkaichi</td><td>SF</td><td data-sort='14'>14</td></tr><tr><td>Jake Fearnley</td><td>ATP Masters 1000 Miami</td><td>R128</td><td data-sort='10'>10</td></tr><tr><td>Giles Hussey</td><td>M25 Heraklion</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Arthur Fery</td><td>ATP Masters 1000 Miami</td><td>R128 (Q)</td><td data-sort='30'>30</td></tr><tr><td>Cameron Norrie</td><td>ATP Masters 1000 Miami</td><td>R64</td><td data-sort='10'>10</td></tr><tr><td>Felix Gill</td><td>Challenger 50 Split</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Felix Gill</td><td>Challenger 75 Murcia</td><td>R16 (Q)</td><td data-sort='10'>10</td></tr><tr><td>Charles Broom</td><td>M25 Creteil</td><td>F</td><td data-sort='14'>14</td></tr><tr><td>Jay Clarke</td><td>ATP Masters 1000 Miami</td><td>QR2</td><td data-sort='10'>10</td></tr><tr><td>Jack Draper</td><td>ATP Masters 1000 Miami</td><td>R64</td><td data-sort='10'>10</td></tr></tbody></table></details>
+            <details id="details_notcounted_30"
+                     onclick="toggleArrow('details_notcounted_30', 'arrow_notcounted_30')">
+                <summary>
+                    Not counted drops (6)
+                </summary>
+            <table id='notcounted_30' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_30",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_30",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_30",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_30",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jan Choinski</td><td>Challenger 75 Murcia</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Hamish Stewart</td><td>M25 Creteil</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Billy Harris</td><td>ATP Masters 1000 Miami</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>George Loffhagen</td><td>Challenger 50 Split</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jack Pinnington Jones</td><td>ATP Masters 1000 Miami</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Charles Broom</td><td>M25 Toulouse-Balma</td><td>R16</td><td data-sort='1'>1</td></tr></tbody></table></details></div><div class='card' id='week_31'><h2>Monday 05 April 2027</h2><p><strong>Total drops:</strong> 13</p>
+        <details id="details_counted_31" open
+                 onclick="toggleArrow('details_counted_31', 'arrow_counted_31')">
+            <summary>
+                Counted drops (7)
+            </summary>
+        <table id='counted_31' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_31",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_31",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_31",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_31",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jack Pinnington Jones</td><td>ATP 250 Houston</td><td>R32 (Q)</td><td data-sort='13'>13</td></tr><tr><td>Paul Jubb</td><td>Challenger  Miyazaki</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Jay Clarke</td><td>ATP 250 Bucharest</td><td>QR2</td><td data-sort='7'>7</td></tr><tr><td>Felix Gill</td><td>Challenger  Barletta</td><td>SF</td><td data-sort='22'>22</td></tr><tr><td>Henry Searle</td><td>M25 Heraklion</td><td>Winner</td><td data-sort='15'>15</td></tr><tr><td>Harry Wendelken</td><td>Challenger  Miyazaki</td><td>F</td><td data-sort='25'>25</td></tr><tr><td>Liam Broady</td><td>Challenger 50 Miyazaki</td><td>Winner</td><td data-sort='50'>50</td></tr></tbody></table></details>
+            <details id="details_notcounted_31"
+                     onclick="toggleArrow('details_notcounted_31', 'arrow_notcounted_31')">
+                <summary>
+                    Not counted drops (6)
+                </summary>
+            <table id='notcounted_31' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_31",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_31",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_31",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_31",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Anton Matusevich</td><td>M25 Saint Dizier</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>George Loffhagen</td><td>ATP 250 Bucharest</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Billy Harris</td><td>ATP 250 Bucharest</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Oliver Crawford</td><td>Challenger 125 Morelia</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jan Choinski</td><td>ATP 250 Bucharest</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Toby Samuel</td><td>Challenger  Barletta</td><td>R16</td><td data-sort='6'>6</td></tr></tbody></table></details></div><div class='card' id='week_32'><h2>Monday 12 April 2027</h2><p><strong>Total drops:</strong> 13</p>
+        <details id="details_counted_32" open
+                 onclick="toggleArrow('details_counted_32', 'arrow_counted_32')">
+            <summary>
+                Counted drops (9)
+            </summary>
+        <table id='counted_32' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_32",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_32",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_32",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_32",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Henry Searle</td><td>M25 Heraklion</td><td>F</td><td data-sort='14'>14</td></tr><tr><td>Billy Harris</td><td>Challenger 125 Monza</td><td>R16</td><td data-sort='8'>8</td></tr><tr><td>Alastair Gray</td><td>Challenger 50 Wuning</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Harry Wendelken</td><td>Challenger 50 Wuning</td><td>F</td><td data-sort='25'>25</td></tr><tr><td>Toby Samuel</td><td>Challenger 75 Madrid</td><td>SF</td><td data-sort='22'>22</td></tr><tr><td>Arthur Fery</td><td>Challenger 125 Monza</td><td>R16</td><td data-sort='8'>8</td></tr><tr><td>Max Basing</td><td>M25 Maanshan</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Alastair Gray</td><td>M25 Maanshan</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Cameron Norrie</td><td>ATP Masters 1000 Monte-Carlo</td><td>R32</td><td data-sort='50'>50</td></tr></tbody></table></details>
+            <details id="details_notcounted_32"
+                     onclick="toggleArrow('details_notcounted_32', 'arrow_notcounted_32')">
+                <summary>
+                    Not counted drops (4)
+                </summary>
+            <table id='notcounted_32' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_32",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_32",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_32",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_32",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jan Choinski</td><td>ATP Masters 1000 Monte-Carlo</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Hamish Stewart</td><td>M25 Heraklion</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Giles Hussey</td><td>Challenger 50 Wuning</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Charles Broom</td><td>M25 Maanshan</td><td>QF</td><td data-sort='3'>3</td></tr></tbody></table></details></div><div class='card' id='week_33'><h2>Monday 19 April 2027</h2><p><strong>Total drops:</strong> 14</p>
+        <details id="details_counted_33" open
+                 onclick="toggleArrow('details_counted_33', 'arrow_counted_33')">
+            <summary>
+                Counted drops (10)
+            </summary>
+        <table id='counted_33' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_33",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_33",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_33",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_33",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Hamish Stewart</td><td>M15 Heraklion</td><td>F</td><td data-sort='8'>8</td></tr><tr><td>Cameron Norrie</td><td>ATP 500 Barcelona</td><td>QF</td><td data-sort='100'>100</td></tr><tr><td>Felix Gill</td><td>Challenger 125 Oeiras</td><td>R32 (Q)</td><td data-sort='5'>5</td></tr><tr><td>Oliver Crawford</td><td>Challenger 75 Tallahassee</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Charles Broom</td><td>Challenger 50 Wuning</td><td>SF</td><td data-sort='14'>14</td></tr><tr><td>Charles Broom</td><td>M25 Maanshan</td><td>SF</td><td data-sort='7'>7</td></tr><tr><td>Giles Hussey</td><td>Challenger 50 Wuning</td><td>QF</td><td data-sort='8'>8</td></tr><tr><td>Paul Jubb</td><td>M25 Sharm ElSheikh</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Jack Draper</td><td>ATP 500 Barcelona</td><td>R32</td><td data-sort='0'>0</td></tr><tr><td>Liam Broady</td><td>Challenger 125 Busan</td><td>SF</td><td data-sort='35'>35</td></tr></tbody></table></details>
+            <details id="details_notcounted_33"
+                     onclick="toggleArrow('details_notcounted_33', 'arrow_notcounted_33')">
+                <summary>
+                    Not counted drops (4)
+                </summary>
+            <table id='notcounted_33' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_33",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_33",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_33",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_33",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jan Choinski</td><td>ATP 500 Munich</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Billy Harris</td><td>Challenger 125 Oeiras</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Arthur Fery</td><td>ATP 500 Munich</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Alastair Gray</td><td>Challenger 50 Wuning</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_34'><h2>Monday 26 April 2027</h2><p><strong>Total drops:</strong> 1</p>
+        <details id="details_counted_34" open
+                 onclick="toggleArrow('details_counted_34', 'arrow_counted_34')">
+            <summary>
+                Counted drops (1)
+            </summary>
+        <table id='counted_34' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_34",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_34",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_34",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_34",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Arthur Fery</td><td>Challenger 75 Rome</td><td>R16</td><td data-sort='6'>6</td></tr></tbody></table></details></div><div class='card' id='week_35'><h2>Monday 03 May 2027</h2><p><strong>Total drops:</strong> 23</p>
+        <details id="details_counted_35" open
+                 onclick="toggleArrow('details_counted_35', 'arrow_counted_35')">
+            <summary>
+                Counted drops (14)
+            </summary>
+        <table id='counted_35' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_35",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_35",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_35",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_35",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Cameron Norrie</td><td>ATP Masters 1000 Madrid</td><td>R16</td><td data-sort='100'>100</td></tr><tr><td>Alastair Gray</td><td>M25 Luzhou</td><td>F</td><td data-sort='25'>25</td></tr><tr><td>Paul Jubb</td><td>Challenger  Abidjan</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Anton Matusevich</td><td>M25 Angers</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Hamish Stewart</td><td>Challenger 75 Abidjan</td><td>QF</td><td data-sort='12'>12</td></tr><tr><td>Hamish Stewart</td><td>Challenger 50 Abidjan</td><td>F</td><td data-sort='25'>25</td></tr><tr><td>Liam Broady</td><td>Challenger 75 Gwangju</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Paul Jubb</td><td>Challenger  Abidjan</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Jack Draper</td><td>ATP Masters 1000 Madrid</td><td>None</td><td data-sort='0'>0</td></tr><tr><td>Giles Hussey</td><td>Challenger 75 Jiujiang</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Jack Pinnington Jones</td><td>Challenger 75 Ostrava</td><td>R32</td><td data-sort='0'>0</td></tr><tr><td>Liam Broady</td><td>Challenger 75 Jiujang</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Giles Hussey</td><td>M25 Luzhou</td><td>SF</td><td data-sort='7'>7</td></tr><tr><td>Henry Searle</td><td>M25 Sanxenxo</td><td>Winner</td><td data-sort='15'>15</td></tr></tbody></table></details>
+            <details id="details_notcounted_35"
+                     onclick="toggleArrow('details_notcounted_35', 'arrow_notcounted_35')">
+                <summary>
+                    Not counted drops (9)
+                </summary>
+            <table id='notcounted_35' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_35",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_35",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_35",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_35",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jan Choinski</td><td>ATP Masters 1000 Madrid</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>George Loffhagen</td><td>Challenger 75 Ostrava</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Anton Matusevich</td><td>M15 Dubrovnik</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jan Choinski</td><td>Challenger 100 Mauthausen</td><td>R16</td><td data-sort='7'>7</td></tr><tr><td>Billy Harris</td><td>Challenger 100 Mauthausen</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jay Clarke</td><td>Challenger 75 Ostrava</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Felix Gill</td><td>Challenger 75 Ostrava</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Toby Samuel</td><td>Challenger 75 Ostrava</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Billy Harris</td><td>ATP Masters 1000 Madrid</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_36'><h2>Monday 17 May 2027</h2><p><strong>Total drops:</strong> 27</p>
+        <details id="details_counted_36" open
+                 onclick="toggleArrow('details_counted_36', 'arrow_counted_36')">
+            <summary>
+                Counted drops (17)
+            </summary>
+        <table id='counted_36' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_36",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_36",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_36",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_36",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Anton Matusevich</td><td>M25 Nottingham</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Anton Matusevich</td><td>M25 Nottingham</td><td>F</td><td data-sort='14'>14</td></tr><tr><td>Jay Clarke</td><td>Challenger 75 Tunis</td><td>QF</td><td data-sort='12'>12</td></tr><tr><td>Jake Fearnley</td><td>ATP Masters 1000 Rome</td><td>R128 (Q)</td><td data-sort='30'>30</td></tr><tr><td>Jan Choinski</td><td>Challenger 75 Zagreb</td><td>Winner</td><td data-sort='75'>75</td></tr><tr><td>Cameron Norrie</td><td>ATP Masters 1000 Rome</td><td>R64</td><td data-sort='10'>10</td></tr><tr><td>George Loffhagen</td><td>Challenger 75 Zagreb</td><td>QR2</td><td data-sort='2'>2</td></tr><tr><td>Jay Clarke</td><td>Challenger 75 Francavilla al Mare</td><td>QF</td><td data-sort='12'>12</td></tr><tr><td>Aidan McHugh</td><td>M15 Vero Beach</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Alastair Gray</td><td>Challenger 100 Wuxi</td><td>R16</td><td data-sort='7'>7</td></tr><tr><td>Henry Searle</td><td>M25 Nottingham</td><td>F</td><td data-sort='14'>14</td></tr><tr><td>Jan Choinski</td><td>ATP Masters 1000 Rome</td><td>QR2</td><td data-sort='10'>10</td></tr><tr><td>Jack Draper</td><td>ATP Masters 1000 Rome</td><td>None</td><td data-sort='-'>-</td></tr><tr><td>Arthur Fery</td><td>Challenger 75 Zagreb</td><td>SF</td><td data-sort='22'>22</td></tr><tr><td>Jack Pinnington Jones</td><td>Challenger 100 Oeiras</td><td>R16</td><td data-sort='7'>7</td></tr><tr><td>Alastair Gray</td><td>Challenger 50 Bengaluru</td><td>R16 (Q)</td><td data-sort='7'>7</td></tr><tr><td>Hamish Stewart</td><td>Challenger 50 Bengaluru</td><td>QF</td><td data-sort='8'>8</td></tr></tbody></table></details>
+            <details id="details_notcounted_36"
+                     onclick="toggleArrow('details_notcounted_36', 'arrow_notcounted_36')">
+                <summary>
+                    Not counted drops (10)
+                </summary>
+            <table id='notcounted_36' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_36",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_36",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_36",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_36",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Charles Broom</td><td>Challenger 75 Tunis</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Felix Gill</td><td>Challenger 75 Francavilla al Mare</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Harry Wendelken</td><td>Challenger 75 Zagreb</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Toby Samuel</td><td>Challenger 75 Francavilla al Mare</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Paul Jubb</td><td>M25 Nottingham</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jack Pinnington Jones</td><td>ATP Masters 1000 Rome</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Harry Wendelken</td><td>Challenger 75 Francavilla al Mare</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jake Fearnley</td><td>Challenger 175 Bordeaux</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Billy Harris</td><td>Challenger 100 Oeiras</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Billy Harris</td><td>ATP Masters 1000 Rome</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_37'><h2>Monday 24 May 2027</h2><p><strong>Total drops:</strong> 6</p>
+        <details id="details_counted_37" open
+                 onclick="toggleArrow('details_counted_37', 'arrow_counted_37')">
+            <summary>
+                Counted drops (5)
+            </summary>
+        <table id='counted_37' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_37",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_37",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_37",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_37",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Anton Matusevich</td><td>Challenger  Istanbul</td><td>R16 (Q)</td><td data-sort='10'>10</td></tr><tr><td>Arthur Fery</td><td> Roland Garros</td><td>QR2</td><td data-sort='8'>8</td></tr><tr><td>Johannus Monday</td><td>M25 Hurghada</td><td>SF</td><td data-sort='7'>7</td></tr><tr><td>Alastair Gray</td><td>Challenger 50 Bengaluru</td><td>SF</td><td data-sort='14'>14</td></tr><tr><td>Hamish Stewart</td><td>Challenger 50 Bengaluru</td><td>SF</td><td data-sort='14'>14</td></tr></tbody></table></details>
+            <details id="details_notcounted_37"
+                     onclick="toggleArrow('details_notcounted_37', 'arrow_notcounted_37')">
+                <summary>
+                    Not counted drops (1)
+                </summary>
+            <table id='notcounted_37' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_37",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_37",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_37",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_37",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Cameron Norrie</td><td>ATP 250 Geneva</td><td>R16</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_38'><h2>Monday 07 June 2027</h2><p><strong>Total drops:</strong> 35</p>
+        <details id="details_counted_38" open
+                 onclick="toggleArrow('details_counted_38', 'arrow_counted_38')">
+            <summary>
+                Counted drops (23)
+            </summary>
+        <table id='counted_38' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_38",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_38",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_38",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_38",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Billy Harris</td><td>Challenger 125 Birmingham</td><td>R16</td><td data-sort='8'>8</td></tr><tr><td>Cameron Norrie</td><td> Roland Garros</td><td>R128</td><td data-sort='10'>10</td></tr><tr><td>Arthur Fery</td><td>Challenger 125 Birmingham</td><td>SF</td><td data-sort='35'>35</td></tr><tr><td>Ollie Tarvet</td><td>Challenger 125 Birmingham</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Toby Samuel</td><td> Roland Garros</td><td>R128 (Q)</td><td data-sort='40'>40</td></tr><tr><td>Jay Clarke</td><td> Roland Garros</td><td>QR2</td><td data-sort='8'>8</td></tr><tr><td>Henry Searle</td><td>Challenger 75 Tyler</td><td>QF</td><td data-sort='12'>12</td></tr><tr><td>Harry Wendelken</td><td>Challenger 125 Birmingham</td><td>R16</td><td data-sort='8'>8</td></tr><tr><td>Henry Searle</td><td>Challenger 75 Little Rock</td><td>R32 (Q)</td><td data-sort='4'>4</td></tr><tr><td>Jack Draper</td><td> Roland Garros</td><td>None</td><td data-sort='-'>-</td></tr><tr><td>Giles Hussey</td><td>Challenger 50 Centurion</td><td>QF</td><td data-sort='8'>8</td></tr><tr><td>Jack Pinnington Jones</td><td>Challenger 125 Birmingham</td><td>R32</td><td data-sort='0'>0</td></tr><tr><td>Jake Fearnley</td><td> Roland Garros</td><td>R128</td><td data-sort='10'>10</td></tr><tr><td>Giles Hussey</td><td>Challenger 50 Centurion</td><td>Winner</td><td data-sort='50'>50</td></tr><tr><td>Liam Broady</td><td>Challenger 125 Perguia</td><td>R16</td><td data-sort='8'>8</td></tr><tr><td>Oliver Crawford</td><td>M25 Grado</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>Liam Broady</td><td>Challenger 100 Chisinau</td><td>QF</td><td data-sort='14'>14</td></tr><tr><td>Felix Gill</td><td>Challenger 125 Birmingham</td><td>R16</td><td data-sort='8'>8</td></tr><tr><td>Felix Gill</td><td> Roland Garros</td><td>QR3</td><td data-sort='16'>16</td></tr><tr><td>Jan Choinski</td><td> Roland Garros</td><td>QR2</td><td data-sort='8'>8</td></tr><tr><td>Dan Evans</td><td> Roland Garros</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Dan Evans</td><td>Challenger 75 Little Rock</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Johannus Monday</td><td>CH Little Rock</td><td>R16 (Q)</td><td data-sort='10'>10</td></tr></tbody></table></details>
+            <details id="details_notcounted_38"
+                     onclick="toggleArrow('details_notcounted_38', 'arrow_notcounted_38')">
+                <summary>
+                    Not counted drops (12)
+                </summary>
+            <table id='notcounted_38' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_38",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_38",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_38",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_38",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Anton Matusevich</td><td>Challenger 125 Birmingham</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Charles Broom</td><td>GS Roland Garros</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Billy Harris</td><td>GS Roland Garros</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Harry Wendelken</td><td>GS Roland Garros</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Hamish Stewart</td><td>Challenger 125 Birmingham</td><td>QR2</td><td data-sort='3'>3</td></tr><tr><td>Liam Broady</td><td>GS Roland Garros</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Max Basing</td><td>Challenger 125 Birmingham</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Jack Pinnington Jones</td><td>GS Roland Garros</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Charles Broom</td><td>Challenger 125 Birmingham</td><td>QR2</td><td data-sort='3'>3</td></tr><tr><td>Jake Fearnley</td><td>Challenger 125 Birmingham</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Johannus Monday</td><td>Challenger 75 Tyler</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Jan Choinski</td><td>Challenger 100 Bad Rappenau</td><td>R16</td><td data-sort='7'>7</td></tr></tbody></table></details></div><div class='card' id='week_39'><h2>Monday 14 June 2027</h2><p><strong>Total drops:</strong> 18</p>
+        <details id="details_counted_39" open
+                 onclick="toggleArrow('details_counted_39', 'arrow_counted_39')">
+            <summary>
+                Counted drops (11)
+            </summary>
+        <table id='counted_39' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_39",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_39",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_39",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_39",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jake Fearnley</td><td>Challenger 125 Ilkley</td><td>F</td><td data-sort='64'>64</td></tr><tr><td>Alastair Gray</td><td>Challenger 125 Ilkley</td><td>QR2</td><td data-sort='3'>3</td></tr><tr><td>Liam Broady</td><td>Challenger 75 Cattolica</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Toby Samuel</td><td>Challenger 125 Ilkley</td><td>QF</td><td data-sort='16'>16</td></tr><tr><td>Jack Pinnington Jones</td><td>Challenger 125 Ilkley</td><td>R16</td><td data-sort='8'>8</td></tr><tr><td>Billy Harris</td><td>Challenger 125 Ilkley</td><td>R16</td><td data-sort='8'>8</td></tr><tr><td>Dan Evans</td><td>Challenger 125 Ilkley</td><td>QR2</td><td data-sort='3'>3</td></tr><tr><td>Ollie Tarvet</td><td>Challenger 125 Ilkley</td><td>QF</td><td data-sort='16'>16</td></tr><tr><td>Paul Jubb</td><td>Challenger 125 Ilkley</td><td>R32 (Q)</td><td data-sort='5'>5</td></tr><tr><td>Charles Broom</td><td>Challenger 125 Ilkley</td><td>R32 (Q)</td><td data-sort='5'>5</td></tr><tr><td>Hamish Stewart</td><td>Challenger 125 Ilkley</td><td>R32 (Q)</td><td data-sort='5'>5</td></tr></tbody></table></details>
+            <details id="details_notcounted_39"
+                     onclick="toggleArrow('details_notcounted_39', 'arrow_notcounted_39')">
+                <summary>
+                    Not counted drops (7)
+                </summary>
+            <table id='notcounted_39' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_39",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_39",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_39",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_39",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jay Clarke</td><td>M25 Caltanissetta</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Jan Choinski</td><td>Challenger 100 Bratislava</td><td>R16</td><td data-sort='7'>7</td></tr><tr><td>Anton Matusevich</td><td>Challenger 125 Ilkley</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Oliver Crawford</td><td>Challenger 125 Ilkley</td><td>QR2</td><td data-sort='3'>3</td></tr><tr><td>Felix Gill</td><td>Challenger 125 Ilkley</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Max Basing</td><td>Challenger 125 Ilkley</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Harry Wendelken</td><td>Challenger 125 Ilkley</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_40'><h2>Monday 21 June 2027</h2><p><strong>Total drops:</strong> 23</p>
+        <details id="details_counted_40" open
+                 onclick="toggleArrow('details_counted_40', 'arrow_counted_40')">
+            <summary>
+                Counted drops (16)
+            </summary>
+        <table id='counted_40' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_40",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_40",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_40",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_40",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Jake Fearnley</td><td>Challenger 125 Nottingham</td><td>R16</td><td data-sort='8'>8</td></tr><tr><td>Ollie Tarvet</td><td>Challenger 125 Nottingham</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Felix Gill</td><td>Challenger 125 Nottingham</td><td>R16</td><td data-sort='8'>8</td></tr><tr><td>Anton Matusevich</td><td>Challenger 125 Nottingham</td><td>R32 (Q)</td><td data-sort='5'>5</td></tr><tr><td>Oliver Crawford</td><td>Challenger 75 Dublin</td><td>R16 (Q)</td><td data-sort='10'>10</td></tr><tr><td>Jan Choinski</td><td>Challenger 100 Poznan</td><td>QF</td><td data-sort='14'>14</td></tr><tr><td>Charles Broom</td><td>Challenger 75 Dublin</td><td>R32 (Q)</td><td data-sort='4'>4</td></tr><tr><td>Jay Clarke</td><td>Challenger 125 Nottingham</td><td>R16 (Q)</td><td data-sort='13'>13</td></tr><tr><td>Dan Evans</td><td>ATP 500 London</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Alastair Gray</td><td>Challenger 125 Nottingham</td><td>R32 (Q)</td><td data-sort='5'>5</td></tr><tr><td>Jack Pinnington Jones</td><td>ATP 500 London</td><td>R32</td><td data-sort='0'>0</td></tr><tr><td>Henry Searle</td><td>Challenger 75 Dublin</td><td>Winner</td><td data-sort='75'>75</td></tr><tr><td>Billy Harris</td><td>Challenger 125 Nottingham</td><td>QF</td><td data-sort='16'>16</td></tr><tr><td>Giles Hussey</td><td>Challenger 125 Nottingham</td><td>QR2</td><td data-sort='3'>3</td></tr><tr><td>Harry Wendelken</td><td>ATP 500 London</td><td>R32 (Q)</td><td data-sort='25'>25</td></tr><tr><td>Arthur Fery</td><td>ATP 500 London</td><td>QF</td><td data-sort='100'>100</td></tr></tbody></table></details>
+            <details id="details_notcounted_40"
+                     onclick="toggleArrow('details_notcounted_40', 'arrow_notcounted_40')">
+                <summary>
+                    Not counted drops (7)
+                </summary>
+            <table id='notcounted_40' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_40",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_40",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_40",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_40",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Cameron Norrie</td><td>ATP 500 London</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Johannus Monday</td><td>ATP 500 London</td><td>QR1 (WC)</td><td data-sort='-'>-</td></tr><tr><td>Toby Samuel</td><td>ATP 500 London</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Max Basing</td><td>Challenger 125 Nottingham</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Hamish Stewart</td><td>Challenger 75 Dublin</td><td>QR2</td><td data-sort='2'>2</td></tr><tr><td>Paul Jubb</td><td>Challenger 75 Dublin</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Liam Broady</td><td>ATP 500 London</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_41'><h2>Monday 28 June 2027</h2><p><strong>Total drops:</strong> 11</p>
+        <details id="details_counted_41" open
+                 onclick="toggleArrow('details_counted_41', 'arrow_counted_41')">
+            <summary>
+                Counted drops (7)
+            </summary>
+        <table id='counted_41' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_41",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_41",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_41",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_41",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Arthur Fery</td><td>ATP 250 Eastbourne</td><td>R16</td><td data-sort='25'>25</td></tr><tr><td>Jan Choinski</td><td>ATP 250 Eastbourne</td><td>QF (Q)</td><td data-sort='63'>63</td></tr><tr><td>Jack Pinnington Jones</td><td>ATP 250 Eastbourne</td><td>R16</td><td data-sort='25'>25</td></tr><tr><td>Hamish Stewart</td><td>ATP 250 Eastbourne</td><td>R32 (Q)</td><td data-sort='7'>7</td></tr><tr><td>Giles Hussey</td><td>ATP 250 Eastbourne</td><td>R16 (Q)</td><td data-sort='38'>38</td></tr><tr><td>Toby Samuel</td><td>ATP 250 Eastbourne</td><td>SF (Q)</td><td data-sort='107'>107</td></tr><tr><td>Jack Draper</td><td>ATP 250 Eastbourne</td><td>SF</td><td data-sort='100'>100</td></tr></tbody></table></details>
+            <details id="details_notcounted_41"
+                     onclick="toggleArrow('details_notcounted_41', 'arrow_notcounted_41')">
+                <summary>
+                    Not counted drops (4)
+                </summary>
+            <table id='notcounted_41' data-sort-asc='false'><thead><tr><th onclick='sortTable("notcounted_41",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("notcounted_41",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_41",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_41",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Felix Gill</td><td>ATP 250 Eastbourne</td><td>R16</td><td data-sort='-'>-</td></tr><tr><td>Charles Broom</td><td>ATP 250 Eastbourne</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Alastair Gray</td><td>ATP 250 Eastbourne</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Harry Wendelken</td><td>ATP 250 Eastbourne</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div>
