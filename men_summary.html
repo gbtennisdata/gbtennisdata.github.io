@@ -1,0 +1,1190 @@
+
+<html>
+<head>
+<style>
+    body { font-family: Arial, sans-serif; font-size: 12pt}
+    table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+    th, td { border: 1px solid #ccc; padding: 6px; text-align: center; }
+    th { background: #3a7; color: #fff; cursor: pointer; position: relative; }
+    th .arrow { font-size: 12px; margin-left: 4px; }
+    tr:nth-child(even) { background: #f7f7f7; }
+    .card { border:1px solid #ccc; border-radius:8px; padding:15px; margin:15px 0; }
+    summary { font-weight:bold; cursor:pointer; font-size: 18px; }
+    #player-select-container {
+        position: sticky;
+        top: var(--header-height);
+        z-index: 9998;
+        background: #fff;
+        padding: 12px;
+        border-bottom: 2px solid #ccc;
+        margin-bottom: 60px;
+    }
+
+    #playerSelect {
+        
+        font-size: 16px;
+        padding: 6px;
+    }
+    </style>
+</head>
+<body>
+<div id="header"></div>
+<h2>Men's Summary</h2>
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>World Ranking</th>
+      <th>Age</th>
+      <th>Next Week (13 Jul)</th>
+      <th>Week of 20 Jul</th>
+      <th>Next counting to drop</th>
+      <th>18th counter</th>
+      <th>19th counter</th>
+      <th>Career High ranking</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cameron Norrie</td>
+      <td>29</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>400 pts on 13 Jul 2026</td>
+      <td>50</td>
+      <td>10</td>
+      <td>8</td>
+      <td>.</td>
+    </tr>
+    <tr>
+      <td>Jan Choinski</td>
+      <td>100</td>
+      <td>30</td>
+      <td> </td>
+      <td> </td>
+      <td>50 pts on 13 Jul 2026</td>
+      <td>7</td>
+      <td>7</td>
+      <td>100</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Arthur Fery</td>
+      <td>114</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>50 pts on 13 Jul 2026</td>
+      <td>6</td>
+      <td>6</td>
+      <td>118</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Toby Samuel</td>
+      <td>123</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>8 pts on 17 Aug 2026</td>
+      <td>7</td>
+      <td>6</td>
+      <td>142</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Jack Draper</td>
+      <td>131</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>50 pts on 13 Jul 2026</td>
+      <td>–</td>
+      <td>–</td>
+      <td>4</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Jack Pinnington Jones</td>
+      <td>138</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>50 pts on 13 Jul 2026</td>
+      <td>0</td>
+      <td>–</td>
+      <td>132</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Billy Harris</td>
+      <td>155</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>50 pts on 13 Jul 2026</td>
+      <td>7</td>
+      <td>–</td>
+      <td>101</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Jake Fearnley</td>
+      <td>159</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>10 pts on 13 Jul 2026</td>
+      <td>7</td>
+      <td>5</td>
+      <td>49</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Harry Wendelken</td>
+      <td>202</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Cambridgeshire), Group 1</td>
+      <td>4 pts on 13 Jul 2026</td>
+      <td>3</td>
+      <td>3</td>
+      <td>203</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Liam Broady</td>
+      <td>209</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>15 pts on 7 Sep 2026</td>
+      <td>6</td>
+      <td>4</td>
+      <td>93</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Felix Gill</td>
+      <td>220</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>8 pts on 13 Jul 2026</td>
+      <td>1</td>
+      <td>1</td>
+      <td>220</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Oliver Crawford</td>
+      <td>232</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 13 Jul 2026</td>
+      <td>6</td>
+      <td>4</td>
+      <td>183</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Jay Clarke</td>
+      <td>246</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 13 Jul 2026</td>
+      <td>6</td>
+      <td>6</td>
+      <td>153</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Giles Hussey</td>
+      <td>258</td>
+      <td>–</td>
+      <td>British Tour Giffnock</td>
+      <td>LTA Summer County Cup (Wiltshire), Group 6</td>
+      <td>3 pts on 13 Jul 2026</td>
+      <td>3</td>
+      <td>3</td>
+      <td>293</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Henry Searle</td>
+      <td>273</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 13 Jul 2026</td>
+      <td>3</td>
+      <td>3</td>
+      <td>263</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Alastair Gray</td>
+      <td>277</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>8 pts on 13 Jul 2026</td>
+      <td>3</td>
+      <td>–</td>
+      <td>237</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Charles Broom</td>
+      <td>285</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>25 pts on 27 Jul 2026</td>
+      <td>3</td>
+      <td>3</td>
+      <td>235</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Hamish Stewart</td>
+      <td>300</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (West of Scotland), Group 3</td>
+      <td>16 pts on 13 Jul 2026</td>
+      <td>4</td>
+      <td>4</td>
+      <td>301</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>George Loffhagen</td>
+      <td>301</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 13 Jul 2026</td>
+      <td>2</td>
+      <td>–</td>
+      <td>200</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Johannus Monday</td>
+      <td>313</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 13 Jul 2026</td>
+      <td>6</td>
+      <td>–</td>
+      <td>212</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Max Basing</td>
+      <td>329</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Surrey), Group 1</td>
+      <td>0 pts on 27 Jul 2026</td>
+      <td>1</td>
+      <td>–</td>
+      <td>311</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Paul Jubb</td>
+      <td>331</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>6 pts on 13 Jul 2026</td>
+      <td>1</td>
+      <td>–</td>
+      <td>180</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Ollie Tarvet</td>
+      <td>348</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Hertfordshire), Group 2</td>
+      <td>80 pts on 13 Jul 2026</td>
+      <td>–</td>
+      <td>–</td>
+      <td>324</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Anton Matusevich</td>
+      <td>376</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>4 pts on 20 Jul 2026</td>
+      <td>1</td>
+      <td>1</td>
+      <td>376</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Dan Evans</td>
+      <td>385</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Warwickshire), Group 1</td>
+      <td>50 pts on 13 Jul 2026</td>
+      <td>–</td>
+      <td>–</td>
+      <td>21</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Ryan Peniston</td>
+      <td>389</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>8 pts on 13 Jul 2026</td>
+      <td>3</td>
+      <td>–</td>
+      <td>123</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Lui Maxted</td>
+      <td>405</td>
+      <td>–</td>
+      <td> </td>
+      <td>M15 Rognac</td>
+      <td>7 pts on 13 Jul 2026</td>
+      <td>1</td>
+      <td>–</td>
+      <td>392</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Aidan McHugh</td>
+      <td>460</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td>8 pts on 13 Jul 2026</td>
+      <td>–</td>
+      <td>–</td>
+      <td>298</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Emile Hudd</td>
+      <td>520</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>519</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>James Story</td>
+      <td>551</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>455</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Millen Hurrion</td>
+      <td>655</td>
+      <td>–</td>
+      <td>M25 Louisville, KY</td>
+      <td>M25 Champaign, IL</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>542</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Oscar Weightman</td>
+      <td>698</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Middlesex), Group 1</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>603</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Ben Jones</td>
+      <td>733</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Suffolk), Group 3</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>620</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Stuart Parker</td>
+      <td>763</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>346</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Finn Murgett</td>
+      <td>812</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>796</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Matthew Summers</td>
+      <td>834</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>691</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Oliver Bonding</td>
+      <td>836</td>
+      <td>–</td>
+      <td>M25 Louisville, KY</td>
+      <td>M25 Champaign, IL (Q)</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>805</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Patrick Brady</td>
+      <td>869</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>728</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Marcus Walters</td>
+      <td>874</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Nottinghamshire, Group 2)</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>861</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Blu Baker</td>
+      <td>892</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>608</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Jeremy Gschwendtner</td>
+      <td>953</td>
+      <td>–</td>
+      <td>M15 Nova Gorcica</td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>906</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Oliver Okonkwo</td>
+      <td>967</td>
+      <td>–</td>
+      <td>M25 Louisville, KY</td>
+      <td>M25 champaign, IL (Q)</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>965</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Luca Pow</td>
+      <td>999</td>
+      <td>–</td>
+      <td>M25 Louisville, KY</td>
+      <td>LTA Summer County Cup (Warwickshire), Group 1</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>838</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Charlie Robertson</td>
+      <td>1001</td>
+      <td>–</td>
+      <td>M25 Hillcrest</td>
+      <td>LTA Summer County Cup (North of Scotland), Group 2</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>857</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Zach Stephens</td>
+      <td>1034</td>
+      <td>–</td>
+      <td>M15 Monastir</td>
+      <td>M15 Rognac (Q)</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>994</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Viktor Frydrych</td>
+      <td>1038</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1071</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Finn Bass</td>
+      <td>1067</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Hertfordshire), Group 2</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>756</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Ali Habib</td>
+      <td>1096</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>933</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Connor Thomson</td>
+      <td>1153</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1105</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Stefan Cooper</td>
+      <td>1162</td>
+      <td>–</td>
+      <td> </td>
+      <td>M25 Huamantla</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1159</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Toby Martin</td>
+      <td>1175</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Buckinghamshire), Group 3</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>641</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>James Connel</td>
+      <td>1227</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1124</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Luke Hooper</td>
+      <td>1281</td>
+      <td>–</td>
+      <td>M15 Castelo Branco</td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1276</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>James Beaven</td>
+      <td>1284</td>
+      <td>–</td>
+      <td>M25 Hillcrest (Q)</td>
+      <td>LTA Summer County Cup (Surrey), Group 1</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1189</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Oscar Brown</td>
+      <td>1309</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Kent), Group 2</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1433</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Billy Blaydes</td>
+      <td>1342</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1272</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Ryan James Storrie</td>
+      <td>1350</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>626</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>James Hopper</td>
+      <td>1416</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1316</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Joe Leather</td>
+      <td>1467</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1296</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Ewen Lumsden</td>
+      <td>1482</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>585</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Rhys Lawlor</td>
+      <td>1505</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1490</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Sean Hodkin</td>
+      <td>1536</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Yorkshire), Group 4</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1074</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Mark Whitehouse</td>
+      <td>1572</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Surrey), Group 1</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>523</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Tom Hands</td>
+      <td>1585</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Cambridgeshire), Group 1</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1210</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>William Jansen</td>
+      <td>1597</td>
+      <td>–</td>
+      <td>M25 Louisville, KY</td>
+      <td>M25 Champaign, IL</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1023</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Benjamin Gusic Wan</td>
+      <td>1680</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1544</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Carl Holder</td>
+      <td>1693</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1628</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Henry Best</td>
+      <td>1813</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1785</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Alexis Canter</td>
+      <td>1832</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>773</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Luke Simkiss</td>
+      <td>1832</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Warwickshire), Group 1</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>830</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>William Nolan</td>
+      <td>1885</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1783</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Anthony Wright</td>
+      <td>1892</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Essex), Group 3</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1645</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Harry Thursfield</td>
+      <td>1892</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1827</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Henry Jefferson</td>
+      <td>1892</td>
+      <td>–</td>
+      <td>M25 Hillcrest (Q)</td>
+      <td>LTA Summer County Cup (Surrey), Group 1</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1884</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Roan Jones</td>
+      <td>1967</td>
+      <td>–</td>
+      <td>M15 Monastir (Q)</td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1973</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Alexander Ikenna Okonkwo</td>
+      <td>1967</td>
+      <td>–</td>
+      <td>M25 Louisville, KY (Q)</td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1780</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Brandon Walkin</td>
+      <td>1967</td>
+      <td>–</td>
+      <td>M25 Brisbane</td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>702</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Matthew Carroll</td>
+      <td>2069</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Hertfordshire), Group 2</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1827</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Barney Fitzpatrick</td>
+      <td>2148</td>
+      <td>–</td>
+      <td>M15 Castelo Branco (Q)</td>
+      <td>LTA Summer County Cup (Yorkshire), Group 4</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>2039</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Freddie Ridout</td>
+      <td>2148</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Berkshire), Group 6</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1802</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Rahul Dhokia</td>
+      <td>2192</td>
+      <td>–</td>
+      <td>M15 Monastir (Q)</td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1550</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Joe Tyler</td>
+      <td>2192</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Northamptonshire), Group 1</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1339</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Thomas Drayton</td>
+      <td>2192</td>
+      <td>–</td>
+      <td>M15 Castelo Branco (Q)</td>
+      <td>LTA Summer County Cup (Middlesex), Group 1</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>2047</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Matthew Rankin</td>
+      <td>2225</td>
+      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1476</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Liam Hignett</td>
+      <td>2225</td>
+      <td>–</td>
+      <td>British Tour Giffnock</td>
+      <td>LTA Summer County Cup (Hampshire &amp; IOW), Group 3</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1916</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Hugo Coquelin</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+      <td>LTA Summer County Cup (Hertfordshire), Group 2</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1107</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Harry Jordan</td>
+      <td>–</td>
+      <td>–</td>
+      <td>M25 Gandia (Q)</td>
+      <td>M25+H Bacau (A)</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Patrick Foley</td>
+      <td>–</td>
+      <td>–</td>
+      <td>M25 Kramsach (Q)</td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Albert Calin</td>
+      <td>–</td>
+      <td>–</td>
+      <td>M25 Kramsach (A)</td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Max Benaim</td>
+      <td>–</td>
+      <td>–</td>
+      <td>M15 Castelo Branco (Q)</td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Louis Allen</td>
+      <td>–</td>
+      <td>–</td>
+      <td>M15 Slobozia (Q)</td>
+      <td>M25+H Bacau (Q)</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Dan Hughes</td>
+      <td>–</td>
+      <td>–</td>
+      <td>M15 Slobozia (Q)</td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Josh Manuel</td>
+      <td>–</td>
+      <td>–</td>
+      <td>M15 Monastir (Q)</td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Nicholas Miharu Bowles-Rokudo</td>
+      <td>–</td>
+      <td>–</td>
+      <td>M15 Monastir (Q)</td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+<div id="footer"></div>
+<script>
+  async function loadFragment(id, file) {
+    const html = await fetch(file).then(r => r.text());
+    document.getElementById(id).innerHTML = html;
+  }
+
+  loadFragment("header", "./header.html");
+  loadFragment("footer", "./footer.html");
+</script>
+</body>
+</html>
