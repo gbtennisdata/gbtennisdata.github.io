@@ -28,184 +28,44 @@
     </style>
 </head>
 <body>
-<div id="header-banner">
-    <div class="header-content">
+<div class="header-content">
 
-        <!-- Title -->
-        <span class="title">GB Tennis Data</span>
+    <span class="title">GB Tennis Data</span>
 
-        <!-- Main navigation -->
-        <nav class="nav-main">
-            <a class="nav-pill" href="index.html">Home</a>
-            <a class="nav-pill" onclick="toggleDropdown('women')">Women</a>
-            <a class="nav-pill" onclick="toggleDropdown('men')">Men</a>
-        </nav>
+    <nav class="nav-main">
+        <a class="nav-pill" href="index.html">Home</a>
+        <a class="nav-pill" data-dropdown="women">Women</a>
+        <a class="nav-pill" data-dropdown="men">Men</a>
+    </nav>
 
-        <!-- Dropdown container (fixed height) -->
-        <div class="nav-container">
+    <div class="nav-container">
 
-            <!-- Women dropdown -->
-            <div id="dropdown-women" class="dropdown hidden">
-                <span class="dropdown-title">Women</span>
-                <div class="dropdown-links">
-                    <a href="women_summary.html">Summary</a>
-                    <a href="women_singles_by_player.html">Singles by player</a>
-                    <a href="women_singles_by_week.html">Singles by week</a>
-                    <a href="women_doubles_by_player.html">Doubles by player</a>
-                    <a href="women_doubles_by_week.html">Doubles by week</a>
-                    <a href="women_singles_winners.html">Singles winners</a>
-                    <a href="women_doubles_winners.html">Doubles winners</a>
-                </div>
+        <div id="dropdown-women" class="dropdown hidden">
+            <span class="dropdown-title">Women</span>
+            <div class="dropdown-links">
+                <a href="women_summary.html">Summary</a>
+                <a href="women_singles_by_player.html">Singles by player</a>
+                <a href="women_singles_by_week.html">Singles by week</a>
+                <a href="women_doubles_by_player.html">Doubles by player</a>
+                <a href="women_doubles_by_week.html">Doubles by week</a>
+                <a href="women_singles_winners.html">Singles winners</a>
+                <a href="women_doubles_winners.html">Doubles winners</a>
             </div>
+        </div>
 
-            <!-- Men dropdown -->
-            <div id="dropdown-men" class="dropdown hidden">
-                <span class="dropdown-title">Men</span>
-                <div class="dropdown-links">
-                    <span class="coming-soon">To come later</span>
-                </div>
+        <div id="dropdown-men" class="dropdown hidden">
+            <span class="dropdown-title">Men</span>
+            <div class="dropdown-links">
+                <a href="men_summary.html">Summary</a>
+                <a href="men_singles_by_player.html">Singles by player</a>
+                <a href="men_singles_by_week.html">Singles by week</a>
+                <a href="men_singles_winners.html">Singles winners</a>
             </div>
-
         </div>
 
     </div>
+
 </div>
-
-<style>
-    /* Sticky header */
-    #header-banner {
-        position: sticky;
-        top: 0;
-        z-index: 9999;
-        background: #3a7;
-        color: #fff;
-        padding: 18px 25px;
-        font-family: Arial, sans-serif;
-        border-bottom: 3px solid #2a5;
-    }
-
-    .header-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .title {
-        font-size: 32px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        text-align: center;
-    }
-
-    /* Main nav pills */
-    .nav-main {
-        display: flex;
-        gap: 15px;
-    }
-
-    .nav-pill {
-        background: #fff;
-        color: #3a7;
-        padding: 6px 18px;
-        border-radius: 20px;
-        font-size: 18px;
-        font-weight: bold;
-        text-decoration: none;
-        border: 2px solid #fff;
-        transition: 0.2s;
-        cursor: pointer;
-    }
-
-    .nav-pill:hover {
-        background: #2a5;
-        color: #fff;
-    }
-
-    /* Dropdown container */
-    .nav-container {
-        position: relative;
-        width: 100%;
-        margin-top: 10px;
-        height: 50px; /* Women & Men dropdown appear at same height */
-    }
-
-    /* Dropdown */
-    .dropdown {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #3a7;
-        padding: 10px 20px;
-        border-radius: 10px;
-        opacity: 1;
-        transition: opacity 0.25s ease-in-out;
-        pointer-events: auto;
-        white-space: nowrap;
-    }
-
-    .dropdown.hidden {
-        opacity: 0;
-        pointer-events: none;
-        visibility: hidden;
-    }
-
-    .dropdown-title {
-        font-size: 20px;
-        font-weight: bold;
-        text-decoration: underline;
-        margin-right: 15px;
-    }
-
-    .dropdown-links a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: bold;
-        margin-right: 15px;
-        padding: 4px 10px;
-        border-radius: 10px;
-        transition: 0.2s;
-    }
-
-    .dropdown-links a:hover {
-        background: rgba(255,255,255,0.25);
-    }
-
-    .coming-soon {
-        font-size: 16px;
-        opacity: 0.8;
-    }
-
-    /* Responsive: collapse into dropdown when screen too narrow */
-    @media (max-width: 900px) {
-        .dropdown-links {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .dropdown {
-            white-space: normal;
-            width: 90%;
-        }
-    }
-</style>
-
-<script>
-function toggleDropdown(section) {
-    const women = document.getElementById("dropdown-women");
-    const men = document.getElementById("dropdown-men");
-
-    if (section === "women") {
-        women.classList.toggle("hidden");
-        men.classList.add("hidden");
-    } else if (section === "men") {
-        men.classList.toggle("hidden");
-        women.classList.add("hidden");
-    }
-}
-</script>
 
 <h2>Women's Summary</h2>
 <table class="dataframe">
@@ -234,7 +94,7 @@ function toggleDropdown(section) {
       <td>1</td>
       <td>1</td>
       <td>10</td>
-      <td>Reported lower leg injury June 2026</td>
+      <td>Last played week 23 at Queens (reported shin injury)</td>
     </tr>
     <tr>
       <td>Katie Boulter</td>
@@ -258,14 +118,14 @@ function toggleDropdown(section) {
       <td>–</td>
       <td>–</td>
       <td>44</td>
-      <td>Back injury</td>
+      <td>Last played week 10 at Indian Wells (reported back injury)</td>
     </tr>
     <tr>
       <td>Fran Jones</td>
       <td>106</td>
       <td>25</td>
-      <td>WTA250 Iasi</td>
       <td> </td>
+      <td>W125 Palermo</td>
       <td>10 pts on 13 Jul 2026</td>
       <td>1</td>
       <td>1</td>
@@ -276,7 +136,7 @@ function toggleDropdown(section) {
       <td>Harriet Dart</td>
       <td>152</td>
       <td>29</td>
-      <td> </td>
+      <td>WTA250 Athens</td>
       <td>WTA250 Prague (D)</td>
       <td>10 pts on 13 Jul 2026</td>
       <td>1</td>
@@ -324,7 +184,7 @@ function toggleDropdown(section) {
       <td>Lily Miyazaki</td>
       <td>308</td>
       <td>30</td>
-      <td>WTA250 Athens (Q)</td>
+      <td> </td>
       <td> </td>
       <td>2 pts on 13 Jul 2026</td>
       <td>1</td>
@@ -350,7 +210,7 @@ function toggleDropdown(section) {
       <td>17</td>
       <td> </td>
       <td> </td>
-      <td>23 pts on 24 Aug 2026</td>
+      <td>10 pts on 13 Jul 2026</td>
       <td>–</td>
       <td>–</td>
       <td>412</td>
@@ -373,7 +233,7 @@ function toggleDropdown(section) {
       <td>456</td>
       <td>26</td>
       <td>W50 Nottingham</td>
-      <td> </td>
+      <td>W125 Palermo (D)</td>
       <td>30 pts on 13 Jul 2026</td>
       <td>1</td>
       <td>1</td>
@@ -446,7 +306,7 @@ function toggleDropdown(section) {
       <td>20</td>
       <td>W50 Nottingham</td>
       <td>LTA Summer County Cup (Lancashire), Group 2</td>
-      <td>1 pts on 14 Sep 2026</td>
+      <td>2 pts on 13 Jul 2026</td>
       <td>–</td>
       <td>–</td>
       <td>352</td>
@@ -482,7 +342,7 @@ function toggleDropdown(section) {
       <td>31</td>
       <td> </td>
       <td> </td>
-      <td>6 pts on 20 Jul 2026</td>
+      <td>2 pts on 13 Jul 2026</td>
       <td>–</td>
       <td>–</td>
       <td>212</td>
@@ -540,7 +400,7 @@ function toggleDropdown(section) {
       <td>Lauryn John-Baptiste</td>
       <td>828</td>
       <td>26</td>
-      <td>W50 Nottingham (Q)</td>
+      <td>W50 Nottingham (WC?)</td>
       <td>LTA Summer County Cup (Middlesex), Group 1</td>
       <td>5 pts on 12 Oct 2026</td>
       <td>–</td>
@@ -552,7 +412,7 @@ function toggleDropdown(section) {
       <td>Brooke Black</td>
       <td>852</td>
       <td>18</td>
-      <td>W50 Nottingham (Q)</td>
+      <td>W50 Nottingham (WC?)</td>
       <td> </td>
       <td>9 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -588,7 +448,7 @@ function toggleDropdown(section) {
       <td>Tegan Bush</td>
       <td>1042</td>
       <td>17</td>
-      <td>W50 Nottingham (Q)</td>
+      <td>W50 Nottingham (WC?)</td>
       <td> </td>
       <td>8 pts on 20 Jul 2026</td>
       <td>–</td>
@@ -697,7 +557,7 @@ function toggleDropdown(section) {
       <td>1387</td>
       <td>41</td>
       <td>WTA250 Iasi (D)</td>
-      <td> </td>
+      <td>W125 Palermo (D)</td>
       <td>1 pts on 14 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -925,7 +785,7 @@ function toggleDropdown(section) {
       <td>–</td>
       <td>17</td>
       <td> </td>
-      <td> </td>
+      <td>J300 Bytom</td>
       <td>2 pts on 3 May 2027</td>
       <td>–</td>
       <td>–</td>
@@ -936,7 +796,7 @@ function toggleDropdown(section) {
       <td>Maria Ustic</td>
       <td>–</td>
       <td>18</td>
-      <td>W15 Kursumlijska Banja (A)</td>
+      <td> </td>
       <td> </td>
       <td>1 pts on 7 Dec 2026</td>
       <td>–</td>
@@ -960,7 +820,7 @@ function toggleDropdown(section) {
       <td>Leticia Romanova</td>
       <td>–</td>
       <td>18</td>
-      <td>W50 Nottingham (A) / British Tour Giffnock</td>
+      <td>W50 Nottingham (Q)</td>
       <td>LTA Summer County Cup (Kent), Group 2</td>
       <td>1 pts on 3 May 2027</td>
       <td>–</td>
@@ -973,7 +833,7 @@ function toggleDropdown(section) {
       <td>–</td>
       <td>15</td>
       <td> </td>
-      <td> </td>
+      <td>J300 Bytom (Q)</td>
       <td>1 pts on 14 Jun 2027</td>
       <td>–</td>
       <td>–</td>
@@ -1020,7 +880,7 @@ function toggleDropdown(section) {
       <td>Georgina Hays</td>
       <td>–</td>
       <td>19</td>
-      <td>W75 Vitoria Gasteiz (A)</td>
+      <td>W75 Vitoria Gasteiz (Q)</td>
       <td> </td>
       <td>1 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -1068,7 +928,7 @@ function toggleDropdown(section) {
       <td>Eva Shaw</td>
       <td>–</td>
       <td>21</td>
-      <td>W50 Nottingham (A)</td>
+      <td>W50 Nottingham (Q)</td>
       <td> </td>
       <td>1 pts on 20 Jul 2026</td>
       <td>–</td>
@@ -1116,7 +976,7 @@ function toggleDropdown(section) {
       <td>Sophie Bekker</td>
       <td>–</td>
       <td>17</td>
-      <td>W50 Nottingham (A)</td>
+      <td>W50 Nottingham (Q)</td>
       <td> </td>
       <td>1 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -1200,7 +1060,7 @@ function toggleDropdown(section) {
       <td>Freya Peet</td>
       <td>–</td>
       <td>18</td>
-      <td>W75 Vitoria Gasteiz (A)</td>
+      <td> </td>
       <td>W15 Las Palmas de Gran Canaria (Q)</td>
       <td></td>
       <td>–</td>
@@ -1212,7 +1072,7 @@ function toggleDropdown(section) {
       <td>Anna Boron</td>
       <td>–</td>
       <td>15</td>
-      <td>W75 Vitoria Gasteiz (A)</td>
+      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1248,7 +1108,7 @@ function toggleDropdown(section) {
       <td>Eloise Newberry</td>
       <td>–</td>
       <td>18</td>
-      <td>W50 Nottingham (A)</td>
+      <td>W50 Nottingham (Q)</td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1296,7 +1156,7 @@ function toggleDropdown(section) {
       <td>Lucia Cassidy</td>
       <td>–</td>
       <td>19</td>
-      <td> </td>
+      <td>W50 Nottingham (Q, WC)</td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1332,7 +1192,7 @@ function toggleDropdown(section) {
       <td>Emma Cohen</td>
       <td>–</td>
       <td>21</td>
-      <td>W50 Nottingham (A)</td>
+      <td>W50 Nottingham (Q)</td>
       <td>LTA Summer County Cup (Middlesex), Group 1</td>
       <td></td>
       <td>–</td>
@@ -1369,7 +1229,7 @@ function toggleDropdown(section) {
       <td>–</td>
       <td>18</td>
       <td> </td>
-      <td> </td>
+      <td>LTA Summer County Cup (Surrey), Group 1</td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1380,7 +1240,7 @@ function toggleDropdown(section) {
       <td>Pui Yin Lung</td>
       <td>–</td>
       <td>15</td>
-      <td>W50 Nottingham (A)</td>
+      <td>W50 Nottingham (Q)</td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1401,9 +1261,9 @@ function toggleDropdown(section) {
       <td> </td>
     </tr>
     <tr>
-      <td>Scarlett Kavanagh</td>
+      <td>Scarlet Kavanagh</td>
       <td>–</td>
-      <td>–</td>
+      <td>16</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1415,7 +1275,7 @@ function toggleDropdown(section) {
     <tr>
       <td>Soumeya Anane</td>
       <td>–</td>
-      <td>–</td>
+      <td>32</td>
       <td>W50 Nottingham (D)</td>
       <td> </td>
       <td></td>
@@ -1427,7 +1287,7 @@ function toggleDropdown(section) {
     <tr>
       <td>Charlotte Clarke</td>
       <td>–</td>
-      <td>–</td>
+      <td>21</td>
       <td> </td>
       <td>W15 Las Palmas de Gran Canaria (A)</td>
       <td></td>
@@ -1437,45 +1297,45 @@ function toggleDropdown(section) {
       <td> </td>
     </tr>
     <tr>
-      <td>Marelia Raath</td>
+      <td>Marelie Raath</td>
       <td>–</td>
-      <td>–</td>
-      <td> </td>
+      <td>19</td>
+      <td>W50 Nottingham (Q, WC), British Tour Giffnock</td>
       <td>LTA Summer County Cup (Hertfordshire), Group 1</td>
       <td></td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
-      <td> </td>
+      <td>US College student (Northwestern 2025 to current)</td>
     </tr>
     <tr>
       <td>Hannah Read</td>
       <td>–</td>
-      <td>–</td>
+      <td>20</td>
       <td> </td>
       <td>LTA Summer County Cup (Hertfordshire), Group 1</td>
       <td></td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
-      <td> </td>
+      <td>US College student (San Diego 2023 to current)</td>
     </tr>
     <tr>
       <td>Given Roach</td>
       <td>–</td>
-      <td>–</td>
-      <td> </td>
+      <td>21</td>
+      <td>UTR PTT Skopje</td>
       <td>LTA Summer County Cup (Middlesex), Group 1</td>
       <td></td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
-      <td> </td>
+      <td>US College student (Georgia Tech 2022 to current)</td>
     </tr>
     <tr>
       <td>Liv Zingg</td>
       <td>–</td>
-      <td>–</td>
+      <td>15</td>
       <td> </td>
       <td>LTA Summer County Cup (Surrey), Group 1</td>
       <td></td>
@@ -1487,43 +1347,43 @@ function toggleDropdown(section) {
     <tr>
       <td>Nell Miller</td>
       <td>–</td>
-      <td>–</td>
+      <td>26</td>
       <td> </td>
       <td>LTA Summer County Cup (Kent), Group 2</td>
       <td></td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
-      <td> </td>
+      <td>US College graduate</td>
     </tr>
     <tr>
       <td>Bronte Murgett</td>
       <td>–</td>
-      <td>–</td>
+      <td>27</td>
       <td> </td>
       <td>LTA Summer County Cup (Yorkshire), Group 2</td>
       <td></td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
-      <td> </td>
+      <td>US College graduate / coach</td>
     </tr>
     <tr>
       <td>Grace Piper</td>
       <td>–</td>
-      <td>–</td>
+      <td>23</td>
       <td> </td>
       <td>LTA Summer County Cup (Somerset), Group 2</td>
       <td></td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
-      <td> </td>
+      <td>US College graduate (Southern California, 2020 to 2025)</td>
     </tr>
     <tr>
       <td>Daisy Wootton</td>
       <td>–</td>
-      <td>–</td>
+      <td>16</td>
       <td> </td>
       <td>LTA Summer County Cup (Lancashire), Group 2</td>
       <td></td>
@@ -1535,9 +1395,81 @@ function toggleDropdown(section) {
     <tr>
       <td>Sophie Drakeford-Lewis</td>
       <td>–</td>
-      <td>–</td>
+      <td>27</td>
       <td> </td>
       <td>LTA Summer County Cup (Berkshire), Group 3</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Emilija Lebedevaite</td>
+      <td>–</td>
+      <td>16</td>
+      <td> </td>
+      <td>J300 Bytom (Q)</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Zainab Williams</td>
+      <td>–</td>
+      <td>–</td>
+      <td>W50 Nottingham (Q, WC)</td>
+      <td>LTA Summer County Cup (Lancashire), Group 2</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Millie Skelton</td>
+      <td>–</td>
+      <td>–</td>
+      <td>W50 Nottingham (Q, WC)</td>
+      <td>LTA Summer County Cup (Yorkshire), Group 2</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Mia Tinsley</td>
+      <td>–</td>
+      <td>–</td>
+      <td>W50 Nottingham (Q, WC), British Tour Giffnock</td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Jasmine Mian</td>
+      <td>–</td>
+      <td>–</td>
+      <td>W15 Monastir (Q, WC)</td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Sophie Dick</td>
+      <td>–</td>
+      <td>–</td>
+      <td>W15 Monastir (Q)</td>
+      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
