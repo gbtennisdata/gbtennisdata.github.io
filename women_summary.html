@@ -28,45 +28,7 @@
     </style>
 </head>
 <body>
-<div class="header-content">
-
-    <span class="title">GB Tennis Data</span>
-
-    <nav class="nav-main">
-        <a class="nav-pill" href="index.html">Home</a>
-        <a class="nav-pill" data-dropdown="women">Women</a>
-        <a class="nav-pill" data-dropdown="men">Men</a>
-    </nav>
-
-    <div class="nav-container">
-
-        <div id="dropdown-women" class="dropdown hidden">
-            <span class="dropdown-title">Women</span>
-            <div class="dropdown-links">
-                <a href="women_summary.html">Summary</a>
-                <a href="women_singles_by_player.html">Singles by player</a>
-                <a href="women_singles_by_week.html">Singles by week</a>
-                <a href="women_doubles_by_player.html">Doubles by player</a>
-                <a href="women_doubles_by_week.html">Doubles by week</a>
-                <a href="women_singles_winners.html">Singles winners</a>
-                <a href="women_doubles_winners.html">Doubles winners</a>
-            </div>
-        </div>
-
-        <div id="dropdown-men" class="dropdown hidden">
-            <span class="dropdown-title">Men</span>
-            <div class="dropdown-links">
-                <a href="men_summary.html">Summary</a>
-                <a href="men_singles_by_player.html">Singles by player</a>
-                <a href="men_singles_by_week.html">Singles by week</a>
-                <a href="men_singles_winners.html">Singles winners</a>
-            </div>
-        </div>
-
-    </div>
-
-</div>
-
+<div id="header-banner"></div>
 <h2>Women's Summary</h2>
 <table class="dataframe">
   <thead>
@@ -74,8 +36,8 @@
       <th>Player</th>
       <th>World Ranking</th>
       <th>Age</th>
-      <th>Next Week (13 Jul)</th>
-      <th>Week of 20 Jul</th>
+      <th>This Week</th>
+      <th>Next Week</th>
       <th>Next counting to drop</th>
       <th>18th counter</th>
       <th>19th counter</th>
@@ -1478,5 +1440,6 @@
     </tr>
   </tbody>
 </table>
-</body>
+<div id="footer"></div>
+<script src="header.js"></script></body>
 </html>

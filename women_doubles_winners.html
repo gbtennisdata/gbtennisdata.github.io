@@ -68,189 +68,13 @@ th:nth-child(3), td:nth-child(3) { width: 50%; }
 </style>
 </head>
 <body>
-<div id="header-banner">
-    <div class="header-content">
-
-        <!-- Title -->
-        <span class="title">GB Tennis Data</span>
-
-        <!-- Main navigation -->
-        <nav class="nav-main">
-            <a class="nav-pill" href="index.html">Home</a>
-            <a class="nav-pill" onclick="toggleDropdown('women')">Women</a>
-            <a class="nav-pill" onclick="toggleDropdown('men')">Men</a>
-        </nav>
-
-        <!-- Dropdown container (fixed height) -->
-        <div class="nav-container">
-
-            <!-- Women dropdown -->
-            <div id="dropdown-women" class="dropdown hidden">
-                <span class="dropdown-title">Women</span>
-                <div class="dropdown-links">
-                    <a href="womenSummary.html">Summary</a>
-                    <a href="women_singles_by_player.html">Singles by player</a>
-                    <a href="women_singles_by_week.html">Singles by week</a>
-                    <a href="women_doubles_by_player.html">Doubles by player</a>
-                    <a href="women_doubles_by_week.html">Doubles by week</a>
-                </div>
-            </div>
-
-            <!-- Men dropdown -->
-            <div id="dropdown-men" class="dropdown hidden">
-                <span class="dropdown-title">Men</span>
-                <div class="dropdown-links">
-                    <span class="coming-soon">To come later</span>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
-<style>
-    /* Sticky header */
-    #header-banner {
-        position: sticky;
-        top: 0;
-        z-index: 9999;
-        background: #3a7;
-        color: #fff;
-        padding: 18px 25px;
-        font-family: Arial, sans-serif;
-        border-bottom: 3px solid #2a5;
-    }
-
-    .header-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .title {
-        font-size: 32px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        text-align: center;
-    }
-
-    /* Main nav pills */
-    .nav-main {
-        display: flex;
-        gap: 15px;
-    }
-
-    .nav-pill {
-        background: #fff;
-        color: #3a7;
-        padding: 6px 18px;
-        border-radius: 20px;
-        font-size: 18px;
-        font-weight: bold;
-        text-decoration: none;
-        border: 2px solid #fff;
-        transition: 0.2s;
-        cursor: pointer;
-    }
-
-    .nav-pill:hover {
-        background: #2a5;
-        color: #fff;
-    }
-
-    /* Dropdown container */
-    .nav-container {
-        position: relative;
-        width: 100%;
-        margin-top: 10px;
-        height: 50px; /* Women & Men dropdown appear at same height */
-    }
-
-    /* Dropdown */
-    .dropdown {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #3a7;
-        padding: 10px 20px;
-        border-radius: 10px;
-        opacity: 1;
-        transition: opacity 0.25s ease-in-out;
-        pointer-events: auto;
-        white-space: nowrap;
-    }
-
-    .dropdown.hidden {
-        opacity: 0;
-        pointer-events: none;
-        visibility: hidden;
-    }
-
-    .dropdown-title {
-        font-size: 20px;
-        font-weight: bold;
-        text-decoration: underline;
-        margin-right: 15px;
-    }
-
-    .dropdown-links a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: bold;
-        margin-right: 15px;
-        padding: 4px 10px;
-        border-radius: 10px;
-        transition: 0.2s;
-    }
-
-    .dropdown-links a:hover {
-        background: rgba(255,255,255,0.25);
-    }
-
-    .coming-soon {
-        font-size: 16px;
-        opacity: 0.8;
-    }
-
-    /* Responsive: collapse into dropdown when screen too narrow */
-    @media (max-width: 900px) {
-        .dropdown-links {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .dropdown {
-            white-space: normal;
-            width: 90%;
-        }
-    }
-</style>
-
-<script>
-function toggleDropdown(section) {
-    const women = document.getElementById("dropdown-women");
-    const men = document.getElementById("dropdown-men");
-
-    if (section === "women") {
-        women.classList.toggle("hidden");
-        men.classList.add("hidden");
-    } else if (section === "men") {
-        men.classList.toggle("hidden");
-        women.classList.add("hidden");
-    }
-}
-</script>
-
+<div id="header-banner"></div>
 <h1>Doubles Tournament Winners (last 52 weeks)</h1>
 
 <div class="dashboard">
     <div class="stat">
         <h3>Total Titles</h3>
-        <p>41</p>
+        <p>40</p>
     </div>
 
     <div class="stat">
@@ -290,17 +114,17 @@ function toggleDropdown(section) {
 
     <div class="stat">
         <h3>W50</h3>
-        <p>5</p>
+        <p>6</p>
     </div>
 
     <div class="stat">
         <h3>W35</h3>
-        <p>12</p>
+        <p>11</p>
     </div>
 
     <div class="stat">
         <h3>W15</h3>
-        <p>8</p>
+        <p>7</p>
     </div>
 </div>
 
@@ -309,7 +133,7 @@ function toggleDropdown(section) {
 
         <div class="stat">
             <h3>Alicia Dudeney</h3>
-            <p>8 titles</p>
+            <p>7 titles</p>
         </div>
         
         <div class="stat">
@@ -494,6 +318,11 @@ function toggleDropdown(section) {
     </tr>
     <tr>
       <td>Alicia Dudeney</td>
+      <td>W50 Trnava</td>
+      <td>November 2025</td>
+    </tr>
+    <tr>
+      <td>Alicia Dudeney</td>
       <td>W50 Manchester</td>
       <td>January 2026</td>
     </tr>
@@ -521,11 +350,6 @@ function toggleDropdown(section) {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Alicia Dudeney</td>
-      <td>W35 Monastir</td>
-      <td>July 2025</td>
-    </tr>
     <tr>
       <td>Amelia Rajecki & Alicia Dudeney</td>
       <td>W35 Roehampton</td>
@@ -557,7 +381,7 @@ function toggleDropdown(section) {
       <td>December 2025</td>
     </tr>
     <tr>
-      <td>Amelia Rajecki</td>
+      <td>Amelia Rajecki & Lauryn John-Baptiste</td>
       <td>W35 Sheffield</td>
       <td>February 2026</td>
     </tr>
@@ -567,7 +391,7 @@ function toggleDropdown(section) {
       <td>April 2026</td>
     </tr>
     <tr>
-      <td>Freya Christie & Eden Silva</td>
+      <td>Freya Christie</td>
       <td>W35 Nottingham</td>
       <td>May 2026</td>
     </tr>
@@ -577,9 +401,9 @@ function toggleDropdown(section) {
       <td>May 2026</td>
     </tr>
     <tr>
-      <td>Lauryn John-Baptiste</td>
-      <td>W35 Sheffield</td>
-      <td>August 2026</td>
+      <td>Vic Allen</td>
+      <td>W35 Don Benito</td>
+      <td>July 2026</td>
     </tr>
   </tbody>
 </table>
@@ -611,11 +435,6 @@ function toggleDropdown(section) {
       <td>September 2025</td>
     </tr>
     <tr>
-      <td>Alicia Dudeney</td>
-      <td>W15 Trnava</td>
-      <td>November 2025</td>
-    </tr>
-    <tr>
       <td>Amelia Rajecki</td>
       <td>W15 Oslo</td>
       <td>January 2026</td>
@@ -638,4 +457,5 @@ function toggleDropdown(section) {
   </tbody>
 </table>
 </div>
-</body></html>
+<div id="footer"></div>
+<script src="header.js"></script></body></html>

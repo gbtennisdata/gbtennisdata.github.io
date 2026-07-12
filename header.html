@@ -1,38 +1,161 @@
-<div class="header-content">
+<div class="header-wrapper">
 
-    <span class="title">GB Tennis Data</span>
+    <div class="header-content">
 
-    <nav class="nav-main">
-        <a class="nav-pill" href="index.html">Home</a>
-        <a class="nav-pill" data-dropdown="women">Women</a>
-        <a class="nav-pill" data-dropdown="men">Men</a>
-    </nav>
+        <span class="title">GB Tennis Data</span>
 
-    <div class="nav-container">
+        <nav class="nav-main">
+            <a class="nav-pill" href="index.html">Home</a>
+            <a class="nav-pill" data-dropdown="women">Women</a>
+            <a class="nav-pill" data-dropdown="men">Men</a>
+        </nav>
 
-        <div id="dropdown-women" class="dropdown hidden">
-            <span class="dropdown-title">Women</span>
-            <div class="dropdown-links">
-                <a href="women_summary.html">Summary</a>
-                <a href="women_singles_by_player.html">Singles by player</a>
-                <a href="women_singles_by_week.html">Singles by week</a>
-                <a href="women_doubles_by_player.html">Doubles by player</a>
-                <a href="women_doubles_by_week.html">Doubles by week</a>
-                <a href="women_singles_winners.html">Singles winners</a>
-                <a href="women_doubles_winners.html">Doubles winners</a>
+        <div class="nav-container">
+
+            <div id="dropdown-women" class="dropdown hidden">
+                <span class="dropdown-title">Women</span>
+                <div class="dropdown-links">
+                    <a href="women_summary.html">Summary</a>
+                    <a href="women_singles_by_player.html">Singles by player</a>
+                    <a href="women_singles_by_week.html">Singles by week</a>
+                    <a href="women_doubles_by_player.html">Doubles by player</a>
+                    <a href="women_doubles_by_week.html">Doubles by week</a>
+                    <a href="women_singles_winners.html">Singles winners</a>
+                    <a href="women_doubles_winners.html">Doubles winners</a>
+                </div>
             </div>
-        </div>
 
-        <div id="dropdown-men" class="dropdown hidden">
-            <span class="dropdown-title">Men</span>
-            <div class="dropdown-links">
-                <a href="men_summary.html">Summary</a>
-                <a href="men_singles_by_player.html">Singles by player</a>
-                <a href="men_singles_by_week.html">Singles by week</a>
-                <a href="men_singles_winners.html">Singles winners</a>
+            <div id="dropdown-men" class="dropdown hidden">
+                <span class="dropdown-title">Men</span>
+                <div class="dropdown-links">
+                    <a href="men_summary.html">Summary</a>
+                    <a href="men_singles_by_player.html">Singles by player</a>
+                    <a href="men_singles_by_week.html">Singles by week</a>
+                    <a href="men_singles_winners.html">Singles winners</a>
+                    <a href="men_us_college.html">US College rosters</a>
+                </div>
             </div>
+
         </div>
 
     </div>
 
 </div>
+
+<style>
+    /* Sticky header wrapper */
+    .header-wrapper {
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        background: #3a7;
+        color: #fff;
+        padding: 18px 25px;
+        font-family: Arial, sans-serif;
+        border-bottom: 3px solid #2a5;
+    }
+
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .title {
+        font-size: 32px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+
+    /* Main nav pills */
+    .nav-main {
+        display: flex;
+        gap: 15px;
+    }
+
+    .nav-pill {
+        background: #fff;
+        color: #3a7;
+        padding: 6px 18px;
+        border-radius: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        border: 2px solid #fff;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+
+    .nav-pill:hover {
+        background: #2a5;
+        color: #fff;
+    }
+
+    /* Dropdown container */
+    .nav-container {
+        position: relative;
+        width: 100%;
+        margin-top: 10px;
+        /* height removed so dropdown can expand */
+        min-height: 50px;
+    }
+
+    /* Dropdown */
+    .dropdown {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #3a7;
+        padding: 10px 20px;
+        border-radius: 10px;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.25s ease-in-out;
+        pointer-events: auto;
+        white-space: nowrap;
+    }
+
+    .dropdown.hidden {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+    }
+
+    .dropdown-title {
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-right: 15px;
+    }
+
+    .dropdown-links a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        margin-right: 15px;
+        padding: 4px 10px;
+        border-radius: 10px;
+        transition: 0.2s;
+    }
+
+    .dropdown-links a:hover {
+        background: rgba(255,255,255,0.25);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .dropdown-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .dropdown {
+            white-space: normal;
+            width: 90%;
+        }
+    }
+</style>

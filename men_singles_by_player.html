@@ -96,185 +96,7 @@ function scrollToPlayer(id) {
 }
 </script>
 
-    <div id="header-banner">
-    <div class="header-content">
-
-        <!-- Title -->
-        <span class="title">GB Tennis Data</span>
-
-        <!-- Main navigation -->
-        <nav class="nav-main">
-            <a class="nav-pill" href="index.html">Home</a>
-            <a class="nav-pill" onclick="toggleDropdown('women')">Women</a>
-            <a class="nav-pill" onclick="toggleDropdown('men')">Men</a>
-        </nav>
-
-        <!-- Dropdown container (fixed height) -->
-        <div class="nav-container">
-
-            <!-- Women dropdown -->
-            <div id="dropdown-women" class="dropdown hidden">
-                <span class="dropdown-title">Women</span>
-                <div class="dropdown-links">
-                    <a href="women_summary.html">Summary</a>
-                    <a href="women_singles_by_player.html">Singles by player</a>
-                    <a href="women_singles_by_week.html">Singles by week</a>
-                    <a href="women_doubles_by_player.html">Doubles by player</a>
-                    <a href="women_doubles_by_week.html">Doubles by week</a>
-                    <a href="women_singles_winners.html">Singles winners</a>
-                    <a href="women_doubles_winners.html">Doubles winners</a>
-                </div>
-            </div>
-
-            <!-- Men dropdown -->
-            <div id="dropdown-men" class="dropdown hidden">
-                <span class="dropdown-title">Men</span>
-                <div class="dropdown-links">
-                    <span class="coming-soon">To come later</span>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
-<style>
-    /* Sticky header */
-    #header-banner {
-        position: sticky;
-        top: 0;
-        z-index: 9999;
-        background: #3a7;
-        color: #fff;
-        padding: 18px 25px;
-        font-family: Arial, sans-serif;
-        border-bottom: 3px solid #2a5;
-    }
-
-    .header-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .title {
-        font-size: 32px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        text-align: center;
-    }
-
-    /* Main nav pills */
-    .nav-main {
-        display: flex;
-        gap: 15px;
-    }
-
-    .nav-pill {
-        background: #fff;
-        color: #3a7;
-        padding: 6px 18px;
-        border-radius: 20px;
-        font-size: 18px;
-        font-weight: bold;
-        text-decoration: none;
-        border: 2px solid #fff;
-        transition: 0.2s;
-        cursor: pointer;
-    }
-
-    .nav-pill:hover {
-        background: #2a5;
-        color: #fff;
-    }
-
-    /* Dropdown container */
-    .nav-container {
-        position: relative;
-        width: 100%;
-        margin-top: 10px;
-        height: 50px; /* Women & Men dropdown appear at same height */
-    }
-
-    /* Dropdown */
-    .dropdown {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #3a7;
-        padding: 10px 20px;
-        border-radius: 10px;
-        opacity: 1;
-        transition: opacity 0.25s ease-in-out;
-        pointer-events: auto;
-        white-space: nowrap;
-    }
-
-    .dropdown.hidden {
-        opacity: 0;
-        pointer-events: none;
-        visibility: hidden;
-    }
-
-    .dropdown-title {
-        font-size: 20px;
-        font-weight: bold;
-        text-decoration: underline;
-        margin-right: 15px;
-    }
-
-    .dropdown-links a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: bold;
-        margin-right: 15px;
-        padding: 4px 10px;
-        border-radius: 10px;
-        transition: 0.2s;
-    }
-
-    .dropdown-links a:hover {
-        background: rgba(255,255,255,0.25);
-    }
-
-    .coming-soon {
-        font-size: 16px;
-        opacity: 0.8;
-    }
-
-    /* Responsive: collapse into dropdown when screen too narrow */
-    @media (max-width: 900px) {
-        .dropdown-links {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .dropdown {
-            white-space: normal;
-            width: 90%;
-        }
-    }
-</style>
-
-<script>
-function toggleDropdown(section) {
-    const women = document.getElementById("dropdown-women");
-    const men = document.getElementById("dropdown-men");
-
-    if (section === "women") {
-        women.classList.toggle("hidden");
-        men.classList.add("hidden");
-    } else if (section === "men") {
-        men.classList.toggle("hidden");
-        women.classList.add("hidden");
-    }
-}
-</script>
-
+    <div id="header-banner"></div>
     <div id='player-select-container'>
         <label for='playerSelect'><strong>Select Player:</strong></label>
         <select id='playerSelect' onchange="scrollToPlayer(this.value)">
@@ -360,13 +182,13 @@ function toggleDropdown(section) {
                 <summary>
                     Not counted tournaments (12)
                 </summary>
-            <table id='notcounted_6' data-sort-asc='true'><thead><tr><th onclick='sortTable("notcounted_6",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_6",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("notcounted_6",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_6",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Challenger 125 Birmingham</td><td data-sort='300'>7 June 2027</td><td>QR2</td><td data-sort='3'>3</td></tr><tr><td>M25 Maanshan</td><td data-sort='300'>12 April 2027</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>M25 Taipei</td><td data-sort='300'>7 September 2026</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>M25 Roehampton</td><td data-sort='100'>17 August 2026</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>M25 Toulouse-Balma</td><td data-sort='100'>29 March 2027</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Challenger 75 Tunis</td><td data-sort='-1'>17 May 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>ATP 250 Eastbourne</td><td data-sort='-1'>28 June 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>GS Roland Garros</td><td data-sort='-1'>7 June 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Challenger  Charlottesville</td><td data-sort='-1'>2 November 2026</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Challenger 100 St. Brieuc</td><td data-sort='-1'>1 March 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>CH Knoxville</td><td data-sort='-1'>9 November 2026</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Challenger  Nottingham</td><td data-sort='-1'>13 July 2026</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='Dan_Evans'><h2>Dan Evans</h2><h3>Total points: 130</h3>
+            <table id='notcounted_6' data-sort-asc='true'><thead><tr><th onclick='sortTable("notcounted_6",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_6",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("notcounted_6",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_6",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Challenger 125 Birmingham</td><td data-sort='300'>7 June 2027</td><td>QR2</td><td data-sort='3'>3</td></tr><tr><td>M25 Maanshan</td><td data-sort='300'>12 April 2027</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>M25 Taipei</td><td data-sort='300'>7 September 2026</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>M25 Roehampton</td><td data-sort='100'>17 August 2026</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>M25 Toulouse-Balma</td><td data-sort='100'>29 March 2027</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Challenger 75 Tunis</td><td data-sort='-1'>17 May 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>ATP 250 Eastbourne</td><td data-sort='-1'>28 June 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>GS Roland Garros</td><td data-sort='-1'>7 June 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Challenger  Charlottesville</td><td data-sort='-1'>2 November 2026</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Challenger 100 St. Brieuc</td><td data-sort='-1'>1 March 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>CH Knoxville</td><td data-sort='-1'>9 November 2026</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Challenger  Nottingham</td><td data-sort='-1'>13 July 2026</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='Dan_Evans'><h2>Dan Evans</h2><h3>Total points: 138</h3>
         <details id="details_counted_7" open
                  onclick="toggleArrow('details_counted_7', 'arrow_counted_7')">
             <summary>
-                Counted tournaments (12)
+                Counted tournaments (13)
             </summary>
-        <table id='counted_7' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_7",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_7",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("counted_7",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_7",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("counted_7",4)'>Reason to count<span class='arrow'></span></th></tr></thead><tbody><tr><td>GS Wimbledon</td><td data-sort='202607'>13 July 2026</td><td>R64</td><td data-sort='50'>50</td><td>Grand Slam (Must count)</td></tr><tr><td>ATP 500 Washington DC</td><td data-sort='202607'>27 July 2026</td><td>R64</td><td data-sort='50'>50</td><td>Other</td></tr><tr><td>Challenger  Sumnter</td><td data-sort='202608'>17 August 2026</td><td>R32</td><td data-sort='-'>-</td><td>Other</td></tr><tr><td>Challenger  Lexington</td><td data-sort='202608'>3 August 2026</td><td>R16</td><td data-sort='6'>6</td><td>Other</td></tr><tr><td>Challenger  Shanghai</td><td data-sort='202609'>7 September 2026</td><td>R16</td><td data-sort='7'>7</td><td>Other</td></tr><tr><td>Challenger  Guangzhou</td><td data-sort='202609'>14 September 2026</td><td>QF</td><td data-sort='14'>14</td><td>Other</td></tr><tr><td>GS US Open</td><td data-sort='202609'>7 September 2026</td><td>QR1</td><td data-sort='-'>-</td><td>Other</td></tr><tr><td>GS Australian Open</td><td data-sort='202702'>1 February 2027</td><td>QR1</td><td data-sort='-'>-</td><td>Other</td></tr><tr><td>Challenger 125 Ilkley</td><td data-sort='202706'>14 June 2027</td><td>QR2</td><td data-sort='3'>3</td><td>Other</td></tr><tr><td>GS Roland Garros</td><td data-sort='202706'>7 June 2027</td><td>QR1</td><td data-sort='-'>-</td><td>Other</td></tr><tr><td>Challenger 75 Little Rock</td><td data-sort='202706'>7 June 2027</td><td>QR1</td><td data-sort='-'>-</td><td>Other</td></tr><tr><td>ATP 500 London</td><td data-sort='202706'>21 June 2027</td><td>QR1</td><td data-sort='-'>-</td><td>Other</td></tr></tbody></table></details></div><div class='card' id='Felix_Gill'><h2>Felix Gill</h2><h3>Total points: 260</h3>
+        <table id='counted_7' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_7",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_7",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("counted_7",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_7",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("counted_7",4)'>Reason to count<span class='arrow'></span></th></tr></thead><tbody><tr><td>GS Wimbledon</td><td data-sort='202607'>13 July 2026</td><td>R64</td><td data-sort='50'>50</td><td>Grand Slam (Must count)</td></tr><tr><td>ATP 500 Washington DC</td><td data-sort='202607'>27 July 2026</td><td>R64</td><td data-sort='50'>50</td><td>Other</td></tr><tr><td>Challenger  Sumnter</td><td data-sort='202608'>17 August 2026</td><td>R32</td><td data-sort='-'>-</td><td>Other</td></tr><tr><td>Challenger  Lexington</td><td data-sort='202608'>3 August 2026</td><td>R16</td><td data-sort='6'>6</td><td>Other</td></tr><tr><td>Challenger  Shanghai</td><td data-sort='202609'>7 September 2026</td><td>R16</td><td data-sort='7'>7</td><td>Other</td></tr><tr><td>Challenger  Guangzhou</td><td data-sort='202609'>14 September 2026</td><td>QF</td><td data-sort='14'>14</td><td>Other</td></tr><tr><td>GS US Open</td><td data-sort='202609'>7 September 2026</td><td>QR1</td><td data-sort='-'>-</td><td>Other</td></tr><tr><td>GS Australian Open</td><td data-sort='202702'>1 February 2027</td><td>QR1</td><td data-sort='-'>-</td><td>Other</td></tr><tr><td>ATP 500 London</td><td data-sort='202706'>21 June 2027</td><td>QR1</td><td data-sort='-'>-</td><td>Other</td></tr><tr><td>Challenger 125 Ilkley</td><td data-sort='202706'>14 June 2027</td><td>QR2</td><td data-sort='3'>3</td><td>Other</td></tr><tr><td>GS Roland Garros</td><td data-sort='202706'>7 June 2027</td><td>QR1</td><td data-sort='-'>-</td><td>Other</td></tr><tr><td>Challenger 75 Little Rock</td><td data-sort='202706'>7 June 2027</td><td>QR1</td><td data-sort='-'>-</td><td>Other</td></tr><tr><td>GS Wimbledon</td><td data-sort='202707'>5 July 2027</td><td>QR2</td><td data-sort='8'>8</td><td>Other</td></tr></tbody></table></details></div><div class='card' id='Felix_Gill'><h2>Felix Gill</h2><h3>Total points: 260</h3>
         <details id="details_counted_8" open
                  onclick="toggleArrow('details_counted_8', 'arrow_counted_8')">
             <summary>
@@ -516,19 +338,19 @@ function toggleDropdown(section) {
                 <summary>
                     Not counted tournaments (12)
                 </summary>
-            <table id='notcounted_20' data-sort-asc='true'><thead><tr><th onclick='sortTable("notcounted_20",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_20",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("notcounted_20",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_20",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>M15 Hurghada</td><td data-sort='400'>21 September 2026</td><td>SF</td><td data-sort='4'>4</td></tr><tr><td>Challenger  Nottingham</td><td data-sort='400'>13 July 2026</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Challenger 50 Nottingham</td><td data-sort='400'>11 January 2027</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Challenger 100 Oeiras</td><td data-sort='200'>1 February 2027</td><td>QR2</td><td data-sort='2'>2</td></tr><tr><td>M25 Glasgow</td><td data-sort='100'>9 November 2026</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>M25 Figueira da Foz</td><td data-sort='100'>13 July 2026</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>GS Roland Garros</td><td data-sort='-1'>7 June 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>ATP 500 London</td><td data-sort='-1'>21 June 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>M25 Vila Real de Santo Antonio</td><td data-sort='-1'>1 March 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>M25 Vale do Lobo</td><td data-sort='-1'>15 March 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Challenger  Hersonissos</td><td data-sort='-1'>24 August 2026</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>M25 Elvas</td><td data-sort='-1'>13 July 2026</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='Lui_Maxted'><h2>Lui Maxted</h2><h3>Total points: 120</h3>
+            <table id='notcounted_20' data-sort-asc='true'><thead><tr><th onclick='sortTable("notcounted_20",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_20",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("notcounted_20",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_20",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>M15 Hurghada</td><td data-sort='400'>21 September 2026</td><td>SF</td><td data-sort='4'>4</td></tr><tr><td>Challenger  Nottingham</td><td data-sort='400'>13 July 2026</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Challenger 50 Nottingham</td><td data-sort='400'>11 January 2027</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Challenger 100 Oeiras</td><td data-sort='200'>1 February 2027</td><td>QR2</td><td data-sort='2'>2</td></tr><tr><td>M25 Glasgow</td><td data-sort='100'>9 November 2026</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>M25 Figueira da Foz</td><td data-sort='100'>13 July 2026</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>GS Roland Garros</td><td data-sort='-1'>7 June 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>ATP 500 London</td><td data-sort='-1'>21 June 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>M25 Vila Real de Santo Antonio</td><td data-sort='-1'>1 March 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>M25 Vale do Lobo</td><td data-sort='-1'>15 March 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Challenger  Hersonissos</td><td data-sort='-1'>24 August 2026</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>M25 Elvas</td><td data-sort='-1'>13 July 2026</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='Lui_Maxted'><h2>Lui Maxted</h2><h3>Total points: 124</h3>
         <details id="details_counted_21" open
                  onclick="toggleArrow('details_counted_21', 'arrow_counted_21')">
             <summary>
                 Counted tournaments (18)
             </summary>
-        <table id='counted_21' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_21",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_21",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("counted_21",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_21",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("counted_21",4)'>Reason to count<span class='arrow'></span></th></tr></thead><tbody><tr><td>Challenger  Nottingham</td><td data-sort='202607'>13 July 2026</td><td>R16 (Q)</td><td data-sort='7'>7</td><td>Other</td></tr><tr><td>M25 Aldershot</td><td data-sort='202608'>24 August 2026</td><td>QF</td><td data-sort='3'>3</td><td>Other</td></tr><tr><td>M15 Monastir</td><td data-sort='202609'>7 September 2026</td><td>SF</td><td data-sort='4'>4</td><td>Other</td></tr><tr><td>M15 Monastir</td><td data-sort='202609'>7 September 2026</td><td>Winner</td><td data-sort='15'>15</td><td>Other</td></tr><tr><td>M25 Setubal</td><td data-sort='202609'>28 September 2026</td><td>R32</td><td data-sort='-'>-</td><td>Other</td></tr><tr><td>M25 Monastir</td><td data-sort='202610'>19 October 2026</td><td>QF</td><td data-sort='3'>3</td><td>Other</td></tr><tr><td>M25 Monastir</td><td data-sort='202610'>26 October 2026</td><td>Winner</td><td data-sort='25'>25</td><td>Other</td></tr><tr><td>Challenger  Champaign</td><td data-sort='202611'>16 November 2026</td><td>R32 (Q)</td><td data-sort='4'>4</td><td>Other</td></tr><tr><td>M25 Sheffield</td><td data-sort='202611'>2 November 2026</td><td>R16</td><td data-sort='1'>1</td><td>Other</td></tr><tr><td>M25 Austin</td><td data-sort='202611'>30 November 2026</td><td>Winner</td><td data-sort='25'>25</td><td>Other</td></tr><tr><td>Challenger  Nottingham</td><td data-sort='202701'>11 January 2027</td><td>R32</td><td data-sort='-'>-</td><td>Other</td></tr><tr><td>Challenger  Glasgow</td><td data-sort='202701'>18 January 2027</td><td>R32</td><td data-sort='-'>-</td><td>Other</td></tr><tr><td>M25 Sheffield</td><td data-sort='202702'>15 February 2027</td><td>R16</td><td data-sort='1'>1</td><td>Other</td></tr><tr><td>M25 Glasgow</td><td data-sort='202702'>8 February 2027</td><td>F</td><td data-sort='14'>14</td><td>Other</td></tr><tr><td>M25 Vila Real de Santo Antonio</td><td data-sort='202702'>22 February 2027</td><td>R32</td><td data-sort='-'>-</td><td>Other</td></tr><tr><td>M25 Vila Real de Santo Antonio</td><td data-sort='202703'>1 March 2027</td><td>F</td><td data-sort='14'>14</td><td>Other</td></tr><tr><td>Challenger  Hersonissos</td><td data-sort='202703'>15 March 2027</td><td>QR2</td><td data-sort='1'>1</td><td>Other</td></tr><tr><td>Challenger  Hersonissos</td><td data-sort='202703'>15 March 2027</td><td>R32 (Q)</td><td data-sort='3'>3</td><td>Other</td></tr></tbody></table></details>
+        <table id='counted_21' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_21",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_21",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("counted_21",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_21",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("counted_21",4)'>Reason to count<span class='arrow'></span></th></tr></thead><tbody><tr><td>Challenger  Nottingham</td><td data-sort='202607'>13 July 2026</td><td>R16 (Q)</td><td data-sort='7'>7</td><td>Other</td></tr><tr><td>M25 Aldershot</td><td data-sort='202608'>24 August 2026</td><td>QF</td><td data-sort='3'>3</td><td>Other</td></tr><tr><td>M15 Monastir</td><td data-sort='202609'>7 September 2026</td><td>SF</td><td data-sort='4'>4</td><td>Other</td></tr><tr><td>M15 Monastir</td><td data-sort='202609'>7 September 2026</td><td>Winner</td><td data-sort='15'>15</td><td>Other</td></tr><tr><td>M25 Figueira da Foz</td><td data-sort='202610'>12 October 2026</td><td>R16</td><td data-sort='1'>1</td><td>Other</td></tr><tr><td>M25 Porto</td><td data-sort='202610'>12 October 2026</td><td>QF</td><td data-sort='3'>3</td><td>Other</td></tr><tr><td>M25 Monastir</td><td data-sort='202610'>19 October 2026</td><td>QF</td><td data-sort='3'>3</td><td>Other</td></tr><tr><td>M25 Monastir</td><td data-sort='202610'>26 October 2026</td><td>Winner</td><td data-sort='25'>25</td><td>Other</td></tr><tr><td>M25 Sheffield</td><td data-sort='202611'>2 November 2026</td><td>R16</td><td data-sort='1'>1</td><td>Other</td></tr><tr><td>Challenger  Champaign</td><td data-sort='202611'>16 November 2026</td><td>R32 (Q)</td><td data-sort='4'>4</td><td>Other</td></tr><tr><td>M25 Austin</td><td data-sort='202611'>30 November 2026</td><td>Winner</td><td data-sort='25'>25</td><td>Other</td></tr><tr><td>Challenger  Glasgow</td><td data-sort='202701'>18 January 2027</td><td>R32</td><td data-sort='-'>-</td><td>Other</td></tr><tr><td>M25 Sheffield</td><td data-sort='202702'>15 February 2027</td><td>R16</td><td data-sort='1'>1</td><td>Other</td></tr><tr><td>M25 Glasgow</td><td data-sort='202702'>8 February 2027</td><td>F</td><td data-sort='14'>14</td><td>Other</td></tr><tr><td>M25 Vila Real de Santo Antonio</td><td data-sort='202702'>22 February 2027</td><td>R32</td><td data-sort='-'>-</td><td>Other</td></tr><tr><td>M25 Vila Real de Santo Antonio</td><td data-sort='202703'>1 March 2027</td><td>F</td><td data-sort='14'>14</td><td>Other</td></tr><tr><td>Challenger  Hersonissos</td><td data-sort='202703'>15 March 2027</td><td>QR2</td><td data-sort='1'>1</td><td>Other</td></tr><tr><td>Challenger  Hersonissos</td><td data-sort='202703'>15 March 2027</td><td>R32 (Q)</td><td data-sort='3'>3</td><td>Other</td></tr></tbody></table></details>
             <details id="details_notcounted_21"
                      onclick="toggleArrow('details_notcounted_21', 'arrow_notcounted_21')">
                 <summary>
-                    Not counted tournaments (2)
+                    Not counted tournaments (4)
                 </summary>
-            <table id='notcounted_21' data-sort-asc='true'><thead><tr><th onclick='sortTable("notcounted_21",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_21",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("notcounted_21",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_21",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>M25 Mouilleron le Captif</td><td data-sort='-1'>12 October 2026</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>M25 Cassis</td><td data-sort='-1'>14 September 2026</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='Max_Basing'><h2>Max Basing</h2><h3>Total points: 162</h3>
+            <table id='notcounted_21' data-sort-asc='true'><thead><tr><th onclick='sortTable("notcounted_21",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_21",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("notcounted_21",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_21",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Challenger  Nottingham</td><td data-sort='-1'>11 January 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>M25 Mouilleron le Captif</td><td data-sort='-1'>12 October 2026</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>M25 Setubal</td><td data-sort='-1'>28 September 2026</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>M25 Cassis</td><td data-sort='-1'>14 September 2026</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='Max_Basing'><h2>Max Basing</h2><h3>Total points: 162</h3>
         <details id="details_counted_22" open
                  onclick="toggleArrow('details_counted_22', 'arrow_counted_22')">
             <summary>
@@ -588,4 +410,5 @@ function toggleDropdown(section) {
                 <summary>
                     Not counted tournaments (6)
                 </summary>
-            <table id='notcounted_27' data-sort-asc='true'><thead><tr><th onclick='sortTable("notcounted_27",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_27",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("notcounted_27",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_27",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Challenger 75 Tenerife</td><td data-sort='600'>15 February 2027</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Challenger  Barletta</td><td data-sort='600'>5 April 2027</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Challenger 75 Ostrava</td><td data-sort='-1'>3 May 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>ATP 500 London</td><td data-sort='-1'>21 June 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Challenger 75 Francavilla al Mare</td><td data-sort='-1'>17 May 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Challenger 75 Tenerife</td><td data-sort='-1'>8 February 2027</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div>
+            <table id='notcounted_27' data-sort-asc='true'><thead><tr><th onclick='sortTable("notcounted_27",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("notcounted_27",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("notcounted_27",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("notcounted_27",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Challenger 75 Tenerife</td><td data-sort='600'>15 February 2027</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Challenger  Barletta</td><td data-sort='600'>5 April 2027</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Challenger 75 Ostrava</td><td data-sort='-1'>3 May 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>ATP 500 London</td><td data-sort='-1'>21 June 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Challenger 75 Francavilla al Mare</td><td data-sort='-1'>17 May 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Challenger 75 Tenerife</td><td data-sort='-1'>8 February 2027</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div id="footer"></div>
+       <script src="header.js"></script>
