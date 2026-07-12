@@ -1,36 +1,40 @@
-<div class="header-content">
+<div class="header-wrapper">
 
-    <span class="title">GB Tennis Data</span>
+    <div class="header-content">
 
-    <nav class="nav-main">
-        <a class="nav-pill" href="index.html">Home</a>
-        <a class="nav-pill" data-dropdown="women">Women</a>
-        <a class="nav-pill" data-dropdown="men">Men</a>
-    </nav>
+        <span class="title">GB Tennis Data</span>
 
-    <div class="nav-container">
+        <nav class="nav-main">
+            <a class="nav-pill" href="index.html">Home</a>
+            <a class="nav-pill" data-dropdown="women">Women</a>
+            <a class="nav-pill" data-dropdown="men">Men</a>
+        </nav>
 
-        <div id="dropdown-women" class="dropdown hidden">
-            <span class="dropdown-title">Women</span>
-            <div class="dropdown-links">
-                <a href="women_summary.html">Summary</a>
-                <a href="women_singles_by_player.html">Singles by player</a>
-                <a href="women_singles_by_week.html">Singles by week</a>
-                <a href="women_doubles_by_player.html">Doubles by player</a>
-                <a href="women_doubles_by_week.html">Doubles by week</a>
-                <a href="women_singles_winners.html">Singles winners</a>
-                <a href="women_doubles_winners.html">Doubles winners</a>
+        <div class="nav-container">
+
+            <div id="dropdown-women" class="dropdown hidden">
+                <span class="dropdown-title">Women</span>
+                <div class="dropdown-links">
+                    <a href="women_summary.html">Summary</a>
+                    <a href="women_singles_by_player.html">Singles by player</a>
+                    <a href="women_singles_by_week.html">Singles by week</a>
+                    <a href="women_doubles_by_player.html">Doubles by player</a>
+                    <a href="women_doubles_by_week.html">Doubles by week</a>
+                    <a href="women_singles_winners.html">Singles winners</a>
+                    <a href="women_doubles_winners.html">Doubles winners</a>
+                </div>
             </div>
-        </div>
 
-        <div id="dropdown-men" class="dropdown hidden">
-            <span class="dropdown-title">Men</span>
-            <div class="dropdown-links">
-                <a href="men_summary.html">Summary</a>
-                <a href="men_singles_by_player.html">Singles by player</a>
-                <a href="men_singles_by_week.html">Singles by week</a>
-                <a href="men_singles_winners.html">Singles winners</a>
+            <div id="dropdown-men" class="dropdown hidden">
+                <span class="dropdown-title">Men</span>
+                <div class="dropdown-links">
+                    <a href="men_summary.html">Summary</a>
+                    <a href="men_singles_by_player.html">Singles by player</a>
+                    <a href="men_singles_by_week.html">Singles by week</a>
+                    <a href="men_singles_winners.html">Singles winners</a>
+                </div>
             </div>
+
         </div>
 
     </div>
@@ -38,8 +42,8 @@
 </div>
 
 <style>
-    /* Sticky header */
-    #header-content {
+    /* Sticky header wrapper */
+    .header-wrapper {
         position: sticky;
         top: 0;
         z-index: 9999;
@@ -93,7 +97,8 @@
         position: relative;
         width: 100%;
         margin-top: 10px;
-        /*height: 50px;*/ /* Women & Men dropdown appear at same height */
+        /* height removed so dropdown can expand */
+        min-height: 50px;
     }
 
     /* Dropdown */
@@ -106,6 +111,7 @@
         padding: 10px 20px;
         border-radius: 10px;
         opacity: 1;
+        visibility: visible;
         transition: opacity 0.25s ease-in-out;
         pointer-events: auto;
         white-space: nowrap;
@@ -116,11 +122,6 @@
         pointer-events: none;
         visibility: hidden;
     }
-
-    .dropdown {
-        visibility: visible;
-    }
-
 
     .dropdown-title {
         font-size: 20px;
@@ -144,12 +145,7 @@
         background: rgba(255,255,255,0.25);
     }
 
-    .coming-soon {
-        font-size: 16px;
-        opacity: 0.8;
-    }
-
-    /* Responsive: collapse into dropdown when screen too narrow */
+    /* Responsive */
     @media (max-width: 900px) {
         .dropdown-links {
             display: flex;
