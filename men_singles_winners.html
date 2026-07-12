@@ -68,23 +68,20 @@ th:nth-child(3), td:nth-child(3) { width: 50%; }
 </style>
 </head>
 <body>
-<div id="header-banner">
+<div class="header-wrapper">
+
     <div class="header-content">
 
-        <!-- Title -->
         <span class="title">GB Tennis Data</span>
 
-        <!-- Main navigation -->
         <nav class="nav-main">
             <a class="nav-pill" href="index.html">Home</a>
-            <a class="nav-pill" onclick="toggleDropdown('women')">Women</a>
-            <a class="nav-pill" onclick="toggleDropdown('men')">Men</a>
+            <a class="nav-pill" data-dropdown="women">Women</a>
+            <a class="nav-pill" data-dropdown="men">Men</a>
         </nav>
 
-        <!-- Dropdown container (fixed height) -->
         <div class="nav-container">
 
-            <!-- Women dropdown -->
             <div id="dropdown-women" class="dropdown hidden">
                 <span class="dropdown-title">Women</span>
                 <div class="dropdown-links">
@@ -98,27 +95,25 @@ th:nth-child(3), td:nth-child(3) { width: 50%; }
                 </div>
             </div>
 
-            <!-- Men dropdown -->
             <div id="dropdown-men" class="dropdown hidden">
                 <span class="dropdown-title">Men</span>
                 <div class="dropdown-links">
                     <a href="men_summary.html">Summary</a>
                     <a href="men_singles_by_player.html">Singles by player</a>
                     <a href="men_singles_by_week.html">Singles by week</a>
-<!--                    <a href="men_doubles_by_player.html">Doubles by player</a>
-                    <a href="men_doubles_by_week.html">Doubles by week</a>
- -->                   <a href="men_singles_winners.html">Singles winners</a>
+                    <a href="men_singles_winners.html">Singles winners</a>
                 </div>
             </div>
 
         </div>
 
     </div>
+
 </div>
 
 <style>
-    /* Sticky header */
-    #header-banner {
+    /* Sticky header wrapper */
+    .header-wrapper {
         position: sticky;
         top: 0;
         z-index: 9999;
@@ -172,7 +167,8 @@ th:nth-child(3), td:nth-child(3) { width: 50%; }
         position: relative;
         width: 100%;
         margin-top: 10px;
-        height: 50px; /* Women & Men dropdown appear at same height */
+        /* height removed so dropdown can expand */
+        min-height: 50px;
     }
 
     /* Dropdown */
@@ -185,6 +181,7 @@ th:nth-child(3), td:nth-child(3) { width: 50%; }
         padding: 10px 20px;
         border-radius: 10px;
         opacity: 1;
+        visibility: visible;
         transition: opacity 0.25s ease-in-out;
         pointer-events: auto;
         white-space: nowrap;
@@ -218,12 +215,7 @@ th:nth-child(3), td:nth-child(3) { width: 50%; }
         background: rgba(255,255,255,0.25);
     }
 
-    .coming-soon {
-        font-size: 16px;
-        opacity: 0.8;
-    }
-
-    /* Responsive: collapse into dropdown when screen too narrow */
+    /* Responsive */
     @media (max-width: 900px) {
         .dropdown-links {
             display: flex;
@@ -236,22 +228,6 @@ th:nth-child(3), td:nth-child(3) { width: 50%; }
         }
     }
 </style>
-
-<script>
-function toggleDropdown(section) {
-    const women = document.getElementById("dropdown-women");
-    const men = document.getElementById("dropdown-men");
-
-    if (section === "women") {
-        women.classList.toggle("hidden");
-        men.classList.add("hidden");
-    } else if (section === "men") {
-        men.classList.toggle("hidden");
-        women.classList.add("hidden");
-    }
-}
-</script>
-
 <h1>Singles Tournament Winners (last 52 weeks) - Top 500 only</h1>
 
 <div class="dashboard">
