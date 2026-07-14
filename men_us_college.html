@@ -26,550 +26,971 @@
         padding: 6px;
     }
     </style>
+<style>
+    .roster-table td:nth-child(1) { text-align: left; }  /* Player column */
+    .roster-table td:nth-child(7) { text-align: left; }  /* Notes column */
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const table = document.querySelector(".roster-table");
+    const rows = Array.from(table.querySelectorAll("tbody tr"));
+
+    const teamSelect = document.getElementById("teamFilter");
+    const yearSelect = document.getElementById("yearFilter");
+    const confSelect = document.getElementById("confFilter");
+
+    // Helper: extract unique values from a column
+    function getUnique(colIndex) {
+        return [...new Set(rows.map(r => r.children[colIndex].innerText.trim()))]
+               .filter(v => v !== "");
+    }
+
+    // Populate dropdowns
+    function populate(select, values) {
+        values.sort().forEach(v => {
+            const opt = document.createElement("option");
+            opt.value = v;
+            opt.textContent = v;
+            select.appendChild(opt);
+        });
+    }
+
+    populate(teamSelect, getUnique(1));   // Team column
+    populate(yearSelect, getUnique(2));   // Year column
+    populate(confSelect, getUnique(3));   // Conference column
+
+    // Filtering logic
+    function applyFilters() {
+        const team = teamSelect.value;
+        const year = yearSelect.value;
+        const conf = confSelect.value;
+
+        rows.forEach(row => {
+            const rTeam = row.children[1].innerText.trim();
+            const rYear = row.children[2].innerText.trim();
+            const rConf = row.children[3].innerText.trim();
+
+            const show =
+                (team === "" || rTeam === team) &&
+                (year === "" || rYear === year) &&
+                (conf === "" || rConf === conf);
+
+            row.style.display = show ? "" : "none";
+        });
+    }
+
+    teamSelect.addEventListener("change", applyFilters);
+    yearSelect.addEventListener("change", applyFilters);
+    confSelect.addEventListener("change", applyFilters);
+});
+</script>
+
 </head>
 <body>
 <div id="header-banner"></div>
 
 <div id="content">
 
-<h1>Provisional Men's Div I US College rosters 2026-27</h1>
+<h1>Provisional Women's Div I US College rosters 2026-27</h1>
 <p>These are provisional rosters to be confirmed, based on the 2025-26 rosters and reported transfers and incomings.</p>
 
-<table class="dataframe roster-table">
+<div class="filters">
+    <label>Team:
+        <select id="teamFilter">
+            <option value="">All</option>
+        </select>
+    </label>
+
+    <label>Year:
+        <select id="yearFilter">
+            <option value="">All</option>
+        </select>
+    </label>
+
+    <label>Conference:
+        <select id="confFilter">
+            <option value="">All</option>
+        </select>
+    </label>
+</div>
+
+<table class="dataframe roster-table left-align-player left-align-notes">
   <thead>
     <tr style="text-align: center;">
       <th>Player</th>
       <th>Team</th>
       <th>Year</th>
       <th>Conference</th>
+      <th>ITA Singles Ranking</th>
+      <th>ITA Doubles Ranking</th>
       <th>Notes</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Alfie King</td>
-      <td>Memphis</td>
-      <td>Freshman</td>
-      <td>American Athletic</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Billy Moxon</td>
-      <td>South Carolina</td>
-      <td>Freshman</td>
-      <td>Southeastern</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Isaac Forde</td>
-      <td>Kentucky</td>
-      <td>Freshman</td>
-      <td>Southeastern</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Jesse Clarkson</td>
-      <td>Presbyterian</td>
-      <td>Freshman</td>
-      <td>Big South</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Joshua Craze</td>
-      <td>Pacific</td>
-      <td>Freshman</td>
-      <td>West Coast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Louis Hull</td>
-      <td>Arkansas</td>
-      <td>Freshman</td>
-      <td>Southeastern</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Matthew Ground</td>
-      <td>Fairfield</td>
-      <td>Freshman</td>
-      <td>Metro Atlantic</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Michael Mitchell</td>
-      <td>Gonzaga</td>
-      <td>Freshman</td>
-      <td>PAC 12</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Ollie Page</td>
-      <td>Wichita State</td>
-      <td>Freshman</td>
-      <td>American Athletic</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Rafe Samuel</td>
-      <td>Denver</td>
-      <td>Freshman</td>
-      <td>West Coast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Arthur Attrill</td>
-      <td>Georgia State</td>
-      <td>Sophomore</td>
-      <td>Sun Belt</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Charlie Swaine</td>
-      <td>South Carolina</td>
-      <td>Sophomore</td>
-      <td>Southeastern</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Dan Hughes</td>
-      <td>Oregon</td>
-      <td>Sophomore</td>
-      <td>Big Ten</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Daniel Franco Key</td>
-      <td>UNC Asheville</td>
-      <td>Sophomore</td>
-      <td>Big South</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Ellison Minnaar</td>
-      <td>UT Arlington</td>
-      <td>Sophomore</td>
-      <td>WAC</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Felix Brocklemann Evans</td>
-      <td>Wichita State</td>
-      <td>Sophomore</td>
-      <td>American</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Ferran Redza</td>
-      <td>Santa Clara</td>
-      <td>Sophomore</td>
-      <td>West Coast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Harry Abel</td>
-      <td>UNC Wilmington</td>
-      <td>Sophomore</td>
-      <td>Coastal Athletic</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Jack Berry</td>
-      <td>Oral Roberts</td>
-      <td>Sophomore</td>
-      <td>Summit</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>James Hutchinson</td>
-      <td>Gonzaga</td>
-      <td>Sophomore</td>
-      <td>West Coast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Joshua Ashton</td>
-      <td>Denver</td>
-      <td>Sophomore</td>
-      <td>Summit</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Marcus Weekes</td>
-      <td>Howard</td>
-      <td>Sophomore</td>
-      <td>Mid-Eastern</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Matt Upton</td>
-      <td>Montana</td>
-      <td>Sophomore</td>
-      <td>Big Sky</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Nicholas Fisk</td>
-      <td>Elon</td>
-      <td>Sophomore</td>
-      <td>Coastal Athletic</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Oliver Bonding</td>
-      <td>TCU</td>
-      <td>Sophomore</td>
-      <td>Big 12</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Ryan Parkins</td>
-      <td>Bellarmine</td>
-      <td>Sophomore</td>
-      <td>ASUN</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Sebastian Grimes</td>
-      <td>Alcorn State</td>
-      <td>Sophomore</td>
-      <td>SWAC</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Simon Hegarty</td>
-      <td>St Johns</td>
-      <td>Sophomore</td>
-      <td>Big East</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Alexander Ferdinando Robin Fragasso</td>
-      <td>Campbell</td>
-      <td>Junior</td>
-      <td>Coastal Athletic</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Anthony Wright</td>
-      <td>UNC Chapel Hill</td>
-      <td>Junior</td>
-      <td>Atlantic Coast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Aryan Singh</td>
-      <td>Georgia State</td>
-      <td>Junior</td>
-      <td>Sun Belt</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Benn Wrann</td>
-      <td>FDU</td>
-      <td>Junior</td>
-      <td>Northeast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Callum Matthew</td>
-      <td>Le Moyne</td>
-      <td>Junior</td>
-      <td>Northeast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Charlie Robertson</td>
-      <td>South Carolina</td>
-      <td>Junior</td>
-      <td>Southeastern</td>
-      <td>Transfer from Wake Forest</td>
-    </tr>
-    <tr>
-      <td>Conor Flynn</td>
-      <td>Alabama at Birmingham</td>
-      <td>Junior</td>
-      <td>American</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Finbar McGarvey</td>
-      <td>UT Arlington</td>
-      <td>Junior</td>
-      <td>WAC</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Finn Logue</td>
-      <td>Illinois State</td>
-      <td>Junior</td>
-      <td>Summit</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Forbes Hollingsworth</td>
-      <td>Bryant</td>
-      <td>Junior</td>
-      <td>Southland</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Hector Fullone</td>
-      <td>Saint Josephs</td>
-      <td>Junior</td>
-      <td>Atlantic 10</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Ilias Hirani Worthington</td>
-      <td>Old Dominion</td>
-      <td>Junior</td>
-      <td>Sun Belt</td>
-      <td>Transfer from Wichita State</td>
-    </tr>
-    <tr>
-      <td>Jakob Bonnett</td>
-      <td>Monmouth</td>
-      <td>Junior</td>
-      <td>Coastal Athletic</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Kai-Luca Ampaw</td>
-      <td>UCF</td>
-      <td>Junior</td>
-      <td>Big 12</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Lance Nisbet</td>
-      <td>Tulane</td>
-      <td>Junior</td>
-      <td>American</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Luca Bluett</td>
-      <td>Santa Clara</td>
-      <td>Junior</td>
-      <td>West Coast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Luke Hoyland</td>
-      <td>Le Moyne</td>
-      <td>Junior</td>
-      <td>Northeast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Sai Gandepalli</td>
-      <td>UNC Asheville</td>
-      <td>Junior</td>
-      <td>Big South</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Sergiy Rafiee</td>
-      <td>UNC Chapel Hill</td>
-      <td>Junior</td>
-      <td>Atlantic Coast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Theo Coats</td>
-      <td>Denver</td>
-      <td>Junior</td>
-      <td>Summit</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Thomas Giles</td>
-      <td>DePaul</td>
-      <td>Junior</td>
-      <td>Big East</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Tomas Grime</td>
-      <td>Alcorn State</td>
-      <td>Junior</td>
-      <td>SWAC</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Zechariah Hamrouni</td>
-      <td>Old Dominion</td>
-      <td>Junior</td>
-      <td>Sun Belt</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Aaron Dawson</td>
-      <td>Southern Indiana</td>
+      <td>Luca Pow</td>
+      <td>Wake Forest</td>
       <td>Senior</td>
-      <td>Horizon</td>
-      <td>None</td>
+      <td>Atlantic Coast</td>
+      <td>35</td>
+      <td>74</td>
+      <td></td>
     </tr>
     <tr>
       <td>Alex Okonkwo</td>
       <td>Ohio State</td>
       <td>Senior</td>
       <td>Big Ten</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Ben Hudson</td>
-      <td>Kennesaw State</td>
-      <td>Senior</td>
-      <td>Conference USA</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Ben Johnson</td>
-      <td>Drake</td>
-      <td>Senior</td>
-      <td>Summit</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Calum Jessett</td>
-      <td>Fairfield</td>
-      <td>Senior</td>
-      <td>Metro Atlantic</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Freddy Blaydes</td>
-      <td>Auburn</td>
-      <td>Senior</td>
-      <td>Southeastern</td>
-      <td>None</td>
+      <td>52</td>
+      <td>42</td>
+      <td></td>
     </tr>
     <tr>
       <td>Henry Jefferson</td>
       <td>Florida</td>
       <td>Senior</td>
       <td>Southeastern</td>
-      <td>None</td>
+      <td>73</td>
+      <td>13</td>
+      <td></td>
     </tr>
     <tr>
-      <td>Hugo Coquelin</td>
-      <td>Vanderbilt</td>
+      <td>Freddy Blaydes</td>
+      <td>Auburn</td>
       <td>Senior</td>
       <td>Southeastern</td>
-      <td>None</td>
+      <td></td>
+      <td>10</td>
+      <td></td>
     </tr>
     <tr>
-      <td>Jack Brimm</td>
-      <td>Long Island</td>
-      <td>Senior</td>
-      <td>Northeast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Jack Curtis</td>
-      <td>Elon</td>
-      <td>Senior</td>
-      <td>Coastal Athletic</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Jack Deveney</td>
-      <td>Wofford</td>
-      <td>Senior</td>
-      <td>Southern</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>James Sclater</td>
-      <td>Delaware</td>
-      <td>Senior</td>
-      <td>Conference USA</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Kai Cowcher</td>
-      <td>East Tennessee State</td>
-      <td>Senior</td>
-      <td>Southern</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Kyran Magimay</td>
-      <td>Notre Dame</td>
-      <td>Senior</td>
+      <td>Anthony Wright</td>
+      <td>UNC Chapel Hill</td>
+      <td>Junior</td>
       <td>Atlantic Coast</td>
-      <td>None</td>
+      <td></td>
+      <td>23</td>
+      <td></td>
     </tr>
     <tr>
-      <td>Louis Bowden</td>
-      <td>Baylor</td>
-      <td>Senior</td>
+      <td>Lance Nisbet</td>
+      <td>Tulane</td>
+      <td>Junior</td>
+      <td>American</td>
+      <td></td>
+      <td>45</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Oliver Bonding</td>
+      <td>TCU</td>
+      <td>Sophomore</td>
       <td>Big 12</td>
-      <td>None</td>
+      <td></td>
+      <td>66</td>
+      <td></td>
     </tr>
     <tr>
-      <td>Luca Pow</td>
-      <td>Wake Forest</td>
-      <td>Senior</td>
-      <td>Atlantic Coast</td>
-      <td>None</td>
+      <td>Luca Bluett</td>
+      <td>Santa Clara</td>
+      <td>Junior</td>
+      <td>West Coast</td>
+      <td></td>
+      <td>68</td>
+      <td></td>
     </tr>
     <tr>
-      <td>Matthew Rankin</td>
-      <td>Kentucky</td>
-      <td>Senior</td>
+      <td>Charlie Robertson</td>
+      <td>South Carolina</td>
+      <td>Junior</td>
       <td>Southeastern</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Oliver Hague</td>
-      <td>William &amp; Mary</td>
-      <td>Senior</td>
-      <td>Coastal Athletic</td>
-      <td>None</td>
+      <td></td>
+      <td>74</td>
+      <td>Transfer from Wake Forest</td>
     </tr>
     <tr>
       <td>Sam Reeve</td>
       <td>Memphis</td>
       <td>Senior</td>
       <td>American</td>
-      <td>None</td>
+      <td></td>
+      <td>89</td>
+      <td></td>
     </tr>
     <tr>
-      <td>Sebastian Harrison</td>
-      <td>Samford</td>
-      <td>Senior</td>
-      <td>Southern</td>
-      <td>None</td>
+      <td>Ilias Hirani Worthington</td>
+      <td>Old Dominion</td>
+      <td>Junior</td>
+      <td>Sun Belt</td>
+      <td></td>
+      <td></td>
+      <td>Transfer from Wichita State</td>
     </tr>
     <tr>
-      <td>Tom Dunlop</td>
-      <td>Gonzaga</td>
-      <td>Senior</td>
+      <td>Jesse Clarkson</td>
+      <td>Presbyterian</td>
+      <td>Freshman</td>
+      <td>Big South</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Joshua Craze</td>
+      <td>Pacific</td>
+      <td>Freshman</td>
       <td>West Coast</td>
-      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
-      <td>William Burridge</td>
-      <td>Drexel</td>
-      <td>Senior</td>
+      <td>Isaac Forde</td>
+      <td>Kentucky</td>
+      <td>Freshman</td>
+      <td>Southeastern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Matthew Ground</td>
+      <td>Fairfield</td>
+      <td>Freshman</td>
+      <td>Metro Atlantic</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Louis Hull</td>
+      <td>Arkansas</td>
+      <td>Freshman</td>
+      <td>Southeastern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Alfie King</td>
+      <td>Memphis</td>
+      <td>Freshman</td>
+      <td>American Athletic</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Michael Mitchell</td>
+      <td>Gonzaga</td>
+      <td>Freshman</td>
+      <td>PAC 12</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Billy Moxon</td>
+      <td>South Carolina</td>
+      <td>Freshman</td>
+      <td>Southeastern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ollie Page</td>
+      <td>Wichita State</td>
+      <td>Freshman</td>
+      <td>American Athletic</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Rafe Samuel</td>
+      <td>Denver</td>
+      <td>Freshman</td>
+      <td>West Coast</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Harry Abel</td>
+      <td>UNC Wilmington</td>
+      <td>Sophomore</td>
       <td>Coastal Athletic</td>
-      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Joshua Ashton</td>
+      <td>Denver</td>
+      <td>Sophomore</td>
+      <td>Summit</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Arthur Attrill</td>
+      <td>Georgia State</td>
+      <td>Sophomore</td>
+      <td>Sun Belt</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Jack Berry</td>
+      <td>Oral Roberts</td>
+      <td>Sophomore</td>
+      <td>Summit</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Felix Brocklemann Evans</td>
+      <td>Wichita State</td>
+      <td>Sophomore</td>
+      <td>American</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Nicholas Fisk</td>
+      <td>Elon</td>
+      <td>Sophomore</td>
+      <td>Coastal Athletic</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Daniel Franco Key</td>
+      <td>UNC Asheville</td>
+      <td>Sophomore</td>
+      <td>Big South</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Sebastian Grimes</td>
+      <td>Alcorn State</td>
+      <td>Sophomore</td>
+      <td>SWAC</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Simon Hegarty</td>
+      <td>St Johns</td>
+      <td>Sophomore</td>
+      <td>Big East</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Dan Hughes</td>
+      <td>Oregon</td>
+      <td>Sophomore</td>
+      <td>Big Ten</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>James Hutchinson</td>
+      <td>Gonzaga</td>
+      <td>Sophomore</td>
+      <td>West Coast</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ellison Minnaar</td>
+      <td>UT Arlington</td>
+      <td>Sophomore</td>
+      <td>WAC</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ryan Parkins</td>
+      <td>Bellarmine</td>
+      <td>Sophomore</td>
+      <td>ASUN</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ferran Redza</td>
+      <td>Santa Clara</td>
+      <td>Sophomore</td>
+      <td>West Coast</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Charlie Swaine</td>
+      <td>South Carolina</td>
+      <td>Sophomore</td>
+      <td>Southeastern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Matt Upton</td>
+      <td>Montana</td>
+      <td>Sophomore</td>
+      <td>Big Sky</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Marcus Weekes</td>
+      <td>Howard</td>
+      <td>Sophomore</td>
+      <td>Mid-Eastern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Kai-Luca Ampaw</td>
+      <td>UCF</td>
+      <td>Junior</td>
+      <td>Big 12</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Jakob Bonnett</td>
+      <td>Monmouth</td>
+      <td>Junior</td>
+      <td>Coastal Athletic</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Theo Coats</td>
+      <td>Denver</td>
+      <td>Junior</td>
+      <td>Summit</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Alexander Ferdinando Robin Fragasso</td>
+      <td>Campbell</td>
+      <td>Junior</td>
+      <td>Coastal Athletic</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Conor Flynn</td>
+      <td>Alabama at Birmingham</td>
+      <td>Junior</td>
+      <td>American</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Hector Fullone</td>
+      <td>Saint Josephs</td>
+      <td>Junior</td>
+      <td>Atlantic 10</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Sai Gandepalli</td>
+      <td>UNC Asheville</td>
+      <td>Junior</td>
+      <td>Big South</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Thomas Giles</td>
+      <td>DePaul</td>
+      <td>Junior</td>
+      <td>Big East</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Tomas Grime</td>
+      <td>Alcorn State</td>
+      <td>Junior</td>
+      <td>SWAC</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Zechariah Hamrouni</td>
+      <td>Old Dominion</td>
+      <td>Junior</td>
+      <td>Sun Belt</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Forbes Hollingsworth</td>
+      <td>Bryant</td>
+      <td>Junior</td>
+      <td>Southland</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Luke Hoyland</td>
+      <td>Le Moyne</td>
+      <td>Junior</td>
+      <td>Northeast</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Finn Logue</td>
+      <td>Illinois State</td>
+      <td>Junior</td>
+      <td>Summit</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Callum Matthew</td>
+      <td>Le Moyne</td>
+      <td>Junior</td>
+      <td>Northeast</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Finbar McGarvey</td>
+      <td>UT Arlington</td>
+      <td>Junior</td>
+      <td>WAC</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Sergiy Rafiee</td>
+      <td>UNC Chapel Hill</td>
+      <td>Junior</td>
+      <td>Atlantic Coast</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Aryan Singh</td>
+      <td>Georgia State</td>
+      <td>Junior</td>
+      <td>Sun Belt</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Benn Wrann</td>
+      <td>FDU</td>
+      <td>Junior</td>
+      <td>Northeast</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Louis Bowden</td>
+      <td>Baylor</td>
+      <td>Senior</td>
+      <td>Big 12</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>Yegor Boyev</td>
       <td>Le Moyne</td>
       <td>Senior</td>
       <td>Northeast</td>
-      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Jack Brimm</td>
+      <td>Long Island</td>
+      <td>Senior</td>
+      <td>Northeast</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>William Burridge</td>
+      <td>Drexel</td>
+      <td>Senior</td>
+      <td>Coastal Athletic</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Hugo Coquelin</td>
+      <td>Vanderbilt</td>
+      <td>Senior</td>
+      <td>Southeastern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Kai Cowcher</td>
+      <td>East Tennessee State</td>
+      <td>Senior</td>
+      <td>Southern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Jack Curtis</td>
+      <td>Elon</td>
+      <td>Senior</td>
+      <td>Coastal Athletic</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Aaron Dawson</td>
+      <td>Southern Indiana</td>
+      <td>Senior</td>
+      <td>Horizon</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Jack Deveney</td>
+      <td>Wofford</td>
+      <td>Senior</td>
+      <td>Southern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Tom Dunlop</td>
+      <td>Gonzaga</td>
+      <td>Senior</td>
+      <td>West Coast</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Oliver Hague</td>
+      <td>William &amp; Mary</td>
+      <td>Senior</td>
+      <td>Coastal Athletic</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Sebastian Harrison</td>
+      <td>Samford</td>
+      <td>Senior</td>
+      <td>Southern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ben Hudson</td>
+      <td>Kennesaw State</td>
+      <td>Senior</td>
+      <td>Conference USA</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Calum Jessett</td>
+      <td>Fairfield</td>
+      <td>Senior</td>
+      <td>Metro Atlantic</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ben Johnson</td>
+      <td>Drake</td>
+      <td>Senior</td>
+      <td>Summit</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Kyran Magimay</td>
+      <td>Notre Dame</td>
+      <td>Senior</td>
+      <td>Atlantic Coast</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>Yujiro Onuma</td>
       <td>Dartmouth</td>
       <td>Senior</td>
       <td>Ivy</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Matthew Rankin</td>
+      <td>Kentucky</td>
+      <td>Senior</td>
+      <td>Southeastern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>James Sclater</td>
+      <td>Delaware</td>
+      <td>Senior</td>
+      <td>Conference USA</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
       <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

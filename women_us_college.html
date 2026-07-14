@@ -26,6 +26,66 @@
         padding: 6px;
     }
     </style>
+<style>
+    .roster-table td:nth-child(1) { text-align: left; }  /* Player column */
+    .roster-table td:nth-child(7) { text-align: left; }  /* Notes column */
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const table = document.querySelector(".roster-table");
+    const rows = Array.from(table.querySelectorAll("tbody tr"));
+
+    const teamSelect = document.getElementById("teamFilter");
+    const yearSelect = document.getElementById("yearFilter");
+    const confSelect = document.getElementById("confFilter");
+
+    // Helper: extract unique values from a column
+    function getUnique(colIndex) {
+        return [...new Set(rows.map(r => r.children[colIndex].innerText.trim()))]
+               .filter(v => v !== "");
+    }
+
+    // Populate dropdowns
+    function populate(select, values) {
+        values.sort().forEach(v => {
+            const opt = document.createElement("option");
+            opt.value = v;
+            opt.textContent = v;
+            select.appendChild(opt);
+        });
+    }
+
+    populate(teamSelect, getUnique(1));   // Team column
+    populate(yearSelect, getUnique(2));   // Year column
+    populate(confSelect, getUnique(3));   // Conference column
+
+    // Filtering logic
+    function applyFilters() {
+        const team = teamSelect.value;
+        const year = yearSelect.value;
+        const conf = confSelect.value;
+
+        rows.forEach(row => {
+            const rTeam = row.children[1].innerText.trim();
+            const rYear = row.children[2].innerText.trim();
+            const rConf = row.children[3].innerText.trim();
+
+            const show =
+                (team === "" || rTeam === team) &&
+                (year === "" || rYear === year) &&
+                (conf === "" || rConf === conf);
+
+            row.style.display = show ? "" : "none";
+        });
+    }
+
+    teamSelect.addEventListener("change", applyFilters);
+    yearSelect.addEventListener("change", applyFilters);
+    confSelect.addEventListener("change", applyFilters);
+});
+</script>
+
 </head>
 <body>
 <div id="header-banner"></div>
@@ -35,681 +95,902 @@
 <h1>Provisional Women's Div I US College rosters 2026-27</h1>
 <p>These are provisional rosters to be confirmed, based on the 2025-26 rosters and reported transfers and incomings.</p>
 
-<table class="dataframe roster-table">
+<div class="filters">
+    <label>Team:
+        <select id="teamFilter">
+            <option value="">All</option>
+        </select>
+    </label>
+
+    <label>Year:
+        <select id="yearFilter">
+            <option value="">All</option>
+        </select>
+    </label>
+
+    <label>Conference:
+        <select id="confFilter">
+            <option value="">All</option>
+        </select>
+    </label>
+</div>
+
+<table class="dataframe roster-table left-align-player left-align-notes">
   <thead>
     <tr style="text-align: center;">
       <th>Player</th>
       <th>Team</th>
       <th>Year</th>
       <th>Conference</th>
+      <th>ITA Singles Ranking</th>
+      <th>ITA Doubles Ranking</th>
       <th>Notes</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Aimee Knowles</td>
-      <td>Delaware</td>
-      <td>Freshman</td>
-      <td>Conference USA</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Allegra Korpanec Davies</td>
+      <td>Gabia Paskauskas</td>
       <td>Florida</td>
-      <td>Freshman</td>
+      <td>Junior</td>
       <td>Southeastern</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Amalia Widdowson</td>
-      <td>Charlotte</td>
-      <td>Freshman</td>
-      <td>American Athletic</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Anna McKnight</td>
-      <td>Cleveland State</td>
-      <td>Freshman</td>
-      <td>Horizon</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Annabel Hristova</td>
-      <td>Delaware</td>
-      <td>Freshman</td>
-      <td>Conference USA</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Athina Schlepphorst</td>
-      <td>Pennsylvania</td>
-      <td>Freshman</td>
-      <td>Ivy League</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Elizabeth Evans</td>
-      <td>Harvard</td>
-      <td>Freshman</td>
-      <td>Ivy League</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Isabelle Britton</td>
-      <td>South Florida</td>
-      <td>Freshman</td>
-      <td>American Athletic</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Lola House</td>
-      <td>Montana State</td>
-      <td>Freshman</td>
-      <td>Big Sky</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Maria Ustic</td>
-      <td>Baylor</td>
-      <td>Freshman</td>
-      <td>Big 12</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Ruby Cooling</td>
-      <td>Texas A&amp;M</td>
-      <td>Freshman</td>
-      <td>Southeastern</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Scarlett-May Matthews</td>
-      <td>Idaho State</td>
-      <td>Freshman</td>
-      <td>Big Sky</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Sophia Christodoulou</td>
-      <td>Arizona</td>
-      <td>Freshman</td>
-      <td>Big 12</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Sophia Kovacheva</td>
-      <td>College of Charleston</td>
-      <td>Freshman</td>
-      <td>Coastal Athletic Ass</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Tamara Kuti</td>
-      <td>Connecticut</td>
-      <td>Freshman</td>
-      <td>Big East</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Tegan Bush</td>
-      <td>Louisiana State</td>
-      <td>Freshman</td>
-      <td>Southeastern</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Teodora Prisadnikova</td>
-      <td>Texas Tech</td>
-      <td>Freshman</td>
-      <td>Big 12</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Abby Kelliher</td>
-      <td>Florida State</td>
-      <td>Sophomore</td>
-      <td>Atlantic Coast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Abi Redman</td>
-      <td>St Johns</td>
-      <td>Sophomore</td>
-      <td>Big East</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Allegra Hodson</td>
-      <td>Appalachian State</td>
-      <td>Sophomore</td>
-      <td>Sun Belt</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Brooke Black</td>
-      <td>Florida</td>
-      <td>Sophomore</td>
-      <td>Southeastern</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Charlotte Holmes</td>
-      <td>Oakland</td>
-      <td>Sophomore</td>
-      <td>Horizon</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Christine Fourie</td>
-      <td>Drexel</td>
-      <td>Sophomore</td>
-      <td>Coastal Athletic Ass</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Ciara Moore</td>
-      <td>Arizona</td>
-      <td>Sophomore</td>
-      <td>Big Ten</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Daniela Piani</td>
-      <td>South Carolina</td>
-      <td>Sophomore</td>
-      <td>Southeastern</td>
-      <td>None</td>
+      <td>57</td>
+      <td></td>
+      <td>Finished 2026 season 2nd highest ranked player (No 57) and highest ranked returning GB player for 2027 in ITA rankings for 2nd consecutive season</td>
     </tr>
     <tr>
       <td>Ella Mcdonald</td>
       <td>LSU</td>
       <td>Sophomore</td>
       <td>Southeastern</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Elsie Jackson</td>
-      <td>Missouri State</td>
-      <td>Sophomore</td>
-      <td>Conference USA</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Erin Pearce</td>
-      <td>Vanderbilt</td>
-      <td>Sophomore</td>
-      <td>Southeastern</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Flora Johnson</td>
-      <td>Ohio State</td>
-      <td>Sophomore</td>
-      <td>Big Ten</td>
-      <td>Finished 2026 season as highest ranked GB player in ITA Doubles rankings (No 9)</td>
-    </tr>
-    <tr>
-      <td>Francesca Simpson</td>
-      <td>Coastal Carolina</td>
-      <td>Sophomore</td>
-      <td>Sun Belt</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Gracie Hurley</td>
-      <td>Bellarmine</td>
-      <td>Sophomore</td>
-      <td>ASUN</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Hannah Watkins</td>
-      <td>Delaware State</td>
-      <td>Sophomore</td>
-      <td>Mid-Eastern</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Heidi Crncan</td>
-      <td>Colorado</td>
-      <td>Sophomore</td>
-      <td>Big 12</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Hep Oluwadare</td>
-      <td>Ohio State</td>
-      <td>Sophomore</td>
-      <td>Big Ten</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Hima Fernando</td>
-      <td>Longwood</td>
-      <td>Sophomore</td>
-      <td>Big South</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Isabella Moss</td>
-      <td>UNC Asheville</td>
-      <td>Sophomore</td>
-      <td>Big South</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Isabella Walker</td>
-      <td>Marshall</td>
-      <td>Sophomore</td>
-      <td>Sun Belt</td>
-      <td>Transfer from Louisiana Tech</td>
-    </tr>
-    <tr>
-      <td>Isabella Wong</td>
-      <td>UC Santa Barbara</td>
-      <td>Sophomore</td>
-      <td>Big West</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Lily Doherty</td>
-      <td>Furman</td>
-      <td>Sophomore</td>
-      <td>Southern</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Lucia Cassidy</td>
-      <td>FAU</td>
-      <td>Sophomore</td>
-      <td>American</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Marelie Raath</td>
-      <td>Northwestern</td>
-      <td>Sophomore</td>
-      <td>Big Ten</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Molly Robinson</td>
-      <td>Furman</td>
-      <td>Sophomore</td>
-      <td>Southern</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Sarah Copley</td>
-      <td>Marshall</td>
-      <td>Sophomore</td>
-      <td>Sun Belt</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Sirena Waas</td>
-      <td>Virginia Tech</td>
-      <td>Sophomore</td>
-      <td>Atlantic Coast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Sophia Fredricks-Mckee</td>
-      <td>FDU</td>
-      <td>Sophomore</td>
-      <td>Northeast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Sophya Devas</td>
-      <td>Purdue</td>
-      <td>Sophomore</td>
-      <td>Big Ten</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Tia Bonita Jakipovic</td>
-      <td>Cal Poly</td>
-      <td>Sophomore</td>
-      <td>Big West</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Alana Bristow</td>
-      <td>Ball State</td>
-      <td>Junior</td>
-      <td>Mid American</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Alice Brook</td>
-      <td>?</td>
-      <td>Junior</td>
-      <td>?</td>
-      <td>Not on 2026-27 Louisiana Tech roster. Transfer?</td>
-    </tr>
-    <tr>
-      <td>Aneka Patel</td>
-      <td>Jacksonville State</td>
-      <td>Junior</td>
-      <td>Conference USA</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Anjali Kotecha</td>
-      <td>Florida Gulf Coast</td>
-      <td>Junior</td>
-      <td>Atlantic Sun</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Aryana Bartlett</td>
-      <td>North Florida</td>
-      <td>Junior</td>
-      <td>Atlantic Sun</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Daisy Carpenter</td>
-      <td>Long Beach State</td>
-      <td>Junior</td>
-      <td>Big West</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Eleanor Cochran</td>
-      <td>DePaul</td>
-      <td>Junior</td>
-      <td>Big East</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Ellie Blackford</td>
-      <td>Michigan State</td>
-      <td>Junior</td>
-      <td>Big Ten</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Emma Cohen</td>
-      <td>Louisana Tech</td>
-      <td>Junior</td>
-      <td>Sun Belt</td>
-      <td>Transfer from Mississippi State</td>
-    </tr>
-    <tr>
-      <td>Gabia Paskauskas</td>
-      <td>Florida</td>
-      <td>Junior</td>
-      <td>Southeastern</td>
-      <td>Finished 2026 season 2nd highest ranked player (No 55) and highest ranked returning GB player for 2027 in ITA rankings for 2nd consecutive season</td>
-    </tr>
-    <tr>
-      <td>Hannah Read</td>
-      <td>San Diego</td>
-      <td>Junior</td>
-      <td>West Coast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Hannah Rylatt</td>
-      <td>UCF</td>
-      <td>Junior</td>
-      <td>Big 12</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Isabella Gibson</td>
-      <td>DePaul</td>
-      <td>Junior</td>
-      <td>Big East</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Isabelle Lacy</td>
-      <td>Virginia</td>
-      <td>Junior</td>
-      <td>Atlantic Coast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Jaquelyn Ogunwale</td>
-      <td>Miami (Fl)</td>
-      <td>Junior</td>
-      <td>Atlantic Coast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Millie Day</td>
-      <td>Idaho State</td>
-      <td>Junior</td>
-      <td>Big Sky</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Natalie Crawford</td>
-      <td>Gardner-Webb</td>
-      <td>Junior</td>
-      <td>Big South</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Rebecca Fisher</td>
-      <td>Monmouth</td>
-      <td>Junior</td>
-      <td>Coastal Athletic Ass</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Sophie Marie Lowe</td>
-      <td>Illinois State</td>
-      <td>Junior</td>
-      <td>Missouri Valley</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Sophie Marshman</td>
-      <td>Kansas City</td>
-      <td>Junior</td>
-      <td>Summit League</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Talia Neilsen-Gatenby</td>
-      <td>Clemson</td>
-      <td>Junior</td>
-      <td>Atlantic Coast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Tamzin Poutney</td>
-      <td>Towson</td>
-      <td>Junior</td>
-      <td>Coastal Athletic Ass</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Amelia Tye</td>
-      <td>Massachusets</td>
-      <td>Senior</td>
-      <td>Atlantic 10</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Amy Leather</td>
-      <td>Cal Poly</td>
-      <td>Senior</td>
-      <td>Big West</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Ashira Murray</td>
-      <td>Towson</td>
-      <td>Senior</td>
-      <td>Coastal Athletic Ass</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Edie Hammond</td>
-      <td>Oakland</td>
-      <td>Senior</td>
-      <td>Horizon League</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Ella Fernando</td>
-      <td>Le Moyne</td>
-      <td>Senior</td>
-      <td>Northeast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Eva Shaw</td>
-      <td>Florida State</td>
-      <td>Senior</td>
-      <td>Atlantic Coast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Francesca Davis</td>
-      <td>William &amp; Mary</td>
-      <td>Senior</td>
-      <td>Coastal Athletic Ass</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Given Roach</td>
-      <td>Georgia Tech</td>
-      <td>Senior</td>
-      <td>Atlantic Coast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Iman Khan</td>
-      <td>Saint Mary’s Cal</td>
-      <td>Senior</td>
-      <td>West Coast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Imogen Brooker</td>
-      <td>Seton Hall</td>
-      <td>Senior</td>
-      <td>Big East</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Imogen Haddad</td>
-      <td>USC</td>
-      <td>Senior</td>
-      <td>Big Ten</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Jasmine Conway</td>
-      <td>NC State</td>
-      <td>Senior</td>
-      <td>Atlantic Coast</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Jessica Matthews</td>
-      <td>Idaho</td>
-      <td>Senior</td>
-      <td>Big Ten</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Kamea Medora</td>
-      <td>Utah</td>
-      <td>Senior</td>
-      <td>Big 12</td>
-      <td>None</td>
+      <td>73</td>
+      <td>18</td>
+      <td></td>
     </tr>
     <tr>
       <td>Kristina Paskauskas</td>
       <td>Texas A&amp;M</td>
       <td>Senior</td>
       <td>Southeastern</td>
+      <td>83</td>
+      <td></td>
       <td>Transfer from Alabama</td>
     </tr>
     <tr>
-      <td>LaTesha Grant</td>
-      <td>Southern, Baton Rouge</td>
+      <td>Eva Shaw</td>
+      <td>Florida State</td>
       <td>Senior</td>
-      <td>Southwestern Athletic</td>
-      <td>None</td>
+      <td>Atlantic Coast</td>
+      <td>103</td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Lina Teleshun</td>
-      <td>North Carolina A&amp;T</td>
+      <td>Isabelle Lacy</td>
+      <td>Virginia</td>
+      <td>Junior</td>
+      <td>Atlantic Coast</td>
+      <td>110</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Hannah Read</td>
+      <td>San Diego</td>
+      <td>Junior</td>
+      <td>West Coast</td>
+      <td>119</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Flora Johnson</td>
+      <td>Ohio State</td>
+      <td>Sophomore</td>
+      <td>Big Ten</td>
+      <td></td>
+      <td>8</td>
+      <td>Finished 2026 season as highest ranked GB player in ITA Doubles rankings (No 8)</td>
+    </tr>
+    <tr>
+      <td>Hep Oluwadare</td>
+      <td>Ohio State</td>
+      <td>Sophomore</td>
+      <td>Big Ten</td>
+      <td></td>
+      <td>34</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ellie Blackford</td>
+      <td>Michigan State</td>
+      <td>Junior</td>
+      <td>Big Ten</td>
+      <td></td>
+      <td>37</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Jasmine Conway</td>
+      <td>NC State</td>
       <td>Senior</td>
+      <td>Atlantic Coast</td>
+      <td></td>
+      <td>43</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Brooke Black</td>
+      <td>Florida</td>
+      <td>Sophomore</td>
+      <td>Southeastern</td>
+      <td></td>
+      <td>44</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Marelie Raath</td>
+      <td>Northwestern</td>
+      <td>Sophomore</td>
+      <td>Big Ten</td>
+      <td></td>
+      <td>78</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Isabella Walker</td>
+      <td>Marshall</td>
+      <td>Sophomore</td>
+      <td>Sun Belt</td>
+      <td></td>
+      <td></td>
+      <td>Transfer from Louisiana Tech</td>
+    </tr>
+    <tr>
+      <td>Alice Brook</td>
+      <td>?</td>
+      <td>Junior</td>
+      <td>?</td>
+      <td></td>
+      <td></td>
+      <td>Not on 2026-27 Louisiana Tech roster. Transfer?</td>
+    </tr>
+    <tr>
+      <td>Emma Cohen</td>
+      <td>Louisana Tech</td>
+      <td>Junior</td>
+      <td>Sun Belt</td>
+      <td></td>
+      <td></td>
+      <td>Transfer from Mississippi State</td>
+    </tr>
+    <tr>
+      <td>Millie Skelton</td>
+      <td>Missouri</td>
+      <td>Junior</td>
+      <td>Southeastern</td>
+      <td></td>
+      <td></td>
+      <td>Transfer from Southern Methodist</td>
+    </tr>
+    <tr>
+      <td>Kamea Medora</td>
+      <td>Minnesota</td>
+      <td>Senior</td>
+      <td>Big Ten</td>
+      <td></td>
+      <td></td>
+      <td>Transfer from Utah</td>
+    </tr>
+    <tr>
+      <td>Isabelle Britton</td>
+      <td>South Florida</td>
+      <td>Freshman</td>
+      <td>American Athletic</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Tegan Bush</td>
+      <td>Louisiana State</td>
+      <td>Freshman</td>
+      <td>Southeastern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Sophia Christodoulou</td>
+      <td>Arizona</td>
+      <td>Freshman</td>
+      <td>Big 12</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ruby Cooling</td>
+      <td>Texas A&amp;M</td>
+      <td>Freshman</td>
+      <td>Southeastern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Elizabeth Evans</td>
+      <td>Harvard</td>
+      <td>Freshman</td>
+      <td>Ivy League</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Lola House</td>
+      <td>Montana State</td>
+      <td>Freshman</td>
+      <td>Big Sky</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Annabel Hristova</td>
+      <td>Delaware</td>
+      <td>Freshman</td>
+      <td>Conference USA</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Aimee Knowles</td>
+      <td>Delaware</td>
+      <td>Freshman</td>
+      <td>Conference USA</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Allegra Korpanec Davies</td>
+      <td>Florida</td>
+      <td>Freshman</td>
+      <td>Southeastern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Sophia Kovacheva</td>
+      <td>College of Charleston</td>
+      <td>Freshman</td>
       <td>Coastal Athletic Ass</td>
-      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Tamara Kuti</td>
+      <td>Connecticut</td>
+      <td>Freshman</td>
+      <td>Big East</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Scarlett-May Matthews</td>
+      <td>Idaho State</td>
+      <td>Freshman</td>
+      <td>Big Sky</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Anna McKnight</td>
+      <td>Cleveland State</td>
+      <td>Freshman</td>
+      <td>Horizon</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Teodora Prisadnikova</td>
+      <td>Texas Tech</td>
+      <td>Freshman</td>
+      <td>Big 12</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Athina Schlepphorst</td>
+      <td>Pennsylvania</td>
+      <td>Freshman</td>
+      <td>Ivy League</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Maria Ustic</td>
+      <td>Baylor</td>
+      <td>Freshman</td>
+      <td>Big 12</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Amalia Widdowson</td>
+      <td>Charlotte</td>
+      <td>Freshman</td>
+      <td>American Athletic</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Tia Bonita Jakipovic</td>
+      <td>Cal Poly</td>
+      <td>Sophomore</td>
+      <td>Big West</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Lucia Cassidy</td>
+      <td>FAU</td>
+      <td>Sophomore</td>
+      <td>American</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Sarah Copley</td>
+      <td>Marshall</td>
+      <td>Sophomore</td>
+      <td>Sun Belt</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Heidi Crncan</td>
+      <td>Colorado</td>
+      <td>Sophomore</td>
+      <td>Big 12</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Sophya Devas</td>
+      <td>Purdue</td>
+      <td>Sophomore</td>
+      <td>Big Ten</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Lily Doherty</td>
+      <td>Furman</td>
+      <td>Sophomore</td>
+      <td>Southern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Hima Fernando</td>
+      <td>Longwood</td>
+      <td>Sophomore</td>
+      <td>Big South</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Christine Fourie</td>
+      <td>Drexel</td>
+      <td>Sophomore</td>
+      <td>Coastal Athletic Ass</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Sophia Fredricks-Mckee</td>
+      <td>FDU</td>
+      <td>Sophomore</td>
+      <td>Northeast</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Allegra Hodson</td>
+      <td>Appalachian State</td>
+      <td>Sophomore</td>
+      <td>Sun Belt</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Charlotte Holmes</td>
+      <td>Oakland</td>
+      <td>Sophomore</td>
+      <td>Horizon</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Gracie Hurley</td>
+      <td>Bellarmine</td>
+      <td>Sophomore</td>
+      <td>ASUN</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Elsie Jackson</td>
+      <td>Missouri State</td>
+      <td>Sophomore</td>
+      <td>Conference USA</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Abby Kelliher</td>
+      <td>Florida State</td>
+      <td>Sophomore</td>
+      <td>Atlantic Coast</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ciara Moore</td>
+      <td>Arizona</td>
+      <td>Sophomore</td>
+      <td>Big Ten</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Isabella Moss</td>
+      <td>UNC Asheville</td>
+      <td>Sophomore</td>
+      <td>Big South</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Erin Pearce</td>
+      <td>Vanderbilt</td>
+      <td>Sophomore</td>
+      <td>Southeastern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Daniela Piani</td>
+      <td>South Carolina</td>
+      <td>Sophomore</td>
+      <td>Southeastern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Abi Redman</td>
+      <td>St Johns</td>
+      <td>Sophomore</td>
+      <td>Big East</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Molly Robinson</td>
+      <td>Furman</td>
+      <td>Sophomore</td>
+      <td>Southern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Francesca Simpson</td>
+      <td>Coastal Carolina</td>
+      <td>Sophomore</td>
+      <td>Sun Belt</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Sirena Waas</td>
+      <td>Virginia Tech</td>
+      <td>Sophomore</td>
+      <td>Atlantic Coast</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Hannah Watkins</td>
+      <td>Delaware State</td>
+      <td>Sophomore</td>
+      <td>Mid-Eastern</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Isabella Wong</td>
+      <td>UC Santa Barbara</td>
+      <td>Sophomore</td>
+      <td>Big West</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Aryana Bartlett</td>
+      <td>North Florida</td>
+      <td>Junior</td>
+      <td>Atlantic Sun</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Alana Bristow</td>
+      <td>Ball State</td>
+      <td>Junior</td>
+      <td>Mid American</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Daisy Carpenter</td>
+      <td>Long Beach State</td>
+      <td>Junior</td>
+      <td>Big West</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Eleanor Cochran</td>
+      <td>DePaul</td>
+      <td>Junior</td>
+      <td>Big East</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Natalie Crawford</td>
+      <td>Gardner-Webb</td>
+      <td>Junior</td>
+      <td>Big South</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Millie Day</td>
+      <td>Idaho State</td>
+      <td>Junior</td>
+      <td>Big Sky</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Rebecca Fisher</td>
+      <td>Monmouth</td>
+      <td>Junior</td>
+      <td>Coastal Athletic Ass</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Isabella Gibson</td>
+      <td>DePaul</td>
+      <td>Junior</td>
+      <td>Big East</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Anjali Kotecha</td>
+      <td>Florida Gulf Coast</td>
+      <td>Junior</td>
+      <td>Atlantic Sun</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Sophie Marie Lowe</td>
+      <td>Illinois State</td>
+      <td>Junior</td>
+      <td>Missouri Valley</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Sophie Marshman</td>
+      <td>Kansas City</td>
+      <td>Junior</td>
+      <td>Summit League</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Talia Neilsen-Gatenby</td>
+      <td>Clemson</td>
+      <td>Junior</td>
+      <td>Atlantic Coast</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Jaquelyn Ogunwale</td>
+      <td>Miami (Fl)</td>
+      <td>Junior</td>
+      <td>Atlantic Coast</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Aneka Patel</td>
+      <td>Jacksonville State</td>
+      <td>Junior</td>
+      <td>Conference USA</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Tamzin Poutney</td>
+      <td>Towson</td>
+      <td>Junior</td>
+      <td>Coastal Athletic Ass</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Hannah Rylatt</td>
+      <td>UCF</td>
+      <td>Junior</td>
+      <td>Big 12</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>Louise Booker</td>
       <td>North Alabama</td>
       <td>Senior</td>
       <td>ASUN</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Lucy Webber</td>
-      <td>Richmond</td>
-      <td>Senior</td>
-      <td>Atlantic 10</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Nimah Campbell</td>
-      <td>Seton Hall</td>
-      <td>Senior</td>
-      <td>Big East</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Oriana Parkins Godwin</td>
-      <td>Michigan State</td>
-      <td>Senior</td>
-      <td>Big Ten</td>
-      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>Paige Bott</td>
       <td>Montana</td>
       <td>Senior</td>
       <td>Big Sky</td>
-      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Paulina Jurkowska</td>
-      <td>Delaware</td>
+      <td>Imogen Brooker</td>
+      <td>Seton Hall</td>
       <td>Senior</td>
-      <td>Coastal Athletic Ass</td>
-      <td>None</td>
+      <td>Big East</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
-      <td>Scarlett Perkins</td>
-      <td>Portland State</td>
+      <td>Nimah Campbell</td>
+      <td>Seton Hall</td>
       <td>Senior</td>
-      <td>Big Sky</td>
-      <td>None</td>
+      <td>Big East</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>Sorcha Caves</td>
       <td>Colorado State</td>
       <td>Senior</td>
       <td>Mountain</td>
-      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Francesca Davis</td>
+      <td>William &amp; Mary</td>
+      <td>Senior</td>
+      <td>Coastal Athletic Ass</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ella Fernando</td>
+      <td>Le Moyne</td>
+      <td>Senior</td>
+      <td>Northeast</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>LaTesha Grant</td>
+      <td>Southern, Baton Rouge</td>
+      <td>Senior</td>
+      <td>Southwestern Athletic</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Imogen Haddad</td>
+      <td>USC</td>
+      <td>Senior</td>
+      <td>Big Ten</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Edie Hammond</td>
+      <td>Oakland</td>
+      <td>Senior</td>
+      <td>Horizon League</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Paulina Jurkowska</td>
+      <td>Delaware</td>
+      <td>Senior</td>
+      <td>Coastal Athletic Ass</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Iman Khan</td>
+      <td>Saint Mary’s Cal</td>
+      <td>Senior</td>
+      <td>West Coast</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Amy Leather</td>
+      <td>Cal Poly</td>
+      <td>Senior</td>
+      <td>Big West</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Jessica Matthews</td>
+      <td>Idaho</td>
+      <td>Senior</td>
+      <td>Big Ten</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ashira Murray</td>
+      <td>Towson</td>
+      <td>Senior</td>
+      <td>Coastal Athletic Ass</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Oriana Parkins Godwin</td>
+      <td>Michigan State</td>
+      <td>Senior</td>
+      <td>Big Ten</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Scarlett Perkins</td>
+      <td>Portland State</td>
+      <td>Senior</td>
+      <td>Big Sky</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Given Roach</td>
+      <td>Georgia Tech</td>
+      <td>Senior</td>
+      <td>Atlantic Coast</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Lina Teleshun</td>
+      <td>North Carolina A&amp;T</td>
+      <td>Senior</td>
+      <td>Coastal Athletic Ass</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Amelia Tye</td>
+      <td>Massachusets</td>
+      <td>Senior</td>
+      <td>Atlantic 10</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Lucy Webber</td>
+      <td>Richmond</td>
+      <td>Senior</td>
+      <td>Atlantic 10</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>Millie Bissett</td>
       <td>Florida State</td>
       <td>Graduate Student</td>
       <td>Atlantic Coast</td>
-      <td>None</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
