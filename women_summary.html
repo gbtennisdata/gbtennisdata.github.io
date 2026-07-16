@@ -412,7 +412,7 @@ Age: <select id="age-filter"></select>
       <td>27</td>
       <td> </td>
       <td> </td>
-      <td>WTT W50 Dublin Qualifying </td>
+      <td>WTT W50 Dublin Qualifying</td>
       <td>2 pts on 14 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -426,7 +426,7 @@ Age: <select id="age-filter"></select>
       <td>26</td>
       <td>WTT W50 Nottingham (WC)</td>
       <td>LTA Summer County Cup (Middlesex), Group 1</td>
-      <td></td>
+      <td> </td>
       <td>5 pts on 19 Oct 2026</td>
       <td>–</td>
       <td>–</td>
@@ -1574,7 +1574,7 @@ Age: <select id="age-filter"></select>
       <td>16</td>
       <td>British Tour Giffnock</td>
       <td>LTA Summer County Cup (Lancashire), Group 2</td>
-      <td> </td>
+      <td>British Tour Ilkley</td>
       <td>0 pts on 17 May 2027</td>
       <td>–</td>
       <td>–</td>
@@ -1630,7 +1630,7 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td>WTT W50 Nottingham (Q, WC)</td>
       <td>LTA Summer County Cup (Yorkshire), Group 2</td>
-      <td> </td>
+      <td>British Tour Ilkley</td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1686,7 +1686,7 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>WTT W15 Las Palmas de Gran Canaria Qualifying</td>
-      <td> </td>
+      <td>British Tour Ilkley</td>
       <td>0 pts on 17 May 2027</td>
       <td>–</td>
       <td>–</td>
@@ -1712,7 +1712,7 @@ Age: <select id="age-filter"></select>
 
 
 <script>
-const gender = "{gender}";
+const gender = "women";
 
 // -------------------------------
 // COLUMN INDEXES
@@ -1784,7 +1784,7 @@ const PRIORITY_MEN = {
     "Challengers": 3,
     "Junior": 4,
 
-    "ATP 1000": 5,
+    "ATP Masters": 5,
     "ATP 500": 6,
     "ATP 250": 7,
 
@@ -1865,6 +1865,15 @@ function normalizeTournamentName(val) {
 
 function getTournamentPriority(value, gender) {
     const PRIORITY = gender === "men" ? PRIORITY_MEN : PRIORITY_WOMEN;
+    
+    // Add for men
+    // Extract level prefix (e.g., "ATP 500", "CH 125", "WTT M25")
+    const parts = value.split(" ");
+    const level = parts.length >= 2 ? parts.slice(0, 2).join(" ") : value;
+
+    if (PRIORITY[level]) return PRIORITY[level];
+    // End Add for men
+
 
     // If it's already a label in the priority map, use it directly
     if (PRIORITY[value]) return PRIORITY[value];
@@ -1880,7 +1889,7 @@ function getTournamentPriority(value, gender) {
     if (/^WTA\s*250/i.test(value))  return PRIORITY["WTA 250"];
     if (/^WTA\s*125/i.test(value))  return PRIORITY["WTA 125"];
 
-    if (/^ATP\s*1000/i.test(value)) return PRIORITY["ATP 1000"];
+    if (/^ATP\s*1000/i.test(value)) return PRIORITY["ATP Masters"];
     if (/^ATP\s*500/i.test(value))  return PRIORITY["ATP 500"];
     if (/^ATP\s*250/i.test(value))  return PRIORITY["ATP 250"];
 
@@ -1996,30 +2005,30 @@ function classifyEventMen(val) {
         else if (/^ATP\s*500/i.test(t)) results.push("ATP 500");
         else if (/^ATP\s*250/i.test(t)) results.push("ATP 250");
 
-// Challenger levels
-if (/^Ch\s*175/i.test(t)) {
-    results.push("Challengers");
-    results.push("CH 175");
-}
-else if (/^Ch\s*125/i.test(t)) {
-    results.push("Challengers");
-    results.push("CH 125");
-}
-else if (/^Ch\s*100/i.test(t)) {
-    results.push("Challengers");
-    results.push("CH 100");
-}
-else if (/^Ch\s*75/i.test(t)) {
-    results.push("Challengers");
-    results.push("CH 75");
-}
-else if (/^Ch\s*50/i.test(t)) {
-    results.push("Challengers");
-    results.push("CH 50");
-}
+        // Challenger levels
+        if (/^Ch\s*175/i.test(t)) {
+            results.push("Challengers");
+            results.push("CH 175");
+        }
+        else if (/^Ch\s*125/i.test(t)) {
+            results.push("Challengers");
+            results.push("CH 125");
+        }
+        else if (/^Ch\s*100/i.test(t)) {
+            results.push("Challengers");
+            results.push("CH 100");
+        }
+        else if (/^Ch\s*75/i.test(t)) {
+            results.push("Challengers");
+            results.push("CH 75");
+        }
+        else if (/^Ch\s*50/i.test(t)) {
+            results.push("Challengers");
+            results.push("CH 50");
+        }
 
 
-        // WTT MEN — THIS WAS MISSING
+        // WTT MEN
         else if (t.startsWith("WTT M25+H")) results.push("WTT M25+H");
         else if (t.startsWith("WTT M25"))   results.push("WTT M25");
         else if (t.startsWith("WTT M15+H")) results.push("WTT M15+H");
@@ -2042,11 +2051,10 @@ else if (/^Ch\s*50/i.test(t)) {
     return results;
 }
 
-
 // -------------------------------
 // DROPDOWN POPULATION
 // -------------------------------
-function populateDropdown(id, values, counts = null) {
+function apopulateDropdown(id, values, counts = null) {
     const sel = document.getElementById(id);
     const unique = [...new Set(values)];
 
@@ -2087,10 +2095,75 @@ function populateDropdown(id, values, counts = null) {
 
     sorted.forEach(v => {
         const label = counts ? `${v} (${counts[v] || 0})` : v;
-        sel.innerHTML += `<option value="${v}">${label}</option>`;
+        sel.innerHTML += `<option value="${v}">${label} [gender=$women]</option>`;
     });
 }
 
+function populateDropdown(id, values, counts = null) {
+    const sel = document.getElementById(id);
+    const unique = [...new Set(values)];
+
+    // AGE DROPDOWN (unchanged)
+    if (id === "age-filter") {
+        const grouped = ["18 & under", "21 & under"].filter(g => unique.includes(g));
+
+        const numericAges = unique
+            .filter(v => /^\d+$/.test(v))
+            .map(v => parseInt(v, 10))
+            .sort((a, b) => a - b)
+            .map(v => v.toString());
+
+        sel.innerHTML = "<option value=''>All</option>";
+
+        grouped.forEach(v => {
+            const label = counts ? `${v} (${counts[v] || 0})` : v;
+            sel.innerHTML += `<option value="${v}">${label} [gender=${window.genderSetting}]</option>`;
+        });
+
+        numericAges.forEach(v => {
+            const label = counts ? `${v} (${counts[v] || 0})` : v;
+            sel.innerHTML += `<option value="${v}">${label} [gender=${window.genderSetting}]</option>`;
+        });
+
+        return;
+    }
+
+    // -------------------------------
+    // GROUPS vs TOURNAMENTS
+    // -------------------------------
+    const PRIORITY = window.genderSetting === "men" ? PRIORITY_MEN : PRIORITY_WOMEN;
+
+    const groupLabels = unique.filter(v => PRIORITY[v]);
+    const tournaments = unique.filter(v => !PRIORITY[v]);
+
+    // Sort groups by priority
+    const sortedGroups = groupLabels.sort((a, b) => PRIORITY[a] - PRIORITY[b]);
+
+    // Sort tournaments by level priority
+    const sortedTournaments = tournaments.sort((a, b) => {
+        const pa = getTournamentPriority(a, window.genderSetting);
+        const pb = getTournamentPriority(b, window.genderSetting);
+        if (pa !== pb) return pa - pb;
+        return a.localeCompare(b);
+    });
+
+    // -------------------------------
+    // BUILD DROPDOWN
+    // -------------------------------
+    sel.innerHTML = "<option value=''>All</option>";
+
+    // GROUPS FIRST
+    sortedGroups.forEach(v => {
+        const label = counts ? `${v} (${counts[v] || 0})` : v;
+        sel.innerHTML += `<option value="${v}">${label} </option>`;
+    });
+
+    // TOURNAMENTS SECOND
+    sortedTournaments.forEach(v => {
+        const label = counts ? `${v} (${counts[v] || 0})` : v;
+        sel.innerHTML += `<option value="${v}">${label} </option>`;
+    });
+}
 
 
 // -------------------------------
