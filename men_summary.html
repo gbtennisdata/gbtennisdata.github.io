@@ -1843,7 +1843,7 @@ function apopulateDropdown(id, values, counts = null) {
 
     sorted.forEach(v => {
         const label = counts ? `${v} (${counts[v] || 0})` : v;
-        sel.innerHTML += `<option value="${v}">${label} [gender=$men]</option>`;
+        sel.innerHTML += `<option value="${v}">${label}</option>`;
     });
 }
 
@@ -1865,12 +1865,12 @@ function populateDropdown(id, values, counts = null) {
 
         grouped.forEach(v => {
             const label = counts ? `${v} (${counts[v] || 0})` : v;
-            sel.innerHTML += `<option value="${v}">${label} [gender=${window.genderSetting}]</option>`;
+            sel.innerHTML += `<option value="${v}">${label}</option>`;
         });
 
         numericAges.forEach(v => {
             const label = counts ? `${v} (${counts[v] || 0})` : v;
-            sel.innerHTML += `<option value="${v}">${label} [gender=${window.genderSetting}]</option>`;
+            sel.innerHTML += `<option value="${v}">${label}</option>`;
         });
 
         return;
