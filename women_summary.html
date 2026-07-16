@@ -1755,7 +1755,8 @@ function getColumnCounts(colIndex, classifier) {
 // -------------------------------
 // PRIORITY ORDER FOR WEEK FILTERS
 // -------------------------------
-const PRIORITY = {
+// WOMEN'S PRIORITY ORDER
+const PRIORITY_WOMEN = {
     "All Pro Tour": 1,
     "WTA Tour": 2,
     "Junior": 3,
@@ -1774,6 +1775,37 @@ const PRIORITY = {
     "WT J100": 16,
     "UTR PTT": 17,
     "British Tour": 18
+};
+
+// MEN'S PRIORITY ORDER
+const PRIORITY_MEN = {
+    "All Pro Tour": 1,
+    "ATP Tour": 2,
+    "Challengers": 3,
+    "Junior": 4,
+
+    "ATP 1000": 5,
+    "ATP 500": 6,
+    "ATP 250": 7,
+
+    "CH 175": 8,
+    "CH 125": 9,
+    "CH 100": 10,
+    "CH 75": 11,
+    "CH 50": 12,
+
+    "WTT M25+H": 13,
+    "WTT M25": 14,
+    "WTT M15+H": 15,
+    "WTT M15": 16,
+
+    "WT J500": 17,
+    "WT J300": 18,
+    "WT J200": 19,
+    "WT J100": 20,
+
+    "UTR PTT": 21,
+    "British Tour": 22
 };
 
 // -------------------------------
@@ -1831,36 +1863,61 @@ function normalizeTournamentName(val) {
     return parts;
 }
 
-function getTournamentPriority(name) {
+function getTournamentPriority(value, gender) {
+    const PRIORITY = gender === "men" ? PRIORITY_MEN : PRIORITY_WOMEN;
+
+    // If it's already a label in the priority map, use it directly
+    if (PRIORITY[value]) return PRIORITY[value];
+
+    // Otherwise, derive from the tournament name
+
     // Grand Slams
-    if (MAJORS.includes(name)) return PRIORITY["All Pro Tour"];
+    if (MAJORS.includes(value)) return PRIORITY["All Pro Tour"];
 
-    // WTA levels (match both "WTA 250" and "WTA250")
-    if (/^WTA\s*1000/i.test(name)) return PRIORITY["WTA 1000"];
-    if (/^WTA\s*500/i.test(name))  return PRIORITY["WTA 500"];
-    if (/^WTA\s*250/i.test(name))  return PRIORITY["WTA 250"];
-    if (/^WTA\s*125/i.test(name))  return PRIORITY["WTA 125"];
+    // WTA / ATP levels (match both "WTA250" and "WTA 250", etc.)
+    if (/^WTA\s*1000/i.test(value)) return PRIORITY["WTA 1000"];
+    if (/^WTA\s*500/i.test(value))  return PRIORITY["WTA 500"];
+    if (/^WTA\s*250/i.test(value))  return PRIORITY["WTA 250"];
+    if (/^WTA\s*125/i.test(value))  return PRIORITY["WTA 125"];
 
-    // WTT levels
-    if (name.startsWith("WTT W100")) return PRIORITY["WTT W100"];
-    if (name.startsWith("WTT W75"))  return PRIORITY["WTT W75"];
-    if (name.startsWith("WTT W50"))  return PRIORITY["WTT W50"];
-    if (name.startsWith("WTT W35"))  return PRIORITY["WTT W35"];
-    if (name.startsWith("WTT W15"))  return PRIORITY["WTT W15"];
+    if (/^ATP\s*1000/i.test(value)) return PRIORITY["ATP 1000"];
+    if (/^ATP\s*500/i.test(value))  return PRIORITY["ATP 500"];
+    if (/^ATP\s*250/i.test(value))  return PRIORITY["ATP 250"];
+
+    // Challenger levels
+    if (/^Ch\s*175/i.test(value)) return PRIORITY["CH 175"];
+    if (/^Ch\s*125/i.test(value)) return PRIORITY["CH 125"];
+    if (/^Ch\s*100/i.test(value)) return PRIORITY["CH 100"];
+    if (/^Ch\s*75/i.test(value))  return PRIORITY["CH 75"];
+    if (/^Ch\s*50/i.test(value))  return PRIORITY["CH 50"];
+
+    // WTT Women
+    if (value.startsWith("WTT W100")) return PRIORITY["WTT W100"];
+    if (value.startsWith("WTT W75"))  return PRIORITY["WTT W75"];
+    if (value.startsWith("WTT W50"))  return PRIORITY["WTT W50"];
+    if (value.startsWith("WTT W35"))  return PRIORITY["WTT W35"];
+    if (value.startsWith("WTT W15"))  return PRIORITY["WTT W15"];
+
+    // WTT Men
+    if (value.startsWith("WTT M25+H")) return PRIORITY["WTT M25+H"];
+    if (value.startsWith("WTT M25"))   return PRIORITY["WTT M25"];
+    if (value.startsWith("WTT M15+H")) return PRIORITY["WTT M15+H"];
+    if (value.startsWith("WTT M15"))   return PRIORITY["WTT M15"];
 
     // Junior
-    if (name.startsWith("WT J500"))  return PRIORITY["WT J500"];
-    if (name.startsWith("WT J300"))  return PRIORITY["WT J300"];
-    if (name.startsWith("WT J200"))  return PRIORITY["WT J200"];
-    if (name.startsWith("WT J100"))  return PRIORITY["WT J100"];
+    if (value.startsWith("WT J500")) return PRIORITY["WT J500"];
+    if (value.startsWith("WT J300")) return PRIORITY["WT J300"];
+    if (value.startsWith("WT J200")) return PRIORITY["WT J200"];
+    if (value.startsWith("WT J100")) return PRIORITY["WT J100"];
 
     // Other circuits
-    if (name.startsWith("UTR PTT"))      return PRIORITY["UTR PTT"];
-    if (name.startsWith("British Tour")) return PRIORITY["British Tour"];
+    if (value.startsWith("UTR PTT"))      return PRIORITY["UTR PTT"];
+    if (value.startsWith("British Tour")) return PRIORITY["British Tour"];
 
     // Default: “anything else”
     return 999;
 }
+
 
 
 const MAJORS = ["Wimbledon", "US Open", "Roland Garros", "Australian Open"];
@@ -1920,6 +1977,8 @@ function classifyEventMen(val) {
     const results = [];
 
     tournaments.forEach(t => {
+
+        // Category labels
         if (t.startsWith("ATP") || t.startsWith("Ch") || t.startsWith("WTT") || MAJORS.includes(t))
             results.push("All Pro Tour");
 
@@ -1932,26 +1991,57 @@ function classifyEventMen(val) {
         if (t.startsWith("WT J"))
             results.push("Junior");
 
-        // Levels
-        if (t.startsWith("ATP 1000")) results.push("ATP 1000");
-        else if (t.startsWith("ATP 500")) results.push("ATP 500");
-        else if (t.startsWith("ATP 250")) results.push("ATP 250");
+        // ATP levels
+        if (/^ATP\s*1000/i.test(t)) results.push("ATP 1000");
+        else if (/^ATP\s*500/i.test(t)) results.push("ATP 500");
+        else if (/^ATP\s*250/i.test(t)) results.push("ATP 250");
 
-        else if (t.startsWith("Ch")) results.push("Challengers");
+// Challenger levels
+if (/^Ch\s*175/i.test(t)) {
+    results.push("Challengers");
+    results.push("CH 175");
+}
+else if (/^Ch\s*125/i.test(t)) {
+    results.push("Challengers");
+    results.push("CH 125");
+}
+else if (/^Ch\s*100/i.test(t)) {
+    results.push("Challengers");
+    results.push("CH 100");
+}
+else if (/^Ch\s*75/i.test(t)) {
+    results.push("Challengers");
+    results.push("CH 75");
+}
+else if (/^Ch\s*50/i.test(t)) {
+    results.push("Challengers");
+    results.push("CH 50");
+}
 
+
+        // WTT MEN — THIS WAS MISSING
+        else if (t.startsWith("WTT M25+H")) results.push("WTT M25+H");
+        else if (t.startsWith("WTT M25"))   results.push("WTT M25");
+        else if (t.startsWith("WTT M15+H")) results.push("WTT M15+H");
+        else if (t.startsWith("WTT M15"))   results.push("WTT M15");
+
+        // Junior levels
         else if (t.startsWith("WT J500")) results.push("WT J500");
         else if (t.startsWith("WT J300")) results.push("WT J300");
         else if (t.startsWith("WT J200")) results.push("WT J200");
         else if (t.startsWith("WT J100")) results.push("WT J100");
 
+        // Other circuits
         else if (t.startsWith("UTR PTT")) results.push("UTR PTT");
         else if (t.startsWith("British Tour")) results.push("British Tour");
 
+        // Always include tournament name
         results.push(t);
     });
 
     return results;
 }
+
 
 // -------------------------------
 // DROPDOWN POPULATION
@@ -1985,32 +2075,21 @@ function populateDropdown(id, values, counts = null) {
         return;
     }
 
-    // WEEK DROPDOWNS
-    const groupedValues   = unique.filter(v => PRIORITY[v]);    // category labels
-    const tournamentNames = unique.filter(v => !PRIORITY[v]);   // actual tournaments
-
-    groupedValues.sort((a, b) => PRIORITY[a] - PRIORITY[b]);
-
-    tournamentNames.sort((a, b) => {
-        const pa = getTournamentPriority(a);
-        const pb = getTournamentPriority(b);
+    // WEEK DROPDOWNS — single sorted list
+    const sorted = [...unique].sort((a, b) => {
+        const pa = getTournamentPriority(a, window.genderSetting);
+        const pb = getTournamentPriority(b, window.genderSetting);
         if (pa !== pb) return pa - pb;
         return a.localeCompare(b);
     });
 
     sel.innerHTML = "<option value=''>All</option>";
 
-    groupedValues.forEach(v => {
-        const label = counts ? `${v} (${counts[v] || 0})` : v;
-        sel.innerHTML += `<option value="${v}">${label}</option>`;
-    });
-
-    tournamentNames.forEach(v => {
+    sorted.forEach(v => {
         const label = counts ? `${v} (${counts[v] || 0})` : v;
         sel.innerHTML += `<option value="${v}">${label}</option>`;
     });
 }
-
 
 
 
