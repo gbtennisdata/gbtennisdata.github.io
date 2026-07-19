@@ -1,0 +1,955 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Tournament Winners</title>
+<style>
+body { font-family: Arial, sans-serif; background:#f5f5f5; margin:0; padding:20px; }
+
+.dashboard {
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+.stat {
+    background:#adb8fb;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    flex:1;
+    min-width:180px;
+    text-align:center;
+}
+
+.stat h3 {
+    margin:0;
+    font-size:28px;
+}
+
+.stat p {
+    margin:8px 0 0 0;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.card {
+    background:#fff;
+    border-radius:8px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom:20px;
+    padding:16px;
+}
+
+.card h2 { margin-top:0; }
+
+table {
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+    table-layout: fixed;
+}
+
+th, td {
+    padding:8px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+    word-wrap: break-word;
+}
+
+th { background:#f0f0f0; }
+
+th:nth-child(1), td:nth-child(1) { width: 30%; }
+th:nth-child(2), td:nth-child(2) { width: 20%; }
+th:nth-child(3), td:nth-child(3) { width: 50%; }
+</style>
+</head>
+<body>
+<div class="header-wrapper">
+
+    <div class="header-content">
+
+        <span class="title">GB Tennis Data</span>
+
+        <nav class="nav-main">
+            <a class="nav-pill" href="index.html">Home</a>
+            <a class="nav-pill" data-dropdown="women">Women</a>
+            <a class="nav-pill" data-dropdown="men">Men</a>
+        </nav>
+
+        <div class="nav-container">
+
+            <div id="dropdown-women" class="dropdown hidden">
+                <span class="dropdown-title">Women</span>
+                <div class="dropdown-links">
+                    <a href="women_summary.html">Summary</a>
+                    <a href="women_singles_by_player.html">Singles by player</a>
+                    <a href="women_singles_by_week.html">Singles by week</a>
+                    <a href="women_doubles_by_player.html">Doubles by player</a>
+                    <a href="women_doubles_by_week.html">Doubles by week</a>
+                    <a href="women_singles_winners.html">Singles winners</a>
+                    <a href="women_doubles_winners.html">Doubles winners</a>
+                </div>
+            </div>
+
+            <div id="dropdown-men" class="dropdown hidden">
+                <span class="dropdown-title">Men</span>
+                <div class="dropdown-links">
+                    <a href="men_summary.html">Summary</a>
+                    <a href="men_singles_by_player.html">Singles by player</a>
+                    <a href="men_singles_by_week.html">Singles by week</a>
+                    <a href="men_singles_winners.html">Singles winners</a>
+                    <a href="men_us_college.html">US College rosters</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    #header-banner {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background: #fff;
+    border-bottom: 2px solid #ccc;
+}
+    /* Sticky header wrapper */
+    .header-wrapper {
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        background: #3a7;
+        color: #fff;
+        padding: 18px 25px;
+        font-family: Arial, sans-serif;
+        border-bottom: 3px solid #2a5;
+    }
+
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .title {
+        font-size: 32px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+
+    /* Main nav pills */
+    .nav-main {
+        display: flex;
+        gap: 15px;
+    }
+
+    .nav-pill {
+        background: #fff;
+        color: #3a7;
+        padding: 6px 18px;
+        border-radius: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        border: 2px solid #fff;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+
+    .nav-pill:hover {
+        background: #2a5;
+        color: #fff;
+    }
+
+    /* Dropdown container */
+    .nav-container {
+        position: relative;
+        width: 100%;
+        margin-top: 10px;
+        /* height removed so dropdown can expand */
+        min-height: 50px;
+    }
+
+    /* Dropdown */
+    .dropdown {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #3a7;
+        padding: 10px 20px;
+        border-radius: 10px;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.25s ease-in-out;
+        pointer-events: auto;
+        white-space: nowrap;
+    }
+
+    .dropdown.hidden {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+    }
+
+    .dropdown-title {
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-right: 15px;
+    }
+
+    .dropdown-links a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        margin-right: 15px;
+        padding: 4px 10px;
+        border-radius: 10px;
+        transition: 0.2s;
+    }
+
+    .dropdown-links a:hover {
+        background: rgba(255,255,255,0.25);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .dropdown-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .dropdown {
+            white-space: normal;
+            width: 90%;
+        }
+    }
+</style>
+<h1>Doubles Tournament Winners (last 52 weeks)</h1>
+
+<div class="dashboard">
+    <div class="stat">
+        <h3>Total Titles</h3>
+        <p>93</p>
+    </div>
+
+    <div class="stat">
+        <h3>Grand Slam</h3>
+        <p><b>2</b></p>
+    </div>
+
+    <div class="stat">
+        <h3>ATP Finals</h3>
+        <p><b>1</b></p>
+    </div>
+
+    <div class="stat">
+        <h3>ATP Masters 1000</h3>
+        <p><b>3</b></p>
+    </div>
+
+    <div class="stat">
+        <h3>ATP 500</h3>
+        <p><b>5</b></p>
+    </div>
+
+    <div class="stat">
+        <h3>ATP 250</h3>
+        <p><b>1</b></p>
+    </div>
+
+    <div class="stat">
+        <h3>Challenger 175</h3>
+        <p><b>0</b></p>
+    </div>
+
+    <div class="stat">
+        <h3>Challenger 125</h3>
+        <p><b>2</b></p>
+    </div>
+
+    <div class="stat">
+        <h3>Challenger 100</h3>
+        <p><b>2</b></p>
+    </div>
+
+    <div class="stat">
+        <h3>Challenger 75</h3>
+        <p><b>6</b></p>
+    </div>
+
+    <div class="stat">
+        <h3>Challenger 50</h3>
+        <p><b>6</b></p>
+    </div>
+
+    <div class="stat">
+        <h3>M25</h3>
+        <p><b>31</b></p>
+    </div>
+
+    <div class="stat">
+        <h3>M15</h3>
+        <p><b>34</b></p>
+    </div>
+</div>
+
+<h2>Most titles</h2>
+<div class="dashboard">
+
+        <div class="stat">
+            <h3>Finn Murgett</h3>
+            <p>10 titles</p>
+        </div>
+        
+        <div class="stat">
+            <h3>Henry Patten</h3>
+            <p>8 titles</p>
+        </div>
+        
+        <div class="stat">
+            <h3>Ben Jones</h3>
+            <p>7 titles</p>
+        </div>
+        </div><div class="card">
+<h2>Grand Slam</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Henry Patten</td>
+      <td>Wimbledon</td>
+      <td>June 2026</td>
+    </tr>
+    <tr>
+      <td>Neal Skupski</td>
+      <td>Australian Open</td>
+      <td>January 2026</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="card">
+<h2>ATP Finals</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Henry Patten</td>
+      <td>ATP Finals</td>
+      <td>November 2025</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="card">
+<h2>ATP Masters 1000</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Henry Patten</td>
+      <td>Madrid</td>
+      <td>April 2026</td>
+    </tr>
+    <tr>
+      <td>Henry Patten</td>
+      <td>Paris</td>
+      <td>October 2025</td>
+    </tr>
+    <tr>
+      <td>Julian Cash & Lloyd Glasspool</td>
+      <td>Canada</td>
+      <td>July 2025</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="card">
+<h2>ATP 500</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Julian Cash & Lloyd Glasspool</td>
+      <td>Barcelona</td>
+      <td>April 2026</td>
+    </tr>
+    <tr>
+      <td>Henry Patten</td>
+      <td>Dubai</td>
+      <td>February 2026</td>
+    </tr>
+    <tr>
+      <td>Henry Patten</td>
+      <td>Doha</td>
+      <td>February 2026</td>
+    </tr>
+    <tr>
+      <td>Julian Cash & Lloyd Glasspool</td>
+      <td>Vienna</td>
+      <td>October 2025</td>
+    </tr>
+    <tr>
+      <td>Henry Patten</td>
+      <td>Beijing</td>
+      <td>September 2025</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="card">
+<h2>ATP 250</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Henry Patten</td>
+      <td>Adelaide</td>
+      <td>January 2026</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="card">
+<h2>Challenger 125</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Marcus Willis & David Stevenson</td>
+      <td>Ilkley</td>
+      <td>June 2026</td>
+    </tr>
+    <tr>
+      <td>Joshua Paris & Ben Jones</td>
+      <td>Birmingham</td>
+      <td>June 2026</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="card">
+<h2>Challenger 100</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>David Stevenson</td>
+      <td>Oeiras</td>
+      <td>January 2026</td>
+    </tr>
+    <tr>
+      <td>Marcus Willis & Joshua Paris</td>
+      <td>Bergamo</td>
+      <td>November 2025</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="card">
+<h2>Challenger 75</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Finn Bass</td>
+      <td>Zagreb</td>
+      <td>May 2026</td>
+    </tr>
+    <tr>
+      <td>David Stevenson</td>
+      <td>Savannah</td>
+      <td>April 2026</td>
+    </tr>
+    <tr>
+      <td>David Stevenson</td>
+      <td>Cherbourg</td>
+      <td>March 2026</td>
+    </tr>
+    <tr>
+      <td>Jay Clarke</td>
+      <td>Kigali</td>
+      <td>March 2026</td>
+    </tr>
+    <tr>
+      <td>Johannus Monday</td>
+      <td>Lincoln</td>
+      <td>October 2025</td>
+    </tr>
+    <tr>
+      <td>Johannus Monday</td>
+      <td>Columbus</td>
+      <td>September 2025</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="card">
+<h2>Challenger 50</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tom Hands & Matthew Summers</td>
+      <td>Nottingham</td>
+      <td>July 2026</td>
+    </tr>
+    <tr>
+      <td>Ben Jones</td>
+      <td>Wuning</td>
+      <td>April 2026</td>
+    </tr>
+    <tr>
+      <td>David Stevenson & Charles Broom</td>
+      <td>Nottingham</td>
+      <td>January 2026</td>
+    </tr>
+    <tr>
+      <td>Mark Whitehouse & Giles Hussey</td>
+      <td>Hersonissos</td>
+      <td>October 2025</td>
+    </tr>
+    <tr>
+      <td>Harry Wendelken</td>
+      <td>Hersonissos</td>
+      <td>August 2025</td>
+    </tr>
+    <tr>
+      <td>Stuart Parker</td>
+      <td>Hersonissos</td>
+      <td>August 2025</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="card">
+<h2>M25</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Finn Murgett & Tom Hands</td>
+      <td>Nottingham</td>
+      <td>May 2026</td>
+    </tr>
+    <tr>
+      <td>Joe Tyler</td>
+      <td>Nottingham</td>
+      <td>April 2026</td>
+    </tr>
+    <tr>
+      <td>Finn Bass</td>
+      <td>Angers</td>
+      <td>April 2026</td>
+    </tr>
+    <tr>
+      <td>James Hopper</td>
+      <td>Santa Margherita di Pula</td>
+      <td>April 2026</td>
+    </tr>
+    <tr>
+      <td>Scott Duncan & Hamish Stewart</td>
+      <td>Heraklion</td>
+      <td>March 2026</td>
+    </tr>
+    <tr>
+      <td>Charles Broom</td>
+      <td>Maanshan</td>
+      <td>March 2026</td>
+    </tr>
+    <tr>
+      <td>James Hopper</td>
+      <td>Reus</td>
+      <td>March 2026</td>
+    </tr>
+    <tr>
+      <td>Oliver Okonkwo</td>
+      <td>Las Vegas</td>
+      <td>March 2026</td>
+    </tr>
+    <tr>
+      <td>James Beaven</td>
+      <td>Saint Dizier</td>
+      <td>March 2026</td>
+    </tr>
+    <tr>
+      <td>Charles Broom</td>
+      <td>Creteil</td>
+      <td>March 2026</td>
+    </tr>
+    <tr>
+      <td>Hamish Stewart</td>
+      <td>Trimbach</td>
+      <td>March 2026</td>
+    </tr>
+    <tr>
+      <td>Adam Jones & Toby Martin</td>
+      <td>Naples</td>
+      <td>February 2026</td>
+    </tr>
+    <tr>
+      <td>Lui Maxted & Finn Murgett</td>
+      <td>Vila Real de Santo Antonio</td>
+      <td>February 2026</td>
+    </tr>
+    <tr>
+      <td>Felix Mischker</td>
+      <td>Antalya</td>
+      <td>February 2026</td>
+    </tr>
+    <tr>
+      <td>Emile Hudd & Anton Matusevich</td>
+      <td>Sheffield</td>
+      <td>February 2026</td>
+    </tr>
+    <tr>
+      <td>Charles Broom & Giles Hussey</td>
+      <td>Glasgow</td>
+      <td>January 2026</td>
+    </tr>
+    <tr>
+      <td>Lui Maxted</td>
+      <td>Austin</td>
+      <td>November 2025</td>
+    </tr>
+    <tr>
+      <td>James Hopper</td>
+      <td>Knoxville</td>
+      <td>November 2025</td>
+    </tr>
+    <tr>
+      <td>Ben Jones</td>
+      <td>Montreal</td>
+      <td>November 2025</td>
+    </tr>
+    <tr>
+      <td>Emile Hudd</td>
+      <td>Brisbane</td>
+      <td>October 2025</td>
+    </tr>
+    <tr>
+      <td>Connor Thomson & Hamish Stewart</td>
+      <td>Sheffield</td>
+      <td>October 2025</td>
+    </tr>
+    <tr>
+      <td>Lui Maxted</td>
+      <td>Monastir</td>
+      <td>October 2025</td>
+    </tr>
+    <tr>
+      <td>Connor Thomson</td>
+      <td>Monastir</td>
+      <td>October 2025</td>
+    </tr>
+    <tr>
+      <td>Finn Bass</td>
+      <td>Perth</td>
+      <td>October 2025</td>
+    </tr>
+    <tr>
+      <td>James Mackinlay & Connor Thomson</td>
+      <td>Sharm ElSheikh</td>
+      <td>September 2025</td>
+    </tr>
+    <tr>
+      <td>James Mackinlay & Connor Thomson</td>
+      <td>Sharm ElSheikh</td>
+      <td>September 2025</td>
+    </tr>
+    <tr>
+      <td>Lui Maxted & Connor Thomson</td>
+      <td>Setubal</td>
+      <td>September 2025</td>
+    </tr>
+    <tr>
+      <td>Ben Jones & Finn Bass</td>
+      <td>Bagneres-de-Bigorre</td>
+      <td>September 2025</td>
+    </tr>
+    <tr>
+      <td>Max Basing</td>
+      <td>Bali</td>
+      <td>September 2025</td>
+    </tr>
+    <tr>
+      <td>Lui Maxted & Finn Murgett</td>
+      <td>Aldershot</td>
+      <td>August 2025</td>
+    </tr>
+    <tr>
+      <td>James Mackinlay & Connor Thomson</td>
+      <td>Roehampton</td>
+      <td>August 2025</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="card">
+<h2>M15</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Billy Blaydes</td>
+      <td>Monastir</td>
+      <td>June 2026</td>
+    </tr>
+    <tr>
+      <td>Stefan Cooper</td>
+      <td>Kayseri</td>
+      <td>June 2026</td>
+    </tr>
+    <tr>
+      <td>Marcus Walters & Matthew Rankin</td>
+      <td>Monastir</td>
+      <td>June 2026</td>
+    </tr>
+    <tr>
+      <td>Henry Jefferson</td>
+      <td>Kayseri</td>
+      <td>May 2026</td>
+    </tr>
+    <tr>
+      <td>Hugo Coquelin</td>
+      <td>Monastir</td>
+      <td>May 2026</td>
+    </tr>
+    <tr>
+      <td>Finn Murgett</td>
+      <td>Monastir</td>
+      <td>May 2026</td>
+    </tr>
+    <tr>
+      <td>Stefan Cooper</td>
+      <td>Mbombela</td>
+      <td>May 2026</td>
+    </tr>
+    <tr>
+      <td>Oliver Okonkwo</td>
+      <td>Vero Beach</td>
+      <td>May 2026</td>
+    </tr>
+    <tr>
+      <td>Oliver Okonkwo</td>
+      <td>Orange Park</td>
+      <td>April 2026</td>
+    </tr>
+    <tr>
+      <td>Finn Murgett & Marcus Walters</td>
+      <td>Heraklion</td>
+      <td>April 2026</td>
+    </tr>
+    <tr>
+      <td>Finn Murgett & Marcus Walters</td>
+      <td>Heraklion</td>
+      <td>April 2026</td>
+    </tr>
+    <tr>
+      <td>Stefan Cooper</td>
+      <td>Pretoria</td>
+      <td>April 2026</td>
+    </tr>
+    <tr>
+      <td>Emile Hudd</td>
+      <td>Singapore</td>
+      <td>April 2026</td>
+    </tr>
+    <tr>
+      <td>James Markiewicz</td>
+      <td>Altamura</td>
+      <td>March 2026</td>
+    </tr>
+    <tr>
+      <td>James Hopper</td>
+      <td>Toulouse-Balma</td>
+      <td>March 2026</td>
+    </tr>
+    <tr>
+      <td>Oliver Okonkwo</td>
+      <td>Sherbrooke</td>
+      <td>March 2026</td>
+    </tr>
+    <tr>
+      <td>Marcus Walters</td>
+      <td>Lannion</td>
+      <td>February 2026</td>
+    </tr>
+    <tr>
+      <td>Finn Murgett</td>
+      <td>Bressuire</td>
+      <td>January 2026</td>
+    </tr>
+    <tr>
+      <td>Emile Hudd</td>
+      <td>Tauranga</td>
+      <td>December 2025</td>
+    </tr>
+    <tr>
+      <td>Finn Murgett & Marcus Walters</td>
+      <td>Heraklion</td>
+      <td>November 2025</td>
+    </tr>
+    <tr>
+      <td>Will Nolan</td>
+      <td>Orlando</td>
+      <td>November 2025</td>
+    </tr>
+    <tr>
+      <td>Ben Jones</td>
+      <td>Villers-les-Nancy</td>
+      <td>October 2025</td>
+    </tr>
+    <tr>
+      <td>Ewen Lumsden</td>
+      <td>Monastir</td>
+      <td>October 2025</td>
+    </tr>
+    <tr>
+      <td>Joe Leather</td>
+      <td>Sharm ElSheikh</td>
+      <td>October 2025</td>
+    </tr>
+    <tr>
+      <td>Finn Murgett & Marcus Walters</td>
+      <td>Heraklion</td>
+      <td>September 2025</td>
+    </tr>
+    <tr>
+      <td>Joe Tyler</td>
+      <td>Kayseri</td>
+      <td>September 2025</td>
+    </tr>
+    <tr>
+      <td>Viktor Frydrych</td>
+      <td>Hurghada</td>
+      <td>September 2025</td>
+    </tr>
+    <tr>
+      <td>Jeremy Gschwendtner</td>
+      <td>Buzau</td>
+      <td>September 2025</td>
+    </tr>
+    <tr>
+      <td>Finn Murgett</td>
+      <td>Monastir</td>
+      <td>August 2025</td>
+    </tr>
+    <tr>
+      <td>Lui Maxted & Will Nolan</td>
+      <td>Monastir</td>
+      <td>August 2025</td>
+    </tr>
+    <tr>
+      <td>James Hopper</td>
+      <td>Pirot</td>
+      <td>August 2025</td>
+    </tr>
+    <tr>
+      <td>Jeremy Gschwendtner</td>
+      <td>Targu Jiu</td>
+      <td>August 2025</td>
+    </tr>
+    <tr>
+      <td>Emile Hudd & Ben Jones</td>
+      <td>Turku</td>
+      <td>August 2025</td>
+    </tr>
+    <tr>
+      <td>Ben Jones & Finn Bass</td>
+      <td>Dublin</td>
+      <td>July 2025</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+    <div id="footer"></div>
+<script>
+  async function loadFragment(id, file) {
+    const html = await fetch(file).then(r => r.text());
+    document.getElementById(id).innerHTML = html;
+  }
+
+  loadFragment("header-banner", "./header.html");
+  loadFragment("footer", "./footer.html");
+</script>
+    </body></html>
