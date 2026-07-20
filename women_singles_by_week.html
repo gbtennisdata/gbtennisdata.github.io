@@ -1,9 +1,108 @@
 
+    <style>
+    body { font-family: Arial, sans-serif; font-size: 12pt}
+    table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+    th, td { border: 1px solid #ccc; padding: 6px; text-align: center; }
+    th { background: #3a7; color: #fff; cursor: pointer; position: relative; }
+    th .arrow { font-size: 12px; margin-left: 4px; }
+    tr:nth-child(even) { background: #f7f7f7; }
+    .card { border:1px solid #ccc; border-radius:8px; padding:15px; margin:15px 0; }
+    summary { font-weight:bold; cursor:pointer; font-size: 18px; }
+    #player-select-container {
+        position: sticky;
+        top: var(--header-height);
+        z-index: 9998;
+        background: #fff;
+        padding: 12px;
+        border-bottom: 2px solid #ccc;
+        margin-bottom: 60px;
+    }
+
+    #playerSelect {
+        
+        font-size: 16px;
+        padding: 6px;
+    }
+    </style>
+
+    <script>
+    function sortTable(tableId, colIndex) {
+        var table = document.getElementById(tableId);
+        var rows = Array.from(table.rows).slice(1);
+        var asc = table.getAttribute("data-sort-asc") === "true" ? false : true;
+
+        rows.sort(function(a, b) {
+            var A = a.cells[colIndex].getAttribute("data-sort") || a.cells[colIndex].innerText;
+            var B = b.cells[colIndex].getAttribute("data-sort") || b.cells[colIndex].innerText;
+
+            var numA = parseFloat(A);
+            var numB = parseFloat(B);
+
+            if (!isNaN(numA) && !isNaN(numB)) {
+                return asc ? numA - numB : numB - numA;
+            }
+            return asc ? A.localeCompare(B) : B.localeCompare(A);
+        });
+
+        rows.forEach(r => table.tBodies[0].appendChild(r));
+        table.setAttribute("data-sort-asc", asc ? "true" : "false");
+
+        var th = table.querySelectorAll("th");
+        th.forEach((h, i) => {
+            h.querySelector(".arrow").innerText = (i === colIndex ? (asc ? "▲" : "▼") : "");
+        });
+    }
+
+    function toggleArrow(detailsId, arrowId) {
+        var details = document.getElementById(detailsId);
+        var arrow = document.getElementById(arrowId);
+        arrow.innerText = details.open ? "▲" : "▼";
+    }
+    </script>
+    
+        <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const header = document.getElementById("header-banner");
+
+    function updateHeaderHeight() {
+        const h = header.offsetHeight;
+        document.documentElement.style.setProperty("--header-height", h + "px");
+    }
+
+    updateHeaderHeight();
+    window.addEventListener("resize", updateHeaderHeight);
+});
+</script>
+
+<script>
+function scrollToPlayer(id) {
+    const el = document.getElementById(id);
+    const header = document.getElementById("header-banner");
+    const dropdown = document.getElementById("player-select-container");
+
+    if (!el) return;
+
+    const headerHeight = header.offsetHeight;
+    const dropdownHeight = dropdown.offsetHeight;
+
+    const totalOffset = headerHeight + dropdownHeight + 20; // extra padding
+
+    const elementTop = el.getBoundingClientRect().top + window.scrollY;
+
+    window.scrollTo({
+        top: elementTop - totalOffset,
+        behavior: 'smooth'
+    });
+}
+</script>
+
+    <div id="header-banner"></div>
+
     <div id='player-select-container'>
         <label for='playerSelect'><strong>Select Week:</strong></label>
         <select id='playerSelect' onchange="scrollToPlayer(this.value)">
             <option value='' disabled selected>Choose...</option>
-            <option value='week_0'>Monday 27 July 2026</option><option value='week_1'>Friday 14 August 2026</option><option value='week_2'>Monday 24 August 2026</option><option value='week_3'>Monday 14 September 2026</option><option value='week_4'>Monday 21 September 2026</option><option value='week_5'>Monday 28 September 2026</option><option value='week_6'>Monday 12 October 2026</option><option value='week_7'>Monday 19 October 2026</option><option value='week_8'>Monday 26 October 2026</option><option value='week_9'>Monday 02 November 2026</option><option value='week_10'>Monday 09 November 2026</option><option value='week_11'>Monday 16 November 2026</option><option value='week_12'>Monday 23 November 2026</option><option value='week_13'>Monday 30 November 2026</option><option value='week_14'>Monday 07 December 2026</option><option value='week_15'>Monday 14 December 2026</option><option value='week_16'>Monday 21 December 2026</option><option value='week_17'>Sunday 03 January 2027</option><option value='week_18'>Monday 11 January 2027</option><option value='week_19'>Sunday 17 January 2027</option><option value='week_20'>Monday 01 February 2027</option><option value='week_21'>Monday 08 February 2027</option><option value='week_22'>Monday 15 February 2027</option><option value='week_23'>Monday 22 February 2027</option><option value='week_24'>Monday 01 March 2027</option><option value='week_25'>Monday 15 March 2027</option><option value='week_26'>Monday 29 March 2027</option><option value='week_27'>Monday 05 April 2027</option><option value='week_28'>Monday 12 April 2027</option><option value='week_29'>Monday 19 April 2027</option><option value='week_30'>Monday 03 May 2027</option><option value='week_31'>Monday 17 May 2027</option><option value='week_32'>Sunday 23 May 2027</option><option value='week_33'>Monday 07 June 2027</option><option value='week_34'>Monday 14 June 2027</option><option value='week_35'>Monday 21 June 2027</option><option value='week_36'>Sunday 27 June 2027</option><option value='week_37'>Monday 12 July 2027</option><option value='week_38'>Sunday 18 July 2027</option><option value='week_39'>Monday 19 July 2027</option>
+            <option value='week_0'>Monday 27 July 2026</option><option value='week_1'>Friday 14 August 2026</option><option value='week_2'>Monday 24 August 2026</option><option value='week_3'>Monday 14 September 2026</option><option value='week_4'>Monday 21 September 2026</option><option value='week_5'>Monday 28 September 2026</option><option value='week_6'>Monday 12 October 2026</option><option value='week_7'>Monday 19 October 2026</option><option value='week_8'>Monday 26 October 2026</option><option value='week_9'>Monday 02 November 2026</option><option value='week_10'>Monday 09 November 2026</option><option value='week_11'>Monday 16 November 2026</option><option value='week_12'>Monday 23 November 2026</option><option value='week_13'>Monday 30 November 2026</option><option value='week_14'>Monday 07 December 2026</option><option value='week_15'>Monday 14 December 2026</option><option value='week_16'>Monday 21 December 2026</option><option value='week_17'>Sunday 03 January 2027</option><option value='week_18'>Monday 11 January 2027</option><option value='week_19'>Sunday 17 January 2027</option><option value='week_20'>Monday 01 February 2027</option><option value='week_21'>Monday 08 February 2027</option><option value='week_22'>Monday 15 February 2027</option><option value='week_23'>Monday 22 February 2027</option><option value='week_24'>Monday 01 March 2027</option><option value='week_25'>Monday 15 March 2027</option><option value='week_26'>Monday 29 March 2027</option><option value='week_27'>Monday 05 April 2027</option><option value='week_28'>Monday 12 April 2027</option><option value='week_29'>Monday 19 April 2027</option><option value='week_30'>Monday 03 May 2027</option><option value='week_31'>Monday 17 May 2027</option><option value='week_32'>Sunday 23 May 2027</option><option value='week_33'>Monday 07 June 2027</option><option value='week_34'>Monday 14 June 2027</option><option value='week_35'>Monday 21 June 2027</option><option value='week_36'>Sunday 27 June 2027</option><option value='week_37'>Monday 12 July 2027</option><option value='week_39'>Monday 19 July 2027</option>
         </select>
     </div>
     <h2>Points dropping by week</h2><div class='card' id='week_0'><h2>Monday 27 July 2026</h2><p><strong>Total drops:</strong> 4</p>
@@ -396,19 +495,13 @@
             <summary>
                 Counted drops (34)
             </summary>
-        <table id='counted_37' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_37",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_37",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_37",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_37",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Katie Swan</td><td> Wimbledon</td><td>R64 (WC)</td><td data-sort='70'>70</td></tr><tr><td>Heather Watson</td><td> Wimbledon</td><td>QR3 (WC)</td><td data-sort='30'>30</td></tr><tr><td>Esther Adeshina</td><td> Wimbledon</td><td>QR2 (WC)</td><td data-sort='20'>20</td></tr><tr><td>Mimi Xu</td><td> Wimbledon</td><td>R128 (WC)</td><td data-sort='10'>10</td></tr><tr><td>Alicia Dudeney</td><td> Wimbledon</td><td>R128 (WC)</td><td data-sort='10'>10</td></tr><tr><td>Mika Stojsavljevic</td><td> Wimbledon</td><td>R128 (WC)</td><td data-sort='10'>10</td></tr><tr><td>Hannah Klugman</td><td> Wimbledon</td><td>R128 (WC)</td><td data-sort='10'>10</td></tr><tr><td>Katie Boulter</td><td> Wimbledon</td><td>R128</td><td data-sort='10'>10</td></tr><tr><td>Fran Jones</td><td> Wimbledon</td><td>R128</td><td data-sort='10'>10</td></tr><tr><td>Harriet Dart</td><td> Wimbledon</td><td>R128 (WC)</td><td data-sort='10'>10</td></tr><tr><td>Ella Mcdonald</td><td> Wimbledon</td><td>QR1 (WC)</td><td data-sort='2'>2</td></tr><tr><td>Katy Dunne</td><td> Wimbledon</td><td>QR1 (WC)</td><td data-sort='2'>2</td></tr><tr><td>Daniella Britton</td><td> Wimbledon</td><td>QR1 (WC)</td><td data-sort='2'>2</td></tr><tr><td>Amelia Rajecki</td><td> Wimbledon</td><td>QR1 (QWC)</td><td data-sort='2'>2</td></tr><tr><td>Lily Miyazaki</td><td> Wimbledon</td><td>QR1 (WC)</td><td data-sort='2'>2</td></tr><tr><td>Emma Raducanu</td><td> Wimbledon</td><td>Zero</td><td data-sort='0'>0</td></tr><tr><td>Sonay Kartal</td><td> Wimbledon</td><td>Zero</td><td data-sort='0'>0</td></tr><tr><td>Fran Jones</td><td>WTA125 Contrexeville</td><td>R16</td><td data-sort='15'>15</td></tr><tr><td>Sofia Johnson</td><td>W100 Cary</td><td>R16 (Q)</td><td data-sort='17'>17</td></tr><tr><td>Hephzibah Oluwadare</td><td>W50 Columbus, Ohio</td><td>QR2 (WC)</td><td data-sort='1'>1</td></tr><tr><td>Sofia Johnson</td><td>W50 Columbus, Ohio</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Indi Spink</td><td>W50 Corroios-Seixal</td><td>R16 (Q)</td><td data-sort='7'>7</td></tr><tr><td>Lauryn John-Baptiste</td><td>W50 Elvas</td><td>R32 (Q)</td><td data-sort='2'>2</td></tr><tr><td>Amelie Brooks</td><td>W35 Amstelveen</td><td>R64 (Q)</td><td data-sort='1'>1</td></tr><tr><td>Vic Allen</td><td>W35 Amstelveen</td><td>R64</td><td data-sort='1'>1</td></tr><tr><td>Isabelle Cherny</td><td>W35 San Gregorio</td><td>R32 (Q)</td><td data-sort='1'>1</td></tr><tr><td>Allegra Korpanec Davies</td><td>W15 Galati</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Allegra Korpanec Davies</td><td>W15 Galati</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Freya Peet</td><td>W15 Hillcrest</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Eliz Maloney</td><td>W15 Monastir</td><td>F</td><td data-sort='10'>10</td></tr><tr><td>Esther Adeshina</td><td>W15 Monastir</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Lois Newberry</td><td>W15 Monastir</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Eva Shaw</td><td>W15 Monastir</td><td>R16 (Q)</td><td data-sort='1'>1</td></tr><tr><td>Mia Wainwright</td><td>W15 Monastir</td><td>R16</td><td data-sort='1'>1</td></tr></tbody></table></details></div><div class='card' id='week_38'><h2>Sunday 18 July 2027</h2><p><strong>Total drops:</strong> 1</p>
-        <details id="details_counted_38" open
-                 onclick="toggleArrow('details_counted_38', 'arrow_counted_38')">
-            <summary>
-                Counted drops (1)
-            </summary>
-        <table id='counted_38' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_38",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_38",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_38",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_38",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Alicia Dudeney</td><td>W50 Nottingham</td><td>Winner</td><td data-sort='50'>50</td></tr></tbody></table></details></div><div class='card' id='week_39'><h2>Monday 19 July 2027</h2><p><strong>Total drops:</strong> 32</p>
+        <table id='counted_37' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_37",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_37",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_37",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_37",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Katie Swan</td><td> Wimbledon</td><td>R64 (WC)</td><td data-sort='70'>70</td></tr><tr><td>Heather Watson</td><td> Wimbledon</td><td>QR3 (WC)</td><td data-sort='30'>30</td></tr><tr><td>Esther Adeshina</td><td> Wimbledon</td><td>QR2 (WC)</td><td data-sort='20'>20</td></tr><tr><td>Mimi Xu</td><td> Wimbledon</td><td>R128 (WC)</td><td data-sort='10'>10</td></tr><tr><td>Alicia Dudeney</td><td> Wimbledon</td><td>R128 (WC)</td><td data-sort='10'>10</td></tr><tr><td>Mika Stojsavljevic</td><td> Wimbledon</td><td>R128 (WC)</td><td data-sort='10'>10</td></tr><tr><td>Hannah Klugman</td><td> Wimbledon</td><td>R128 (WC)</td><td data-sort='10'>10</td></tr><tr><td>Katie Boulter</td><td> Wimbledon</td><td>R128</td><td data-sort='10'>10</td></tr><tr><td>Fran Jones</td><td> Wimbledon</td><td>R128</td><td data-sort='10'>10</td></tr><tr><td>Harriet Dart</td><td> Wimbledon</td><td>R128 (WC)</td><td data-sort='10'>10</td></tr><tr><td>Ella Mcdonald</td><td> Wimbledon</td><td>QR1 (WC)</td><td data-sort='2'>2</td></tr><tr><td>Katy Dunne</td><td> Wimbledon</td><td>QR1 (WC)</td><td data-sort='2'>2</td></tr><tr><td>Daniella Britton</td><td> Wimbledon</td><td>QR1 (WC)</td><td data-sort='2'>2</td></tr><tr><td>Amelia Rajecki</td><td> Wimbledon</td><td>QR1 (QWC)</td><td data-sort='2'>2</td></tr><tr><td>Lily Miyazaki</td><td> Wimbledon</td><td>QR1 (WC)</td><td data-sort='2'>2</td></tr><tr><td>Emma Raducanu</td><td> Wimbledon</td><td>Zero</td><td data-sort='0'>0</td></tr><tr><td>Sonay Kartal</td><td> Wimbledon</td><td>Zero</td><td data-sort='0'>0</td></tr><tr><td>Fran Jones</td><td>WTA125 Contrexeville</td><td>R16</td><td data-sort='15'>15</td></tr><tr><td>Sofia Johnson</td><td>W100 Cary</td><td>R16 (Q)</td><td data-sort='17'>17</td></tr><tr><td>Hephzibah Oluwadare</td><td>W50 Columbus, Ohio</td><td>QR2 (WC)</td><td data-sort='1'>1</td></tr><tr><td>Sofia Johnson</td><td>W50 Columbus, Ohio</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Indi Spink</td><td>W50 Corroios-Seixal</td><td>R16 (Q)</td><td data-sort='7'>7</td></tr><tr><td>Lauryn John-Baptiste</td><td>W50 Elvas</td><td>R32 (Q)</td><td data-sort='2'>2</td></tr><tr><td>Amelie Brooks</td><td>W35 Amstelveen</td><td>R64 (Q)</td><td data-sort='1'>1</td></tr><tr><td>Vic Allen</td><td>W35 Amstelveen</td><td>R64</td><td data-sort='1'>1</td></tr><tr><td>Isabelle Cherny</td><td>W35 San Gregorio</td><td>R32 (Q)</td><td data-sort='1'>1</td></tr><tr><td>Allegra Korpanec Davies</td><td>W15 Galati</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Allegra Korpanec Davies</td><td>W15 Galati</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Freya Peet</td><td>W15 Hillcrest</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>Eliz Maloney</td><td>W15 Monastir</td><td>F</td><td data-sort='10'>10</td></tr><tr><td>Esther Adeshina</td><td>W15 Monastir</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Lois Newberry</td><td>W15 Monastir</td><td>QF</td><td data-sort='3'>3</td></tr><tr><td>Eva Shaw</td><td>W15 Monastir</td><td>R16 (Q)</td><td data-sort='1'>1</td></tr><tr><td>Mia Wainwright</td><td>W15 Monastir</td><td>R16</td><td data-sort='1'>1</td></tr></tbody></table></details></div><div class='card' id='week_39'><h2>Monday 19 July 2027</h2><p><strong>Total drops:</strong> 32</p>
         <details id="details_counted_39" open
                  onclick="toggleArrow('details_counted_39', 'arrow_counted_39')">
             <summary>
                 Counted drops (31)
             </summary>
-        <table id='counted_39' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_39",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_39",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_39",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_39",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Harriet Dart</td><td>WTA250 Athens</td><td>R16</td><td data-sort='30'>30</td></tr><tr><td>Fran Jones</td><td>WTA125 Rome</td><td>Winner</td><td data-sort='125'>125</td></tr><tr><td>Allegra Korpanec Davies</td><td>W75 Olomouc</td><td>QR2</td><td data-sort='2'>2</td></tr><tr><td>Naiktha Bains</td><td>W50 Nottingham</td><td>F</td><td data-sort='33'>33</td></tr><tr><td>Hannah Klugman</td><td>W50 Nottingham</td><td>SF (WC)</td><td data-sort='20'>20</td></tr><tr><td>Emily Appleton</td><td>W50 Nottingham</td><td>QF</td><td data-sort='11'>11</td></tr><tr><td>Vic Allen</td><td>W50 Nottingham</td><td>QF</td><td data-sort='11'>11</td></tr><tr><td>Amelie Brooks</td><td>W50 Nottingham</td><td>R16 (Q)</td><td data-sort='8'>8</td></tr><tr><td>Leticia Romanova</td><td>W50 Nottingham</td><td>R16 (Q)</td><td data-sort='8'>8</td></tr><tr><td>Esther Adeshina</td><td>W50 Nottingham</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Alice Gillan</td><td>W50 Nottingham</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Indi Spink</td><td>W50 Nottingham</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Brooke Black</td><td>W50 Nottingham</td><td>R16 (WC)</td><td data-sort='6'>6</td></tr><tr><td>Ella Mcdonald</td><td>W50 Nottingham</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Eliz Maloney</td><td>W50 Nottingham</td><td>R32 (Q)</td><td data-sort='2'>2</td></tr><tr><td>Mia Wainwright</td><td>W50 Nottingham</td><td>R32 (Q)</td><td data-sort='2'>2</td></tr><tr><td>Ciara Moore</td><td>W50 Nottingham</td><td>QR2 (Q)</td><td data-sort='1'>1</td></tr><tr><td>Lily Hutchings</td><td>W50 Nottingham</td><td>QR2 (Q)</td><td data-sort='1'>1</td></tr><tr><td>Marelie Raath</td><td>W50 Nottingham</td><td>QR2 (QWC)</td><td data-sort='1'>1</td></tr><tr><td>Mimi Xu</td><td>W50 Nottingham</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Tegan Bush</td><td>W50 Nottingham</td><td>R1 (WC)</td><td data-sort='1'>1</td></tr><tr><td>Lauryn John-Baptiste</td><td>W50 Nottingham</td><td>R32 (WC)</td><td data-sort='1'>1</td></tr><tr><td>Mika Stojsavljevic</td><td>W50 Nottingham</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Georgiana Mititelu</td><td>W50 Nottingham</td><td>QR2 (Q)</td><td data-sort='1'>1</td></tr><tr><td>Melissa Boyden</td><td>W35 Buzau</td><td>R16 (WC)</td><td data-sort='4'>4</td></tr><tr><td>Vic Allen</td><td>W35 Don Benito</td><td>QF</td><td data-sort='8'>8</td></tr><tr><td>Georgina Hays</td><td>W35 Don Benito</td><td>R16 (Q)</td><td data-sort='4'>4</td></tr><tr><td>Jodie Burrage</td><td>W35 Don Benito</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Scarlet Kavanagh</td><td>W35 Don Benito</td><td>R32 (Q)</td><td data-sort='1'>1</td></tr><tr><td>Isabella Wong</td><td>W35 Hillcrest</td><td>R32 (Q)</td><td data-sort='1'>1</td></tr><tr><td>Eva Shaw</td><td>W15 Monastir</td><td>R16 (Q)</td><td data-sort='1'>1</td></tr></tbody></table></details>
+        <table id='counted_39' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_39",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("counted_39",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_39",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_39",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Harriet Dart</td><td>WTA250 Athens</td><td>R16</td><td data-sort='30'>30</td></tr><tr><td>Fran Jones</td><td>WTA125 Rome</td><td>Winner</td><td data-sort='125'>125</td></tr><tr><td>Allegra Korpanec Davies</td><td>W75 Olomouc</td><td>QR2</td><td data-sort='2'>2</td></tr><tr><td>Alicia Dudeney</td><td>W50 Nottingham</td><td>Winner</td><td data-sort='50'>50</td></tr><tr><td>Naiktha Bains</td><td>W50 Nottingham</td><td>F</td><td data-sort='33'>33</td></tr><tr><td>Hannah Klugman</td><td>W50 Nottingham</td><td>SF (WC)</td><td data-sort='20'>20</td></tr><tr><td>Emily Appleton</td><td>W50 Nottingham</td><td>QF</td><td data-sort='11'>11</td></tr><tr><td>Vic Allen</td><td>W50 Nottingham</td><td>QF</td><td data-sort='11'>11</td></tr><tr><td>Amelie Brooks</td><td>W50 Nottingham</td><td>R16 (Q)</td><td data-sort='8'>8</td></tr><tr><td>Leticia Romanova</td><td>W50 Nottingham</td><td>R16 (Q)</td><td data-sort='8'>8</td></tr><tr><td>Esther Adeshina</td><td>W50 Nottingham</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Alice Gillan</td><td>W50 Nottingham</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Indi Spink</td><td>W50 Nottingham</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Brooke Black</td><td>W50 Nottingham</td><td>R16 (WC)</td><td data-sort='6'>6</td></tr><tr><td>Ella Mcdonald</td><td>W50 Nottingham</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Eliz Maloney</td><td>W50 Nottingham</td><td>R32 (Q)</td><td data-sort='2'>2</td></tr><tr><td>Mia Wainwright</td><td>W50 Nottingham</td><td>R32 (Q)</td><td data-sort='2'>2</td></tr><tr><td>Ciara Moore</td><td>W50 Nottingham</td><td>QR2 (Q)</td><td data-sort='1'>1</td></tr><tr><td>Lily Hutchings</td><td>W50 Nottingham</td><td>QR2 (Q)</td><td data-sort='1'>1</td></tr><tr><td>Marelie Raath</td><td>W50 Nottingham</td><td>QR2 (QWC)</td><td data-sort='1'>1</td></tr><tr><td>Mimi Xu</td><td>W50 Nottingham</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Tegan Bush</td><td>W50 Nottingham</td><td>R1 (WC)</td><td data-sort='1'>1</td></tr><tr><td>Lauryn John-Baptiste</td><td>W50 Nottingham</td><td>R32 (WC)</td><td data-sort='1'>1</td></tr><tr><td>Mika Stojsavljevic</td><td>W50 Nottingham</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Georgiana Mititelu</td><td>W50 Nottingham</td><td>QR2 (Q)</td><td data-sort='1'>1</td></tr><tr><td>Melissa Boyden</td><td>W35 Buzau</td><td>R16 (WC)</td><td data-sort='4'>4</td></tr><tr><td>Vic Allen</td><td>W35 Don Benito</td><td>QF</td><td data-sort='8'>8</td></tr><tr><td>Georgina Hays</td><td>W35 Don Benito</td><td>R16 (Q)</td><td data-sort='4'>4</td></tr><tr><td>Jodie Burrage</td><td>W35 Don Benito</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Scarlet Kavanagh</td><td>W35 Don Benito</td><td>R32 (Q)</td><td data-sort='1'>1</td></tr><tr><td>Isabella Wong</td><td>W35 Hillcrest</td><td>R32 (Q)</td><td data-sort='1'>1</td></tr><tr><td>Eva Shaw</td><td>W15 Monastir</td><td>R16 (Q)</td><td data-sort='1'>1</td></tr></tbody></table></details>
             <details id="details_notcounted_39"
                      onclick="toggleArrow('details_notcounted_39', 'arrow_notcounted_39')">
                 <summary>
