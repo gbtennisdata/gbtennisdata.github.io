@@ -32,10 +32,13 @@
 <div id="header-banner"></div>
 <h2>Women's Summary</h2>
 Age: <select id="age-filter"></select>
-    Change: <select id="weekchange-filter"></select>
-    This week: <select id="thisweek-filter"></select>
-    Next week:<select id="nextweek-filter"></select>
+Change: <select id="weekchange-filter"></select>
+This week: <select id="thisweek-filter"></select>
+Next week: <select id="nextweek-filter"></select>
+<span id="followingweek-container">
     Following week: <select id="followingweek-filter"></select>
+</span>
+
     
 <table class="dataframe">
   <thead>
@@ -46,7 +49,6 @@ Age: <select id="age-filter"></select>
       <th>Age</th>
       <th>This Week</th>
       <th>Next Week</th>
-      <th>Following week</th>
       <th>Next counting to drop</th>
       <th>18th counter</th>
       <th>19th counter</th>
@@ -62,7 +64,6 @@ Age: <select id="age-filter"></select>
       <td>23</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td>195 pts on 27 Jul 2026</td>
       <td>1</td>
       <td>1</td>
@@ -74,8 +75,7 @@ Age: <select id="age-filter"></select>
       <td>67</td>
       <td></td>
       <td>29</td>
-      <td> </td>
-      <td>WTA500 Washington DC Qualifying</td>
+      <td>WTA500 Washington DC</td>
       <td>WTA 1000 Toronto</td>
       <td>10 pts on 14 Aug 2026</td>
       <td>25</td>
@@ -88,7 +88,6 @@ Age: <select id="age-filter"></select>
       <td>113</td>
       <td>1</td>
       <td>25</td>
-      <td>WTA125 Palermo</td>
       <td>WTA125 Targu Mures</td>
       <td>WTT W75 Leipzig</td>
       <td>125 pts on 27 Jul 2026</td>
@@ -104,7 +103,6 @@ Age: <select id="age-filter"></select>
       <td>24</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td>10 pts on 24 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -116,7 +114,6 @@ Age: <select id="age-filter"></select>
       <td>143</td>
       <td>9</td>
       <td>29</td>
-      <td>WTA250 Prague (D)</td>
       <td>WTA125 Vancouver</td>
       <td>WTT W100 Landisville, PA</td>
       <td>20 pts on 14 Sep 2026</td>
@@ -130,8 +127,7 @@ Age: <select id="age-filter"></select>
       <td>200</td>
       <td>-29</td>
       <td>27</td>
-      <td> </td>
-      <td> </td>
+      <td>WTA500 Washington DC Qualifying</td>
       <td> </td>
       <td>2 pts on 14 Aug 2026</td>
       <td>1</td>
@@ -144,7 +140,6 @@ Age: <select id="age-filter"></select>
       <td>224</td>
       <td>19</td>
       <td>23</td>
-      <td> </td>
       <td>WTT W50 Dublin</td>
       <td>WTT W75 Ourense</td>
       <td>35 pts on 24 Aug 2026</td>
@@ -160,7 +155,6 @@ Age: <select id="age-filter"></select>
       <td>17</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td>14 pts on 12 Oct 2026</td>
       <td>1</td>
       <td>–</td>
@@ -172,7 +166,6 @@ Age: <select id="age-filter"></select>
       <td>327</td>
       <td>-1</td>
       <td>18</td>
-      <td> </td>
       <td>WTT W35 Aldershot</td>
       <td>WTT W35 Roehampton</td>
       <td>4 pts on 24 Aug 2026</td>
@@ -188,7 +181,6 @@ Age: <select id="age-filter"></select>
       <td>30</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td>14 pts on 14 Aug 2026</td>
       <td>1</td>
       <td>1</td>
@@ -200,7 +192,6 @@ Age: <select id="age-filter"></select>
       <td>371</td>
       <td>43</td>
       <td>17</td>
-      <td> </td>
       <td>WTT W35 Aldershot</td>
       <td>WTT W35 Roehampton</td>
       <td>23 pts on 24 Aug 2026</td>
@@ -214,7 +205,6 @@ Age: <select id="age-filter"></select>
       <td>377</td>
       <td>56</td>
       <td>28</td>
-      <td> </td>
       <td>WTT W35 Aldershot</td>
       <td>WTT W35 Roehampton</td>
       <td>4 pts on 24 Aug 2026</td>
@@ -228,7 +218,6 @@ Age: <select id="age-filter"></select>
       <td>430</td>
       <td>29</td>
       <td>25</td>
-      <td>LTA Summer County Cup (Derbyshire), Group 3</td>
       <td>WTT W50 Dublin</td>
       <td>WTT W35 Roehampton</td>
       <td>10 pts on 24 Aug 2026</td>
@@ -242,9 +231,8 @@ Age: <select id="age-filter"></select>
       <td>475</td>
       <td>-5</td>
       <td>34</td>
-      <td> </td>
       <td>WTA500 Washington DC Qualifying</td>
-      <td>WTT W100 Landisville, PA Alternate</td>
+      <td>WTT W100 Landisville, PA (Alternate)</td>
       <td>2 pts on 24 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -256,7 +244,6 @@ Age: <select id="age-filter"></select>
       <td>488</td>
       <td>2</td>
       <td>24</td>
-      <td>LTA Summer County Cup (Hampshire &amp; IOW), Group 3</td>
       <td>WTT W50 Dublin</td>
       <td>WTT W35 Roehampton</td>
       <td>6 pts on 24 Aug 2026</td>
@@ -270,8 +257,7 @@ Age: <select id="age-filter"></select>
       <td>503</td>
       <td></td>
       <td>22</td>
-      <td>WTT W100 Evansville Qualifying</td>
-      <td>WTT W35 Florence, SC</td>
+      <td>WTA250 Memphis Qualifying</td>
       <td>WTT W35 Southaven, MS</td>
       <td>5 pts on 19 Oct 2026</td>
       <td>–</td>
@@ -284,7 +270,6 @@ Age: <select id="age-filter"></select>
       <td>505</td>
       <td>-27</td>
       <td>24</td>
-      <td>LTA Summer County Cup (Nottinghamshire), Group 1</td>
       <td>WTT W50 Dublin</td>
       <td>WTT W35 Roehampton</td>
       <td>4 pts on 24 Aug 2026</td>
@@ -298,7 +283,6 @@ Age: <select id="age-filter"></select>
       <td>508</td>
       <td>24</td>
       <td>26</td>
-      <td>WTA125 Palermo (D)</td>
       <td>WTT W35 Aldershot</td>
       <td>WTT W35 Roehampton</td>
       <td>1 pts on 24 Aug 2026</td>
@@ -312,7 +296,6 @@ Age: <select id="age-filter"></select>
       <td>529</td>
       <td>11</td>
       <td>20</td>
-      <td>LTA Summer County Cup (Lancashire), Group 2</td>
       <td>WTT W50 Dublin</td>
       <td>WTT W35 Roehampton</td>
       <td>1 pts on 14 Sep 2026</td>
@@ -328,7 +311,6 @@ Age: <select id="age-filter"></select>
       <td>21</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td>1 pts on 14 Sep 2026</td>
       <td>1</td>
       <td>–</td>
@@ -340,7 +322,6 @@ Age: <select id="age-filter"></select>
       <td>601</td>
       <td>-2</td>
       <td>31</td>
-      <td> </td>
       <td> </td>
       <td>WTT W35 Roehampton Qualifying</td>
       <td>8 pts on 24 Aug 2026</td>
@@ -354,7 +335,6 @@ Age: <select id="age-filter"></select>
       <td>606</td>
       <td>-5</td>
       <td>23</td>
-      <td>LTA Summer County Cup (Hertfordshire), Group 1</td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td>WTT W35 Roehampton Qualifying</td>
       <td>8 pts on 24 Aug 2026</td>
@@ -370,7 +350,6 @@ Age: <select id="age-filter"></select>
       <td>23</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td>1 pts on 14 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -382,8 +361,7 @@ Age: <select id="age-filter"></select>
       <td>636</td>
       <td>-31</td>
       <td>27</td>
-      <td> </td>
-      <td>WTT W35 Aldershot Qualifying</td>
+      <td>WTT W35 Aldershot</td>
       <td>WTT W35 Roehampton Qualifying</td>
       <td>4 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -396,7 +374,6 @@ Age: <select id="age-filter"></select>
       <td>709</td>
       <td>11</td>
       <td>18</td>
-      <td>WTT W15 Nogent-sur-Marne</td>
       <td>WTT W75 Hechingen Qualifying</td>
       <td>WTT W35 Roehampton Qualifying</td>
       <td>1 pts on 24 Aug 2026</td>
@@ -410,7 +387,6 @@ Age: <select id="age-filter"></select>
       <td>811</td>
       <td>53</td>
       <td>18</td>
-      <td> </td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td>WTT W35 Roehampton Qualifying</td>
       <td>9 pts on 24 Aug 2026</td>
@@ -424,7 +400,6 @@ Age: <select id="age-filter"></select>
       <td>814</td>
       <td>8</td>
       <td>26</td>
-      <td>LTA Summer County Cup (Middlesex), Group 1</td>
       <td> </td>
       <td>WTT W35 Roehampton Qualifying</td>
       <td>5 pts on 19 Oct 2026</td>
@@ -438,7 +413,6 @@ Age: <select id="age-filter"></select>
       <td>820</td>
       <td>11</td>
       <td>25</td>
-      <td> </td>
       <td>WTT W50 Dublin Qualifying</td>
       <td>WTT W35 Roehampton Qualifying</td>
       <td>4 pts on 8 Feb 2027</td>
@@ -452,7 +426,6 @@ Age: <select id="age-filter"></select>
       <td>876</td>
       <td>44</td>
       <td>27</td>
-      <td> </td>
       <td>WTT W50 Dublin Qualifying</td>
       <td>WTT W35 Roehampton Qualifying</td>
       <td>2 pts on 14 Aug 2026</td>
@@ -466,7 +439,6 @@ Age: <select id="age-filter"></select>
       <td>913</td>
       <td>1</td>
       <td>18</td>
-      <td>LTA Summer County Cup (Lincolnshire), Group 4</td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td>WTT W35 Roehampton Qualifying</td>
       <td>1 pts on 26 Oct 2026</td>
@@ -480,9 +452,8 @@ Age: <select id="age-filter"></select>
       <td>1020</td>
       <td>157</td>
       <td>19</td>
-      <td> </td>
       <td>WTT W35 Aldershot Qualifying</td>
-      <td>WTT W35 Roehampton Alternate</td>
+      <td>WTT W35 Roehampton (Alternate)</td>
       <td>3 pts on 26 Oct 2026</td>
       <td>–</td>
       <td>–</td>
@@ -494,9 +465,8 @@ Age: <select id="age-filter"></select>
       <td>1126</td>
       <td>1</td>
       <td>19</td>
-      <td> </td>
       <td>WTT W35 Aldershot Qualifying</td>
-      <td>WTT W35 Roehampton Alternate 7</td>
+      <td>WTT W35 Roehampton (Alternate 6)</td>
       <td>1 pts on 24 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -508,7 +478,6 @@ Age: <select id="age-filter"></select>
       <td>1138</td>
       <td>1</td>
       <td>28</td>
-      <td>LTA Summer County Cup (Nottinghamshire), Group 1</td>
       <td>WTT W100 Gran Canaria-Maspalomas (Doubles)</td>
       <td> </td>
       <td>3 pts on 14 Aug 2026</td>
@@ -522,9 +491,8 @@ Age: <select id="age-filter"></select>
       <td>1154</td>
       <td>-44</td>
       <td>26</td>
-      <td> </td>
       <td>WTT W50 Dublin Qualifying</td>
-      <td>WTT W35 Roehampton Alternate 4</td>
+      <td>WTT W35 Roehampton (Alternate 4)</td>
       <td>1 pts on 14 Sep 2026</td>
       <td>–</td>
       <td>–</td>
@@ -536,7 +504,6 @@ Age: <select id="age-filter"></select>
       <td>1190</td>
       <td>-15</td>
       <td>17</td>
-      <td> </td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td> </td>
       <td>1 pts on 24 Aug 2026</td>
@@ -550,9 +517,8 @@ Age: <select id="age-filter"></select>
       <td>1215</td>
       <td>2</td>
       <td>18</td>
-      <td> </td>
       <td>WTT W35 Aldershot Qualifying</td>
-      <td>WTT W35 Roehampton Alternate 4</td>
+      <td>WTT W35 Roehampton (Alternate)</td>
       <td>5 pts on 24 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -564,8 +530,7 @@ Age: <select id="age-filter"></select>
       <td>1235</td>
       <td>IN</td>
       <td>18</td>
-      <td>LTA Summer County Cup (Kent), Group 2</td>
-      <td>WTT W35 Aldershot (Alternate 6)</td>
+      <td>WTT W35 Aldershot (Alternate 2)</td>
       <td> </td>
       <td>1 pts on 3 May 2027</td>
       <td>–</td>
@@ -578,7 +543,6 @@ Age: <select id="age-filter"></select>
       <td>1244</td>
       <td>155</td>
       <td>23</td>
-      <td>WTT W15 Cluj Napoca Qualifying</td>
       <td>WTT W15 Savitaipale Qualifying</td>
       <td>WTT W15 Hameenlinna Qualifying</td>
       <td>1 pts on 7 Dec 2026</td>
@@ -592,9 +556,8 @@ Age: <select id="age-filter"></select>
       <td>1248</td>
       <td>-65</td>
       <td>19</td>
-      <td> </td>
       <td>WTT W35 Aldershot Qualifying</td>
-      <td>WTT W35 Roehampton Alternate 4</td>
+      <td>WTT W35 Roehampton (Alternate)</td>
       <td>1 pts on 21 Sep 2026</td>
       <td>–</td>
       <td>–</td>
@@ -608,7 +571,6 @@ Age: <select id="age-filter"></select>
       <td>25</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td>1 pts on 14 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -620,8 +582,7 @@ Age: <select id="age-filter"></select>
       <td>1346</td>
       <td>IN</td>
       <td>19</td>
-      <td>LTA Summer County Cup (Middlesex), Group 1</td>
-      <td>WTT W35 Aldershot (Alternate 1)</td>
+      <td>WTT W35 Aldershot Qualifying</td>
       <td> </td>
       <td>1 pts on 7 Dec 2026</td>
       <td>–</td>
@@ -634,7 +595,6 @@ Age: <select id="age-filter"></select>
       <td>1359</td>
       <td>-1</td>
       <td>29</td>
-      <td>LTA Summer County Cup (Northumberland), Group 1</td>
       <td> </td>
       <td> </td>
       <td>3 pts on 24 Aug 2026</td>
@@ -648,7 +608,6 @@ Age: <select id="age-filter"></select>
       <td>1383</td>
       <td>2</td>
       <td>42</td>
-      <td>WTA125 Palermo Qualifying &amp; Doubles</td>
       <td>WTA125 Targu Mures (Doubles)</td>
       <td> </td>
       <td>1 pts on 14 Aug 2026</td>
@@ -662,7 +621,6 @@ Age: <select id="age-filter"></select>
       <td>1482</td>
       <td>1</td>
       <td>22</td>
-      <td>WTT W15 Cluj Napoca Qualifying</td>
       <td>WTT W15 Rogaska Slatina Qualifying</td>
       <td> </td>
       <td>1 pts on 24 Aug 2026</td>
@@ -676,7 +634,6 @@ Age: <select id="age-filter"></select>
       <td>1482</td>
       <td>28</td>
       <td>23</td>
-      <td>LTA Summer County Cup (Lancashire), Group 2</td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td> </td>
       <td>1 pts on 24 Aug 2026</td>
@@ -690,7 +647,6 @@ Age: <select id="age-filter"></select>
       <td>1504</td>
       <td>1</td>
       <td>20</td>
-      <td> </td>
       <td>W15 Astana Qualifying</td>
       <td>WTT W15 Astana Qualifying</td>
       <td>1 pts on 16 Nov 2026</td>
@@ -704,7 +660,6 @@ Age: <select id="age-filter"></select>
       <td>1510</td>
       <td></td>
       <td>21</td>
-      <td> </td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td> </td>
       <td>1 pts on 24 Aug 2026</td>
@@ -720,7 +675,6 @@ Age: <select id="age-filter"></select>
       <td>25</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td>1 pts on 24 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -732,7 +686,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td>OUT</td>
       <td>28</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 28 Sep 2026</td>
@@ -748,7 +701,6 @@ Age: <select id="age-filter"></select>
       <td>21</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td>1 pts on 24 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -760,9 +712,8 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>31</td>
-      <td> </td>
       <td>WTA500 Washington DC (Doubles)</td>
-      <td> </td>
+      <td>WTA 1000 Toronto (Doubles)</td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -774,9 +725,8 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>29</td>
-      <td>WTA250 Hamburg (D)</td>
       <td>WTA125 Targu Mures (Doubles)</td>
-      <td> </td>
+      <td>WTA125 Warsaw (Doubles)</td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -788,7 +738,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>32</td>
-      <td>WTA250 Prague (D) / LTA Summer County Cup (Gloucestershire), Group 3</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -802,9 +751,8 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>28</td>
-      <td>WTA250 Prague (D) / LTA Summer County Cup (West of Scotland), Group 2</td>
       <td>WTA250 Memphis (Doubles)</td>
-      <td> </td>
+      <td>WTA 1000 Toronto (Doubles)</td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -816,7 +764,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>38</td>
-      <td>WTA250 Prague (D)</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -830,7 +777,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>17</td>
-      <td>LTA Summer County Cup (Essex), Group 4</td>
       <td> </td>
       <td> </td>
       <td>4 pts on 17 May 2027</td>
@@ -846,7 +792,6 @@ Age: <select id="age-filter"></select>
       <td>30</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td>4 pts on 22 Feb 2027</td>
       <td>–</td>
       <td>–</td>
@@ -858,8 +803,7 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>22</td>
-      <td> </td>
-      <td>WTT W35 Aldershot (Alternate 9)</td>
+      <td>WTT W35 Aldershot (Alternate 5)</td>
       <td> </td>
       <td>1 pts on 21 Dec 2026</td>
       <td>–</td>
@@ -874,7 +818,6 @@ Age: <select id="age-filter"></select>
       <td>23</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -886,7 +829,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>17</td>
-      <td>WT J300 Bytom</td>
       <td> </td>
       <td> </td>
       <td>2 pts on 3 May 2027</td>
@@ -902,7 +844,6 @@ Age: <select id="age-filter"></select>
       <td>18</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td>1 pts on 7 Dec 2026</td>
       <td>–</td>
       <td>–</td>
@@ -914,8 +855,7 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>19</td>
-      <td>LTA Summer County Cup (Hertfordshire), Group 1</td>
-      <td>WTT W35 Aldershot (Alternate 10)</td>
+      <td>WTT W35 Aldershot (Alternate 6)</td>
       <td> </td>
       <td>1 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -928,7 +868,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>15</td>
-      <td>WT J300 Bytom Qualifying</td>
       <td> </td>
       <td> </td>
       <td>1 pts on 14 Jun 2027</td>
@@ -942,8 +881,7 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>22</td>
-      <td>LTA Summer County Cup (Yorkshire), Group 2</td>
-      <td>WTT W35 Aldershot (Alternate 13)</td>
+      <td>WTT W35 Aldershot (Alternate 9)</td>
       <td> </td>
       <td>1 pts on 14 Jun 2027</td>
       <td>–</td>
@@ -958,7 +896,6 @@ Age: <select id="age-filter"></select>
       <td>15</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td>1 pts on 14 Jun 2027</td>
       <td>–</td>
       <td>–</td>
@@ -970,7 +907,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>19</td>
-      <td>LTA Summer County Cup (Hertfordshire), Group 1</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -984,7 +920,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>19</td>
-      <td> </td>
       <td>WTT W50 Dublin Qualifying</td>
       <td> </td>
       <td>1 pts on 24 Aug 2026</td>
@@ -1000,7 +935,6 @@ Age: <select id="age-filter"></select>
       <td>20</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1014,7 +948,6 @@ Age: <select id="age-filter"></select>
       <td>26</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1026,8 +959,7 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>18</td>
-      <td> </td>
-      <td> </td>
+      <td>UTR Pro Summer Slam Columbus, OH</td>
       <td> </td>
       <td>1 pts on 12 Jul 2027</td>
       <td>–</td>
@@ -1040,8 +972,7 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>21</td>
-      <td> </td>
-      <td>WTT W35 Aldershot (Alternate 14)</td>
+      <td>WTT W35 Aldershot (Alternate 10)</td>
       <td> </td>
       <td>1 pts on 12 Jul 2027</td>
       <td>–</td>
@@ -1054,7 +985,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>20</td>
-      <td>LTA Summer County Cup (Middlesex), Group 1</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1070,7 +1000,6 @@ Age: <select id="age-filter"></select>
       <td>23</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1083,7 +1012,6 @@ Age: <select id="age-filter"></select>
       <td> </td>
       <td>20</td>
       <td> </td>
-      <td>WTT W35 Aldershot (Alternate 5)</td>
       <td> </td>
       <td>1 pts on 21 Dec 2026</td>
       <td>–</td>
@@ -1096,8 +1024,7 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>17</td>
-      <td> </td>
-      <td>WTT W35 Aldershot (Alternate 11)</td>
+      <td>WTT W35 Aldershot (Alternate 7)</td>
       <td> </td>
       <td>1 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -1110,7 +1037,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>18</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 15 Mar 2027</td>
@@ -1126,7 +1052,6 @@ Age: <select id="age-filter"></select>
       <td>18</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td>1 pts on 12 Oct 2026</td>
       <td>–</td>
       <td>–</td>
@@ -1138,7 +1063,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>24</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 26 Oct 2026</td>
@@ -1154,7 +1078,6 @@ Age: <select id="age-filter"></select>
       <td>19</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td>1 pts on 16 Nov 2026</td>
       <td>–</td>
       <td>–</td>
@@ -1168,7 +1091,6 @@ Age: <select id="age-filter"></select>
       <td>20</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1180,7 +1102,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>23</td>
-      <td>LTA Summer County Cup (Somerset), Group 2</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1194,7 +1115,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>18</td>
-      <td>WTT W15 Las Palmas de Gran Canaria Qualifying</td>
       <td> </td>
       <td> </td>
       <td>1 pts on 12 Jul 2027</td>
@@ -1210,7 +1130,6 @@ Age: <select id="age-filter"></select>
       <td>15</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1222,8 +1141,7 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>18</td>
-      <td>LTA Summer County Cup (Hertfordshire), Group 1</td>
-      <td>WTT W35 Aldershot (Alternate 2)</td>
+      <td>WTT W35 Aldershot Qualifying</td>
       <td> </td>
       <td>1 pts on 19 Jul 2027</td>
       <td>–</td>
@@ -1237,7 +1155,6 @@ Age: <select id="age-filter"></select>
       <td> </td>
       <td>17</td>
       <td>WTT W15 Brisbane Qualifying</td>
-      <td>WTT W15 Brisbane Qualifying</td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1250,8 +1167,7 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>18</td>
-      <td> </td>
-      <td>WTT W35 Aldershot (Alternate 12)</td>
+      <td>WTT W35 Aldershot (Alternate 8)</td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1264,7 +1180,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>20</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1280,7 +1195,6 @@ Age: <select id="age-filter"></select>
       <td>20</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1292,7 +1206,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>18</td>
-      <td>LTA Summer County Cup (South Wales), Group 5</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1308,7 +1221,6 @@ Age: <select id="age-filter"></select>
       <td>19</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1320,7 +1232,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>20</td>
-      <td>LTA Summer County Cup (Leicestershire), Group 3</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1334,7 +1245,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>21</td>
-      <td>WTT W15 Las Palmas de Gran Canaria Qualifying</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1348,7 +1258,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>21</td>
-      <td>LTA Summer County Cup (Middlesex), Group 1</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1364,7 +1273,6 @@ Age: <select id="age-filter"></select>
       <td>20</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1376,9 +1284,8 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>24</td>
-      <td>LTA Summer County Cup (Durham &amp; Cleveland), Group 5</td>
       <td> </td>
-      <td> </td>
+      <td>British Tour Newcastle</td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1390,7 +1297,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>18</td>
-      <td>LTA Summer County Cup (Surrey), Group 1</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1404,7 +1310,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>15</td>
-      <td> </td>
       <td>British Tour Ilkley</td>
       <td>WT J100 Maaseik</td>
       <td></td>
@@ -1420,7 +1325,6 @@ Age: <select id="age-filter"></select>
       <td>17</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1432,7 +1336,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>16</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1448,7 +1351,6 @@ Age: <select id="age-filter"></select>
       <td>32</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1460,8 +1362,7 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>21</td>
-      <td> </td>
-      <td> </td>
+      <td>WTT W50 Dublin (Alternate 3)</td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1474,7 +1375,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>19</td>
-      <td>LTA Summer County Cup (Hertfordshire), Group 1</td>
       <td> </td>
       <td> </td>
       <td>1 pts on 19 Jul 2027</td>
@@ -1488,8 +1388,7 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>20</td>
-      <td>LTA Summer County Cup (Hertfordshire), Group 1</td>
-      <td> </td>
+      <td>UTR PTT Budapest</td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1502,7 +1401,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>21</td>
-      <td>LTA Summer County Cup (Middlesex), Group 1</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1516,7 +1414,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>15</td>
-      <td>LTA Summer County Cup (Surrey), Group 1</td>
       <td> </td>
       <td>WT J200 Rutesheim</td>
       <td></td>
@@ -1530,7 +1427,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>26</td>
-      <td>LTA Summer County Cup (Kent), Group 2</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1544,7 +1440,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>27</td>
-      <td>LTA Summer County Cup (Yorkshire), Group 2</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1558,7 +1453,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>23</td>
-      <td>LTA Summer County Cup (Somerset), Group 2</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1572,7 +1466,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>16</td>
-      <td>LTA Summer County Cup (Lancashire), Group 2</td>
       <td>British Tour Ilkley</td>
       <td> </td>
       <td></td>
@@ -1586,7 +1479,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>27</td>
-      <td>LTA Summer County Cup (Berkshire), Group 3</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1600,7 +1492,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>16</td>
-      <td>WT J300 Bytom Qualifying</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1614,7 +1505,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>39</td>
-      <td>LTA Summer County Cup (Lancashire), Group 2</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1628,7 +1518,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>21</td>
-      <td>LTA Summer County Cup (Yorkshire), Group 2</td>
       <td>British Tour Ilkley</td>
       <td> </td>
       <td></td>
@@ -1644,7 +1533,6 @@ Age: <select id="age-filter"></select>
       <td>22</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1656,7 +1544,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>19</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1672,7 +1559,6 @@ Age: <select id="age-filter"></select>
       <td>15</td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1684,7 +1570,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>19</td>
-      <td>WTT W15 Las Palmas de Gran Canaria Qualifying</td>
       <td>British Tour Ilkley</td>
       <td> </td>
       <td></td>
@@ -1698,7 +1583,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>17</td>
-      <td>WTT W15 Las Palmas de Gran Canaria Qualifying</td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1713,7 +1597,6 @@ Age: <select id="age-filter"></select>
       <td> </td>
       <td>17</td>
       <td> </td>
-      <td> </td>
       <td>WTJ100 Harare</td>
       <td></td>
       <td>–</td>
@@ -1726,7 +1609,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>16</td>
-      <td> </td>
       <td> </td>
       <td>WTJ100 Harare</td>
       <td></td>
@@ -1741,7 +1623,6 @@ Age: <select id="age-filter"></select>
       <td> </td>
       <td>16</td>
       <td> </td>
-      <td> </td>
       <td>WT J100 Maaseik</td>
       <td></td>
       <td>–</td>
@@ -1754,8 +1635,7 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>16</td>
-      <td> </td>
-      <td>British Tour Ilkley</td>
+      <td>British Tour Ilkley Qualifying</td>
       <td>WT J100 Maaseik</td>
       <td></td>
       <td>–</td>
@@ -1769,7 +1649,6 @@ Age: <select id="age-filter"></select>
       <td> </td>
       <td>15</td>
       <td> </td>
-      <td> </td>
       <td>WT J100 Istanbul</td>
       <td></td>
       <td>–</td>
@@ -1782,7 +1661,6 @@ Age: <select id="age-filter"></select>
       <td>–</td>
       <td> </td>
       <td>17</td>
-      <td> </td>
       <td>British Tour Ilkley</td>
       <td>WT J100 Istanbul</td>
       <td></td>
@@ -1797,8 +1675,33 @@ Age: <select id="age-filter"></select>
       <td> </td>
       <td>17</td>
       <td> </td>
-      <td> </td>
       <td>WT J100 Vienna</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Chloe Cleaver</td>
+      <td>–</td>
+      <td> </td>
+      <td>–</td>
+      <td>WTT W50 Dublin Qualifying</td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Teodora Prisadnikova</td>
+      <td>–</td>
+      <td> </td>
+      <td>–</td>
+      <td> </td>
+      <td>British Tour Newcastle</td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1812,14 +1715,44 @@ Age: <select id="age-filter"></select>
 <script>
 const gender = "women";
 
+function getColumnIndexes() {
+    const header = document.querySelector("table tr");
+    const indexes = {};
+
+    if (!header) return indexes;
+
+    [...header.children].forEach((cell, i) => {
+        const name = cell.textContent.trim().toLowerCase();
+
+        if (name === "age") indexes.age = i;
+        if (name === "week change") indexes.weekchange = i;
+        if (name === "this week") indexes.thisweek = i;
+        if (name === "next week") indexes.nextweek = i;
+        if (name === "following week") indexes.followingweek = i;
+    });
+
+    return indexes;
+}
+
 // -------------------------------
 // COLUMN INDEXES
 // -------------------------------
-const COL_AGE = 3;
-const COL_WEEKCHANGE = 2;
-const COL_THISWEEK = 4;
-const COL_NEXTWEEK = 5;
-const COL_FOLLOWINGWEEK = 6;
+let COL_AGE;
+let COL_WEEKCHANGE;
+let COL_THISWEEK;
+let COL_NEXTWEEK;
+let COL_FOLLOWINGWEEK;
+
+function initColumnIndexes() {
+    const cols = getColumnIndexes();
+
+    COL_AGE = cols.age;
+    COL_WEEKCHANGE = cols.weekchange;
+    COL_THISWEEK = cols.thisweek;
+    COL_NEXTWEEK = cols.nextweek;
+    COL_FOLLOWINGWEEK = cols.followingweek; // may be undefined
+}
+
 
 function getColumnCounts(colIndex, classifier) {
     const rows = document.querySelectorAll("table tr");
@@ -2308,18 +2241,31 @@ function buildFilters(gender) {
     const wcCounts   = getColumnCounts(COL_WEEKCHANGE, classifyWeekChange);
     populateDropdown("weekchange-filter", wcValues, wcCounts);
 
-    // THIS / NEXT / FOLLOWING WEEK
+    // THIS WEEK
     const twValues   = getColumnValues(COL_THISWEEK, eventClassifier);
     const twCounts   = getColumnCounts(COL_THISWEEK, eventClassifier);
+    populateDropdown("thisweek-filter", twValues, twCounts);
+
+    // NEXT WEEK
     const nwValues   = getColumnValues(COL_NEXTWEEK, eventClassifier);
     const nwCounts   = getColumnCounts(COL_NEXTWEEK, eventClassifier);
-    const fwValues   = getColumnValues(COL_FOLLOWINGWEEK, eventClassifier);
-    const fwCounts   = getColumnCounts(COL_FOLLOWINGWEEK, eventClassifier);
-
-    populateDropdown("thisweek-filter", twValues, twCounts);
     populateDropdown("nextweek-filter", nwValues, nwCounts);
-    populateDropdown("followingweek-filter", fwValues, fwCounts);
+
+    // FOLLOWING WEEK (optional)
+    const fwContainer = document.getElementById("followingweek-container");
+
+    if (COL_FOLLOWINGWEEK !== undefined) {
+        const fwValues = getColumnValues(COL_FOLLOWINGWEEK, eventClassifier);
+        const fwCounts = getColumnCounts(COL_FOLLOWINGWEEK, eventClassifier);
+        populateDropdown("followingweek-filter", fwValues, fwCounts);
+        fwContainer.style.display = "";
+    } else {
+        fwContainer.style.display = "none";
+    }
 }
+
+
+
 
 // -------------------------------
 // APPLY FILTERS
@@ -2328,10 +2274,10 @@ function applyFilters(gender) {
     const eventClassifier = gender === "men" ? classifyEventMen : classifyEventWomen;
 
     const ageF = document.getElementById("age-filter").value;
-    const wcF = document.getElementById("weekchange-filter").value;
-    const twF = document.getElementById("thisweek-filter").value;
-    const nwF = document.getElementById("nextweek-filter").value;
-    const fwF = document.getElementById("followingweek-filter").value;
+    const wcF  = document.getElementById("weekchange-filter").value;
+    const twF  = document.getElementById("thisweek-filter").value;
+    const nwF  = document.getElementById("nextweek-filter").value;
+    const fwF  = document.getElementById("followingweek-filter").value;
 
     const rows = document.querySelectorAll("table tr");
 
@@ -2339,17 +2285,22 @@ function applyFilters(gender) {
         if (row.querySelector("th")) return;
 
         const age = classifyAge(row.children[COL_AGE].textContent.trim());
-        const wc = classifyWeekChange(row.children[COL_WEEKCHANGE].textContent.trim());
-        const tw = eventClassifier(row.children[COL_THISWEEK].textContent.trim());
-        const nw = eventClassifier(row.children[COL_NEXTWEEK].textContent.trim());
-        const fw = eventClassifier(row.children[COL_FOLLOWINGWEEK].textContent.trim());
+        const wc  = classifyWeekChange(row.children[COL_WEEKCHANGE].textContent.trim());
+        const tw  = eventClassifier(row.children[COL_THISWEEK].textContent.trim());
+        const nw  = eventClassifier(row.children[COL_NEXTWEEK].textContent.trim());
+
+        let fw = [];
+        if (COL_FOLLOWINGWEEK !== undefined &&
+            row.children.length > COL_FOLLOWINGWEEK) {
+            fw = eventClassifier(row.children[COL_FOLLOWINGWEEK].textContent.trim());
+        }
 
         const show =
             (!ageF || age.includes(ageF)) &&
-            (!wcF || wcF === wc) &&
-            (!twF || tw.includes(twF)) &&
-            (!nwF || nw.includes(nwF)) &&
-            (!fwF || fw.includes(fwF));
+            (!wcF  || wcF === wc) &&
+            (!twF  || tw.includes(twF)) &&
+            (!nwF  || nw.includes(nwF)) &&
+            (!fwF  || fw.includes(fwF));
 
         row.style.display = show ? "" : "none";
     });
@@ -2360,17 +2311,22 @@ function applyFilters(gender) {
 // -------------------------------
 ["age-filter", "weekchange-filter", "thisweek-filter", "nextweek-filter", "followingweek-filter"]
     .forEach(id => {
-        document.getElementById(id).addEventListener("change", () => applyFilters(window.genderSetting));
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener("change", () => applyFilters(window.genderSetting));
+        }
     });
 
 // -------------------------------
 // INITIALISE
 // -------------------------------
 function initFilters(gender) {
+    initColumnIndexes();   
     window.genderSetting = gender;
     buildFilters(gender);
 }
 </script>
+
 
 
 
