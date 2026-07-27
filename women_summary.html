@@ -26,20 +26,10 @@
         padding: 6px;
     }
     </style>
-
 </head>
 <body>
 <div id="header-banner"></div>
 <h2>Women's Summary</h2>
-Age: <select id="age-filter"></select>
-Change: <select id="weekchange-filter"></select>
-This week: <select id="thisweek-filter"></select>
-Next week: <select id="nextweek-filter"></select>
-<span id="followingweek-container">
-    Following week: <select id="followingweek-filter"></select>
-</span>
-
-    
 <table class="dataframe">
   <thead>
     <tr style="text-align: center;">
@@ -59,21 +49,21 @@ Next week: <select id="nextweek-filter"></select>
   <tbody>
     <tr>
       <td>Emma Raducanu</td>
-      <td>37</td>
-      <td>1</td>
+      <td>49</td>
+      <td>-12</td>
       <td>23</td>
       <td> </td>
       <td> </td>
-      <td>195 pts on 27 Jul 2026</td>
+      <td>65 pts on 14 Aug 2026</td>
       <td>1</td>
-      <td>1</td>
+      <td>–</td>
       <td>10</td>
       <td>Last played week 23 at Queens (reported shin injury)</td>
     </tr>
     <tr>
       <td>Katie Boulter</td>
-      <td>67</td>
-      <td></td>
+      <td>69</td>
+      <td>-1</td>
       <td>29</td>
       <td>WTA500 Washington DC</td>
       <td>WTA 1000 Toronto</td>
@@ -85,21 +75,21 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Fran Jones</td>
-      <td>113</td>
-      <td>1</td>
+      <td>110</td>
+      <td>3</td>
       <td>25</td>
       <td>WTA125 Targu Mures</td>
       <td>WTT W75 Leipzig</td>
-      <td>125 pts on 27 Jul 2026</td>
+      <td>40 pts on 14 Sep 2026</td>
       <td>1</td>
       <td>1</td>
       <td>65</td>
-      <td>Winner WTA 125 Rome</td>
+      <td>Winner WTA 125 Palermo</td>
     </tr>
     <tr>
       <td>Sonay Kartal</td>
       <td>122</td>
-      <td></td>
+      <td>0</td>
       <td>24</td>
       <td> </td>
       <td> </td>
@@ -112,7 +102,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Harriet Dart</td>
       <td>143</td>
-      <td>9</td>
+      <td>0</td>
       <td>29</td>
       <td>WTA125 Vancouver</td>
       <td>WTT W100 Landisville, PA</td>
@@ -124,8 +114,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Katie Swan</td>
-      <td>200</td>
-      <td>-29</td>
+      <td>202</td>
+      <td>-2</td>
       <td>27</td>
       <td>WTA500 Washington DC Qualifying</td>
       <td> </td>
@@ -137,8 +127,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Alicia Dudeney</td>
-      <td>224</td>
-      <td>19</td>
+      <td>225</td>
+      <td>-1</td>
       <td>23</td>
       <td>WTT W50 Dublin</td>
       <td>WTT W75 Ourense</td>
@@ -146,12 +136,12 @@ Next week: <select id="nextweek-filter"></select>
       <td>8</td>
       <td>6</td>
       <td>224</td>
-      <td>Career High</td>
+      <td> </td>
     </tr>
     <tr>
       <td>Mika Stojsavljevic</td>
-      <td>277</td>
-      <td>1</td>
+      <td>280</td>
+      <td>-3</td>
       <td>17</td>
       <td> </td>
       <td> </td>
@@ -163,8 +153,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Mimi Xu</td>
-      <td>327</td>
-      <td>-1</td>
+      <td>332</td>
+      <td>-5</td>
       <td>18</td>
       <td>WTT W35 Aldershot</td>
       <td>WTT W35 Roehampton</td>
@@ -176,8 +166,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Lily Miyazaki</td>
-      <td>330</td>
-      <td>-11</td>
+      <td>333</td>
+      <td>-3</td>
       <td>30</td>
       <td> </td>
       <td> </td>
@@ -189,8 +179,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Hannah Klugman</td>
-      <td>371</td>
-      <td>43</td>
+      <td>374</td>
+      <td>-3</td>
       <td>17</td>
       <td>WTT W35 Aldershot</td>
       <td>WTT W35 Roehampton</td>
@@ -198,38 +188,38 @@ Next week: <select id="nextweek-filter"></select>
       <td>–</td>
       <td>–</td>
       <td>371</td>
-      <td>Career High</td>
+      <td> </td>
     </tr>
     <tr>
       <td>Naiktha Bains</td>
-      <td>377</td>
-      <td>56</td>
+      <td>379</td>
+      <td>-2</td>
       <td>28</td>
       <td>WTT W35 Aldershot</td>
       <td>WTT W35 Roehampton</td>
-      <td>4 pts on 24 Aug 2026</td>
+      <td>8 pts on 14 Aug 2026</td>
       <td>1</td>
       <td>1</td>
       <td>199</td>
-      <td>Finalist W50 Nottingham</td>
+      <td> </td>
     </tr>
     <tr>
       <td>Vic Allen</td>
-      <td>430</td>
-      <td>29</td>
+      <td>437</td>
+      <td>-6</td>
       <td>25</td>
       <td>WTT W50 Dublin</td>
       <td>WTT W35 Roehampton</td>
-      <td>10 pts on 24 Aug 2026</td>
+      <td>1 pts on 24 Aug 2026</td>
       <td>1</td>
       <td>1</td>
       <td>430</td>
-      <td>Career High</td>
+      <td> </td>
     </tr>
     <tr>
       <td>Heather Watson</td>
       <td>475</td>
-      <td>-5</td>
+      <td>0</td>
       <td>34</td>
       <td>WTA500 Washington DC Qualifying</td>
       <td>WTT W100 Landisville, PA (Alternate)</td>
@@ -241,34 +231,34 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Esther Adeshina</td>
-      <td>488</td>
-      <td>2</td>
+      <td>485</td>
+      <td>3</td>
       <td>24</td>
       <td>WTT W50 Dublin</td>
       <td>WTT W35 Roehampton</td>
       <td>6 pts on 24 Aug 2026</td>
       <td>1</td>
       <td>1</td>
-      <td>488</td>
+      <td>485</td>
       <td>Career High</td>
     </tr>
     <tr>
       <td>Sofia Johnson</td>
-      <td>503</td>
-      <td></td>
+      <td>490</td>
+      <td>13</td>
       <td>22</td>
       <td>WTA250 Memphis Qualifying</td>
       <td>WTT W35 Southaven, MS</td>
       <td>5 pts on 19 Oct 2026</td>
       <td>–</td>
       <td>–</td>
-      <td>503</td>
+      <td>490</td>
       <td>Career High</td>
     </tr>
     <tr>
       <td>Amelia Rajecki</td>
-      <td>505</td>
-      <td>-27</td>
+      <td>508</td>
+      <td>-3</td>
       <td>24</td>
       <td>WTT W50 Dublin</td>
       <td>WTT W35 Roehampton</td>
@@ -280,8 +270,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Emily Appleton</td>
-      <td>508</td>
-      <td>24</td>
+      <td>512</td>
+      <td>-4</td>
       <td>26</td>
       <td>WTT W35 Aldershot</td>
       <td>WTT W35 Roehampton</td>
@@ -293,8 +283,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Ella Mcdonald</td>
-      <td>529</td>
-      <td>11</td>
+      <td>528</td>
+      <td>1</td>
       <td>20</td>
       <td>WTT W50 Dublin</td>
       <td>WTT W35 Roehampton</td>
@@ -306,25 +296,25 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Ranah Stoiber</td>
-      <td>555</td>
-      <td>-49</td>
+      <td>556</td>
+      <td>-1</td>
       <td>21</td>
       <td> </td>
       <td> </td>
       <td>1 pts on 14 Sep 2026</td>
       <td>1</td>
-      <td>–</td>
+      <td>0</td>
       <td>421</td>
       <td> </td>
     </tr>
     <tr>
       <td>Katy Dunne</td>
-      <td>601</td>
-      <td>-2</td>
+      <td>598</td>
+      <td>3</td>
       <td>31</td>
       <td> </td>
       <td>WTT W35 Roehampton Qualifying</td>
-      <td>8 pts on 24 Aug 2026</td>
+      <td>8 pts on 14 Aug 2026</td>
       <td>–</td>
       <td>–</td>
       <td>212</td>
@@ -332,21 +322,21 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Indi Spink</td>
-      <td>606</td>
-      <td>-5</td>
+      <td>605</td>
+      <td>1</td>
       <td>23</td>
       <td>WTT W35 Aldershot</td>
       <td>WTT W35 Roehampton Qualifying</td>
-      <td>8 pts on 24 Aug 2026</td>
-      <td>–</td>
-      <td>–</td>
+      <td>8 pts on 14 Aug 2026</td>
+      <td>0</td>
+      <td>0</td>
       <td>601</td>
       <td> </td>
     </tr>
     <tr>
       <td>Amarni Banks</td>
-      <td>628</td>
-      <td>-7</td>
+      <td>629</td>
+      <td>-1</td>
       <td>23</td>
       <td> </td>
       <td> </td>
@@ -358,8 +348,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Alice Gillan</td>
-      <td>636</td>
-      <td>-31</td>
+      <td>641</td>
+      <td>-5</td>
       <td>27</td>
       <td>WTT W35 Aldershot</td>
       <td>WTT W35 Roehampton Qualifying</td>
@@ -371,21 +361,21 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Allegra Korpanec Davies</td>
-      <td>709</td>
-      <td>11</td>
+      <td>711</td>
+      <td>-2</td>
       <td>18</td>
       <td>WTT W75 Hechingen Qualifying</td>
       <td>WTT W35 Roehampton Qualifying</td>
       <td>1 pts on 24 Aug 2026</td>
       <td>1</td>
-      <td>1</td>
+      <td>0</td>
       <td>709</td>
-      <td>Career High</td>
+      <td> </td>
     </tr>
     <tr>
       <td>Brooke Black</td>
-      <td>811</td>
-      <td>53</td>
+      <td>818</td>
+      <td>-7</td>
       <td>18</td>
       <td>WTT W35 Aldershot (WC?)</td>
       <td>WTT W35 Roehampton Qualifying</td>
@@ -393,13 +383,13 @@ Next week: <select id="nextweek-filter"></select>
       <td>–</td>
       <td>–</td>
       <td>708</td>
-      <td>Winner doubles W50 Nottingham</td>
+      <td> </td>
     </tr>
     <tr>
       <td>Lauryn John-Baptiste</td>
-      <td>814</td>
-      <td>8</td>
-      <td>26</td>
+      <td>823</td>
+      <td>-9</td>
+      <td>27</td>
       <td> </td>
       <td>WTT W35 Roehampton Qualifying</td>
       <td>5 pts on 19 Oct 2026</td>
@@ -410,12 +400,12 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Eliz Maloney</td>
-      <td>820</td>
-      <td>11</td>
+      <td>829</td>
+      <td>-9</td>
       <td>25</td>
       <td>WTT W50 Dublin Qualifying</td>
       <td>WTT W35 Roehampton Qualifying</td>
-      <td>4 pts on 8 Feb 2027</td>
+      <td>0 pts on 18 Jan 2027</td>
       <td>–</td>
       <td>–</td>
       <td>371</td>
@@ -423,8 +413,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Jodie Burrage</td>
-      <td>876</td>
-      <td>44</td>
+      <td>888</td>
+      <td>-12</td>
       <td>27</td>
       <td>WTT W50 Dublin Qualifying</td>
       <td>WTT W35 Roehampton Qualifying</td>
@@ -436,8 +426,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Ruby Cooling</td>
-      <td>913</td>
-      <td>1</td>
+      <td>919</td>
+      <td>-6</td>
       <td>18</td>
       <td>WTT W35 Aldershot (WC?)</td>
       <td>WTT W35 Roehampton Qualifying</td>
@@ -449,8 +439,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Amelie Brooks</td>
-      <td>1020</td>
-      <td>157</td>
+      <td>1029</td>
+      <td>-9</td>
       <td>19</td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td>WTT W35 Roehampton (Alternate)</td>
@@ -458,16 +448,16 @@ Next week: <select id="nextweek-filter"></select>
       <td>–</td>
       <td>–</td>
       <td>1020</td>
-      <td>Career High</td>
+      <td> </td>
     </tr>
     <tr>
       <td>Mia Wainwright</td>
-      <td>1126</td>
+      <td>1125</td>
       <td>1</td>
       <td>19</td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td>WTT W35 Roehampton (Alternate 6)</td>
-      <td>1 pts on 24 Aug 2026</td>
+      <td>1 pts on 14 Aug 2026</td>
       <td>–</td>
       <td>–</td>
       <td>1107</td>
@@ -475,8 +465,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Freya Christie</td>
-      <td>1138</td>
-      <td>1</td>
+      <td>1135</td>
+      <td>3</td>
       <td>28</td>
       <td>WTT W100 Gran Canaria-Maspalomas (Doubles)</td>
       <td> </td>
@@ -489,7 +479,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Summer Yardley</td>
       <td>1154</td>
-      <td>-44</td>
+      <td>0</td>
       <td>26</td>
       <td>WTT W50 Dublin Qualifying</td>
       <td>WTT W35 Roehampton (Alternate 4)</td>
@@ -501,8 +491,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Tegan Bush</td>
-      <td>1190</td>
-      <td>-15</td>
+      <td>1192</td>
+      <td>-2</td>
       <td>17</td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td> </td>
@@ -514,8 +504,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Ciara Moore</td>
-      <td>1215</td>
-      <td>2</td>
+      <td>1214</td>
+      <td>1</td>
       <td>18</td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td>WTT W35 Roehampton (Alternate)</td>
@@ -527,8 +517,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Leticia Romanova</td>
-      <td>1235</td>
-      <td>IN</td>
+      <td>1238</td>
+      <td>-3</td>
       <td>18</td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td> </td>
@@ -540,8 +530,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Melissa Boyden</td>
-      <td>1244</td>
-      <td>155</td>
+      <td>1250</td>
+      <td>-6</td>
       <td>23</td>
       <td>WTT W15 Savitaipale Qualifying</td>
       <td>WTT W15 Hameenlinna Qualifying</td>
@@ -553,8 +543,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Lois Newberry</td>
-      <td>1248</td>
-      <td>-65</td>
+      <td>1254</td>
+      <td>-6</td>
       <td>19</td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td>WTT W35 Roehampton (Alternate)</td>
@@ -566,8 +556,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Jizel Matos Sequeira Fernandes</td>
-      <td>1302</td>
-      <td>-5</td>
+      <td>1345</td>
+      <td>-43</td>
       <td>25</td>
       <td> </td>
       <td> </td>
@@ -578,9 +568,22 @@ Next week: <select id="nextweek-filter"></select>
       <td> </td>
     </tr>
     <tr>
+      <td>Emily Webley-Smith</td>
+      <td>1351</td>
+      <td>32</td>
+      <td>42</td>
+      <td>WTA125 Targu Mures (Doubles)</td>
+      <td> </td>
+      <td>1 pts on 14 Aug 2026</td>
+      <td>–</td>
+      <td>–</td>
+      <td>240</td>
+      <td> </td>
+    </tr>
+    <tr>
       <td>Isabella Wong</td>
-      <td>1346</td>
-      <td>IN</td>
+      <td>1354</td>
+      <td>-8</td>
       <td>19</td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td> </td>
@@ -592,8 +595,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Emma Wilson</td>
-      <td>1359</td>
-      <td>-1</td>
+      <td>1365</td>
+      <td>-6</td>
       <td>29</td>
       <td> </td>
       <td> </td>
@@ -604,22 +607,9 @@ Next week: <select id="nextweek-filter"></select>
       <td> </td>
     </tr>
     <tr>
-      <td>Emily Webley-Smith</td>
-      <td>1383</td>
-      <td>2</td>
-      <td>42</td>
-      <td>WTA125 Targu Mures (Doubles)</td>
-      <td> </td>
-      <td>1 pts on 14 Aug 2026</td>
-      <td>–</td>
-      <td>–</td>
-      <td>240</td>
-      <td> </td>
-    </tr>
-    <tr>
       <td>Isabelle Cherny</td>
-      <td>1482</td>
-      <td>1</td>
+      <td>1485</td>
+      <td>-3</td>
       <td>22</td>
       <td>WTT W15 Rogaska Slatina Qualifying</td>
       <td> </td>
@@ -631,21 +621,21 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Lily Hutchings</td>
-      <td>1482</td>
-      <td>28</td>
+      <td>1485</td>
+      <td>-3</td>
       <td>23</td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td> </td>
-      <td>1 pts on 24 Aug 2026</td>
+      <td>1 pts on 14 Aug 2026</td>
       <td>–</td>
       <td>–</td>
-      <td>1496</td>
-      <td>Career High</td>
+      <td>1482</td>
+      <td> </td>
     </tr>
     <tr>
       <td>Vlada Kozak</td>
-      <td>1504</td>
-      <td>1</td>
+      <td>1511</td>
+      <td>-7</td>
       <td>20</td>
       <td>W15 Astana Qualifying</td>
       <td>WTT W15 Astana Qualifying</td>
@@ -657,12 +647,12 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Jaquelyn Ogunwale</td>
-      <td>1510</td>
-      <td></td>
+      <td>1518</td>
+      <td>-8</td>
       <td>21</td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td> </td>
-      <td>1 pts on 24 Aug 2026</td>
+      <td>1 pts on 14 Aug 2026</td>
       <td>–</td>
       <td>–</td>
       <td>1381</td>
@@ -670,8 +660,8 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
     <tr>
       <td>Angelica Blake</td>
-      <td>1510</td>
-      <td></td>
+      <td>1518</td>
+      <td>-8</td>
       <td>25</td>
       <td> </td>
       <td> </td>
@@ -682,9 +672,74 @@ Next week: <select id="nextweek-filter"></select>
       <td> </td>
     </tr>
     <tr>
+      <td>Olivia Nicholls</td>
+      <td>–</td>
+      <td>–</td>
+      <td>31</td>
+      <td> </td>
+      <td>WTA 1000 Toronto (Doubles)</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Maia Lumsden</td>
+      <td>–</td>
+      <td>–</td>
+      <td>28</td>
+      <td>WTA250 Memphis (Doubles)</td>
+      <td>WTA 1000 Toronto (Doubles)</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Madeleine Brooks</td>
+      <td>–</td>
+      <td>–</td>
+      <td>29</td>
+      <td>WTA125 Targu Mures (Doubles)</td>
+      <td>WTA125 Warsaw (Doubles)</td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Alicia Barnet</td>
+      <td>–</td>
+      <td>–</td>
+      <td>32</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Eden Silva</td>
+      <td>–</td>
+      <td>–</td>
+      <td>30</td>
+      <td> </td>
+      <td> </td>
+      <td>4 pts on 22 Feb 2027</td>
+      <td>–</td>
+      <td>–</td>
+      <td>298</td>
+      <td>4 pts from 1 counter</td>
+    </tr>
+    <tr>
       <td>Holly Hutchinson</td>
       <td>–</td>
-      <td>OUT</td>
+      <td>–</td>
       <td>28</td>
       <td> </td>
       <td> </td>
@@ -697,7 +752,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Jasmine Conway</td>
       <td>–</td>
-      <td>OUT</td>
+      <td>–</td>
       <td>21</td>
       <td> </td>
       <td> </td>
@@ -708,38 +763,12 @@ Next week: <select id="nextweek-filter"></select>
       <td>2 pts from 2 counters</td>
     </tr>
     <tr>
-      <td>Olivia Nicholls</td>
+      <td>Sam Murray-Sharan</td>
       <td>–</td>
+      <td>–</td>
+      <td>38</td>
       <td> </td>
-      <td>31</td>
-      <td>WTA500 Washington DC (Doubles)</td>
-      <td>WTA 1000 Toronto (Doubles)</td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
       <td> </td>
-    </tr>
-    <tr>
-      <td>Madeleine Brooks</td>
-      <td>–</td>
-      <td> </td>
-      <td>29</td>
-      <td>WTA125 Targu Mures (Doubles)</td>
-      <td>WTA125 Warsaw (Doubles)</td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Maia Lumsden</td>
-      <td>–</td>
-      <td> </td>
-      <td>28</td>
-      <td>WTA250 Memphis (Doubles)</td>
-      <td>WTA 1000 Toronto (Doubles)</td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -749,7 +778,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Edie Griffiths</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>17</td>
       <td>WTT W35 Aldershot Qualifying (QWC)</td>
       <td> </td>
@@ -760,22 +789,9 @@ Next week: <select id="nextweek-filter"></select>
       <td>8 pts from 2 counters</td>
     </tr>
     <tr>
-      <td>Eden Silva</td>
-      <td>–</td>
-      <td> </td>
-      <td>30</td>
-      <td> </td>
-      <td> </td>
-      <td>4 pts on 22 Feb 2027</td>
-      <td>–</td>
-      <td>–</td>
-      <td>298</td>
-      <td>4 pts from 1 counter</td>
-    </tr>
-    <tr>
       <td>Kristina Paskauskas</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>22</td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td> </td>
@@ -786,9 +802,22 @@ Next week: <select id="nextweek-filter"></select>
       <td>1 point</td>
     </tr>
     <tr>
+      <td>Millie Bissett</td>
+      <td>–</td>
+      <td>–</td>
+      <td>23</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>1215</td>
+      <td> </td>
+    </tr>
+    <tr>
       <td>Ophelia Korpanec Davies</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>17</td>
       <td> </td>
       <td> </td>
@@ -801,9 +830,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Maria Ustic</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>18</td>
-      <td> </td>
+      <td>WTT W15 Kursumlijska Banja Qualifying</td>
       <td> </td>
       <td>1 pts on 7 Dec 2026</td>
       <td>–</td>
@@ -814,20 +843,33 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Erin Pearce</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>19</td>
       <td>WTT W35 Aldershot Qualifying (QWC)</td>
       <td> </td>
-      <td>1 pts on 24 Aug 2026</td>
+      <td>1 pts on 14 Aug 2026</td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
       <td>1 point</td>
     </tr>
     <tr>
-      <td>Savannah Dada-Mascoll</td>
+      <td>Megan Knight</td>
+      <td>–</td>
+      <td>–</td>
+      <td>15</td>
+      <td> </td>
+      <td> </td>
+      <td>1 pts on 14 Jun 2027</td>
+      <td>–</td>
+      <td>–</td>
       <td>–</td>
       <td> </td>
+    </tr>
+    <tr>
+      <td>Savannah Dada-Mascoll</td>
+      <td>–</td>
+      <td>–</td>
       <td>22</td>
       <td>WTT W35 Aldershot (Alternate 9 – WC?)</td>
       <td> </td>
@@ -840,20 +882,33 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Daniella Britton</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>15</td>
       <td> </td>
       <td> </td>
-      <td>1 pts on 14 Jun 2027</td>
+      <td>0 pts on 17 May 2027</td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
       <td>2 pts from 2 counters</td>
     </tr>
     <tr>
+      <td>Ava Williamson</td>
+      <td>–</td>
+      <td>–</td>
+      <td>19</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 17 May 2027</td>
+      <td>–</td>
+      <td>–</td>
+      <td>1291</td>
+      <td> </td>
+    </tr>
+    <tr>
       <td>Georgina Hays</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>19</td>
       <td>WTT W50 Dublin Qualifying</td>
       <td> </td>
@@ -864,9 +919,35 @@ Next week: <select id="nextweek-filter"></select>
       <td>6 pts from 2 counters</td>
     </tr>
     <tr>
-      <td>Hephzibah Oluwadare</td>
+      <td>Sirena Waas</td>
+      <td>–</td>
+      <td>–</td>
+      <td>20</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
       <td>–</td>
       <td> </td>
+    </tr>
+    <tr>
+      <td>Danielle Daley</td>
+      <td>–</td>
+      <td>–</td>
+      <td>26</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>812</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Hephzibah Oluwadare</td>
+      <td>–</td>
+      <td>–</td>
       <td>18</td>
       <td>UTR Pro Summer Slam Columbus, OH</td>
       <td> </td>
@@ -879,7 +960,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Eva Shaw</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>21</td>
       <td>WTT W35 Aldershot Qualifying (QWC)</td>
       <td> </td>
@@ -887,12 +968,38 @@ Next week: <select id="nextweek-filter"></select>
       <td>–</td>
       <td>–</td>
       <td>–</td>
-      <td>Earned QWC for one of summer W35 Aldershot/Roehampton/Aldershot (BT West Worthing runner-up)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Anjali Kotecha</td>
+      <td>–</td>
+      <td>–</td>
+      <td>20</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Francesca Franchi</td>
+      <td>–</td>
+      <td>–</td>
+      <td>23</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
     </tr>
     <tr>
       <td>Gabia Paskauskas</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>20</td>
       <td> </td>
       <td> </td>
@@ -905,7 +1012,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Sophie Bekker</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>17</td>
       <td>WTT W35 Aldershot (Alternate 7 – WC?)</td>
       <td> </td>
@@ -918,7 +1025,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Athina Schlepphorst</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>18</td>
       <td> </td>
       <td> </td>
@@ -931,7 +1038,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Ria Ferguson</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>18</td>
       <td> </td>
       <td> </td>
@@ -944,7 +1051,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Megan Davies</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>24</td>
       <td> </td>
       <td> </td>
@@ -957,7 +1064,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Daniela Piani</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>19</td>
       <td> </td>
       <td> </td>
@@ -970,37 +1077,63 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Swasthika Arunkumar</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>20</td>
       <td> </td>
       <td> </td>
-      <td></td>
+      <td>0 pts on 17 May 2027</td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
       <td>1 point</td>
+    </tr>
+    <tr>
+      <td>Sophia Hurrion</td>
+      <td>–</td>
+      <td>–</td>
+      <td>23</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 19 Jul 2027</td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
     </tr>
     <tr>
       <td>Freya Peet</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>18</td>
       <td> </td>
       <td> </td>
-      <td>1 pts on 12 Jul 2027</td>
+      <td>0 pts on 17 May 2027</td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
       <td>1 point</td>
     </tr>
     <tr>
-      <td>Georgiana Mititelu</td>
+      <td>Anna Boron</td>
+      <td>–</td>
+      <td>–</td>
+      <td>15</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 7 Jun 2027</td>
+      <td>–</td>
+      <td>–</td>
       <td>–</td>
       <td> </td>
+    </tr>
+    <tr>
+      <td>Georgiana Mititelu</td>
+      <td>–</td>
+      <td>–</td>
       <td>18</td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td> </td>
-      <td>1 pts on 19 Jul 2027</td>
+      <td>0 pts on 17 May 2027</td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
@@ -1009,11 +1142,11 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Elizabeth Prangley</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>17</td>
       <td>WTT W15 Brisbane Qualifying</td>
       <td> </td>
-      <td></td>
+      <td>0 pts on 7 Jun 2027</td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
@@ -1022,9 +1155,22 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Eloise Newberry</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>18</td>
       <td>WTT W35 Aldershot Qualifying</td>
+      <td> </td>
+      <td>0 pts on 3 May 2027</td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Hannah Rylatt</td>
+      <td>–</td>
+      <td>–</td>
+      <td>20</td>
+      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1033,9 +1179,100 @@ Next week: <select id="nextweek-filter"></select>
       <td> </td>
     </tr>
     <tr>
-      <td>Halle Pringle</td>
+      <td>Ellie Blackford</td>
+      <td>–</td>
+      <td>–</td>
+      <td>20</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
       <td>–</td>
       <td> </td>
+    </tr>
+    <tr>
+      <td>Elizabeth Evans</td>
+      <td>–</td>
+      <td>–</td>
+      <td>18</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 15 Feb 2027</td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Lucia Cassidy</td>
+      <td>–</td>
+      <td>–</td>
+      <td>19</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 17 May 2027</td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Talia Neilson-Gatenby</td>
+      <td>–</td>
+      <td>–</td>
+      <td>20</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Immi Haddad</td>
+      <td>–</td>
+      <td>–</td>
+      <td>21</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 26 Jul 2027</td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Emma Cohen</td>
+      <td>–</td>
+      <td>–</td>
+      <td>21</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 19 Jul 2027</td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Allegra Hodson</td>
+      <td>–</td>
+      <td>–</td>
+      <td>20</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 14 Jun 2027</td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Halle Pringle</td>
+      <td>–</td>
+      <td>–</td>
       <td>24</td>
       <td> </td>
       <td>British Tour Newcastle</td>
@@ -1046,13 +1283,26 @@ Next week: <select id="nextweek-filter"></select>
       <td> </td>
     </tr>
     <tr>
-      <td>Pui Yin Lung</td>
+      <td>Meela Patel</td>
+      <td>–</td>
+      <td>–</td>
+      <td>18</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
       <td>–</td>
       <td> </td>
+    </tr>
+    <tr>
+      <td>Pui Yin Lung</td>
+      <td>–</td>
+      <td>–</td>
       <td>15</td>
       <td>British Tour Ilkley</td>
       <td>WT J100 Maaseik</td>
-      <td></td>
+      <td>0 pts on 17 May 2027</td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
@@ -1061,7 +1311,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Hollie Smart</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>17</td>
       <td>WTT W35 Aldershot Qualifying (QWC)</td>
       <td> </td>
@@ -1074,7 +1324,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Scarlet Kavanagh</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>16</td>
       <td> </td>
       <td> </td>
@@ -1085,9 +1335,35 @@ Next week: <select id="nextweek-filter"></select>
       <td>1 point</td>
     </tr>
     <tr>
-      <td>Marelie Raath</td>
+      <td>Soumeya Anane</td>
+      <td>–</td>
+      <td>–</td>
+      <td>32</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
       <td>–</td>
       <td> </td>
+    </tr>
+    <tr>
+      <td>Charlotte Clarke</td>
+      <td>–</td>
+      <td>–</td>
+      <td>21</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Marelie Raath</td>
+      <td>–</td>
+      <td>–</td>
       <td>19</td>
       <td> </td>
       <td> </td>
@@ -1100,7 +1376,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Hannah Read</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>20</td>
       <td>UTR PTT Budapest</td>
       <td> </td>
@@ -1111,9 +1387,22 @@ Next week: <select id="nextweek-filter"></select>
       <td> </td>
     </tr>
     <tr>
-      <td>Liv Zingg</td>
+      <td>Given Roach</td>
+      <td>–</td>
+      <td>–</td>
+      <td>21</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
       <td>–</td>
       <td> </td>
+    </tr>
+    <tr>
+      <td>Liv Zingg</td>
+      <td>–</td>
+      <td>–</td>
       <td>15</td>
       <td> </td>
       <td>WT J200 Rutesheim</td>
@@ -1124,11 +1413,11 @@ Next week: <select id="nextweek-filter"></select>
       <td> </td>
     </tr>
     <tr>
-      <td>Daisy Wootton</td>
+      <td>Nell Miller</td>
       <td>–</td>
+      <td>–</td>
+      <td>26</td>
       <td> </td>
-      <td>16</td>
-      <td>British Tour Ilkley</td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1137,9 +1426,87 @@ Next week: <select id="nextweek-filter"></select>
       <td> </td>
     </tr>
     <tr>
-      <td>Millie Skelton</td>
+      <td>Bronte Murgett</td>
+      <td>–</td>
+      <td>–</td>
+      <td>27</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
       <td>–</td>
       <td> </td>
+    </tr>
+    <tr>
+      <td>Grace Piper</td>
+      <td>–</td>
+      <td>–</td>
+      <td>23</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 15 Feb 2027</td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Daisy Wootton</td>
+      <td>–</td>
+      <td>–</td>
+      <td>16</td>
+      <td>British Tour Ilkley</td>
+      <td> </td>
+      <td>0 pts on 17 May 2027</td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Sophie Drakeford-Lewis</td>
+      <td>–</td>
+      <td>–</td>
+      <td>27</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Emilija Lebedevaite</td>
+      <td>–</td>
+      <td>–</td>
+      <td>16</td>
+      <td> </td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Zainab Williams</td>
+      <td>–</td>
+      <td>–</td>
+      <td>39</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 17 May 2027</td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Millie Skelton</td>
+      <td>–</td>
+      <td>–</td>
       <td>21</td>
       <td>British Tour Ilkley</td>
       <td> </td>
@@ -1150,13 +1517,65 @@ Next week: <select id="nextweek-filter"></select>
       <td> </td>
     </tr>
     <tr>
-      <td>Sofia Maine</td>
+      <td>Mia Tinsley</td>
+      <td>–</td>
+      <td>–</td>
+      <td>22</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 19 Jul 2027</td>
+      <td>–</td>
+      <td>–</td>
       <td>–</td>
       <td> </td>
+    </tr>
+    <tr>
+      <td>Jasmine Mian</td>
+      <td>–</td>
+      <td>–</td>
+      <td>19</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 28 Jun 2027</td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Sophie Dick</td>
+      <td>–</td>
+      <td>–</td>
+      <td>15</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 26 Jul 2027</td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Sofia Maine</td>
+      <td>–</td>
+      <td>–</td>
       <td>19</td>
       <td>British Tour Ilkley</td>
       <td> </td>
-      <td></td>
+      <td>0 pts on 17 May 2027</td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Gabriela Pacheco-Lagoda</td>
+      <td>–</td>
+      <td>–</td>
+      <td>17</td>
+      <td> </td>
+      <td> </td>
+      <td>0 pts on 12 Jul 2027</td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
@@ -1165,7 +1584,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Alice Haddad</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>17</td>
       <td> </td>
       <td>WTJ100 Harare</td>
@@ -1178,7 +1597,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Julia Reynolds</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>16</td>
       <td> </td>
       <td>WTJ100 Harare</td>
@@ -1191,7 +1610,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Annabel Wong</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>16</td>
       <td> </td>
       <td>WT J100 Maaseik</td>
@@ -1204,7 +1623,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Lucy Bear</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>16</td>
       <td>British Tour Ilkley Qualifying</td>
       <td>WT J100 Maaseik</td>
@@ -1217,7 +1636,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Tanishka Naveen</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>15</td>
       <td> </td>
       <td>WT J100 Istanbul</td>
@@ -1230,7 +1649,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Celine Ricaud</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>17</td>
       <td>British Tour Ilkley</td>
       <td>WT J100 Istanbul</td>
@@ -1243,7 +1662,7 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Matilda Cabrera Burns</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>17</td>
       <td> </td>
       <td>WT J100 Vienna</td>
@@ -1256,11 +1675,11 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Chloe Cleaver</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>18</td>
       <td>WTT W50 Dublin Qualifying</td>
       <td> </td>
-      <td></td>
+      <td>0 pts on 15 Feb 2027</td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
@@ -1269,11 +1688,11 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Teodora Prisadnikova</td>
       <td>–</td>
-      <td> </td>
+      <td>–</td>
       <td>18</td>
       <td> </td>
       <td>British Tour Newcastle</td>
-      <td></td>
+      <td>0 pts on 17 May 2027</td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
@@ -1282,8 +1701,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Rosie Cho</td>
       <td>–</td>
-      <td> </td>
       <td>–</td>
+      <td>16</td>
       <td>WTT W35 Aldershot Qualifying (QWC)</td>
       <td> </td>
       <td></td>
@@ -1294,633 +1713,6 @@ Next week: <select id="nextweek-filter"></select>
     </tr>
   </tbody>
 </table>
-
-
-<script>
-const gender = "women";
-
-function getColumnIndexes() {
-    const header = document.querySelector("table tr");
-    const indexes = {};
-
-    if (!header) return indexes;
-
-    [...header.children].forEach((cell, i) => {
-        const name = cell.textContent.trim().toLowerCase();
-
-        if (name === "age") indexes.age = i;
-        if (name === "week change") indexes.weekchange = i;
-        if (name === "this week") indexes.thisweek = i;
-        if (name === "next week") indexes.nextweek = i;
-        if (name === "following week") indexes.followingweek = i;
-    });
-
-    return indexes;
-}
-
-// -------------------------------
-// COLUMN INDEXES
-// -------------------------------
-let COL_AGE;
-let COL_WEEKCHANGE;
-let COL_THISWEEK;
-let COL_NEXTWEEK;
-let COL_FOLLOWINGWEEK;
-
-function initColumnIndexes() {
-    const cols = getColumnIndexes();
-
-    COL_AGE = cols.age;
-    COL_WEEKCHANGE = cols.weekchange;
-    COL_THISWEEK = cols.thisweek;
-    COL_NEXTWEEK = cols.nextweek;
-    COL_FOLLOWINGWEEK = cols.followingweek; // may be undefined
-}
-
-
-function getColumnCounts(colIndex, classifier) {
-    const rows = document.querySelectorAll("table tr");
-    const counts = {};
-
-    rows.forEach(row => {
-        if (row.querySelector("th")) return; // skip header
-
-        const cell = row.children[colIndex];
-        if (!cell) return;
-
-        const raw = cell.textContent.trim();
-        if (!raw) return;
-
-        const classified = classifier(raw);
-
-        if (Array.isArray(classified)) {
-            classified.forEach(v => {
-                if (!v) return;
-                counts[v] = (counts[v] || 0) + 1;
-            });
-        } else if (classified) {
-            counts[classified] = (counts[classified] || 0) + 1;
-        }
-    });
-
-    return counts;
-}
-
-
-// -------------------------------
-// PRIORITY ORDER FOR WEEK FILTERS
-// -------------------------------
-// WOMEN'S PRIORITY ORDER
-const PRIORITY_WOMEN = {
-    "All Pro Tour": 1,
-    "WTA Tour": 2,
-    "Junior": 3,
-    "WTA 1000": 4,
-    "WTA 500": 5,
-    "WTA 250": 6,
-    "WTA 125": 7,
-    "WTT W100": 8,
-    "WTT W75": 9,
-    "WTT W50": 10,
-    "WTT W35": 11,
-    "WTT W15": 12,
-    "WT J500": 13,
-    "WT J300": 14,
-    "WT J200": 15,
-    "WT J100": 16,
-    "UTR": 17,
-    "British Tour": 18
-};
-
-// MEN'S PRIORITY ORDER
-const PRIORITY_MEN = {
-    "All Pro Tour": 1,
-    "ATP Tour": 2,
-    "Challengers": 3,
-    "Junior": 4,
-
-    "ATP Masters": 5,
-    "ATP 500": 6,
-    "ATP 250": 7,
-
-    "CH 175": 8,
-    "CH 125": 9,
-    "CH 100": 10,
-    "CH 75": 11,
-    "CH 50": 12,
-
-    "WTT M25+H": 13,
-    "WTT M25": 14,
-    "WTT M15+H": 15,
-    "WTT M15": 16,
-
-    "WT J500": 17,
-    "WT J300": 18,
-    "WT J200": 19,
-    "WT J100": 20,
-
-    "UTR": 21,
-    "British Tour": 22
-};
-
-// -------------------------------
-// AGE CLASSIFIER
-// -------------------------------
-function classifyAge(val) {
-    const age = parseInt(val, 10);
-    if (isNaN(age)) return [];   // must return array
-
-    const results = [];
-
-    // Individual age
-    results.push(age.toString());
-
-    // Group buckets
-    if (age <= 18) results.push("18 & under");
-    if (age <= 21) results.push("21 & under");
-
-    return results;
-}
-
-// -------------------------------
-// WEEK CHANGE CLASSIFIER
-// -------------------------------
-function classifyWeekChange(val) {
-    val = val.trim();
-
-    if (val === "IN" || val === "OUT") return val;
-
-    const num = parseInt(val, 10);
-    if (isNaN(num)) return "No Change";
-
-    if (num > 0) return "Climbers";
-    if (num < 0) return "Fallers";
-    return "No Change";
-}
-
-// -------------------------------
-// TOURNAMENT NORMALIZER
-// -------------------------------
-function normalizeTournamentName(val) {
-    if (!val) return [];
-
-    // Remove (WC), (QWC), (Alternate...), etc.
-    val = val.replace(/\(.*?\)/g, "").trim();
-
-    // Remove "Qualifying"
-    val = val.replace(/Qualifying/i, "").trim();
-
-    if (!val) return [];
-
-    // Split multi-values
-    const parts = val.split("/").map(v => v.trim()).filter(v => v.length > 0);
-
-    return parts;
-}
-
-function getTournamentPriority(value, gender) {
-    const PRIORITY = gender === "men" ? PRIORITY_MEN : PRIORITY_WOMEN;
-    
-    // Add for men
-    // Extract level prefix (e.g., "ATP 500", "CH 125", "WTT M25")
-    const parts = value.split(" ");
-    const level = parts.length >= 2 ? parts.slice(0, 2).join(" ") : value;
-
-    if (PRIORITY[level]) return PRIORITY[level];
-    // End Add for men
-
-
-    // If it's already a label in the priority map, use it directly
-    if (PRIORITY[value]) return PRIORITY[value];
-
-    // Otherwise, derive from the tournament name
-
-    // Grand Slams
-    if (MAJORS.includes(value)) return PRIORITY["All Pro Tour"];
-
-    // WTA / ATP levels (match both "WTA250" and "WTA 250", etc.)
-    if (/^WTA\s*1000/i.test(value)) return PRIORITY["WTA 1000"];
-    if (/^WTA\s*500/i.test(value))  return PRIORITY["WTA 500"];
-    if (/^WTA\s*250/i.test(value))  return PRIORITY["WTA 250"];
-    if (/^WTA\s*125/i.test(value))  return PRIORITY["WTA 125"];
-
-    if (/^ATP\s*1000/i.test(value)) return PRIORITY["ATP Masters"];
-    if (/^ATP\s*500/i.test(value))  return PRIORITY["ATP 500"];
-    if (/^ATP\s*250/i.test(value))  return PRIORITY["ATP 250"];
-
-    // Challenger levels
-    if (/^Ch\s*175/i.test(value)) return PRIORITY["CH 175"];
-    if (/^Ch\s*125/i.test(value)) return PRIORITY["CH 125"];
-    if (/^Ch\s*100/i.test(value)) return PRIORITY["CH 100"];
-    if (/^Ch\s*75/i.test(value))  return PRIORITY["CH 75"];
-    if (/^Ch\s*50/i.test(value))  return PRIORITY["CH 50"];
-
-    // WTT Women
-    if (value.startsWith("WTT W100")) return PRIORITY["WTT W100"];
-    if (value.startsWith("WTT W75"))  return PRIORITY["WTT W75"];
-    if (value.startsWith("WTT W50"))  return PRIORITY["WTT W50"];
-    if (value.startsWith("WTT W35"))  return PRIORITY["WTT W35"];
-    if (value.startsWith("WTT W15"))  return PRIORITY["WTT W15"];
-
-    // WTT Men
-    if (value.startsWith("WTT M25+H")) return PRIORITY["WTT M25+H"];
-    if (value.startsWith("WTT M25"))   return PRIORITY["WTT M25"];
-    if (value.startsWith("WTT M15+H")) return PRIORITY["WTT M15+H"];
-    if (value.startsWith("WTT M15"))   return PRIORITY["WTT M15"];
-
-    // Junior
-    if (value.startsWith("WT J500")) return PRIORITY["WT J500"];
-    if (value.startsWith("WT J300")) return PRIORITY["WT J300"];
-    if (value.startsWith("WT J200")) return PRIORITY["WT J200"];
-    if (value.startsWith("WT J100")) return PRIORITY["WT J100"];
-
-    // Other circuits
-    if (value.startsWith("UTR"))      return PRIORITY["UTR"];
-    if (value.startsWith("British Tour")) return PRIORITY["British Tour"];
-
-    // Default: “anything else”
-    return 999;
-}
-
-
-
-const MAJORS = ["Wimbledon", "US Open", "Roland Garros", "Australian Open"];
-
-// -------------------------------
-// EVENT CLASSIFIER (WOMEN)
-// -------------------------------
-function classifyEventWomen(val) {
-    const tournaments = normalizeTournamentName(val);
-    const results = [];
-
-    tournaments.forEach(t => {
-        // Category labels
-        if (t.startsWith("WTA") || t.startsWith("WTT") || MAJORS.includes(t))
-            results.push("All Pro Tour");
-
-        if (t.startsWith("WTA") && !t.startsWith("WTA125"))
-            results.push("WTA Tour");
-
-        if (t.startsWith("WT J"))
-            results.push("Junior");
-
-        // Levels
-        // Levels (match both "WTA 250" and "WTA250")
-        if (/^WTA\s*1000/i.test(t)) results.push("WTA 1000");
-        else if (/^WTA\s*500/i.test(t))  results.push("WTA 500");
-        else if (/^WTA\s*250/i.test(t))  results.push("WTA 250");
-        else if (/^WTA\s*125/i.test(t))  results.push("WTA 125");
-
-
-        else if (t.startsWith("WTT W100")) results.push("WTT W100");
-        else if (t.startsWith("WTT W75")) results.push("WTT W75");
-        else if (t.startsWith("WTT W50")) results.push("WTT W50");
-        else if (t.startsWith("WTT W35")) results.push("WTT W35");
-        else if (t.startsWith("WTT W15")) results.push("WTT W15");
-
-        else if (t.startsWith("WT J500")) results.push("WT J500");
-        else if (t.startsWith("WT J300")) results.push("WT J300");
-        else if (t.startsWith("WT J200")) results.push("WT J200");
-        else if (t.startsWith("WT J100")) results.push("WT J100");
-
-        else if (t.startsWith("UTR")) results.push("UTR");
-        else if (t.startsWith("British Tour")) results.push("British Tour");
-
-        // Always include tournament name
-        results.push(t);
-    });
-
-    return results;
-}
-
-// -------------------------------
-// EVENT CLASSIFIER (MEN)
-// -------------------------------
-function classifyEventMen(val) {
-    const tournaments = normalizeTournamentName(val);
-    const results = [];
-
-    tournaments.forEach(t => {
-
-        // Category labels
-        if (t.startsWith("ATP") || t.startsWith("Ch") || t.startsWith("WTT") || MAJORS.includes(t))
-            results.push("All Pro Tour");
-
-        if (t.startsWith("ATP"))
-            results.push("ATP Tour");
-
-        if (t.startsWith("Ch"))
-            results.push("Challengers");
-
-        if (t.startsWith("WT J"))
-            results.push("Junior");
-
-        // ATP levels
-        if (/^ATP\s*1000/i.test(t)) results.push("ATP 1000");
-        else if (/^ATP\s*500/i.test(t)) results.push("ATP 500");
-        else if (/^ATP\s*250/i.test(t)) results.push("ATP 250");
-
-        // Challenger levels
-        if (/^Ch\s*175/i.test(t)) {
-            results.push("Challengers");
-            results.push("CH 175");
-        }
-        else if (/^Ch\s*125/i.test(t)) {
-            results.push("Challengers");
-            results.push("CH 125");
-        }
-        else if (/^Ch\s*100/i.test(t)) {
-            results.push("Challengers");
-            results.push("CH 100");
-        }
-        else if (/^Ch\s*75/i.test(t)) {
-            results.push("Challengers");
-            results.push("CH 75");
-        }
-        else if (/^Ch\s*50/i.test(t)) {
-            results.push("Challengers");
-            results.push("CH 50");
-        }
-
-
-        // WTT MEN
-        else if (t.startsWith("WTT M25+H")) results.push("WTT M25+H");
-        else if (t.startsWith("WTT M25"))   results.push("WTT M25");
-        else if (t.startsWith("WTT M15+H")) results.push("WTT M15+H");
-        else if (t.startsWith("WTT M15"))   results.push("WTT M15");
-
-        // Junior levels
-        else if (t.startsWith("WT J500")) results.push("WT J500");
-        else if (t.startsWith("WT J300")) results.push("WT J300");
-        else if (t.startsWith("WT J200")) results.push("WT J200");
-        else if (t.startsWith("WT J100")) results.push("WT J100");
-
-        // Other circuits
-        else if (t.startsWith("UTR")) results.push("UTR");
-        else if (t.startsWith("British Tour")) results.push("British Tour");
-
-        // Always include tournament name
-        results.push(t);
-    });
-
-    return results;
-}
-
-// -------------------------------
-// DROPDOWN POPULATION
-// -------------------------------
-function apopulateDropdown(id, values, counts = null) {
-    const sel = document.getElementById(id);
-    const unique = [...new Set(values)];
-
-    // AGE DROPDOWN
-    if (id === "age-filter") {
-        const grouped = ["18 & under", "21 & under"].filter(g => unique.includes(g));
-
-        const numericAges = unique
-            .filter(v => /^\d+$/.test(v))
-            .map(v => parseInt(v, 10))
-            .sort((a, b) => a - b)
-            .map(v => v.toString());
-
-        sel.innerHTML = "<option value=''>All</option>";
-
-        grouped.forEach(v => {
-            const label = counts ? `${v} (${counts[v] || 0})` : v;
-            sel.innerHTML += `<option value="${v}">${label}</option>`;
-        });
-
-        numericAges.forEach(v => {
-            const label = counts ? `${v} (${counts[v] || 0})` : v;
-            sel.innerHTML += `<option value="${v}">${label}</option>`;
-        });
-
-        return;
-    }
-
-    // WEEK DROPDOWNS — single sorted list
-    const sorted = [...unique].sort((a, b) => {
-        const pa = getTournamentPriority(a, window.genderSetting);
-        const pb = getTournamentPriority(b, window.genderSetting);
-        if (pa !== pb) return pa - pb;
-        return a.localeCompare(b);
-    });
-
-    sel.innerHTML = "<option value=''>All</option>";
-
-    sorted.forEach(v => {
-        const label = counts ? `${v} (${counts[v] || 0})` : v;
-        sel.innerHTML += `<option value="${v}">${label}</option>`;
-    });
-}
-
-function populateDropdown(id, values, counts = null) {
-    const sel = document.getElementById(id);
-    const unique = [...new Set(values)];
-
-    // AGE DROPDOWN (unchanged)
-    if (id === "age-filter") {
-        const grouped = ["18 & under", "21 & under"].filter(g => unique.includes(g));
-
-        const numericAges = unique
-            .filter(v => /^\d+$/.test(v))
-            .map(v => parseInt(v, 10))
-            .sort((a, b) => a - b)
-            .map(v => v.toString());
-
-        sel.innerHTML = "<option value=''>All</option>";
-
-        grouped.forEach(v => {
-            const label = counts ? `${v} (${counts[v] || 0})` : v;
-            sel.innerHTML += `<option value="${v}">${label}</option>`;
-        });
-
-        numericAges.forEach(v => {
-            const label = counts ? `${v} (${counts[v] || 0})` : v;
-            sel.innerHTML += `<option value="${v}">${label}</option>`;
-        });
-
-        return;
-    }
-
-    // -------------------------------
-    // GROUPS vs TOURNAMENTS
-    // -------------------------------
-    const PRIORITY = window.genderSetting === "men" ? PRIORITY_MEN : PRIORITY_WOMEN;
-
-    const groupLabels = unique.filter(v => PRIORITY[v]);
-    const tournaments = unique.filter(v => !PRIORITY[v]);
-
-    // Sort groups by priority
-    const sortedGroups = groupLabels.sort((a, b) => PRIORITY[a] - PRIORITY[b]);
-
-    // Sort tournaments by level priority
-    const sortedTournaments = tournaments.sort((a, b) => {
-        const pa = getTournamentPriority(a, window.genderSetting);
-        const pb = getTournamentPriority(b, window.genderSetting);
-        if (pa !== pb) return pa - pb;
-        return a.localeCompare(b);
-    });
-
-    // -------------------------------
-    // BUILD DROPDOWN
-    // -------------------------------
-    sel.innerHTML = "<option value=''>All</option>";
-
-    // GROUPS FIRST
-    sortedGroups.forEach(v => {
-        const label = counts ? `${v} (${counts[v] || 0})` : v;
-        sel.innerHTML += `<option value="${v}">${label} </option>`;
-    });
-
-    // TOURNAMENTS SECOND
-    sortedTournaments.forEach(v => {
-        const label = counts ? `${v} (${counts[v] || 0})` : v;
-        sel.innerHTML += `<option value="${v}">${label} </option>`;
-    });
-}
-
-
-// -------------------------------
-// COLUMN VALUE EXTRACTION
-// -------------------------------
-function getColumnValues(colIndex, classifier) {
-    const rows = document.querySelectorAll("table tr");
-    const values = [];
-
-    rows.forEach(row => {
-        if (row.querySelector("th")) return; // skip header
-
-        const cell = row.children[colIndex];
-        if (!cell) return;
-
-        const raw = cell.textContent.trim();
-        if (!raw) return;
-
-        const classified = classifier(raw);
-
-        if (Array.isArray(classified)) {
-            classified.forEach(v => values.push(v));
-        } else if (classified) {
-            values.push(classified);
-        }
-    });
-
-    return values;
-}
-
-// -------------------------------
-// BUILD FILTERS
-// -------------------------------
-function buildFilters(gender) {
-    const eventClassifier = gender === "men" ? classifyEventMen : classifyEventWomen;
-
-    // AGE
-    const ageValues  = getColumnValues(COL_AGE, classifyAge);
-    const ageCounts  = getColumnCounts(COL_AGE, classifyAge);
-    populateDropdown("age-filter", ageValues, ageCounts);
-
-    // WEEK CHANGE
-    const wcValues   = getColumnValues(COL_WEEKCHANGE, classifyWeekChange);
-    const wcCounts   = getColumnCounts(COL_WEEKCHANGE, classifyWeekChange);
-    populateDropdown("weekchange-filter", wcValues, wcCounts);
-
-    // THIS WEEK
-    const twValues   = getColumnValues(COL_THISWEEK, eventClassifier);
-    const twCounts   = getColumnCounts(COL_THISWEEK, eventClassifier);
-    populateDropdown("thisweek-filter", twValues, twCounts);
-
-    // NEXT WEEK
-    const nwValues   = getColumnValues(COL_NEXTWEEK, eventClassifier);
-    const nwCounts   = getColumnCounts(COL_NEXTWEEK, eventClassifier);
-    populateDropdown("nextweek-filter", nwValues, nwCounts);
-
-    // FOLLOWING WEEK (optional)
-    const fwContainer = document.getElementById("followingweek-container");
-
-    if (COL_FOLLOWINGWEEK !== undefined) {
-        const fwValues = getColumnValues(COL_FOLLOWINGWEEK, eventClassifier);
-        const fwCounts = getColumnCounts(COL_FOLLOWINGWEEK, eventClassifier);
-        populateDropdown("followingweek-filter", fwValues, fwCounts);
-        fwContainer.style.display = "";
-    } else {
-        fwContainer.style.display = "none";
-    }
-}
-
-
-
-
-// -------------------------------
-// APPLY FILTERS
-// -------------------------------
-function applyFilters(gender) {
-    const eventClassifier = gender === "men" ? classifyEventMen : classifyEventWomen;
-
-    const ageF = document.getElementById("age-filter").value;
-    const wcF  = document.getElementById("weekchange-filter").value;
-    const twF  = document.getElementById("thisweek-filter").value;
-    const nwF  = document.getElementById("nextweek-filter").value;
-    const fwF  = document.getElementById("followingweek-filter").value;
-
-    const rows = document.querySelectorAll("table tr");
-
-    rows.forEach(row => {
-        if (row.querySelector("th")) return;
-
-        const age = classifyAge(row.children[COL_AGE].textContent.trim());
-        const wc  = classifyWeekChange(row.children[COL_WEEKCHANGE].textContent.trim());
-        const tw  = eventClassifier(row.children[COL_THISWEEK].textContent.trim());
-        const nw  = eventClassifier(row.children[COL_NEXTWEEK].textContent.trim());
-
-        let fw = [];
-        if (COL_FOLLOWINGWEEK !== undefined &&
-            row.children.length > COL_FOLLOWINGWEEK) {
-            fw = eventClassifier(row.children[COL_FOLLOWINGWEEK].textContent.trim());
-        }
-
-        const show =
-            (!ageF || age.includes(ageF)) &&
-            (!wcF  || wcF === wc) &&
-            (!twF  || tw.includes(twF)) &&
-            (!nwF  || nw.includes(nwF)) &&
-            (!fwF  || fw.includes(fwF));
-
-        row.style.display = show ? "" : "none";
-    });
-}
-
-// -------------------------------
-// HOOK FILTER EVENTS
-// -------------------------------
-["age-filter", "weekchange-filter", "thisweek-filter", "nextweek-filter", "followingweek-filter"]
-    .forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.addEventListener("change", () => applyFilters(window.genderSetting));
-        }
-    });
-
-// -------------------------------
-// INITIALISE
-// -------------------------------
-function initFilters(gender) {
-    initColumnIndexes();   
-    window.genderSetting = gender;
-    buildFilters(gender);
-}
-</script>
-
-
-
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    initFilters(gender);
-});
-</script>
-
 <div id="footer"></div>
-<script src="header.js"></script>
-</body>
+<script src="header.js"></script></body>
 </html>
