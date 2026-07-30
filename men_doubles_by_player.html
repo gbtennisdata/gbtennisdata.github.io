@@ -9,8 +9,9 @@
     .card { border:1px solid #ccc; border-radius:8px; padding:15px; margin:15px 0; }
     summary { font-weight:bold; cursor:pointer; font-size: 18px; }
     #player-select-container {
-        position: fixed;
-        top: var(--header-height);
+        position: sticky;
+        //top: var(--header-height);
+        top: 204px
         z-index: 9998;
         background: #fff;
         padding: 12px;
@@ -776,19 +777,13 @@ function scrollToPlayer(id) {
                 <summary>
                     To be added tournaments (1)
                 </summary>
-            <table id='toadd_41' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_41",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_41",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_41",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_41",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>W25 Aldershot</td><td data-sort='7.0'>9 August 2027</td><td>QF</td><td data-sort='7'>7</td></tr></tbody></table></details></div><div class='card' id='Indi_Spink'><h2>Indi Spink</h2><h3>Total points: 7</h3>
+            <table id='toadd_41' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_41",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_41",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_41",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_41",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>W25 Aldershot</td><td data-sort='7.0'>9 August 2027</td><td>QF</td><td data-sort='7'>7</td></tr></tbody></table></details></div><div class='card' id='Indi_Spink'><h2>Indi Spink</h2><h3>Total points: 10</h3>
         <details id="details_counted_43" open
                  onclick="toggleArrow('details_counted_43', 'arrow_counted_43')">
             <summary>
-                Counted tournaments (3)
+                Counted tournaments (4)
             </summary>
-        <table id='counted_43' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_43",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_43",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("counted_43",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_43",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("counted_43",4)'>Reason to count<span class='arrow'></span></th></tr></thead><tbody><tr><td>nan Manacor</td><td data-sort='202703'>1 March 2027</td><td>QF</td><td data-sort='3'>3</td><td>Other best 18</td></tr><tr><td>nan Monastir</td><td data-sort='202703'>29 March 2027</td><td>QF</td><td data-sort='3'>3</td><td>Other best 18</td></tr><tr><td>nan Roehampton</td><td data-sort='202705'>3 May 2027</td><td>R16</td><td data-sort='1'>1</td><td>Other best 18</td></tr></tbody></table></details>
-            <details id="details_toadd_43"
-                     onclick="toggleArrow('details_toadd_43', 'arrow_toadd_43')">
-                <summary>
-                    To be added tournaments (1)
-                </summary>
-            <table id='toadd_43' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_43",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_43",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_43",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_43",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>W15 Lousada</td><td data-sort='3.0'>30 November 2027</td><td>QF</td><td data-sort='3'>3</td></tr></tbody></table></details></div><div class='card' id='Ranah_Stoiber'><h2>Ranah Stoiber</h2><h3>Total points: 73</h3>
+        <table id='counted_43' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_43",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_43",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("counted_43",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_43",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("counted_43",4)'>Reason to count<span class='arrow'></span></th></tr></thead><tbody><tr><td>nan Lousada</td><td data-sort='202611'>30 November 2026</td><td>QF</td><td data-sort='3'>3</td><td>Other best 18</td></tr><tr><td>nan Manacor</td><td data-sort='202703'>1 March 2027</td><td>QF</td><td data-sort='3'>3</td><td>Other best 18</td></tr><tr><td>nan Monastir</td><td data-sort='202703'>29 March 2027</td><td>QF</td><td data-sort='3'>3</td><td>Other best 18</td></tr><tr><td>nan Roehampton</td><td data-sort='202705'>3 May 2027</td><td>R16</td><td data-sort='1'>1</td><td>Other best 18</td></tr></tbody></table></details></div><div class='card' id='Ranah_Stoiber'><h2>Ranah Stoiber</h2><h3>Total points: 73</h3>
         <details id="details_counted_70" open
                  onclick="toggleArrow('details_counted_70', 'arrow_counted_70')">
             <summary>
