@@ -8,7 +8,7 @@
     body { font-family: Arial, sans-serif; font-size: 12pt}
     table { border-collapse: collapse; width: 100%; margin: 10px 0; }
     th, td { border: 1px solid #ccc; padding: 6px; text-align: center; }
-    th { background: #3a7; color: #fff; cursor: pointer; position: relative; }
+    th { background: #3a7; color: #fff; cursor: pointer; position: sticky; top:0;}
     th .arrow { font-size: 12px; margin-left: 4px; }
     tr:nth-child(even) { background: #f7f7f7; }
     .card { border:1px solid #ccc; border-radius:8px; padding:15px; margin:15px 0; }
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Luca Pow</td>
       <td>Wake Forest</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Atlantic Coast</td>
       <td>35</td>
       <td>74</td>
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Alex Okonkwo</td>
       <td>Ohio State</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Big Ten</td>
       <td>52</td>
       <td>42</td>
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Henry Jefferson</td>
       <td>Florida</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Southeastern</td>
       <td>73</td>
       <td>13</td>
@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Freddy Blaydes</td>
       <td>Auburn</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Southeastern</td>
       <td></td>
       <td>10</td>
@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Anthony Wright</td>
       <td>UNC Chapel Hill</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>Atlantic Coast</td>
       <td></td>
       <td>23</td>
@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Lance Nisbet</td>
       <td>Tulane</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>American</td>
       <td></td>
       <td>45</td>
@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Oliver Bonding</td>
       <td>TCU</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>Big 12</td>
       <td></td>
       <td>66</td>
@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Luca Bluett</td>
       <td>Santa Clara</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>West Coast</td>
       <td></td>
       <td>68</td>
@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Charlie Robertson</td>
       <td>South Carolina</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>Southeastern</td>
       <td></td>
       <td>74</td>
@@ -216,25 +216,16 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Sam Reeve</td>
       <td>Memphis</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>American</td>
       <td></td>
       <td>89</td>
       <td></td>
     </tr>
     <tr>
-      <td>Ilias Hirani Worthington</td>
-      <td>Old Dominion</td>
-      <td>Junior</td>
-      <td>Sun Belt</td>
-      <td></td>
-      <td></td>
-      <td>Transfer from Wichita State</td>
-    </tr>
-    <tr>
       <td>Liam Channon</td>
       <td>Purdue</td>
-      <td>Freshman</td>
+      <td>1st year</td>
       <td>Big Ten</td>
       <td></td>
       <td></td>
@@ -243,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Jesse Clarkson</td>
       <td>Presbyterian</td>
-      <td>Freshman</td>
+      <td>1st year</td>
       <td>Big South</td>
       <td></td>
       <td></td>
@@ -252,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Joshua Craze</td>
       <td>Pacific</td>
-      <td>Freshman</td>
+      <td>1st year</td>
       <td>West Coast</td>
       <td></td>
       <td></td>
@@ -261,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Isaac Forde</td>
       <td>Kentucky</td>
-      <td>Freshman</td>
+      <td>1st year</td>
       <td>Southeastern</td>
       <td></td>
       <td></td>
@@ -270,7 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Matthew Ground</td>
       <td>Fairfield</td>
-      <td>Freshman</td>
+      <td>1st year</td>
       <td>Metro Atlantic</td>
       <td></td>
       <td></td>
@@ -279,7 +270,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Louis Hull</td>
       <td>Arkansas</td>
-      <td>Freshman</td>
+      <td>1st year</td>
       <td>Southeastern</td>
       <td></td>
       <td></td>
@@ -288,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Alfie King</td>
       <td>Memphis</td>
-      <td>Freshman</td>
+      <td>1st year</td>
       <td>American Athletic</td>
       <td></td>
       <td></td>
@@ -297,7 +288,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Michael Mitchell</td>
       <td>Gonzaga</td>
-      <td>Freshman</td>
+      <td>1st year</td>
       <td>PAC 12</td>
       <td></td>
       <td></td>
@@ -306,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Billy Moxon</td>
       <td>South Carolina</td>
-      <td>Freshman</td>
+      <td>1st year</td>
       <td>Southeastern</td>
       <td></td>
       <td></td>
@@ -315,7 +306,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Ollie Page</td>
       <td>Wichita State</td>
-      <td>Freshman</td>
+      <td>1st year</td>
       <td>American Athletic</td>
       <td></td>
       <td></td>
@@ -324,7 +315,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Rafe Samuel</td>
       <td>Denver</td>
-      <td>Freshman</td>
+      <td>1st year</td>
       <td>West Coast</td>
       <td></td>
       <td></td>
@@ -333,7 +324,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Harry Abel</td>
       <td>UNC Wilmington</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>Coastal Athletic</td>
       <td></td>
       <td></td>
@@ -342,7 +333,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Joshua Ashton</td>
       <td>Denver</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>Summit</td>
       <td></td>
       <td></td>
@@ -351,7 +342,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Arthur Attrill</td>
       <td>Georgia State</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>Sun Belt</td>
       <td></td>
       <td></td>
@@ -360,7 +351,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Jack Berry</td>
       <td>Oral Roberts</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>Summit</td>
       <td></td>
       <td></td>
@@ -369,7 +360,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Felix Brocklemann Evans</td>
       <td>Wichita State</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>American</td>
       <td></td>
       <td></td>
@@ -378,7 +369,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Nicholas Fisk</td>
       <td>Elon</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>Coastal Athletic</td>
       <td></td>
       <td></td>
@@ -387,7 +378,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Daniel Franco Key</td>
       <td>UNC Asheville</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>Big South</td>
       <td></td>
       <td></td>
@@ -396,7 +387,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Sebastian Grimes</td>
       <td>Alcorn State</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>SWAC</td>
       <td></td>
       <td></td>
@@ -405,7 +396,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Simon Hegarty</td>
       <td>St Johns</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>Big East</td>
       <td></td>
       <td></td>
@@ -414,7 +405,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Dan Hughes</td>
       <td>Oregon</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>Big Ten</td>
       <td></td>
       <td></td>
@@ -423,7 +414,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>James Hutchinson</td>
       <td>Gonzaga</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>West Coast</td>
       <td></td>
       <td></td>
@@ -432,7 +423,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Ellison Minnaar</td>
       <td>UT Arlington</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>WAC</td>
       <td></td>
       <td></td>
@@ -441,7 +432,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Ryan Parkins</td>
       <td>Bellarmine</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>ASUN</td>
       <td></td>
       <td></td>
@@ -450,7 +441,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Ferran Redza</td>
       <td>Santa Clara</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>West Coast</td>
       <td></td>
       <td></td>
@@ -459,7 +450,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Charlie Swaine</td>
       <td>South Carolina</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>Southeastern</td>
       <td></td>
       <td></td>
@@ -468,7 +459,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Matt Upton</td>
       <td>Montana</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>Big Sky</td>
       <td></td>
       <td></td>
@@ -477,7 +468,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Marcus Weekes</td>
       <td>Howard</td>
-      <td>Sophomore</td>
+      <td>2nd year</td>
       <td>Mid-Eastern</td>
       <td></td>
       <td></td>
@@ -486,7 +477,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Kai-Luca Ampaw</td>
       <td>UCF</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>Big 12</td>
       <td></td>
       <td></td>
@@ -495,7 +486,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Jakob Bonnett</td>
       <td>Monmouth</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>Coastal Athletic</td>
       <td></td>
       <td></td>
@@ -504,7 +495,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Theo Coats</td>
       <td>Denver</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>Summit</td>
       <td></td>
       <td></td>
@@ -513,7 +504,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Alexander Ferdinando Robin Fragasso</td>
       <td>Campbell</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>Coastal Athletic</td>
       <td></td>
       <td></td>
@@ -522,7 +513,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Conor Flynn</td>
       <td>Alabama at Birmingham</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>American</td>
       <td></td>
       <td></td>
@@ -531,7 +522,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Hector Fullone</td>
       <td>Saint Josephs</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>Atlantic 10</td>
       <td></td>
       <td></td>
@@ -540,7 +531,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Sai Gandepalli</td>
       <td>UNC Asheville</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>Big South</td>
       <td></td>
       <td></td>
@@ -549,7 +540,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Thomas Giles</td>
       <td>DePaul</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>Big East</td>
       <td></td>
       <td></td>
@@ -558,7 +549,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Tomas Grime</td>
       <td>Alcorn State</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>SWAC</td>
       <td></td>
       <td></td>
@@ -567,16 +558,25 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Zechariah Hamrouni</td>
       <td>Old Dominion</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>Sun Belt</td>
       <td></td>
       <td></td>
       <td></td>
     </tr>
     <tr>
+      <td>Ilias Hirani Worthington</td>
+      <td>Old Dominion</td>
+      <td>3rd year</td>
+      <td>Sun Belt</td>
+      <td></td>
+      <td></td>
+      <td>Transfer from Wichita State</td>
+    </tr>
+    <tr>
       <td>Forbes Hollingsworth</td>
       <td>Bryant</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>Southland</td>
       <td></td>
       <td></td>
@@ -585,7 +585,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Luke Hoyland</td>
       <td>Le Moyne</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>Northeast</td>
       <td></td>
       <td></td>
@@ -594,7 +594,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Finn Logue</td>
       <td>Illinois State</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>Summit</td>
       <td></td>
       <td></td>
@@ -603,7 +603,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Callum Matthew</td>
       <td>Le Moyne</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>Northeast</td>
       <td></td>
       <td></td>
@@ -612,7 +612,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Finbar McGarvey</td>
       <td>UT Arlington</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>WAC</td>
       <td></td>
       <td></td>
@@ -621,7 +621,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Sergiy Rafiee</td>
       <td>UNC Chapel Hill</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>Atlantic Coast</td>
       <td></td>
       <td></td>
@@ -630,7 +630,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Aryan Singh</td>
       <td>Georgia State</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>Sun Belt</td>
       <td></td>
       <td></td>
@@ -639,7 +639,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Benn Wrann</td>
       <td>FDU</td>
-      <td>Junior</td>
+      <td>3rd year</td>
       <td>Northeast</td>
       <td></td>
       <td></td>
@@ -648,7 +648,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Louis Bowden</td>
       <td>Baylor</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Big 12</td>
       <td></td>
       <td></td>
@@ -657,7 +657,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Yegor Boyev</td>
       <td>Le Moyne</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Northeast</td>
       <td></td>
       <td></td>
@@ -666,7 +666,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Jack Brimm</td>
       <td>Long Island</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Northeast</td>
       <td></td>
       <td></td>
@@ -675,7 +675,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>William Burridge</td>
       <td>Drexel</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Coastal Athletic</td>
       <td></td>
       <td></td>
@@ -684,7 +684,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Hugo Coquelin</td>
       <td>Vanderbilt</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Southeastern</td>
       <td></td>
       <td></td>
@@ -693,7 +693,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Kai Cowcher</td>
       <td>East Tennessee State</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Southern</td>
       <td></td>
       <td></td>
@@ -702,7 +702,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Jack Curtis</td>
       <td>Elon</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Coastal Athletic</td>
       <td></td>
       <td></td>
@@ -711,7 +711,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Aaron Dawson</td>
       <td>Southern Indiana</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Horizon</td>
       <td></td>
       <td></td>
@@ -720,7 +720,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Jack Deveney</td>
       <td>Wofford</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Southern</td>
       <td></td>
       <td></td>
@@ -729,7 +729,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Tom Dunlop</td>
       <td>Gonzaga</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>West Coast</td>
       <td></td>
       <td></td>
@@ -738,7 +738,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Oliver Hague</td>
       <td>William &amp; Mary</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Coastal Athletic</td>
       <td></td>
       <td></td>
@@ -747,7 +747,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Sebastian Harrison</td>
       <td>Samford</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Southern</td>
       <td></td>
       <td></td>
@@ -756,7 +756,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Ben Hudson</td>
       <td>Kennesaw State</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Conference USA</td>
       <td></td>
       <td></td>
@@ -765,7 +765,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Calum Jessett</td>
       <td>Fairfield</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Metro Atlantic</td>
       <td></td>
       <td></td>
@@ -774,7 +774,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Ben Johnson</td>
       <td>Drake</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Summit</td>
       <td></td>
       <td></td>
@@ -783,7 +783,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Kyran Magimay</td>
       <td>Notre Dame</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Atlantic Coast</td>
       <td></td>
       <td></td>
@@ -792,7 +792,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Yujiro Onuma</td>
       <td>Dartmouth</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Ivy</td>
       <td></td>
       <td></td>
@@ -801,7 +801,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>Matthew Rankin</td>
       <td>Kentucky</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Southeastern</td>
       <td></td>
       <td></td>
@@ -810,7 +810,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <tr>
       <td>James Sclater</td>
       <td>Delaware</td>
-      <td>Senior</td>
+      <td>4th year</td>
       <td>Conference USA</td>
       <td></td>
       <td></td>
