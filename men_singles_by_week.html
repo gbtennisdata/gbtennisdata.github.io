@@ -1,26 +1,87 @@
 
     <style>
     :root {
-    --header-height: 203px; 
+    --header-height: 203px;
+    --selector-height: 57px;
+    --sticky-offset: calc(var(--header-height) + var(--selector-height));
 }
-    body { font-family: Arial, sans-serif; }
-    table { border-collapse: collapse; width: 100%; margin: 10px 0; }
-    th, td { border: 1px solid #ccc; padding: 6px; text-align: center; }
-    th { background: #3a7; color: #fff; cursor: pointer; position: sticky; top:0; }
-    th .arrow { font-size: 12px; margin-left: 4px; }
-    tr:nth-child(even) { background: #f7f7f7; }
-    .card { border:1px solid #ccc; border-radius:8px; padding:15px; margin:15px 0; }
-    summary { font-weight:bold; cursor:pointer; font-size: 18px; }
-    #player-select-container {
-        position: sticky;
-        // top: var(--header-height);
-        top: 203px;
-        z-index: 9998;
-        background: #fff;
-        padding: 12px;
-        border-bottom: 2px solid #ccc;
-        margin-bottom: 60px;
-    }
+
+body {
+    font-family: Arial, sans-serif; 
+    background:#f5f5f5; 
+    max-width:1000px;
+    margin:auto;
+}
+
+/* Sticky site header */
+#header-banner {
+    position: sticky;
+    top: 0;
+    height: var(--header-height);
+    z-index: 9999;
+}
+
+/* Sticky player selector under header */
+#player-select-container {
+    position: sticky;
+    top: var(--header-height);
+    z-index: 9998;
+    background: #fff;
+    padding: 12px;
+    border-bottom: 2px solid #ccc;
+}
+
+/* Table styling */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: center;
+}
+
+/* Sticky table header under selector */
+th {
+    background: #3a7;
+    color: #fff;
+    cursor: pointer;
+    position: sticky;
+    top: var(--sticky-offset);
+    z-index: 9997;
+}
+
+th .arrow {
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+tr:nth-child(even) {
+    background: #f7f7f7;
+}
+
+.card {
+
+    background:#fff;
+    
+    border: 1px solid #ccc;
+    border-radius: 8px;
+        box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    padding: 15px;
+    margin: 15px auto auto;
+}
+
+summary {
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+    
+
 
     #playerSelect {
         

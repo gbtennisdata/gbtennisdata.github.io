@@ -1,28 +1,96 @@
 
 <html>
 <head>
+<meta charset="UTF-8">
+
 <style>
-        :root {
-    --header-height: 203px; 
+    :root {
+    --header-height: 200px;
+    --selector-height: 57px;
+    --sticky-offset: calc(var(--header-height) + var(--selector-height));
 }
-    body { font-family: Arial, sans-serif; font-size: 12pt}
-    table { border-collapse: collapse; width: 100%; margin: 10px 0; }
-    th, td { border: 1px solid #ccc; padding: 6px; text-align: center; }
-    th { background: #3a7; color: #fff; cursor: pointer; position: sticky; top:0;}
-    th .arrow { font-size: 12px; margin-left: 4px; }
-    tr:nth-child(even) { background: #f7f7f7; }
-    .card { border:1px solid #ccc; border-radius:8px; padding:15px; margin:15px 0; }
-    summary { font-weight:bold; cursor:pointer; font-size: 18px; }
-    #player-select-container {
-        position: sticky;
-        //top: var(--header-height);
-        top: 203px
-        z-index: 9998;
-        background: #fff;
-        padding: 12px;
-        border-bottom: 2px solid #ccc;
-        margin-bottom: 60px;
+
+body {
+    font-family: Arial, sans-serif; 
+    background:#f5f5f5; 
+    max-width:1400px;
+    margin:auto;
+}
+
+/* Sticky site header */
+#header-banner {
+    position: sticky;
+    top: 0;
+    height: var(--header-height);
+    z-index: 9999;
+}
+
+/* Sticky player selector under header */
+#player-select-container {
+    position: sticky;
+    top: var(--header-height);
+    z-index: 9998;
+    background: #fff;
+    padding: 12px;
+    border-bottom: 2px solid #ccc;
+}
+
+/* Table styling */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: center;
+}
+
+/* Sticky table header under selector */
+th {
+    background: #3a7;
+    color: #fff;
+    cursor: pointer;
+    position: sticky;
+    top: var(--sticky-offset);
+    z-index: 9997;
+}
+
+th .arrow {
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+tr:nth-child(even) {
+    background: #f7f7f7;
+}
+
+.card {
+
+    background:#fff;
+    
+    border: 1px solid #ccc;
+    border-radius: 8px;
+        box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    padding: 15px;
+    margin: 15px auto auto;
+}
+
+summary {
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.style-select {
+        
+        font-size: 16px;
+        padding: 6px;
     }
+
+
 
     #playerSelect {
         
@@ -30,19 +98,34 @@
         padding: 6px;
     }
     </style>
+<style>
+.arrow-up {
+    color: green;
+    font-weight: 700;
+}
 
+.arrow-down {
+    color: red;
+    font-weight: 700;
+}
+
+.arrow-right {
+    color: #555;
+    font-weight: 700;
+}
+</style>
 </head>
 <body>
 <div id="header-banner"></div>
 <h2>Men's Summary</h2>
-Age: <select id="age-filter"></select>
-Change: <select id="weekchange-filter"></select>
-This week: <select id="thisweek-filter"></select>
-Next week: <select id="nextweek-filter"></select>
+<div id=player-select-container>Age: <select id="age-filter" class="style-select"></select>
+Change: <select id="weekchange-filter" class="style-select"></select>
+This week: <select id="thisweek-filter" class="style-select"></select>
+Next week: <select id="nextweek-filter" class="style-select"></select>
 <span id="followingweek-container">
-    Following week: <select id="followingweek-filter"></select>
+    Following week: <select id="followingweek-filter" class="style-select"></select>
 </span>
-
+</div>
     
 <table class="dataframe">
   <thead>
@@ -53,7 +136,6 @@ Next week: <select id="nextweek-filter"></select>
       <th>Age</th>
       <th>This Week</th>
       <th>Next Week</th>
-      <th>Following week</th>
       <th>Next counting to drop</th>
       <th>18th counter</th>
       <th>19th counter</th>
@@ -65,11 +147,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Arthur Fery</td>
       <td>36</td>
-      <td>1</td>
+      <td><span class="arrow-up">&#9650;</span> 1</td>
       <td>24</td>
       <td> </td>
       <td>ATP Masters 1000 Cincinnati</td>
-      <td>Challenger 125 Quebec City</td>
       <td>10 pts on 17 Aug 2026</td>
       <td>6</td>
       <td>3</td>
@@ -79,11 +160,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Cameron Norrie</td>
       <td>37</td>
-      <td>2</td>
+      <td><span class="arrow-up">&#9650;</span> 2</td>
       <td>30</td>
       <td>ATP Masters 1000 Montreal</td>
       <td>ATP Masters 1000 Montreal / ATP Masters 1000 Cincinnati</td>
-      <td> </td>
       <td>100 pts on 7 Sep 2026</td>
       <td>25</td>
       <td>10</td>
@@ -93,11 +173,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Jan Choinski</td>
       <td>77</td>
-      <td>11</td>
+      <td><span class="arrow-up">&#9650;</span> 11</td>
       <td>30</td>
       <td>Ch 100 Hagen</td>
       <td>ATP Masters 1000 Cincinnati</td>
-      <td>Challenger 125 Quebec City</td>
       <td>7 pts on 7 Sep 2026</td>
       <td>7</td>
       <td>7</td>
@@ -107,10 +186,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Toby Samuel</td>
       <td>109</td>
-      <td>3</td>
+      <td><span class="arrow-up">&#9650;</span> 3</td>
       <td>23</td>
       <td>Ch 75 Lexington</td>
-      <td> </td>
       <td> </td>
       <td>8 pts on 17 Aug 2026</td>
       <td>8</td>
@@ -121,9 +199,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Jake Fearnley</td>
       <td>110</td>
-      <td>0</td>
+      <td><span class="arrow-right">&#10148;</span> 0</td>
       <td>25</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>10 pts on 17 Aug 2026</td>
@@ -135,11 +212,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Jack Draper</td>
       <td>143</td>
-      <td>4</td>
+      <td><span class="arrow-up">&#9650;</span> 4</td>
       <td>25</td>
       <td> </td>
       <td>Ch 75 Brownsburg</td>
-      <td> </td>
       <td>0 pts on 17 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -149,11 +225,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Billy Harris</td>
       <td>162</td>
-      <td>1</td>
+      <td><span class="arrow-up">&#9650;</span> 1</td>
       <td>31</td>
       <td>Ch 75 Lexington</td>
       <td>Ch 75 Brownsburg</td>
-      <td> </td>
       <td>0 pts on 17 Aug 2026</td>
       <td>7</td>
       <td>–</td>
@@ -163,11 +238,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Jack Pinnington Jones</td>
       <td>172</td>
-      <td>0</td>
+      <td><span class="arrow-right">&#10148;</span> 0</td>
       <td>23</td>
       <td>Ch 75 Lexington</td>
       <td>Ch 75 Brownsburg</td>
-      <td> </td>
       <td>0 pts on 7 Sep 2026</td>
       <td>0</td>
       <td>–</td>
@@ -177,11 +251,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Liam Broady</td>
       <td>199</td>
-      <td>3</td>
+      <td><span class="arrow-up">&#9650;</span> 3</td>
       <td>32</td>
       <td>Ch 75 Lexington Qualifying</td>
       <td>Ch 75 Brownsburg Qualifying</td>
-      <td>Challenger 75 Kingston</td>
       <td>15 pts on 7 Sep 2026</td>
       <td>6</td>
       <td>6</td>
@@ -191,11 +264,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Harry Wendelken</td>
       <td>201</td>
-      <td>4</td>
+      <td><span class="arrow-up">&#9650;</span> 4</td>
       <td>24</td>
       <td>Ch 75 Lexington Qualifying</td>
       <td>Ch 75 Brownsburg Qualifying</td>
-      <td>Challenger 75 Kingston</td>
       <td>8 pts on 17 Aug 2026</td>
       <td>4</td>
       <td>3</td>
@@ -205,10 +277,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Henry Searle</td>
       <td>217</td>
-      <td>0</td>
+      <td><span class="arrow-right">&#10148;</span> 0</td>
       <td>20</td>
       <td>Ch 75 Lexington Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>8 pts on 17 Aug 2026</td>
       <td>3</td>
@@ -219,11 +290,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Felix Gill</td>
       <td>218</td>
-      <td>1</td>
+      <td><span class="arrow-up">&#9650;</span> 1</td>
       <td>24</td>
       <td>Ch 75 Lexington Qualifying</td>
       <td>Ch 75 Brownsburg Qualifying</td>
-      <td>Challenger 75 Kingston</td>
       <td>4 pts on 14 Sep 2026</td>
       <td>3</td>
       <td>1</td>
@@ -233,9 +303,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Oliver Crawford</td>
       <td>225</td>
-      <td>3</td>
+      <td><span class="arrow-up">&#9650;</span> 3</td>
       <td>27</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>44 pts on 7 Sep 2026</td>
@@ -247,9 +316,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Jay Clarke</td>
       <td>238</td>
-      <td>-1</td>
+      <td><span class="arrow-down">&#9660;</span> -1</td>
       <td>28</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>6 pts on 17 Aug 2026</td>
@@ -261,11 +329,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Max Basing</td>
       <td>250</td>
-      <td>7</td>
+      <td><span class="arrow-up">&#9650;</span> 7</td>
       <td>23</td>
       <td>Ch 50 Istanbul</td>
       <td>WTT M25 Idanha-a-Nova</td>
-      <td>Ch 50 Roehampton</td>
       <td>15 pts on 17 Aug 2026</td>
       <td>1</td>
       <td>1</td>
@@ -275,11 +342,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Alastair Gray</td>
       <td>264</td>
-      <td>2</td>
+      <td><span class="arrow-up">&#9650;</span> 2</td>
       <td>28</td>
       <td> </td>
       <td> </td>
-      <td>Ch 50 Roehampton</td>
       <td>15 pts on 17 Aug 2026</td>
       <td>3</td>
       <td>–</td>
@@ -289,11 +355,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Giles Hussey</td>
       <td>270</td>
-      <td>-17</td>
+      <td><span class="arrow-down">&#9660;</span> -17</td>
       <td>29</td>
       <td> </td>
       <td> </td>
-      <td>Ch 50 Roehampton</td>
       <td>14 pts on 17 Aug 2026</td>
       <td>2</td>
       <td>2</td>
@@ -303,10 +368,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Charles Broom</td>
       <td>287</td>
-      <td>-4</td>
+      <td><span class="arrow-down">&#9660;</span> -4</td>
       <td>28</td>
       <td>WTT M25 Roehampton</td>
-      <td> </td>
       <td> </td>
       <td>3 pts on 24 Aug 2026</td>
       <td>3</td>
@@ -317,11 +381,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Johannus Monday</td>
       <td>315</td>
-      <td>-3</td>
+      <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>24</td>
       <td>WTT M25 Southaven, MS</td>
       <td> </td>
-      <td>Ch 50 Roehampton</td>
       <td>0 pts on 17 Aug 2026</td>
       <td>6</td>
       <td>–</td>
@@ -331,11 +394,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Hamish Stewart</td>
       <td>334</td>
-      <td>-3</td>
+      <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>27</td>
       <td>Ch 50 Istanbul</td>
       <td> </td>
-      <td>Ch 50 Roehampton</td>
       <td>4 pts on 17 Aug 2026</td>
       <td>3</td>
       <td>3</td>
@@ -345,11 +407,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Anton Matusevich</td>
       <td>350</td>
-      <td>-8</td>
+      <td><span class="arrow-down">&#9660;</span> -8</td>
       <td>25</td>
       <td>WTT M25 Roehampton</td>
       <td> </td>
-      <td>Ch 50 Roehampton</td>
       <td>1 pts on 24 Aug 2026</td>
       <td>1</td>
       <td>1</td>
@@ -359,9 +420,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Paul Jubb</td>
       <td>375</td>
-      <td>-40</td>
+      <td><span class="arrow-down">&#9660;</span> -40</td>
       <td>26</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>16 pts on 17 Aug 2026</td>
@@ -373,11 +433,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Lui Maxted</td>
       <td>396</td>
-      <td>2</td>
+      <td><span class="arrow-up">&#9650;</span> 2</td>
       <td>22</td>
       <td>WTT M25 Roehampton</td>
       <td> </td>
-      <td>Ch 50 Roehampton</td>
       <td>3 pts on 24 Aug 2026</td>
       <td>1</td>
       <td>–</td>
@@ -387,10 +446,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Ollie Tarvet</td>
       <td>436</td>
-      <td>-3</td>
+      <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>22</td>
       <td>WTT M25 Roehampton</td>
-      <td> </td>
       <td> </td>
       <td>25 pts on 17 Aug 2026</td>
       <td>–</td>
@@ -401,9 +459,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Ryan Peniston</td>
       <td>445</td>
-      <td>0</td>
+      <td><span class="arrow-right">&#10148;</span> 0</td>
       <td>30</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>0 pts on 7 Sep 2026</td>
@@ -415,10 +472,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>George Loffhagen</td>
       <td>477</td>
-      <td>-24</td>
+      <td><span class="arrow-down">&#9660;</span> -24</td>
       <td>25</td>
       <td>WTT M25 Roehampton</td>
-      <td> </td>
       <td> </td>
       <td>4 pts on 17 Aug 2026</td>
       <td>2</td>
@@ -429,9 +485,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Aidan McHugh</td>
       <td>515</td>
-      <td>0</td>
+      <td><span class="arrow-right">&#10148;</span> 0</td>
       <td>26</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>16 pts on 17 Aug 2026</td>
@@ -443,11 +498,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Emile Hudd</td>
       <td>517</td>
-      <td>1</td>
+      <td><span class="arrow-up">&#9650;</span> 1</td>
       <td>26</td>
       <td>WTT M25 Roehampton</td>
       <td>WTT M15 Turku</td>
-      <td> </td>
       <td>1 pts on 17 Aug 2026</td>
       <td>1</td>
       <td>–</td>
@@ -457,10 +511,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>James Story</td>
       <td>557</td>
-      <td>-1</td>
+      <td><span class="arrow-down">&#9660;</span> -1</td>
       <td>25</td>
       <td>WTT M25 Roehampton</td>
-      <td> </td>
       <td> </td>
       <td>8 pts on 17 Aug 2026</td>
       <td>–</td>
@@ -471,9 +524,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Millen Hurrion</td>
       <td>670</td>
-      <td>-5</td>
+      <td><span class="arrow-down">&#9660;</span> -5</td>
       <td>27</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 21 Sep 2026</td>
@@ -485,11 +537,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Oscar Weightman</td>
       <td>701</td>
-      <td>-4</td>
+      <td><span class="arrow-down">&#9660;</span> -4</td>
       <td>24</td>
       <td> </td>
       <td>WTT M15 Turku</td>
-      <td> </td>
       <td>3 pts on 17 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -499,9 +550,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Ben Jones</td>
       <td>740</td>
-      <td>-2</td>
+      <td><span class="arrow-down">&#9660;</span> -2</td>
       <td>28</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>3 pts on 17 Aug 2026</td>
@@ -513,9 +563,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Stuart Parker</td>
       <td>777</td>
-      <td>1</td>
+      <td><span class="arrow-up">&#9650;</span> 1</td>
       <td>29</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>0 pts on 17 Aug 2026</td>
@@ -527,9 +576,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Dan Evans</td>
       <td>823</td>
-      <td>-46</td>
+      <td><span class="arrow-down">&#9660;</span> -46</td>
       <td>36</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>0 pts on 17 Aug 2026</td>
@@ -541,9 +589,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Patrick Brady</td>
       <td>827</td>
-      <td>6</td>
+      <td><span class="arrow-up">&#9650;</span> 6</td>
       <td>21</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 17 Aug 2026</td>
@@ -555,10 +602,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Matthew Summers</td>
       <td>874</td>
-      <td>7</td>
+      <td><span class="arrow-up">&#9650;</span> 7</td>
       <td>27</td>
       <td>WTT M25 Roehampton</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -569,11 +615,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Charlie Robertson</td>
       <td>894</td>
-      <td>9</td>
+      <td><span class="arrow-up">&#9650;</span> 9</td>
       <td>19</td>
       <td>WTT M25 Roehampton</td>
       <td>WTT M25 Idanha-a-Nova Qualifying</td>
-      <td> </td>
       <td>1 pts on 17 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -583,9 +628,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Finn Murgett</td>
       <td>902</td>
-      <td>10</td>
+      <td><span class="arrow-up">&#9650;</span> 10</td>
       <td>24</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>8 pts on 7 Sep 2026</td>
@@ -597,11 +641,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Oliver Bonding</td>
       <td>926</td>
-      <td>4</td>
+      <td><span class="arrow-up">&#9650;</span> 4</td>
       <td>19</td>
       <td> </td>
       <td>WTT M15 Turku</td>
-      <td> </td>
       <td>1 pts on 17 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -611,11 +654,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Marcus Walters</td>
       <td>953</td>
-      <td>1</td>
+      <td><span class="arrow-up">&#9650;</span> 1</td>
       <td>28</td>
       <td>WTT M25 Roehampton</td>
       <td>WTT M15 Turku</td>
-      <td> </td>
       <td>1 pts on 12 Oct 2026</td>
       <td>1</td>
       <td>–</td>
@@ -625,9 +667,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Blu Baker</td>
       <td>959</td>
-      <td>0</td>
+      <td><span class="arrow-right">&#10148;</span> 0</td>
       <td>24</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>15 pts on 24 Aug 2026</td>
@@ -639,11 +680,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Oliver Okonkwo</td>
       <td>963</td>
-      <td>0</td>
+      <td><span class="arrow-right">&#10148;</span> 0</td>
       <td>26</td>
       <td> </td>
       <td>WTT M25 East Lansing Qualifying</td>
-      <td> </td>
       <td>0 pts on 17 Aug 2026</td>
       <td>1</td>
       <td>–</td>
@@ -653,11 +693,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Luca Pow</td>
       <td>972</td>
-      <td>-1</td>
+      <td><span class="arrow-down">&#9660;</span> -1</td>
       <td>21</td>
       <td> </td>
       <td>WTT M25 East Lansing Qualifying</td>
-      <td> </td>
       <td>0 pts on 24 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -667,11 +706,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Jeremy Gschwendtner</td>
       <td>1008</td>
-      <td>-3</td>
+      <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>27</td>
       <td>WTT M15 Bielsko Biala</td>
       <td>WTT M15 Warsaw</td>
-      <td> </td>
       <td>2 pts on 14 Sep 2026</td>
       <td>1</td>
       <td>–</td>
@@ -681,11 +719,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Zach Stephens</td>
       <td>1049</td>
-      <td>-4</td>
+      <td><span class="arrow-down">&#9660;</span> -4</td>
       <td>20</td>
       <td>WTT M25 Roehampton Qualifying</td>
       <td>WTT M15 Turku Qualifying</td>
-      <td> </td>
       <td>1 pts on 28 Sep 2026</td>
       <td>1</td>
       <td>–</td>
@@ -695,9 +732,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Finn Bass</td>
       <td>1087</td>
-      <td>-6</td>
+      <td><span class="arrow-down">&#9660;</span> -6</td>
       <td>26</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>4 pts on 17 Aug 2026</td>
@@ -709,10 +745,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Viktor Frydrych</td>
       <td>1096</td>
-      <td>-24</td>
+      <td><span class="arrow-down">&#9660;</span> -24</td>
       <td>20</td>
       <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 24 Aug 2026</td>
       <td>1</td>
@@ -723,9 +758,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>William Jansen</td>
       <td>1104</td>
-      <td>222</td>
+      <td><span class="arrow-up">&#9650;</span> 222</td>
       <td>21</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -737,11 +771,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Ali Habib</td>
       <td>1120</td>
-      <td>-27</td>
+      <td><span class="arrow-down">&#9660;</span> -27</td>
       <td>23</td>
       <td>WTT M25 Roehampton</td>
       <td>WTT M15 Turku Qualifying</td>
-      <td> </td>
       <td>2 pts on 17 Aug 2026</td>
       <td>1</td>
       <td>–</td>
@@ -751,9 +784,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Stefan Cooper</td>
       <td>1168</td>
-      <td>8</td>
+      <td><span class="arrow-up">&#9650;</span> 8</td>
       <td>30</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>0 pts on 28 Sep 2026</td>
@@ -765,10 +797,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>James Beaven</td>
       <td>1224</td>
-      <td>-7</td>
+      <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>21</td>
       <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 17 Aug 2026</td>
       <td>1</td>
@@ -779,10 +810,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Toby Martin</td>
       <td>1226</td>
-      <td>-7</td>
+      <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>33</td>
       <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 17 Aug 2026</td>
       <td>1</td>
@@ -793,9 +823,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>James Connel</td>
       <td>1245</td>
-      <td>-5</td>
+      <td><span class="arrow-down">&#9660;</span> -5</td>
       <td>23</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -807,10 +836,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Luke Hooper</td>
       <td>1259</td>
-      <td>-4</td>
+      <td><span class="arrow-down">&#9660;</span> -4</td>
       <td>20</td>
       <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 28 Sep 2026</td>
       <td>–</td>
@@ -821,10 +849,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Roan Jones</td>
       <td>1331</td>
-      <td>-7</td>
+      <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>22</td>
       <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>0 pts on 17 Aug 2026</td>
       <td>–</td>
@@ -835,9 +862,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Connor Thomson</td>
       <td>1337</td>
-      <td>-7</td>
+      <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>25</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>0 pts on 17 Aug 2026</td>
@@ -849,10 +875,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Oscar Brown</td>
       <td>1347</td>
-      <td>-3</td>
+      <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>24</td>
       <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 14 Dec 2026</td>
       <td>–</td>
@@ -863,10 +888,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Ryan Storrie</td>
       <td>1377</td>
-      <td>0</td>
+      <td><span class="arrow-right">&#10148;</span> 0</td>
       <td>28</td>
       <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 17 Aug 2026</td>
       <td>–</td>
@@ -877,10 +901,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Henry Jefferson</td>
       <td>1435</td>
-      <td>-4</td>
+      <td><span class="arrow-down">&#9660;</span> -4</td>
       <td>20</td>
       <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 7 Jun 2027</td>
       <td>–</td>
@@ -891,9 +914,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Ewen Lumsden</td>
       <td>1486</td>
-      <td>-3</td>
+      <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>26</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>0 pts on 17 Aug 2026</td>
@@ -905,10 +927,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Billy Blaydes</td>
       <td>1512</td>
-      <td>-3</td>
+      <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>22</td>
       <td>WTT M25 Roehampton</td>
-      <td> </td>
       <td> </td>
       <td>4 pts on 28 Jun 2027</td>
       <td>–</td>
@@ -919,10 +940,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Rhys Lawlor</td>
       <td>1530</td>
-      <td>-5</td>
+      <td><span class="arrow-down">&#9660;</span> -5</td>
       <td>17</td>
       <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 2 Nov 2026</td>
       <td>–</td>
@@ -933,11 +953,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Sean Hodkin</td>
       <td>1555</td>
-      <td>-3</td>
+      <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>27</td>
       <td>WTT M25 Roehampton Qualifying</td>
       <td>WTT M25 Idanha-a-Nova Qualifying</td>
-      <td> </td>
       <td>1 pts on 7 Sep 2026</td>
       <td>–</td>
       <td>–</td>
@@ -947,9 +966,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Joe Leather</td>
       <td>1559</td>
-      <td>0</td>
+      <td><span class="arrow-right">&#10148;</span> 0</td>
       <td>25</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>0 pts on 17 Aug 2026</td>
@@ -961,10 +979,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Benjamin Gusic Wan</td>
       <td>1576</td>
-      <td>-1</td>
+      <td><span class="arrow-down">&#9660;</span> -1</td>
       <td>18</td>
       <td>WTT M25 Roehampton</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -975,9 +992,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Mark Whitehouse</td>
       <td>1586</td>
-      <td>0</td>
+      <td><span class="arrow-right">&#10148;</span> 0</td>
       <td>33</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>3 pts on 21 Sep 2026</td>
@@ -989,10 +1005,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Carl Holder</td>
       <td>1704</td>
-      <td>-7</td>
+      <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>20</td>
       <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 7 Sep 2026</td>
       <td>–</td>
@@ -1003,10 +1018,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Henry Best</td>
       <td>1841</td>
-      <td>-9</td>
+      <td><span class="arrow-down">&#9660;</span> -9</td>
       <td>27</td>
       <td>WTT M25 Kursumlijska Banja Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>0 pts on 5 Apr 2027</td>
       <td>–</td>
@@ -1017,9 +1031,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Luke Simkiss</td>
       <td>1841</td>
-      <td>-9</td>
+      <td><span class="arrow-down">&#9660;</span> -9</td>
       <td>19</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>0 pts on 17 Aug 2026</td>
@@ -1031,9 +1044,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>William Nolan</td>
       <td>1893</td>
-      <td>-7</td>
+      <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>23</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td></td>
@@ -1045,9 +1057,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Anthony Wright</td>
       <td>1910</td>
-      <td>-5</td>
+      <td><span class="arrow-down">&#9660;</span> -5</td>
       <td>21</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 24 Aug 2026</td>
@@ -1059,9 +1070,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Harry Thursfield</td>
       <td>1910</td>
-      <td>-5</td>
+      <td><span class="arrow-down">&#9660;</span> -5</td>
       <td>25</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 21 Sep 2026</td>
@@ -1073,9 +1083,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>James Hopper</td>
       <td>1995</td>
-      <td>-564</td>
+      <td><span class="arrow-down">&#9660;</span> -564</td>
       <td>25</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>0 pts on 24 Aug 2026</td>
@@ -1087,9 +1096,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Brandon Walkin</td>
       <td>1995</td>
-      <td>-11</td>
+      <td><span class="arrow-down">&#9660;</span> -11</td>
       <td>31</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 9 Nov 2026</td>
@@ -1101,10 +1109,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Matthew Carroll</td>
       <td>2081</td>
-      <td>-4</td>
+      <td><span class="arrow-down">&#9660;</span> -4</td>
       <td>26</td>
       <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 30 Nov 2026</td>
       <td>–</td>
@@ -1115,10 +1122,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Barney Fitzpatrick</td>
       <td>2153</td>
-      <td>-6</td>
+      <td><span class="arrow-down">&#9660;</span> -6</td>
       <td>24</td>
       <td>WTT M25 Roehampton (Alternate)</td>
-      <td> </td>
       <td> </td>
       <td>0 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -1129,9 +1135,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Freddie Ridout</td>
       <td>2153</td>
-      <td>-6</td>
+      <td><span class="arrow-down">&#9660;</span> -6</td>
       <td>22</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 26 Oct 2026</td>
@@ -1143,10 +1148,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Alexis Canter</td>
       <td>2203</td>
-      <td>-7</td>
+      <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>28</td>
       <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>0 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -1157,9 +1161,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Joe Tyler</td>
       <td>2203</td>
-      <td>-7</td>
+      <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>27</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>0 pts on 17 Aug 2026</td>
@@ -1171,10 +1174,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Thomas Drayton</td>
       <td>2203</td>
-      <td>-7</td>
+      <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>22</td>
       <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>0 pts on 7 Sep 2026</td>
       <td>–</td>
@@ -1185,10 +1187,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Rahul Dhokia</td>
       <td>2237</td>
-      <td>-7</td>
+      <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>26</td>
       <td>WTT M25 Roehampton (Alternate)</td>
-      <td> </td>
       <td> </td>
       <td>0 pts on 17 Aug 2026</td>
       <td>–</td>
@@ -1199,9 +1200,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Matthew Rankin</td>
       <td>2237</td>
-      <td>-7</td>
+      <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>22</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>0 pts on 19 Oct 2026</td>
@@ -1213,10 +1213,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Liam Hignett</td>
       <td>2237</td>
-      <td>-7</td>
+      <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>26</td>
       <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 14 Sep 2026</td>
       <td>–</td>
@@ -1227,11 +1226,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Max Benaim</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>28</td>
       <td>WTT M25 Roehampton Qualifying</td>
       <td>WTT M15 Turku Qualifying</td>
-      <td> </td>
       <td>0 pts on 26 Jul 2027</td>
       <td>–</td>
       <td>–</td>
@@ -1241,11 +1239,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Ying Hou</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>26</td>
       <td>WTT M25 Roehampton Qualifying</td>
       <td>WTT M15 Turku Qualifying</td>
-      <td> </td>
       <td>0 pts on 19 Jul 2027</td>
       <td>–</td>
       <td>–</td>
@@ -1255,10 +1252,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Mattias Southcombe</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>23</td>
       <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1269,10 +1265,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Conor Brady</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>19</td>
       <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1283,10 +1278,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>William McLennaghan</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>24</td>
       <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1297,10 +1291,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Mark Ceban</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>17</td>
       <td>WTT M25 Roehampton Qualifying (QWC)</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1311,10 +1304,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Harry Cornhill</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>–</td>
       <td>WT J100 Maaseik</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1325,11 +1317,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Samuel Zlotnik</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>–</td>
       <td> </td>
       <td>WT J100 Krakow</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1339,10 +1330,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Daniil Simdyashkin</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>–</td>
       <td>WT J100 Maaseik Qualifying</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1353,11 +1343,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Aran Selvaraasan</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>15</td>
       <td>WT J100 Istanbul</td>
       <td>WT J100 Istanbul</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1367,10 +1356,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Jayden Oladimeji</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>–</td>
       <td>WT J100 Istanbul</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1381,10 +1369,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Liam Channon</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>18</td>
       <td>WTT M25 Roehampton Qualifying (QWC)</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1395,11 +1382,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Alex Mirrington</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>16</td>
       <td> </td>
       <td>WT J100 Istanbul</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1409,11 +1395,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Dash Green</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>–</td>
       <td> </td>
       <td>WT J100 Istanbul</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1423,11 +1408,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Dylan Ram</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>–</td>
       <td> </td>
       <td>WT J100 Istanbul</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1437,11 +1421,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Olivier Domagalski</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>–</td>
       <td> </td>
       <td>WT J100 Krakow</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1451,10 +1434,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Theo Coats</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>20</td>
       <td>UTR PTT Hamburg</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1465,10 +1447,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Vincent Fletcher</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>17</td>
       <td>WTT M25 Roehampton Qualifying (QWC)</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1479,10 +1460,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Rafe Samuel</td>
       <td>–</td>
-      <td>–</td>
+      <td></td>
       <td>18</td>
       <td>WTT M25 Roehampton Qualifying (QWC)</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1495,8 +1475,34 @@ Next week: <select id="nextweek-filter"></select>
 
 
 <script>
-const gender = "men";
+// Dynamic selector height to fix TH
 
+function updateSelectorHeight() {
+    const sel = document.getElementById("player-select-container");
+    if (!sel) return;
+
+    const h = sel.offsetHeight;
+    document.documentElement.style.setProperty("--selector-height", h + "px");
+}
+
+// Run AFTER full page render
+window.onload = () => {
+    requestAnimationFrame(updateSelectorHeight);
+};
+
+// Also update on resize
+window.addEventListener("resize", updateSelectorHeight);
+
+
+// Filters
+const gender = "men";
+function stripArrow(text) {
+    return text
+        .replace("▲", "")
+        .replace("▼", "")
+        .replace("➤", "")
+        .trim();
+}
 function getColumnIndexes() {
     const header = document.querySelector("table tr");
     const indexes = {};
@@ -1549,7 +1555,7 @@ function getColumnCounts(colIndex, classifier) {
         const raw = cell.textContent.trim();
         if (!raw) return;
 
-        const classified = classifier(raw);
+        const classified = classifier(stripArrow(raw));
 
         if (Array.isArray(classified)) {
             classified.forEach(v => {
@@ -1644,8 +1650,9 @@ function classifyAge(val) {
 // WEEK CHANGE CLASSIFIER
 // -------------------------------
 function classifyWeekChange(val) {
-    val = val.trim();
-
+    val = stripArrow(val).trim();
+    
+    if (val === "") return null;
     if (val === "IN" || val === "OUT") return val;
 
     const num = parseInt(val, 10);
@@ -1655,6 +1662,7 @@ function classifyWeekChange(val) {
     if (num < 0) return "Fallers";
     return "No Change";
 }
+
 
 // -------------------------------
 // TOURNAMENT NORMALIZER
@@ -1945,6 +1953,7 @@ function populateDropdown(id, values, counts = null) {
     // GROUPS vs TOURNAMENTS
     // -------------------------------
     const PRIORITY = window.genderSetting === "men" ? PRIORITY_MEN : PRIORITY_WOMEN;
+    const classifier = window.genderSetting === "men" ? classifyEventMen : classifyEventWomen;
 
     const groupLabels = unique.filter(v => PRIORITY[v]);
     const tournaments = unique.filter(v => !PRIORITY[v]);
@@ -1952,7 +1961,7 @@ function populateDropdown(id, values, counts = null) {
     // Sort groups by priority
     const sortedGroups = groupLabels.sort((a, b) => PRIORITY[a] - PRIORITY[b]);
 
-    // Sort tournaments by level priority
+    // Sort tournaments by priority
     const sortedTournaments = tournaments.sort((a, b) => {
         const pa = getTournamentPriority(a, window.genderSetting);
         const pb = getTournamentPriority(b, window.genderSetting);
@@ -1961,22 +1970,36 @@ function populateDropdown(id, values, counts = null) {
     });
 
     // -------------------------------
-    // BUILD DROPDOWN
+    // BUILD GROUPED DROPDOWN
     // -------------------------------
     sel.innerHTML = "<option value=''>All</option>";
 
-    // GROUPS FIRST
-    sortedGroups.forEach(v => {
-        const label = counts ? `${v} (${counts[v] || 0})` : v;
-        sel.innerHTML += `<option value="${v}">${label} </option>`;
-    });
+    sortedGroups.forEach(group => {
+        // Group header (selectable)
+        const groupCount = counts ? counts[group] || 0 : "";
+        const groupLabel = groupCount ? `${group} (${groupCount})` : group;
 
-    // TOURNAMENTS SECOND
-    sortedTournaments.forEach(v => {
-        const label = counts ? `${v} (${counts[v] || 0})` : v;
-        sel.innerHTML += `<option value="${v}">${label} </option>`;
+        sel.innerHTML += `<option value="${group}">${groupLabel}</option>`;
+
+        // These groups should NOT have children
+        if (group === "WTA Tour" || group === "All Pro Tour") {
+            return;
+        }
+
+        // Find tournaments belonging to this group
+        const children = sortedTournaments.filter(t => {
+            const classes = classifier(t);
+            return classes.includes(group);
+        });
+
+        // Add tournaments under the group
+        children.forEach(t => {
+            const label = counts ? `-- ${t} (${counts[t] || 0})` : `-- ${t}`;
+            sel.innerHTML += `<option value="${t}">${label}</option>`;
+        });
     });
 }
+
 
 
 // -------------------------------
@@ -1995,7 +2018,7 @@ function getColumnValues(colIndex, classifier) {
         const raw = cell.textContent.trim();
         if (!raw) return;
 
-        const classified = classifier(raw);
+        const classified = classifier(stripArrow(raw));
 
         if (Array.isArray(classified)) {
             classified.forEach(v => values.push(v));
@@ -2052,6 +2075,7 @@ function buildFilters(gender) {
 // -------------------------------
 // APPLY FILTERS
 // -------------------------------
+
 function applyFilters(gender) {
     const eventClassifier = gender === "men" ? classifyEventMen : classifyEventWomen;
 
@@ -2067,7 +2091,7 @@ function applyFilters(gender) {
         if (row.querySelector("th")) return;
 
         const age = classifyAge(row.children[COL_AGE].textContent.trim());
-        const wc  = classifyWeekChange(row.children[COL_WEEKCHANGE].textContent.trim());
+        const wc  = classifyWeekChange(stripArrow(row.children[COL_WEEKCHANGE].textContent));
         const tw  = eventClassifier(row.children[COL_THISWEEK].textContent.trim());
         const nw  = eventClassifier(row.children[COL_NEXTWEEK].textContent.trim());
 

@@ -1,28 +1,96 @@
 
 <html>
 <head>
+<meta charset="UTF-8">
+
 <style>
-        :root {
-    --header-height: 203px; 
+    :root {
+    --header-height: 200px;
+    --selector-height: 57px;
+    --sticky-offset: calc(var(--header-height) + var(--selector-height));
 }
-    body { font-family: Arial, sans-serif; font-size: 12pt}
-    table { border-collapse: collapse; width: 100%; margin: 10px 0; }
-    th, td { border: 1px solid #ccc; padding: 6px; text-align: center; }
-    th { background: #3a7; color: #fff; cursor: pointer; position: sticky; top:0;}
-    th .arrow { font-size: 12px; margin-left: 4px; }
-    tr:nth-child(even) { background: #f7f7f7; }
-    .card { border:1px solid #ccc; border-radius:8px; padding:15px; margin:15px 0; }
-    summary { font-weight:bold; cursor:pointer; font-size: 18px; }
-    #player-select-container {
-        position: sticky;
-        //top: var(--header-height);
-        top: 203px
-        z-index: 9998;
-        background: #fff;
-        padding: 12px;
-        border-bottom: 2px solid #ccc;
-        margin-bottom: 60px;
+
+body {
+    font-family: Arial, sans-serif; 
+    background:#f5f5f5; 
+    max-width:1400px;
+    margin:auto;
+}
+
+/* Sticky site header */
+#header-banner {
+    position: sticky;
+    top: 0;
+    height: var(--header-height);
+    z-index: 9999;
+}
+
+/* Sticky player selector under header */
+#player-select-container {
+    position: sticky;
+    top: var(--header-height);
+    z-index: 9998;
+    background: #fff;
+    padding: 12px;
+    border-bottom: 2px solid #ccc;
+}
+
+/* Table styling */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: center;
+}
+
+/* Sticky table header under selector */
+th {
+    background: #3a7;
+    color: #fff;
+    cursor: pointer;
+    position: sticky;
+    top: var(--sticky-offset);
+    z-index: 9997;
+}
+
+th .arrow {
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+tr:nth-child(even) {
+    background: #f7f7f7;
+}
+
+.card {
+
+    background:#fff;
+    
+    border: 1px solid #ccc;
+    border-radius: 8px;
+        box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    padding: 15px;
+    margin: 15px auto auto;
+}
+
+summary {
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.style-select {
+        
+        font-size: 16px;
+        padding: 6px;
     }
+
+
 
     #playerSelect {
         
@@ -30,19 +98,34 @@
         padding: 6px;
     }
     </style>
+<style>
+.arrow-up {
+    color: green;
+    font-weight: 700;
+}
 
+.arrow-down {
+    color: red;
+    font-weight: 700;
+}
+
+.arrow-right {
+    color: #555;
+    font-weight: 700;
+}
+</style>
 </head>
 <body>
 <div id="header-banner"></div>
 <h2>Women's Summary</h2>
-Age: <select id="age-filter"></select>
-Change: <select id="weekchange-filter"></select>
-This week: <select id="thisweek-filter"></select>
-Next week: <select id="nextweek-filter"></select>
+<div id=player-select-container>Age: <select id="age-filter" class="style-select"></select>
+Change: <select id="weekchange-filter" class="style-select"></select>
+This week: <select id="thisweek-filter" class="style-select"></select>
+Next week: <select id="nextweek-filter" class="style-select"></select>
 <span id="followingweek-container">
-    Following week: <select id="followingweek-filter"></select>
+    Following week: <select id="followingweek-filter" class="style-select"></select>
 </span>
-
+</div>
     
 <table class="dataframe">
   <thead>
@@ -53,7 +136,6 @@ Next week: <select id="nextweek-filter"></select>
       <th>Age</th>
       <th>This Week</th>
       <th>Next Week</th>
-      <th>Following week</th>
       <th>Next counting to drop</th>
       <th>18th counter</th>
       <th>19th counter</th>
@@ -65,9 +147,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Emma Raducanu</td>
       <td>49</td>
-      <td></td>
+      <td><span class="arrow-right">&#10148;</span> 0</td>
       <td>23</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>65 pts on 14 Aug 2026</td>
@@ -79,10 +160,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Katie Boulter</td>
       <td>72</td>
-      <td>-3</td>
+      <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>30</td>
       <td>WTA 1000 Toronto</td>
-      <td>WTA 1000 Toronto / WTA 1000 Cincinnati</td>
       <td>WTA 1000 Cincinnati</td>
       <td>10 pts on 14 Aug 2026</td>
       <td>25</td>
@@ -93,9 +173,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Fran Jones</td>
       <td>107</td>
-      <td>3</td>
+      <td><span class="arrow-up">&#9650;</span> 3</td>
       <td>25</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>40 pts on 14 Sep 2026</td>
@@ -107,9 +186,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Sonay Kartal</td>
       <td>124</td>
-      <td>-2</td>
+      <td><span class="arrow-down">&#9660;</span> -2</td>
       <td>24</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>10 pts on 24 Aug 2026</td>
@@ -121,10 +199,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Harriet Dart</td>
       <td>144</td>
-      <td>-1</td>
+      <td><span class="arrow-down">&#9660;</span> -1</td>
       <td>30</td>
       <td>WTA 1000 Toronto Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>20 pts on 14 Sep 2026</td>
       <td>12</td>
@@ -135,9 +212,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Katie Swan</td>
       <td>205</td>
-      <td>-3</td>
+      <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>27</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>2 pts on 14 Aug 2026</td>
@@ -149,10 +225,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Alicia Dudeney</td>
       <td>230</td>
-      <td>-5</td>
+      <td><span class="arrow-down">&#9660;</span> -5</td>
       <td>23</td>
       <td>WTT W75 Ourense</td>
-      <td> </td>
       <td> </td>
       <td>35 pts on 24 Aug 2026</td>
       <td>8</td>
@@ -163,9 +238,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Mika Stojsavljevic</td>
       <td>283</td>
-      <td>-3</td>
+      <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>17</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>14 pts on 12 Oct 2026</td>
@@ -177,11 +251,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Mimi Xu</td>
       <td>335</td>
-      <td>-3</td>
+      <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>18</td>
       <td>WTT W35 Roehampton</td>
       <td>WTT W35 Aldershot</td>
-      <td> </td>
       <td>4 pts on 24 Aug 2026</td>
       <td>1</td>
       <td>1</td>
@@ -191,9 +264,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Lily Miyazaki</td>
       <td>337</td>
-      <td>-4</td>
+      <td><span class="arrow-down">&#9660;</span> -4</td>
       <td>30</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>14 pts on 14 Aug 2026</td>
@@ -205,9 +277,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Hannah Klugman</td>
       <td>382</td>
-      <td>-8</td>
+      <td><span class="arrow-down">&#9660;</span> -8</td>
       <td>17</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>23 pts on 24 Aug 2026</td>
@@ -219,11 +290,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Naiktha Bains</td>
       <td>386</td>
-      <td>-7</td>
+      <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>28</td>
       <td>WTT W35 Roehampton</td>
       <td>WTT W35 Aldershot</td>
-      <td> </td>
       <td>8 pts on 14 Aug 2026</td>
       <td>1</td>
       <td>1</td>
@@ -233,11 +303,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Vic Allen</td>
       <td>425</td>
-      <td>12</td>
+      <td><span class="arrow-up">&#9650;</span> 12</td>
       <td>25</td>
       <td>WTT W35 Roehampton</td>
       <td>WTT W35 Aldershot Qualifying</td>
-      <td> </td>
       <td>1 pts on 24 Aug 2026</td>
       <td>1</td>
       <td>1</td>
@@ -245,12 +314,24 @@ Next week: <select id="nextweek-filter"></select>
       <td>Career High</td>
     </tr>
     <tr>
+      <td>Amelia Rajecki</td>
+      <td>440</td>
+      <td><span class="arrow-up">&#9650;</span> 68</td>
+      <td>24</td>
+      <td>WTT W35 Roehampton</td>
+      <td>WTT W35 Aldershot Qualifying</td>
+      <td>4 pts on 24 Aug 2026</td>
+      <td>1</td>
+      <td>1</td>
+      <td>392</td>
+      <td> </td>
+    </tr>
+    <tr>
       <td>Heather Watson</td>
       <td>450</td>
-      <td>25</td>
+      <td><span class="arrow-up">&#9650;</span> 25</td>
       <td>34</td>
       <td>WTA 1000 Toronto Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>2 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -259,25 +340,10 @@ Next week: <select id="nextweek-filter"></select>
       <td> </td>
     </tr>
     <tr>
-      <td>Esther Adeshina</td>
-      <td>465</td>
-      <td>2</td>
-      <td>24</td>
-      <td>WTT W35 Roehampton</td>
-      <td>WTT W35 Aldershot Qualifying</td>
-      <td> </td>
-      <td>6 pts on 24 Aug 2026</td>
-      <td>1</td>
-      <td>1</td>
-      <td>465</td>
-      <td>Career High</td>
-    </tr>
-    <tr>
       <td>Sofia Johnson</td>
       <td>462</td>
-      <td>28</td>
+      <td><span class="arrow-up">&#9650;</span> 28</td>
       <td>22</td>
-      <td>WTT W35 Southaven, MS</td>
       <td> </td>
       <td> </td>
       <td>5 pts on 19 Oct 2026</td>
@@ -287,27 +353,25 @@ Next week: <select id="nextweek-filter"></select>
       <td>Career High</td>
     </tr>
     <tr>
-      <td>Amelia Rajecki</td>
-      <td>440</td>
-      <td>68</td>
+      <td>Esther Adeshina</td>
+      <td>465</td>
+      <td><span class="arrow-up">&#9650;</span> 20</td>
       <td>24</td>
       <td>WTT W35 Roehampton</td>
       <td>WTT W35 Aldershot Qualifying</td>
-      <td> </td>
-      <td>4 pts on 24 Aug 2026</td>
+      <td>6 pts on 24 Aug 2026</td>
       <td>1</td>
       <td>1</td>
-      <td>392</td>
-      <td> </td>
+      <td>465</td>
+      <td>Career High</td>
     </tr>
     <tr>
       <td>Emily Appleton</td>
       <td>519</td>
-      <td>-7</td>
+      <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>26</td>
       <td>WTT W35 Roehampton</td>
       <td>WTT W35 Aldershot Qualifying</td>
-      <td> </td>
       <td>1 pts on 14 Sep 2026</td>
       <td>1</td>
       <td>1</td>
@@ -317,10 +381,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Ella Mcdonald</td>
       <td>531</td>
-      <td>-3</td>
-      <td>20</td>
+      <td><span class="arrow-down">&#9660;</span> -3</td>
+      <td>21</td>
       <td>WTT W35 Roehampton</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 14 Sep 2026</td>
       <td>–</td>
@@ -331,9 +394,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Ranah Stoiber</td>
       <td>562</td>
-      <td>-6</td>
+      <td><span class="arrow-down">&#9660;</span> -6</td>
       <td>21</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 14 Sep 2026</td>
@@ -345,9 +407,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Katy Dunne</td>
       <td>610</td>
-      <td>-12</td>
+      <td><span class="arrow-down">&#9660;</span> -12</td>
       <td>31</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>8 pts on 14 Aug 2026</td>
@@ -359,11 +420,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Indi Spink</td>
       <td>615</td>
-      <td>-1</td>
+      <td><span class="arrow-down">&#9660;</span> -10</td>
       <td>23</td>
       <td>WTT W35 Roehampton (WC)</td>
       <td>WTT W35 Aldershot Qualifying</td>
-      <td> </td>
       <td>8 pts on 14 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -373,9 +433,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Amarni Banks</td>
       <td>639</td>
-      <td>-1</td>
+      <td><span class="arrow-down">&#9660;</span> -10</td>
       <td>23</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 14 Aug 2026</td>
@@ -387,11 +446,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Alice Gillan</td>
       <td>649</td>
-      <td>-8</td>
+      <td><span class="arrow-down">&#9660;</span> -8</td>
       <td>27</td>
       <td>WTT W35 Roehampton Qualifying</td>
       <td>WTT W35 Aldershot Qualifying</td>
-      <td> </td>
       <td>4 pts on 24 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -401,11 +459,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Allegra Korpanec Davies</td>
       <td>722</td>
-      <td>-11</td>
+      <td><span class="arrow-down">&#9660;</span> -11</td>
       <td>18</td>
       <td>WTT W35 Roehampton (WC)</td>
       <td>WTT W35 Aldershot Qualifying</td>
-      <td> </td>
       <td>1 pts on 24 Aug 2026</td>
       <td>1</td>
       <td>–</td>
@@ -413,41 +470,12 @@ Next week: <select id="nextweek-filter"></select>
       <td> </td>
     </tr>
     <tr>
-      <td>Brooke Black</td>
-      <td>827</td>
-      <td>-9</td>
-      <td>18</td>
-      <td>WTT W35 Roehampton (WC)</td>
-      <td>WTT W35 Aldershot Qualifying</td>
-      <td> </td>
-      <td>9 pts on 24 Aug 2026</td>
-      <td>–</td>
-      <td>–</td>
-      <td>708</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Lauryn John-Baptiste</td>
-      <td>833</td>
-      <td>-1</td>
-      <td>27</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>5 pts on 19 Oct 2026</td>
-      <td>–</td>
-      <td>–</td>
-      <td>785</td>
-      <td> </td>
-    </tr>
-    <tr>
       <td>Eliz Maloney</td>
       <td>820</td>
-      <td>9</td>
+      <td><span class="arrow-up">&#9650;</span> 9</td>
       <td>25</td>
       <td>WTT W35 Roehampton Qualifying</td>
       <td>WTT W35 Aldershot Qualifying</td>
-      <td> </td>
       <td>4 pts on 8 Feb 2027</td>
       <td>–</td>
       <td>–</td>
@@ -457,11 +485,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Jodie Burrage</td>
       <td>824</td>
-      <td>64</td>
+      <td><span class="arrow-up">&#9650;</span> 64</td>
       <td>27</td>
       <td>WTT W35 Roehampton Qualifying</td>
       <td>WTT W35 Aldershot (Alternate 1)</td>
-      <td> </td>
       <td>2 pts on 14 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -469,12 +496,37 @@ Next week: <select id="nextweek-filter"></select>
       <td> </td>
     </tr>
     <tr>
+      <td>Brooke Black</td>
+      <td>827</td>
+      <td><span class="arrow-down">&#9660;</span> -9</td>
+      <td>18</td>
+      <td>WTT W35 Roehampton (WC)</td>
+      <td>WTT W35 Aldershot Qualifying</td>
+      <td>9 pts on 24 Aug 2026</td>
+      <td>–</td>
+      <td>–</td>
+      <td>708</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Lauryn John-Baptiste</td>
+      <td>833</td>
+      <td><span class="arrow-down">&#9660;</span> -10</td>
+      <td>27</td>
+      <td> </td>
+      <td> </td>
+      <td>5 pts on 19 Oct 2026</td>
+      <td>–</td>
+      <td>–</td>
+      <td>785</td>
+      <td> </td>
+    </tr>
+    <tr>
       <td>Ruby Cooling</td>
       <td>929</td>
-      <td>-1</td>
+      <td><span class="arrow-down">&#9660;</span> -10</td>
       <td>18</td>
       <td>WTT W35 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 26 Oct 2026</td>
       <td>–</td>
@@ -485,11 +537,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Amelie Brooks</td>
       <td>1038</td>
-      <td>-9</td>
+      <td><span class="arrow-down">&#9660;</span> -9</td>
       <td>19</td>
       <td>WTT W35 Roehampton Qualifying</td>
       <td>WTT W35 Aldershot (Alternate 5)</td>
-      <td> </td>
       <td>3 pts on 26 Oct 2026</td>
       <td>–</td>
       <td>–</td>
@@ -499,11 +550,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Mia Wainwright</td>
       <td>1116</td>
-      <td>9</td>
+      <td><span class="arrow-up">&#9650;</span> 9</td>
       <td>19</td>
       <td>WTT W35 Roehampton Qualifying</td>
       <td>WTT W35 Aldershot (Alternate)</td>
-      <td> </td>
       <td>1 pts on 14 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -513,10 +563,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Freya Christie</td>
       <td>1138</td>
-      <td>-3</td>
+      <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>28</td>
       <td>WTT W75 Ourense (Doubles)</td>
-      <td> </td>
       <td> </td>
       <td>3 pts on 14 Aug 2026</td>
       <td>–</td>
@@ -527,11 +576,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Summer Yardley</td>
       <td>1150</td>
-      <td>4</td>
+      <td><span class="arrow-up">&#9650;</span> 4</td>
       <td>26</td>
       <td>WTT W35 Roehampton Qualifying</td>
       <td>WTT W35 Aldershot (Alternate)</td>
-      <td> </td>
       <td>1 pts on 14 Sep 2026</td>
       <td>–</td>
       <td>–</td>
@@ -541,11 +589,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Tegan Bush</td>
       <td>1205</td>
-      <td>-13</td>
+      <td><span class="arrow-down">&#9660;</span> -13</td>
       <td>17</td>
       <td> </td>
       <td>WTT W35 Aldershot (Alternate)</td>
-      <td> </td>
       <td>1 pts on 24 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -555,10 +602,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Ciara Moore</td>
       <td>1227</td>
-      <td>-13</td>
+      <td><span class="arrow-down">&#9660;</span> -13</td>
       <td>18</td>
       <td>WTT W35 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>5 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -569,9 +615,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Leticia Romanova</td>
       <td>1252</td>
-      <td>-14</td>
+      <td><span class="arrow-down">&#9660;</span> -14</td>
       <td>18</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 3 May 2027</td>
@@ -583,11 +628,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Melissa Boyden</td>
       <td>1263</td>
-      <td>-13</td>
+      <td><span class="arrow-down">&#9660;</span> -13</td>
       <td>23</td>
       <td>WTT W15 Hameenlinna Qualifying</td>
       <td>WTT W15 Bucharest Qualifying</td>
-      <td> </td>
       <td>1 pts on 7 Dec 2026</td>
       <td>–</td>
       <td>–</td>
@@ -597,10 +641,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Lois Newberry</td>
       <td>1268</td>
-      <td>-14</td>
+      <td><span class="arrow-down">&#9660;</span> -14</td>
       <td>19</td>
       <td>WTT W35 Roehampton Qualifying</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 21 Sep 2026</td>
       <td>–</td>
@@ -611,9 +654,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Jizel Matos Sequeira Fernandes</td>
       <td>1356</td>
-      <td>-11</td>
+      <td><span class="arrow-down">&#9660;</span> -11</td>
       <td>25</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 14 Aug 2026</td>
@@ -625,9 +667,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Emily Webley-Smith</td>
       <td>1362</td>
-      <td>-11</td>
+      <td><span class="arrow-down">&#9660;</span> -11</td>
       <td>42</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 14 Aug 2026</td>
@@ -639,9 +680,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Isabella Wong</td>
       <td>1366</td>
-      <td>-12</td>
+      <td><span class="arrow-down">&#9660;</span> -12</td>
       <td>19</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 7 Dec 2026</td>
@@ -651,12 +691,24 @@ Next week: <select id="nextweek-filter"></select>
       <td> </td>
     </tr>
     <tr>
+      <td>Georgina Hays</td>
+      <td>1366</td>
+      <td><span class="arrow-up">&#9650;</span> IN</td>
+      <td>19</td>
+      <td> </td>
+      <td> </td>
+      <td>1 pts on 24 Aug 2026</td>
+      <td>–</td>
+      <td>–</td>
+      <td>1446</td>
+      <td>Career High</td>
+    </tr>
+    <tr>
       <td>Emma Wilson</td>
       <td>1377</td>
-      <td>-12</td>
+      <td><span class="arrow-down">&#9660;</span> -12</td>
       <td>29</td>
       <td>Northumberland Open</td>
-      <td> </td>
       <td> </td>
       <td>3 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -667,9 +719,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Isabelle Cherny</td>
       <td>1500</td>
-      <td>-15</td>
+      <td><span class="arrow-down">&#9660;</span> -15</td>
       <td>22</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 24 Aug 2026</td>
@@ -681,9 +732,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Lily Hutchings</td>
       <td>1500</td>
-      <td>-15</td>
+      <td><span class="arrow-down">&#9660;</span> -15</td>
       <td>23</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 14 Aug 2026</td>
@@ -695,11 +745,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Vlada Kozak</td>
       <td>1525</td>
-      <td>-14</td>
+      <td><span class="arrow-down">&#9660;</span> -14</td>
       <td>20</td>
       <td>WTT W15 Astana Qualifying</td>
       <td>WTT W15 Astana Qualifying</td>
-      <td> </td>
       <td>1 pts on 16 Nov 2026</td>
       <td>–</td>
       <td>–</td>
@@ -709,10 +758,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Jaquelyn Ogunwale</td>
       <td>1531</td>
-      <td>-13</td>
+      <td><span class="arrow-down">&#9660;</span> -13</td>
       <td>21</td>
       <td>WTT W35 Roehampton (Doubles WC)</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 14 Aug 2026</td>
       <td>–</td>
@@ -723,9 +771,8 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Angelica Blake</td>
       <td>1531</td>
-      <td>-13</td>
+      <td><span class="arrow-down">&#9660;</span> -13</td>
       <td>25</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td>1 pts on 24 Aug 2026</td>
@@ -737,11 +784,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Olivia Nicholls</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>31</td>
       <td>WTA 1000 Toronto (Doubles)</td>
       <td>WTA 1000 Toronto (Doubles) / WTA 1000 Cincinnati (Doubles)</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -751,11 +797,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Maia Lumsden</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>28</td>
       <td>WTA 1000 Toronto (Doubles)</td>
       <td>WTA 1000 Toronto (Doubles) / WTA 1000 Cincinnati (Doubles)</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -765,10 +810,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Madeleine Brooks</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>29</td>
       <td>WTA125 Warsaw (Doubles)</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -779,10 +823,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Jasmine Conway</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>21</td>
       <td>WTT W35 Roehampton (Doubles WC)</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -793,10 +836,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Edie Griffiths</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>17</td>
       <td>WTT W35 Roehampton Qualifying (QWC)</td>
-      <td> </td>
       <td> </td>
       <td>4 pts on 17 May 2027</td>
       <td>–</td>
@@ -807,10 +849,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Kristina Paskauskas</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>22</td>
       <td>WTT W35 Roehampton Qualifying (QWC)</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 21 Dec 2026</td>
       <td>–</td>
@@ -821,10 +862,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Savannah Dada-Mascoll</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>22</td>
       <td>WTT W35 Roehampton (WC)</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 14 Jun 2027</td>
       <td>–</td>
@@ -833,26 +873,11 @@ Next week: <select id="nextweek-filter"></select>
       <td> </td>
     </tr>
     <tr>
-      <td>Georgina Hays</td>
-      <td>1366</td>
-      <td>IN</td>
-      <td>19</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>1 pts on 24 Aug 2026</td>
-      <td>–</td>
-      <td>–</td>
-      <td>1446</td>
-      <td>Career High</td>
-    </tr>
-    <tr>
       <td>Eva Shaw</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>21</td>
       <td>WTT W35 Roehampton Qualifying (QWC)</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 12 Jul 2027</td>
       <td>–</td>
@@ -863,10 +888,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Sophie Bekker</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>17</td>
       <td>WTT W35 Roehampton Qualifying (QWC)</td>
-      <td> </td>
       <td> </td>
       <td>1 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -877,10 +901,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Ellie Blackford</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>20</td>
       <td>WTT W35 Roehampton Qualifying (QWC)</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -891,10 +914,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Immi Haddad</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>21</td>
       <td>UTR PTT Hamburg</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -905,10 +927,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Halle Pringle</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>24</td>
       <td>British Tour Newcastle</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -919,11 +940,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Pui Yin Lung</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>15</td>
       <td> </td>
       <td>WT J100 Krakow</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -933,10 +953,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Liv Zingg</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>15</td>
       <td>WT J200 Rutesheim</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -947,10 +966,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Alice Haddad</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>17</td>
       <td>WTJ100 Harare</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -961,10 +979,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Julia Reynolds</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>16</td>
       <td>WTJ100 Harare</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -975,11 +992,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Annabel Wong</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>16</td>
       <td> </td>
       <td>WT J100 Krakow</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -989,11 +1005,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Lucy Bear</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>16</td>
       <td>WT J100 Maaseik</td>
       <td>British Tour Cumberland Qualifying</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1003,10 +1018,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Tanishka Naveen</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>15</td>
       <td>WT J100 Istanbul</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1017,11 +1031,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Celine Ricaud</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>17</td>
       <td> </td>
       <td>British Tour Cumberland</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1031,10 +1044,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Matilda Cabrera Burns</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>17</td>
       <td>WT J100 Vienna</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1045,10 +1057,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Teodora Prisadnikova</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>18</td>
       <td>British Tour Newcastle</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1059,11 +1070,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Rosie Cho</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>16</td>
       <td> </td>
       <td>British Tour Cumberland</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1073,11 +1083,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Hermione Korpanec Davies</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>–</td>
       <td> </td>
       <td>WT J100 Istanbul</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1087,11 +1096,10 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Gabby Read</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>–</td>
       <td> </td>
       <td>WT J100 Krakow</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1101,10 +1109,9 @@ Next week: <select id="nextweek-filter"></select>
     <tr>
       <td>Eva Hutchins</td>
       <td>–</td>
-      <td> </td>
+      <td></td>
       <td>17</td>
       <td>WT J100 Maaseik (WC)</td>
-      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1117,8 +1124,34 @@ Next week: <select id="nextweek-filter"></select>
 
 
 <script>
-const gender = "women";
+// Dynamic selector height to fix TH
 
+function updateSelectorHeight() {
+    const sel = document.getElementById("player-select-container");
+    if (!sel) return;
+
+    const h = sel.offsetHeight;
+    document.documentElement.style.setProperty("--selector-height", h + "px");
+}
+
+// Run AFTER full page render
+window.onload = () => {
+    requestAnimationFrame(updateSelectorHeight);
+};
+
+// Also update on resize
+window.addEventListener("resize", updateSelectorHeight);
+
+
+// Filters
+const gender = "women";
+function stripArrow(text) {
+    return text
+        .replace("▲", "")
+        .replace("▼", "")
+        .replace("➤", "")
+        .trim();
+}
 function getColumnIndexes() {
     const header = document.querySelector("table tr");
     const indexes = {};
@@ -1171,7 +1204,7 @@ function getColumnCounts(colIndex, classifier) {
         const raw = cell.textContent.trim();
         if (!raw) return;
 
-        const classified = classifier(raw);
+        const classified = classifier(stripArrow(raw));
 
         if (Array.isArray(classified)) {
             classified.forEach(v => {
@@ -1266,8 +1299,9 @@ function classifyAge(val) {
 // WEEK CHANGE CLASSIFIER
 // -------------------------------
 function classifyWeekChange(val) {
-    val = val.trim();
-
+    val = stripArrow(val).trim();
+    
+    if (val === "") return null;
     if (val === "IN" || val === "OUT") return val;
 
     const num = parseInt(val, 10);
@@ -1277,6 +1311,7 @@ function classifyWeekChange(val) {
     if (num < 0) return "Fallers";
     return "No Change";
 }
+
 
 // -------------------------------
 // TOURNAMENT NORMALIZER
@@ -1567,6 +1602,7 @@ function populateDropdown(id, values, counts = null) {
     // GROUPS vs TOURNAMENTS
     // -------------------------------
     const PRIORITY = window.genderSetting === "men" ? PRIORITY_MEN : PRIORITY_WOMEN;
+    const classifier = window.genderSetting === "men" ? classifyEventMen : classifyEventWomen;
 
     const groupLabels = unique.filter(v => PRIORITY[v]);
     const tournaments = unique.filter(v => !PRIORITY[v]);
@@ -1574,7 +1610,7 @@ function populateDropdown(id, values, counts = null) {
     // Sort groups by priority
     const sortedGroups = groupLabels.sort((a, b) => PRIORITY[a] - PRIORITY[b]);
 
-    // Sort tournaments by level priority
+    // Sort tournaments by priority
     const sortedTournaments = tournaments.sort((a, b) => {
         const pa = getTournamentPriority(a, window.genderSetting);
         const pb = getTournamentPriority(b, window.genderSetting);
@@ -1583,22 +1619,36 @@ function populateDropdown(id, values, counts = null) {
     });
 
     // -------------------------------
-    // BUILD DROPDOWN
+    // BUILD GROUPED DROPDOWN
     // -------------------------------
     sel.innerHTML = "<option value=''>All</option>";
 
-    // GROUPS FIRST
-    sortedGroups.forEach(v => {
-        const label = counts ? `${v} (${counts[v] || 0})` : v;
-        sel.innerHTML += `<option value="${v}">${label} </option>`;
-    });
+    sortedGroups.forEach(group => {
+        // Group header (selectable)
+        const groupCount = counts ? counts[group] || 0 : "";
+        const groupLabel = groupCount ? `${group} (${groupCount})` : group;
 
-    // TOURNAMENTS SECOND
-    sortedTournaments.forEach(v => {
-        const label = counts ? `${v} (${counts[v] || 0})` : v;
-        sel.innerHTML += `<option value="${v}">${label} </option>`;
+        sel.innerHTML += `<option value="${group}">${groupLabel}</option>`;
+
+        // These groups should NOT have children
+        if (group === "WTA Tour" || group === "All Pro Tour") {
+            return;
+        }
+
+        // Find tournaments belonging to this group
+        const children = sortedTournaments.filter(t => {
+            const classes = classifier(t);
+            return classes.includes(group);
+        });
+
+        // Add tournaments under the group
+        children.forEach(t => {
+            const label = counts ? `-- ${t} (${counts[t] || 0})` : `-- ${t}`;
+            sel.innerHTML += `<option value="${t}">${label}</option>`;
+        });
     });
 }
+
 
 
 // -------------------------------
@@ -1617,7 +1667,7 @@ function getColumnValues(colIndex, classifier) {
         const raw = cell.textContent.trim();
         if (!raw) return;
 
-        const classified = classifier(raw);
+        const classified = classifier(stripArrow(raw));
 
         if (Array.isArray(classified)) {
             classified.forEach(v => values.push(v));
@@ -1674,6 +1724,7 @@ function buildFilters(gender) {
 // -------------------------------
 // APPLY FILTERS
 // -------------------------------
+
 function applyFilters(gender) {
     const eventClassifier = gender === "men" ? classifyEventMen : classifyEventWomen;
 
@@ -1689,7 +1740,7 @@ function applyFilters(gender) {
         if (row.querySelector("th")) return;
 
         const age = classifyAge(row.children[COL_AGE].textContent.trim());
-        const wc  = classifyWeekChange(row.children[COL_WEEKCHANGE].textContent.trim());
+        const wc  = classifyWeekChange(stripArrow(row.children[COL_WEEKCHANGE].textContent));
         const tw  = eventClassifier(row.children[COL_THISWEEK].textContent.trim());
         const nw  = eventClassifier(row.children[COL_NEXTWEEK].textContent.trim());
 
