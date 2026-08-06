@@ -306,7 +306,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-up">&#9650;</span> 12</td>
       <td>25</td>
       <td>WTT W35 Roehampton</td>
-      <td>WTT W35 Aldershot Qualifying</td>
+      <td>WTT W35 Aldershot</td>
       <td>1 pts on 24 Aug 2026</td>
       <td>1</td>
       <td>1</td>
@@ -372,7 +372,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>26</td>
       <td>WTT W35 Roehampton</td>
       <td>WTT W35 Aldershot Qualifying</td>
-      <td>1 pts on 14 Sep 2026</td>
+      <td>1 pts on 24 Aug 2026</td>
       <td>1</td>
       <td>1</td>
       <td>347</td>
@@ -488,7 +488,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-up">&#9650;</span> 64</td>
       <td>27</td>
       <td>WTT W35 Roehampton Qualifying</td>
-      <td>WTT W35 Aldershot (Alternate 1)</td>
+      <td>WTT W35 Aldershot Qualifying</td>
       <td>2 pts on 14 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -540,7 +540,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -9</td>
       <td>19</td>
       <td>WTT W35 Roehampton Qualifying</td>
-      <td>WTT W35 Aldershot (Alternate 5)</td>
+      <td>WTT W35 Aldershot Qualifying</td>
       <td>3 pts on 26 Oct 2026</td>
       <td>–</td>
       <td>–</td>
@@ -605,7 +605,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -13</td>
       <td>18</td>
       <td>WTT W35 Roehampton Qualifying</td>
-      <td> </td>
+      <td>WTT W35 Aldershot (Alternate)</td>
       <td>5 pts on 24 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -618,8 +618,8 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -14</td>
       <td>18</td>
       <td> </td>
-      <td> </td>
-      <td>1 pts on 3 May 2027</td>
+      <td>WTT W35 Aldershot (Alternate)</td>
+      <td>3 pts on 17 Jan 2027</td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
@@ -644,7 +644,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -14</td>
       <td>19</td>
       <td>WTT W35 Roehampton Qualifying</td>
-      <td> </td>
+      <td>WTT W35 Aldershot (Alternate)</td>
       <td>1 pts on 21 Sep 2026</td>
       <td>–</td>
       <td>–</td>
@@ -657,7 +657,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -11</td>
       <td>25</td>
       <td> </td>
-      <td> </td>
+      <td>WTT W35 Aldershot (Alternate)</td>
       <td>1 pts on 14 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -683,7 +683,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -12</td>
       <td>19</td>
       <td> </td>
-      <td> </td>
+      <td>WTT W35 Aldershot (Alternate)</td>
       <td>1 pts on 7 Dec 2026</td>
       <td>–</td>
       <td>–</td>
@@ -761,7 +761,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -13</td>
       <td>21</td>
       <td>WTT W35 Roehampton (Doubles WC)</td>
-      <td> </td>
+      <td>WTT W35 Aldershot (Alternate)</td>
       <td>1 pts on 14 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -1569,6 +1569,8 @@ function apopulateDropdown(id, values, counts = null) {
     });
 }
 
+
+
 function populateDropdown(id, values, counts = null) {
     const sel = document.getElementById(id);
     const unique = [...new Set(values)];
@@ -1597,6 +1599,20 @@ function populateDropdown(id, values, counts = null) {
 
         return;
     }
+    
+    /// WEEK CHANGE DROPDOWNS
+    if (id === "weekchange-filter") {
+        const grouped = ['Climbers', 'Fallers', 'No Change', 'IN', 'OUT'].filter(g => unique.includes(g))
+        sel.innerHTML = "<option value=''>All</option>"
+        
+        grouped.forEach(v => {
+            const label = counts ? `${v} (${counts[v] || 0})` : v;
+            sel.innerHTML += `<option value="${v}">${label}</option>`;
+        });
+        
+        return;
+
+    }
 
     // -------------------------------
     // GROUPS vs TOURNAMENTS
@@ -1622,34 +1638,35 @@ function populateDropdown(id, values, counts = null) {
     // BUILD GROUPED DROPDOWN
     // -------------------------------
     sel.innerHTML = "<option value=''>All</option>";
-
-    sortedGroups.forEach(group => {
-        // Group header (selectable)
-        const groupCount = counts ? counts[group] || 0 : "";
-        const groupLabel = groupCount ? `${group} (${groupCount})` : group;
-
-        sel.innerHTML += `<option value="${group}">${groupLabel}</option>`;
-
-        // These groups should NOT have children
-        if (group === "WTA Tour" || group === "All Pro Tour") {
-            return;
-        }
-
-        // Find tournaments belonging to this group
-        const children = sortedTournaments.filter(t => {
-            const classes = classifier(t);
-            return classes.includes(group);
-        });
-
-        // Add tournaments under the group
-        children.forEach(t => {
-            const label = counts ? `-- ${t} (${counts[t] || 0})` : `-- ${t}`;
-            sel.innerHTML += `<option value="${t}">${label}</option>`;
-        });
+    
+sortedGroups.forEach(group => {
+    // Find tournaments belonging to this group first so we know if it has children
+    const children = sortedTournaments.filter(t => {
+        const classes = classifier(t);
+        return classes.includes(group);
     });
+
+    // Determine if this group should render children (e.g., has children and isn't a restricted group)
+    const hasChildren = children.length > 0 && group !== "WTA Tour" && group !== "All Pro Tour";
+
+    // Group header (selectable)
+    const groupCount = counts ? counts[group] || 0 : "";
+    const groupLabel = groupCount ? `${group} (${groupCount})` : group;
+
+    sel.innerHTML += `<option value="${group}">${groupLabel}</option>`;
+
+    // If it shouldn't have children, skip adding them
+    if (!hasChildren) {
+        return;
+    }
+
+    // Add tournaments under the group
+    children.forEach(t => {
+        const label = counts ? `-- ${t} (${counts[t] || 0})` : `-- ${t}`;
+        sel.innerHTML += `<option value="${t}">${label}</option>`;
+    });
+});
 }
-
-
 
 // -------------------------------
 // COLUMN VALUE EXTRACTION

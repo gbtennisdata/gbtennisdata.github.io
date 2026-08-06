@@ -175,7 +175,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>77</td>
       <td><span class="arrow-up">&#9650;</span> 11</td>
       <td>30</td>
-      <td>Ch 100 Hagen</td>
+      <td> </td>
       <td>ATP Masters 1000 Cincinnati</td>
       <td>7 pts on 7 Sep 2026</td>
       <td>7</td>
@@ -189,7 +189,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-up">&#9650;</span> 3</td>
       <td>23</td>
       <td>Ch 75 Lexington</td>
-      <td> </td>
+      <td>ATP Masters 1000 Cincinnati Qualifying</td>
       <td>8 pts on 17 Aug 2026</td>
       <td>8</td>
       <td>7</td>
@@ -202,7 +202,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-right">&#10148;</span> 0</td>
       <td>25</td>
       <td> </td>
-      <td> </td>
+      <td>ATP Masters 1000 Cincinnati Qualifying</td>
       <td>10 pts on 17 Aug 2026</td>
       <td>7</td>
       <td>7</td>
@@ -215,7 +215,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-up">&#9650;</span> 4</td>
       <td>25</td>
       <td> </td>
-      <td>Ch 75 Brownsburg</td>
+      <td>ATP Masters 1000 Cincinnati (WC)</td>
       <td>0 pts on 17 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -243,7 +243,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>Ch 75 Lexington</td>
       <td>Ch 75 Brownsburg</td>
       <td>0 pts on 7 Sep 2026</td>
-      <td>0</td>
+      <td>6</td>
       <td>–</td>
       <td>132</td>
       <td> </td>
@@ -929,7 +929,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1512</td>
       <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>22</td>
-      <td>WTT M25 Roehampton</td>
+      <td>WTT M25 Roehampton (WC)</td>
       <td> </td>
       <td>4 pts on 28 Jun 2027</td>
       <td>–</td>
@@ -981,7 +981,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1576</td>
       <td><span class="arrow-down">&#9660;</span> -1</td>
       <td>18</td>
-      <td>WTT M25 Roehampton</td>
+      <td>WTT M25 Roehampton (WC)</td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1124,7 +1124,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>2153</td>
       <td><span class="arrow-down">&#9660;</span> -6</td>
       <td>24</td>
-      <td>WTT M25 Roehampton (Alternate)</td>
+      <td> </td>
       <td> </td>
       <td>0 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -1189,7 +1189,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>2237</td>
       <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>26</td>
-      <td>WTT M25 Roehampton (Alternate)</td>
+      <td> </td>
       <td> </td>
       <td>0 pts on 17 Aug 2026</td>
       <td>–</td>
@@ -1221,6 +1221,19 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td>–</td>
       <td>1916</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Hugo Coquelin</td>
+      <td>–</td>
+      <td></td>
+      <td>20</td>
+      <td>WTT M25 Roehampton (WC)</td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
       <td> </td>
     </tr>
     <tr>
@@ -1920,6 +1933,8 @@ function apopulateDropdown(id, values, counts = null) {
     });
 }
 
+
+
 function populateDropdown(id, values, counts = null) {
     const sel = document.getElementById(id);
     const unique = [...new Set(values)];
@@ -1948,6 +1963,20 @@ function populateDropdown(id, values, counts = null) {
 
         return;
     }
+    
+    /// WEEK CHANGE DROPDOWNS
+    if (id === "weekchange-filter") {
+        const grouped = ['Climbers', 'Fallers', 'No Change', 'IN', 'OUT'].filter(g => unique.includes(g))
+        sel.innerHTML = "<option value=''>All</option>"
+        
+        grouped.forEach(v => {
+            const label = counts ? `${v} (${counts[v] || 0})` : v;
+            sel.innerHTML += `<option value="${v}">${label}</option>`;
+        });
+        
+        return;
+
+    }
 
     // -------------------------------
     // GROUPS vs TOURNAMENTS
@@ -1973,34 +2002,35 @@ function populateDropdown(id, values, counts = null) {
     // BUILD GROUPED DROPDOWN
     // -------------------------------
     sel.innerHTML = "<option value=''>All</option>";
-
-    sortedGroups.forEach(group => {
-        // Group header (selectable)
-        const groupCount = counts ? counts[group] || 0 : "";
-        const groupLabel = groupCount ? `${group} (${groupCount})` : group;
-
-        sel.innerHTML += `<option value="${group}">${groupLabel}</option>`;
-
-        // These groups should NOT have children
-        if (group === "WTA Tour" || group === "All Pro Tour") {
-            return;
-        }
-
-        // Find tournaments belonging to this group
-        const children = sortedTournaments.filter(t => {
-            const classes = classifier(t);
-            return classes.includes(group);
-        });
-
-        // Add tournaments under the group
-        children.forEach(t => {
-            const label = counts ? `-- ${t} (${counts[t] || 0})` : `-- ${t}`;
-            sel.innerHTML += `<option value="${t}">${label}</option>`;
-        });
+    
+sortedGroups.forEach(group => {
+    // Find tournaments belonging to this group first so we know if it has children
+    const children = sortedTournaments.filter(t => {
+        const classes = classifier(t);
+        return classes.includes(group);
     });
+
+    // Determine if this group should render children (e.g., has children and isn't a restricted group)
+    const hasChildren = children.length > 0 && group !== "WTA Tour" && group !== "All Pro Tour";
+
+    // Group header (selectable)
+    const groupCount = counts ? counts[group] || 0 : "";
+    const groupLabel = groupCount ? `${group} (${groupCount})` : group;
+
+    sel.innerHTML += `<option value="${group}">${groupLabel}</option>`;
+
+    // If it shouldn't have children, skip adding them
+    if (!hasChildren) {
+        return;
+    }
+
+    // Add tournaments under the group
+    children.forEach(t => {
+        const label = counts ? `-- ${t} (${counts[t] || 0})` : `-- ${t}`;
+        sel.innerHTML += `<option value="${t}">${label}</option>`;
+    });
+});
 }
-
-
 
 // -------------------------------
 // COLUMN VALUE EXTRACTION
