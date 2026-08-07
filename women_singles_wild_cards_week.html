@@ -1,0 +1,311 @@
+
+    <style>
+    :root {
+    --header-height: 203px;
+    --selector-height: 57px;
+    --sticky-offset: calc(var(--header-height) + var(--selector-height));
+}
+
+body {
+    font-family: Arial, sans-serif; 
+    background:#f5f5f5; 
+    max-width:1000px;
+    margin:auto;
+}
+
+/* Sticky site header */
+#header-banner {
+    position: sticky;
+    top: 0;
+    height: var(--header-height);
+    z-index: 9999;
+}
+
+/* Sticky player selector under header */
+#player-select-container {
+    position: sticky;
+    top: var(--header-height);
+    z-index: 9998;
+    background: #fff;
+    padding: 12px;
+    border-bottom: 2px solid #ccc;
+}
+
+/* Table styling */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: center;
+}
+
+/* Sticky table header under selector */
+th {
+    background: #3a7;
+    color: #fff;
+    cursor: pointer;
+    position: sticky;
+    top: var(--sticky-offset);
+    z-index: 9997;
+}
+
+th .arrow {
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+tr:nth-child(even) {
+    background: #f7f7f7;
+}
+
+.card {
+
+    background:#fff;
+    
+    border: 1px solid #ccc;
+    border-radius: 8px;
+        box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    padding: 15px;
+    margin: 15px auto auto;
+}
+
+summary {
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+    
+
+
+    #playerSelect {
+        
+        font-size: 16px;
+        padding: 6px;
+    }
+    </style>
+
+    <script>
+    function sortTable(tableId, colIndex) {
+        var table = document.getElementById(tableId);
+        var rows = Array.from(table.rows).slice(1);
+        var asc = table.getAttribute("data-sort-asc") === "true" ? false : true;
+
+        rows.sort(function(a, b) {
+            var A = a.cells[colIndex].getAttribute("data-sort") || a.cells[colIndex].innerText;
+            var B = b.cells[colIndex].getAttribute("data-sort") || b.cells[colIndex].innerText;
+
+            var numA = parseFloat(A);
+            var numB = parseFloat(B);
+
+            if (!isNaN(numA) && !isNaN(numB)) {
+                return asc ? numA - numB : numB - numA;
+            }
+            return asc ? A.localeCompare(B) : B.localeCompare(A);
+        });
+
+        rows.forEach(r => table.tBodies[0].appendChild(r));
+        table.setAttribute("data-sort-asc", asc ? "true" : "false");
+
+        var th = table.querySelectorAll("th");
+        th.forEach((h, i) => {
+            h.querySelector(".arrow").innerText = (i === colIndex ? (asc ? "▲" : "▼") : "");
+        });
+    }
+
+    function toggleArrow(detailsId, arrowId) {
+        var details = document.getElementById(detailsId);
+        var arrow = document.getElementById(arrowId);
+        arrow.innerText = details.open ? "▲" : "▼";
+    }
+    </script>
+    
+        <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const header = document.getElementById("header-banner");
+
+    function updateHeaderHeight() {
+        const h = header.offsetHeight;
+        document.documentElement.style.setProperty("--header-height", h + "px");
+    }
+
+    updateHeaderHeight();
+    window.addEventListener("resize", updateHeaderHeight);
+});
+</script>
+
+<script>
+function scrollToPlayer(id) {
+    const el = document.getElementById(id);
+    const header = document.getElementById("header-banner");
+    const dropdown = document.getElementById("player-select-container");
+
+    if (!el) return;
+
+    const headerHeight = header.offsetHeight;
+    const dropdownHeight = dropdown.offsetHeight;
+
+    const totalOffset = headerHeight + dropdownHeight + 20; // extra padding
+
+    const elementTop = el.getBoundingClientRect().top + window.scrollY;
+
+    window.scrollTo({
+        top: elementTop - totalOffset,
+        behavior: 'smooth'
+    });
+}
+</script>
+
+    <div id="header-banner"></div>
+    <div id='player-select-container'>
+        <label for='playerSelect'><strong>Select Week:</strong></label>
+        <select id='playerSelect' onchange="scrollToPlayer(this.value)">
+            <option value='' disabled selected>Choose...</option>
+            <option value='week_0'>2026-01-05 00:00:00</option><option value='week_1'>2026-01-12 00:00:00</option><option value='week_2'>2026-01-19 00:00:00</option><option value='week_3'>2026-01-26 00:00:00</option><option value='week_4'>2026-02-02 00:00:00</option><option value='week_5'>2026-02-16 00:00:00</option><option value='week_6'>2026-02-23 00:00:00</option><option value='week_7'>2026-03-23 00:00:00</option><option value='week_8'>2026-04-20 00:00:00</option><option value='week_9'>2026-04-27 00:00:00</option><option value='week_10'>2026-05-04 00:00:00</option><option value='week_11'>2026-05-11 00:00:00</option><option value='week_12'>2026-05-18 00:00:00</option><option value='week_13'>2026-05-25 00:00:00</option><option value='week_14'>2026-06-01 00:00:00</option><option value='week_15'>2026-06-08 00:00:00</option><option value='week_16'>2026-06-15 00:00:00</option><option value='week_17'>2026-06-22 00:00:00</option><option value='week_18'>2026-06-29 00:00:00</option><option value='week_19'>2026-07-06 00:00:00</option><option value='week_20'>2026-07-13 00:00:00</option><option value='week_21'>2026-07-27 00:00:00</option><option value='week_22'>2026-08-03 00:00:00</option>
+        </select>
+    </div>
+    <h2>2026 Wild cards by week</h2><div class='card' id='week_0'>
+        <details id="details_week_20260105" open
+                 onclick="toggleArrow('details_week_20260105', 'arrow_week_20260105')">
+            <summary>
+                Week of 5 January 2026 (3) <span id='arrow_week_20260105' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260105' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260105",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260105",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260105",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260105",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260105",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Katie Boulter</td><td>WTA250 Auckland</td><td>Main Draw</td><td>R16</td><td data-sort='30'>30</td></tr><tr><td>Melissa Boyden</td><td>W35 Antalya</td><td>Main Draw</td><td>R32</td><td data-sort='3'>3</td></tr><tr><td>Emilija Lebedevaite</td><td>W15 Monastir</td><td>Qualifying</td><td>QR1</td><td data-sort='3'>3</td></tr></tbody></table></details></div><div class='card' id='week_1'>
+        <details id="details_week_20260112" open
+                 onclick="toggleArrow('details_week_20260112', 'arrow_week_20260112')">
+            <summary>
+                Week of 12 January 2026 (8) <span id='arrow_week_20260112' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260112' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260112",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260112",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260112",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260112",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260112",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Hannah Klugman</td><td>W50 Manchester</td><td>Main Draw</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Ranah Stoiber</td><td>W50 Manchester</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Amelia Rajecki</td><td>W50 Manchester</td><td>Qualifying</td><td>QR2</td><td data-sort='1'>1</td></tr><tr><td>Lara Savic</td><td>W50 Manchester</td><td>Qualifying</td><td>QR2</td><td data-sort='-'>-</td></tr><tr><td>Lily Hutchings</td><td>W50 Manchester</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Zara Mughal</td><td>W50 Manchester</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Megan Davies</td><td>W50 Manchester</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Emilija Lebedevaite</td><td>W15 Monastir</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_2'>
+        <details id="details_week_20260119" open
+                 onclick="toggleArrow('details_week_20260119', 'arrow_week_20260119')">
+            <summary>
+                Week of 19 January 2026 (1) <span id='arrow_week_20260119' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260119' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260119",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260119",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260119",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260119",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260119",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Maria Ustic</td><td>W75 Manama</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr></tbody></table></details></div><div class='card' id='week_3'>
+        <details id="details_week_20260126" open
+                 onclick="toggleArrow('details_week_20260126', 'arrow_week_20260126')">
+            <summary>
+                Week of 26 January 2026 (3) <span id='arrow_week_20260126' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260126' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260126",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260126",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260126",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260126",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260126",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Hannah Klugman</td><td>W35 Birmingham</td><td>Main Draw</td><td>QF</td><td data-sort='8'>8</td></tr><tr><td>Eliz Maloney</td><td>W35 Birmingham</td><td>Main Draw</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Maria Ustic</td><td>W75 Manama</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr></tbody></table></details></div><div class='card' id='week_4'>
+        <details id="details_week_20260202" open
+                 onclick="toggleArrow('details_week_20260202', 'arrow_week_20260202')">
+            <summary>
+                Week of 2 February 2026 (9) <span id='arrow_week_20260202' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260202' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260202",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260202",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260202",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260202",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260202",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Katy Dunne</td><td>W35 Sheffield</td><td>Main Draw</td><td>SF</td><td data-sort='14'>14</td></tr><tr><td>Hannah Klugman</td><td>W35 Sheffield</td><td>Main Draw</td><td>QF</td><td data-sort='8'>8</td></tr><tr><td>Eliz Maloney</td><td>W35 Sheffield</td><td>Main Draw</td><td>QF</td><td data-sort='8'>8</td></tr><tr><td>Ruby Cooling</td><td>W35 Sheffield</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Grace Piper</td><td>W35 Sheffield</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Chloe Cleaver</td><td>W35 Sheffield</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Sophie Bekker</td><td>W35 Sheffield</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Elizabeth Evans</td><td>W35 Sheffield</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Megan Davies</td><td>W35 Sheffield</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_5'>
+        <details id="details_week_20260216" open
+                 onclick="toggleArrow('details_week_20260216', 'arrow_week_20260216')">
+            <summary>
+                Week of 16 February 2026 (3) <span id='arrow_week_20260216' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260216' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260216",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260216",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260216",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260216",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260216",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Eden Silva</td><td>WTA125 Oeiras</td><td>Qualifying</td><td>QR2</td><td data-sort='4'>4</td></tr><tr><td>Emily Appleton</td><td>WTA125 Oeiras</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Maya Prija</td><td>W15 Sharm El Sheikh</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_6'>
+        <details id="details_week_20260223" open
+                 onclick="toggleArrow('details_week_20260223', 'arrow_week_20260223')">
+            <summary>
+                Week of 23 February 2026 (2) <span id='arrow_week_20260223' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260223' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260223",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260223",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260223",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260223",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260223",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Katie Boulter</td><td>WTA500 Merida</td><td>Main Draw</td><td>QF</td><td data-sort='108'>108</td></tr><tr><td>Maya Prija</td><td>W15 Sharm El Sheikh</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_7'>
+        <details id="details_week_20260323" open
+                 onclick="toggleArrow('details_week_20260323', 'arrow_week_20260323')">
+            <summary>
+                Week of 23 March 2026 (2) <span id='arrow_week_20260323' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260323' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260323",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260323",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260323",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260323",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260323",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Vlada Kozak</td><td>WTA125 Dubrovnik</td><td>Qualifying</td><td>QR1</td><td data-sort='1'>1</td></tr><tr><td>Mirabelle Njoze</td><td>W15 Sharm El Sheikh</td><td>Qualifying</td><td>QR2</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_8'>
+        <details id="details_week_20260420" open
+                 onclick="toggleArrow('details_week_20260420', 'arrow_week_20260420')">
+            <summary>
+                Week of 20 April 2026 (9) <span id='arrow_week_20260420' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260420' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260420",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260420",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260420",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260420",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260420",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Allegra Korpanec Davies</td><td>W50 Roehampton</td><td>Main Draw</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Indi Spink</td><td>W50 Roehampton</td><td>Main Draw</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Ophelia Korpanec Davies</td><td>W50 Roehampton</td><td>Qualifying</td><td>R32</td><td data-sort='2'>2</td></tr><tr><td>Leticia Romanova</td><td>W50 Roehampton</td><td>Qualifying</td><td>QR2</td><td data-sort='1'>1</td></tr><tr><td>Esther Adeshina</td><td>W50 Roehampton</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Ruby Cooling</td><td>W50 Roehampton</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Esther Adeshina</td><td>W50 Roehampton</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Lily Hutchings</td><td>W50 Roehampton</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Eloise Newberry</td><td>W50 Roehampton</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_9'>
+        <details id="details_week_20260427" open
+                 onclick="toggleArrow('details_week_20260427', 'arrow_week_20260427')">
+            <summary>
+                Week of 27 April 2026 (7) <span id='arrow_week_20260427' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260427' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260427",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260427",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260427",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260427",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260427",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Ruby Cooling</td><td>W35 Nottingham</td><td>Main Draw</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Sofia Johnson</td><td>W100 Charlottesville</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Sophie Munks</td><td>W35 Nottingham</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Scarlett May-Matthews</td><td>W35 Nottingham</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Tegan Bush</td><td>W35 Nottingham</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Daniella Britton</td><td>W35 Nottingham</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Allegra Korpanec Davies</td><td>W35 Nottingham</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_10'>
+        <details id="details_week_20260504" open
+                 onclick="toggleArrow('details_week_20260504', 'arrow_week_20260504')">
+            <summary>
+                Week of 4 May 2026 (8) <span id='arrow_week_20260504' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260504' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260504",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260504",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260504",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260504",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260504",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Edie Griffiths</td><td>W35 Nottingham</td><td>Main Draw</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Ruby Cooling</td><td>W35 Nottingham</td><td>Main Draw</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Isabelle Cherny</td><td>W35 Platja d’Aro</td><td>Qualifying</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Zara Mughal</td><td>W35 Nottingham</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Lara Savic</td><td>W35 Nottingham</td><td>Qualifying</td><td>QR2</td><td data-sort='-'>-</td></tr><tr><td>Sophie Munks</td><td>W35 Nottingham</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Sofia Maine</td><td>W35 Nottingham</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Allegra Korpanec Davies</td><td>W35 Nottingham</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_11'>
+        <details id="details_week_20260511" open
+                 onclick="toggleArrow('details_week_20260511', 'arrow_week_20260511')">
+            <summary>
+                Week of 11 May 2026 (2) <span id='arrow_week_20260511' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260511' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260511",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260511",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260511",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260511",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260511",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Athina Schlepphorst</td><td>W35 Hurghada</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Ioana-Staliana Scripcariu</td><td>W15 Bucharest</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_12'>
+        <details id="details_week_20260518" open
+                 onclick="toggleArrow('details_week_20260518', 'arrow_week_20260518')">
+            <summary>
+                Week of 18 May 2026 (2) <span id='arrow_week_20260518' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260518' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260518",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260518",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260518",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260518",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260518",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Freya Peet</td><td>W35 Estepona</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Ria Ferguson</td><td>W15 Kayseri</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_13'>
+        <details id="details_week_20260525" open
+                 onclick="toggleArrow('details_week_20260525', 'arrow_week_20260525')">
+            <summary>
+                Week of 25 May 2026 (1) <span id='arrow_week_20260525' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260525' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260525",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260525",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260525",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260525",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260525",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Isabelle Cherny</td><td>W35 Bol</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_14'>
+        <details id="details_week_20260601" open
+                 onclick="toggleArrow('details_week_20260601', 'arrow_week_20260601')">
+            <summary>
+                Week of 1 June 2026 (8) <span id='arrow_week_20260601' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260601' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260601",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260601",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260601",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260601",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260601",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Mika Stojsavljevic</td><td>WTA125 Birmingham</td><td>Main Draw</td><td>QF</td><td data-sort='27'>27</td></tr><tr><td>Katie Swan</td><td>WTA125 Birmingham</td><td>Main Draw</td><td>R16</td><td data-sort='15'>15</td></tr><tr><td>Jodie Burrage</td><td>WTA125 Birmingham</td><td>Qualifying</td><td>QR1</td><td data-sort='1'>1</td></tr><tr><td>Emily Appleton</td><td>WTA125 Birmingham</td><td>Qualifying</td><td>QR1</td><td data-sort='1'>1</td></tr><tr><td>Harriet Dart</td><td>WTA125 Birmingham</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Alicia Dudeney</td><td>WTA125 Birmingham</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Hannah Klugman</td><td>WTA125 Birmingham</td><td>Qualifying</td><td>QR1</td><td data-sort='1'>1</td></tr><tr><td>Ioana-Staliana Scripcariu</td><td>W15 Focsani</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_15'>
+        <details id="details_week_20260608" open
+                 onclick="toggleArrow('details_week_20260608', 'arrow_week_20260608')">
+            <summary>
+                Week of 8 June 2026 (15) <span id='arrow_week_20260608' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260608' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260608",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260608",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260608",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260608",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260608",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Katie Boulter</td><td>WTA500 London</td><td>Main Draw</td><td>SF</td><td data-sort='195'>195</td></tr><tr><td>Harriet Dart</td><td>WTA500 London</td><td>Main Draw</td><td>R16</td><td data-sort='60'>60</td></tr><tr><td>Katie Swan</td><td>WTA125 Ilkley</td><td>Main Draw</td><td>QF</td><td data-sort='27'>27</td></tr><tr><td>Alicia Dudeney</td><td>WTA125 Ilkley</td><td>Main Draw</td><td>R16</td><td data-sort='15'>15</td></tr><tr><td>Heather Watson</td><td>WTA500 London</td><td>Qualifying</td><td>QR2</td><td data-sort='13'>13</td></tr><tr><td>Edie Griffiths</td><td>WTA125 Ilkley</td><td>Qualifying</td><td>QR2</td><td data-sort='4'>4</td></tr><tr><td>Jodie Burrage</td><td>WTA500 London</td><td>Qualifying</td><td>QR1</td><td data-sort='1'>1</td></tr><tr><td>Lily Miyazaki</td><td>WTA500 London</td><td>Qualifying</td><td>QR1</td><td data-sort='1'>1</td></tr><tr><td>Mika Stojsavljevic</td><td>WTA500 London</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Fran Jones</td><td>WTA500 London</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Hannah Klugman</td><td>WTA500 London</td><td>Qualifying</td><td>QR1</td><td data-sort='1'>1</td></tr><tr><td>Savannah Dada-Mascoll</td><td>WTA125 Ilkley</td><td>Qualifying</td><td>QR1</td><td data-sort='1'>1</td></tr><tr><td>Megan Knight</td><td>WTA125 Ilkley</td><td>Qualifying</td><td>QR1</td><td data-sort='1'>1</td></tr><tr><td>Daniella Britton</td><td>WTA125 Ilkley</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Mimi Xu</td><td>WTA125 Ilkley</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr></tbody></table></details></div><div class='card' id='week_16'>
+        <details id="details_week_20260615" open
+                 onclick="toggleArrow('details_week_20260615', 'arrow_week_20260615')">
+            <summary>
+                Week of 15 June 2026 (6) <span id='arrow_week_20260615' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260615' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260615",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260615",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260615",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260615",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260615",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Hannah Klugman</td><td>WTA250 Nottingham</td><td>Qualifying</td><td>R16</td><td data-sort='42'>42</td></tr><tr><td>Alicia Dudeney</td><td>WTA250 Nottingham</td><td>Qualifying</td><td>R32</td><td data-sort='12'>12</td></tr><tr><td>Harriet Dart</td><td>WTA250 Nottingham</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Mika Stojsavljevic</td><td>WTA250 Nottingham</td><td>Qualifying</td><td>QR1</td><td data-sort='1'>1</td></tr><tr><td>Mimi Xu</td><td>WTA250 Nottingham</td><td>Qualifying</td><td>QR1</td><td data-sort='1'>1</td></tr><tr><td>Fran Jones</td><td>WTA250 Nottingham</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr></tbody></table></details></div><div class='card' id='week_17'>
+        <details id="details_week_20260622" open
+                 onclick="toggleArrow('details_week_20260622', 'arrow_week_20260622')">
+            <summary>
+                Week of 22 June 2026 (14) <span id='arrow_week_20260622' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260622' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260622",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260622",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260622",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260622",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260622",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Heather Watson</td><td> Wimbledon</td><td>Qualifying</td><td>QR3</td><td data-sort='30'>30</td></tr><tr><td>Esther Adeshina</td><td> Wimbledon</td><td>Qualifying</td><td>QR2</td><td data-sort='20'>20</td></tr><tr><td>Daniella Britton</td><td> Wimbledon</td><td>Qualifying</td><td>QR1</td><td data-sort='2'>2</td></tr><tr><td>Ella Mcdonald</td><td> Wimbledon</td><td>Qualifying</td><td>QR1</td><td data-sort='2'>2</td></tr><tr><td>Lily Miyazaki</td><td> Wimbledon</td><td>Qualifying</td><td>QR1</td><td data-sort='2'>2</td></tr><tr><td>Amelia Rajecki</td><td> Wimbledon</td><td>Qualifying</td><td>QR1</td><td data-sort='2'>2</td></tr><tr><td>Katy Dunne</td><td> Wimbledon</td><td>Qualifying</td><td>QR1</td><td data-sort='2'>2</td></tr><tr><td>Indi Spink</td><td>WTA250 Eastbourne</td><td>Qualifying</td><td>QR1</td><td data-sort='1'>1</td></tr><tr><td>Emily Appleton</td><td>WTA250 Eastbourne</td><td>Qualifying</td><td>QR1</td><td data-sort='1'>1</td></tr><tr><td>Harriet Dart</td><td>WTA250 Eastbourne</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Alicia Dudeney</td><td>WTA250 Eastbourne</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Mimi Xu</td><td>WTA250 Eastbourne</td><td>Qualifying</td><td>QR1</td><td data-sort='1'>1</td></tr><tr><td>Hannah Klugman</td><td>WTA250 Eastbourne</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Melissa Boyden</td><td>W15 Galati</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_18'>
+        <details id="details_week_20260629" open
+                 onclick="toggleArrow('details_week_20260629', 'arrow_week_20260629')">
+            <summary>
+                Week of 29 June 2026 (7) <span id='arrow_week_20260629' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260629' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260629",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260629",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260629",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260629",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260629",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Katie Swan</td><td> Wimbledon</td><td>Main Draw</td><td>R64</td><td data-sort='70'>70</td></tr><tr><td>Hannah Klugman</td><td> Wimbledon</td><td>Main Draw</td><td>R128</td><td data-sort='10'>10</td></tr><tr><td>Harriet Dart</td><td> Wimbledon</td><td>Main Draw</td><td>R128</td><td data-sort='10'>10</td></tr><tr><td>Alicia Dudeney</td><td> Wimbledon</td><td>Main Draw</td><td>R128</td><td data-sort='10'>10</td></tr><tr><td>Mimi Xu</td><td> Wimbledon</td><td>Main Draw</td><td>R128</td><td data-sort='10'>10</td></tr><tr><td>Mika Stojsavljevic</td><td> Wimbledon</td><td>Main Draw</td><td>R128</td><td data-sort='10'>10</td></tr><tr><td>Jasmine Conway</td><td>W100 Cary</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_19'>
+        <details id="details_week_20260706" open
+                 onclick="toggleArrow('details_week_20260706', 'arrow_week_20260706')">
+            <summary>
+                Week of 6 July 2026 (2) <span id='arrow_week_20260706' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260706' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260706",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260706",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260706",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260706",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260706",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Melissa Boyden</td><td>W35 Buzau</td><td>Main Draw</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Hephzibah Oluwadare</td><td>W50 Columbus, Ohio</td><td>Qualifying</td><td>QR2</td><td data-sort='1'>1</td></tr></tbody></table></details></div><div class='card' id='week_20'>
+        <details id="details_week_20260713" open
+                 onclick="toggleArrow('details_week_20260713', 'arrow_week_20260713')">
+            <summary>
+                Week of 13 July 2026 (10) <span id='arrow_week_20260713' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260713' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260713",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260713",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260713",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260713",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260713",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Hannah Klugman</td><td>W50 Nottingham</td><td>Main Draw</td><td>SF</td><td data-sort='20'>20</td></tr><tr><td>Brooke Black</td><td>W50 Nottingham</td><td>Main Draw</td><td>R16</td><td data-sort='6'>6</td></tr><tr><td>Marelie Raath</td><td>W50 Nottingham</td><td>Qualifying</td><td>QR2</td><td data-sort='1'>1</td></tr><tr><td>Tegan Bush</td><td>W50 Nottingham</td><td>Main Draw</td><td>R1</td><td data-sort='1'>1</td></tr><tr><td>Lauryn John-Baptiste</td><td>W50 Nottingham</td><td>Main Draw</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Zainab Williams</td><td>W50 Nottingham</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Lucia Cassidy</td><td>W50 Nottingham</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Mille Skelton</td><td>W50 Nottingham</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Mia Tinsley</td><td>W50 Nottingham</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Jasmine Mian</td><td>W15 Monastir</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_21'>
+        <details id="details_week_20260727" open
+                 onclick="toggleArrow('details_week_20260727', 'arrow_week_20260727')">
+            <summary>
+                Week of 27 July 2026 (9) <span id='arrow_week_20260727' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260727' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260727",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260727",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260727",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260727",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260727",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Brooke Black</td><td>W35 Aldershot</td><td>Main Draw</td><td>QF</td><td data-sort='7'>7</td></tr><tr><td>Ruby Cooling</td><td>W35 Aldershot</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Edie Griffiths</td><td>W35 Aldershot</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Erin Pearce</td><td>W35 Aldershot</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Savannah Dada-Mascoll</td><td>W35 Aldershot</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Eva Shaw</td><td>W35 Aldershot</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Sophie Bekker</td><td>W35 Aldershot</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Hollie Smart</td><td>W35 Aldershot</td><td>Qualifying</td><td>QR2</td><td data-sort='-'>-</td></tr><tr><td>Rosie Cho</td><td>W35 Aldershot</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='week_22'>
+        <details id="details_week_20260803" open
+                 onclick="toggleArrow('details_week_20260803', 'arrow_week_20260803')">
+            <summary>
+                Week of 3 August 2026 (9) <span id='arrow_week_20260803' class='arrow'></span>
+            </summary>
+        <table id='week_table_20260803' data-sort-asc='true'><thead><tr><th onclick='sortTable("week_table_20260803",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("week_table_20260803",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("week_table_20260803",2)'>Draw<span class='arrow'></span></th><th onclick='sortTable("week_table_20260803",3)'>Round reached<span class='arrow'></span></th><th onclick='sortTable("week_table_20260803",4)'>Points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Allegra Korpanec Davies</td><td>W35 Roehampton</td><td>Main Draw</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Brooke Black</td><td>W35 Roehampton</td><td>Main Draw</td><td>R16</td><td data-sort='4'>4</td></tr><tr><td>Edie Griffiths</td><td>W35 Roehampton</td><td>Qualifying</td><td>R32</td><td data-sort='1'>1</td></tr><tr><td>Eva Shaw</td><td>W35 Roehampton</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Sophie Bekker</td><td>W35 Roehampton</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Kristina Paskauskas</td><td>W35 Roehampton</td><td>Qualifying</td><td>QR2</td><td data-sort='-'>-</td></tr><tr><td>Ellie Blackford</td><td>W35 Roehampton</td><td>Qualifying</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>Indi Spink</td><td>W35 Roehampton</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>Savannah Dada-Mascoll</td><td>W35 Roehampton</td><td>Main Draw</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div id="footer"></div>
+       <script src="header.js"></script>
