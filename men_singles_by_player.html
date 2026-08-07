@@ -1,100 +1,60 @@
 
-    <style>
-    :root {
-    --header-height: 200px;
-    --selector-height: 57px;
-    --sticky-offset: calc(var(--header-height) + var(--selector-height));
+<link rel="stylesheet" type="text/css" href="base_style.css">
+
+<!-- Searchable drop down -->
+<style>
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
 }
 
-body {
-    font-family: Arial, sans-serif; 
-    background:#f5f5f5; 
-    max-width:1400px;
-    margin:auto;
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #3e8e41;
 }
 
-/* Sticky site header */
-#header-banner {
-    position: sticky;
-    top: 0;
-    height: var(--header-height);
-    z-index: 9999;
+#myInput {
+  box-sizing: border-box;
+  background-image: url('searchicon.png');
+  background-position: 14px 12px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 14px 20px 12px 45px;
+  border: none;
+  border-bottom: 1px solid #ddd;
 }
 
-/* Sticky player selector under header */
-#player-select-container {
-    position: sticky;
-    top: var(--header-height);
-    z-index: 9998;
-    background: #fff;
-    padding: 12px;
-    border-bottom: 2px solid #ccc;
+#myInput:focus {outline: 3px solid #ddd;}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
 }
 
-/* Table styling */
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 10px 0;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
 }
 
-th, td {
-    border: 1px solid #ccc;
-    padding: 6px;
-    text-align: center;
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
-/* Sticky table header under selector */
-th {
-    background: #3a7;
-    color: #fff;
-    cursor: pointer;
-    position: sticky;
-    top: var(--sticky-offset);
-    z-index: 9997;
-}
+.dropdown a:hover {background-color: #ddd;}
 
-th .arrow {
-    font-size: 12px;
-    margin-left: 4px;
-}
-
-tr:nth-child(even) {
-    background: #f7f7f7;
-}
-
-.card {
-
-    background:#fff;
-    
-    border: 1px solid #ccc;
-    border-radius: 8px;
-        box-shadow:0 2px 6px rgba(0,0,0,0.1);
-    padding: 15px;
-    margin: 15px auto auto;
-}
-
-summary {
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.style-select {
-        
-        font-size: 16px;
-        padding: 6px;
-    }
-
-
-
-    #playerSelect {
-        
-        font-size: 16px;
-        padding: 6px;
-    }
-    </style>
-
+.show {display: block;}
+</style>
 
 <script>
 function updateSelectorHeight() {
@@ -186,14 +146,16 @@ function scrollToPlayer(id) {
 }
 </script>
 
+
+
     <div id="header-banner"></div>
-    <div id='player-select-container'>
-        <label for='playerSelect'><strong>Select Player:</strong></label>
-        <select id='playerSelect' onchange="scrollToPlayer(this.value)">
-            <option value='' disabled selected>Choose player...</option>
-            <option value='Louis_Allen'>Louis Allen</option><option value='Blu_Baker'>Blu Baker</option><option value='Max_Basing'>Max Basing</option><option value='Finn_Bass'>Finn Bass</option><option value='James_Beaven'>James Beaven</option><option value='Max_Benaim'>Max Benaim</option><option value='Henry_Best'>Henry Best</option><option value='Billy_Blaydes'>Billy Blaydes</option><option value='Oliver_Bonding'>Oliver Bonding</option><option value='Louis_Bowden'>Louis Bowden</option><option value='Patrick_Brady'>Patrick Brady</option><option value='Conor_Brady'>Conor Brady</option><option value='Liam_Broady'>Liam Broady</option><option value='Charles_Broom'>Charles Broom</option><option value='Oscar_Brown'>Oscar Brown</option><option value='Finnian_Bult'>Finnian Bult</option><option value='Albert_Calin'>Albert Calin</option><option value='Alexis_Canter'>Alexis Canter</option><option value='Matthew_Carroll'>Matthew Carroll</option><option value='Mark_Ceban'>Mark Ceban</option><option value='Liam_Channon'>Liam Channon</option><option value='Jan_Choinski'>Jan Choinski</option><option value='Jay_Clarke'>Jay Clarke</option><option value='Jamie_Connel'>Jamie Connel</option><option value='Samuel_Constantinou'>Samuel Constantinou</option><option value='Stefan_Cooper'>Stefan Cooper</option><option value='Hugo_Coquelin'>Hugo Coquelin</option><option value='Oliver_Crawford'>Oliver Crawford</option><option value='Dylan_Davies'>Dylan Davies</option><option value='Rahul_Dhokia'>Rahul Dhokia</option><option value='Jude_Dixon'>Jude Dixon</option><option value='Charles_Dossetter'>Charles Dossetter</option><option value='Jack_Draper'>Jack Draper</option><option value='Thomas_Drayton'>Thomas Drayton</option><option value='Dan_Evans'>Dan Evans</option><option value='Jake_Fearnley'>Jake Fearnley</option><option value='Arthur_Fery'>Arthur Fery</option><option value='Barney_Fitzpatrick'>Barney Fitzpatrick</option><option value='Vincent_Fletcher'>Vincent Fletcher</option><option value='Patrick_Foley'>Patrick Foley</option><option value='Jamie_Forrest'>Jamie Forrest</option><option value='Viktor_Frydrych'>Viktor Frydrych</option><option value='Felix_Gill'>Felix Gill</option><option value='Alastair_Gray'>Alastair Gray</option><option value='Jeremy_Gschwendtner'>Jeremy Gschwendtner</option><option value='Benjamin_Gusic-Wan'>Benjamin Gusic-Wan</option><option value='Ali_Habib'>Ali Habib</option><option value='Billy_Harris'>Billy Harris</option><option value='Liam_Hignett'>Liam Hignett</option><option value='Sean_Hodkin'>Sean Hodkin</option><option value='Carl_Holder'>Carl Holder</option><option value='Luke_Hooper'>Luke Hooper</option><option value='James_Hopper'>James Hopper</option><option value='Ying_Hou'>Ying Hou</option><option value='Emile_Hudd'>Emile Hudd</option><option value='Millen_Hurrion'>Millen Hurrion</option><option value='Giles_Hussey'>Giles Hussey</option><option value='Will_Jansen'>Will Jansen</option><option value='Henry_Jefferson'>Henry Jefferson</option><option value='Ben_Jones'>Ben Jones</option><option value='Roan_Jones'>Roan Jones</option><option value='Henry_Jordan'>Henry Jordan</option><option value='Paul_Jubb'>Paul Jubb</option><option value='Roy_Keegan'>Roy Keegan</option><option value='Alfie_King'>Alfie King</option><option value='Rhys_Lawlor'>Rhys Lawlor</option><option value='Joe_Leather'>Joe Leather</option><option value='Finn_Lester'>Finn Lester</option><option value='George_Loffhagen'>George Loffhagen</option><option value='Ewen_Lumsden'>Ewen Lumsden</option><option value='James_Mackinlay'>James Mackinlay</option><option value='Josh_Manuel'>Josh Manuel</option><option value='Toby_Martin'>Toby Martin</option><option value='Anton_Matusevich'>Anton Matusevich</option><option value='Lui_Maxted'>Lui Maxted</option><option value='Aidan_McHugh'>Aidan McHugh</option><option value='William_McLennaghan'>William McLennaghan</option><option value='Alex_Michael'>Alex Michael</option><option value='Nicholas_Miharu_Bowles-Rokudo'>Nicholas Miharu Bowles-Rokudo</option><option value='Johannus_Monday'>Johannus Monday</option><option value='Finn_Murgett'>Finn Murgett</option><option value='Kasra_Nathaniel_Shirazi'>Kasra Nathaniel Shirazi</option><option value='Will_Nolan'>Will Nolan</option><option value='Cameron_Norrie'>Cameron Norrie</option><option value='Alexander_Okonkwo'>Alexander Okonkwo</option><option value='Oliver_Okonkwo'>Oliver Okonkwo</option><option value='Oliver_Page'>Oliver Page</option><option value='Stuart_Parker'>Stuart Parker</option><option value='Ryan_Peniston'>Ryan Peniston</option><option value='Jack_Pinnington_Jones'>Jack Pinnington Jones</option><option value='Luca_Pow'>Luca Pow</option><option value='Matthew_Rankin'>Matthew Rankin</option><option value='Finn_Reilly'>Finn Reilly</option><option value='Freddie_Ridout'>Freddie Ridout</option><option value='Charlie_Robertson'>Charlie Robertson</option><option value='Toby_Samuel'>Toby Samuel</option><option value='Rafe_Samuel'>Rafe Samuel</option><option value='Andreas_Scott'>Andreas Scott</option><option value='Henry_Searle'>Henry Searle</option><option value='Luke_Simkiss'>Luke Simkiss</option><option value='Matthias_Southcombe'>Matthias Southcombe</option><option value='Mattias_Southcombe'>Mattias Southcombe</option><option value='Zach_Stephens'>Zach Stephens</option><option value='Hamish_Stewart'>Hamish Stewart</option><option value='Ryan_Storrie'>Ryan Storrie</option><option value='James_Story'>James Story</option><option value='Matt_Summers'>Matt Summers</option><option value='Matthew_Summers'>Matthew Summers</option><option value='Charlie_Swaine'>Charlie Swaine</option><option value='Ollie_Tarvet'>Ollie Tarvet</option><option value='Connor_Thomson'>Connor Thomson</option><option value='Harry_Thursfield'>Harry Thursfield</option><option value='Joe_Tyler'>Joe Tyler</option><option value='Brandon_Walkin'>Brandon Walkin</option><option value='Marcus_Walters'>Marcus Walters</option><option value='Oscar_Weightman'>Oscar Weightman</option><option value='Phoenix_Weir'>Phoenix Weir</option><option value='Harry_Wendelken'>Harry Wendelken</option><option value='Mark_Whitehouse'>Mark Whitehouse</option><option value='Daniel_Wright'>Daniel Wright</option><option value='Anthony_Wright'>Anthony Wright</option><option value='Alex_Zuckerman'>Alex Zuckerman</option>
-        </select>
-    </div>
+    <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Select player</button>
+  <div id="myDropdown" class="dropdown-content">
+    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+<option value='Louis_Allen'>Louis Allen</option><option value='Blu_Baker'>Blu Baker</option><option value='Max_Basing'>Max Basing</option><option value='Finn_Bass'>Finn Bass</option><option value='James_Beaven'>James Beaven</option><option value='Max_Benaim'>Max Benaim</option><option value='Henry_Best'>Henry Best</option><option value='Billy_Blaydes'>Billy Blaydes</option><option value='Oliver_Bonding'>Oliver Bonding</option><option value='Louis_Bowden'>Louis Bowden</option><option value='Patrick_Brady'>Patrick Brady</option><option value='Conor_Brady'>Conor Brady</option><option value='Liam_Broady'>Liam Broady</option><option value='Charles_Broom'>Charles Broom</option><option value='Oscar_Brown'>Oscar Brown</option><option value='Finnian_Bult'>Finnian Bult</option><option value='Albert_Calin'>Albert Calin</option><option value='Alexis_Canter'>Alexis Canter</option><option value='Matthew_Carroll'>Matthew Carroll</option><option value='Mark_Ceban'>Mark Ceban</option><option value='Liam_Channon'>Liam Channon</option><option value='Jan_Choinski'>Jan Choinski</option><option value='Jay_Clarke'>Jay Clarke</option><option value='Jamie_Connel'>Jamie Connel</option><option value='Samuel_Constantinou'>Samuel Constantinou</option><option value='Stefan_Cooper'>Stefan Cooper</option><option value='Hugo_Coquelin'>Hugo Coquelin</option><option value='Oliver_Crawford'>Oliver Crawford</option><option value='Dylan_Davies'>Dylan Davies</option><option value='Rahul_Dhokia'>Rahul Dhokia</option><option value='Jude_Dixon'>Jude Dixon</option><option value='Charles_Dossetter'>Charles Dossetter</option><option value='Jack_Draper'>Jack Draper</option><option value='Thomas_Drayton'>Thomas Drayton</option><option value='Dan_Evans'>Dan Evans</option><option value='Jake_Fearnley'>Jake Fearnley</option><option value='Arthur_Fery'>Arthur Fery</option><option value='Barney_Fitzpatrick'>Barney Fitzpatrick</option><option value='Vincent_Fletcher'>Vincent Fletcher</option><option value='Patrick_Foley'>Patrick Foley</option><option value='Jamie_Forrest'>Jamie Forrest</option><option value='Viktor_Frydrych'>Viktor Frydrych</option><option value='Felix_Gill'>Felix Gill</option><option value='Alastair_Gray'>Alastair Gray</option><option value='Jeremy_Gschwendtner'>Jeremy Gschwendtner</option><option value='Benjamin_Gusic-Wan'>Benjamin Gusic-Wan</option><option value='Ali_Habib'>Ali Habib</option><option value='Billy_Harris'>Billy Harris</option><option value='Liam_Hignett'>Liam Hignett</option><option value='Sean_Hodkin'>Sean Hodkin</option><option value='Carl_Holder'>Carl Holder</option><option value='Luke_Hooper'>Luke Hooper</option><option value='James_Hopper'>James Hopper</option><option value='Ying_Hou'>Ying Hou</option><option value='Emile_Hudd'>Emile Hudd</option><option value='Millen_Hurrion'>Millen Hurrion</option><option value='Giles_Hussey'>Giles Hussey</option><option value='Will_Jansen'>Will Jansen</option><option value='Henry_Jefferson'>Henry Jefferson</option><option value='Ben_Jones'>Ben Jones</option><option value='Roan_Jones'>Roan Jones</option><option value='Henry_Jordan'>Henry Jordan</option><option value='Paul_Jubb'>Paul Jubb</option><option value='Roy_Keegan'>Roy Keegan</option><option value='Alfie_King'>Alfie King</option><option value='Rhys_Lawlor'>Rhys Lawlor</option><option value='Joe_Leather'>Joe Leather</option><option value='Finn_Lester'>Finn Lester</option><option value='George_Loffhagen'>George Loffhagen</option><option value='Ewen_Lumsden'>Ewen Lumsden</option><option value='James_Mackinlay'>James Mackinlay</option><option value='Josh_Manuel'>Josh Manuel</option><option value='Toby_Martin'>Toby Martin</option><option value='Anton_Matusevich'>Anton Matusevich</option><option value='Lui_Maxted'>Lui Maxted</option><option value='Aidan_McHugh'>Aidan McHugh</option><option value='William_McLennaghan'>William McLennaghan</option><option value='Alex_Michael'>Alex Michael</option><option value='Nicholas_Miharu_Bowles-Rokudo'>Nicholas Miharu Bowles-Rokudo</option><option value='Johannus_Monday'>Johannus Monday</option><option value='Finn_Murgett'>Finn Murgett</option><option value='Kasra_Nathaniel_Shirazi'>Kasra Nathaniel Shirazi</option><option value='Will_Nolan'>Will Nolan</option><option value='Cameron_Norrie'>Cameron Norrie</option><option value='Alexander_Okonkwo'>Alexander Okonkwo</option><option value='Oliver_Okonkwo'>Oliver Okonkwo</option><option value='Oliver_Page'>Oliver Page</option><option value='Stuart_Parker'>Stuart Parker</option><option value='Ryan_Peniston'>Ryan Peniston</option><option value='Jack_Pinnington_Jones'>Jack Pinnington Jones</option><option value='Luca_Pow'>Luca Pow</option><option value='Matthew_Rankin'>Matthew Rankin</option><option value='Finn_Reilly'>Finn Reilly</option><option value='Freddie_Ridout'>Freddie Ridout</option><option value='Charlie_Robertson'>Charlie Robertson</option><option value='Toby_Samuel'>Toby Samuel</option><option value='Rafe_Samuel'>Rafe Samuel</option><option value='Andreas_Scott'>Andreas Scott</option><option value='Henry_Searle'>Henry Searle</option><option value='Luke_Simkiss'>Luke Simkiss</option><option value='Matthias_Southcombe'>Matthias Southcombe</option><option value='Mattias_Southcombe'>Mattias Southcombe</option><option value='Zach_Stephens'>Zach Stephens</option><option value='Hamish_Stewart'>Hamish Stewart</option><option value='Ryan_Storrie'>Ryan Storrie</option><option value='James_Story'>James Story</option><option value='Matt_Summers'>Matt Summers</option><option value='Matthew_Summers'>Matthew Summers</option><option value='Charlie_Swaine'>Charlie Swaine</option><option value='Ollie_Tarvet'>Ollie Tarvet</option><option value='Connor_Thomson'>Connor Thomson</option><option value='Harry_Thursfield'>Harry Thursfield</option><option value='Joe_Tyler'>Joe Tyler</option><option value='Brandon_Walkin'>Brandon Walkin</option><option value='Marcus_Walters'>Marcus Walters</option><option value='Oscar_Weightman'>Oscar Weightman</option><option value='Phoenix_Weir'>Phoenix Weir</option><option value='Harry_Wendelken'>Harry Wendelken</option><option value='Mark_Whitehouse'>Mark Whitehouse</option><option value='Daniel_Wright'>Daniel Wright</option><option value='Anthony_Wright'>Anthony Wright</option><option value='Alex_Zuckerman'>Alex Zuckerman</option>
+  </div>
+</div>
     <div class='card' id='Louis_Allen'><h2>Louis Allen</h2><h3>Total points: 1</h3>
             <details id="details_counted_71" open
                      onclick="toggleArrow('details_counted_71', 'arrow_counted_71')">
@@ -320,7 +282,7 @@ function scrollToPlayer(id) {
                 <summary>
                     To be added tournaments (1)
                 </summary>
-            <table id='toadd_22' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_22",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_22",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_22",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_22",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>M25 Roehampton</td><td data-sort='3.0'>16 August 2027</td><td>QF</td><td data-sort='3'>3</td></tr></tbody></table></details></div><div class='card' id='Oscar_Brown'><h2>Oscar Brown</h2><h3>Total points: 7</h3>
+            <table id='toadd_22' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_22",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_22",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_22",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_22",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>M25 Roehampton</td><td data-sort='8.0'>16 August 2027</td><td>SF</td><td data-sort='8'>8</td></tr></tbody></table></details></div><div class='card' id='Oscar_Brown'><h2>Oscar Brown</h2><h3>Total points: 7</h3>
             <details id="details_counted_95" open
                      onclick="toggleArrow('details_counted_95', 'arrow_counted_95')">
                 <summary>
@@ -332,7 +294,7 @@ function scrollToPlayer(id) {
                 <summary>
                     To be added tournaments (1)
                 </summary>
-            <table id='toadd_95' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_95",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_95",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_95",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_95",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>M25 Roehampton</td><td data-sort='3.0'>16 August 2027</td><td>R16</td><td data-sort='3'>3</td></tr></tbody></table></details></div><div class='card' id='Finnian_Bult'><h2>Finnian Bult</h2><h3>Total points: 0</h3>
+            <table id='toadd_95' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_95",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_95",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_95",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_95",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>M25 Roehampton</td><td data-sort='3.0'>16 August 2027</td><td>QF</td><td data-sort='3'>3</td></tr></tbody></table></details></div><div class='card' id='Finnian_Bult'><h2>Finnian Bult</h2><h3>Total points: 0</h3>
             <details id="details_counted_38" open
                      onclick="toggleArrow('details_counted_38', 'arrow_counted_38')">
                 <summary>
@@ -644,7 +606,7 @@ function scrollToPlayer(id) {
                 <summary>
                     To be added tournaments (2)
                 </summary>
-            <table id='toadd_31' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_31",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_31",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_31",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_31",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>M25 Aldershot</td><td data-sort='16.0'>9 August 2027</td><td>Final</td><td data-sort='16'>16</td></tr><tr><td>M25 Roehampton</td><td data-sort='1.0'>16 August 2027</td><td>R16</td><td data-sort='1'>1</td></tr></tbody></table></details></div><div class='card' id='Millen_Hurrion'><h2>Millen Hurrion</h2><h3>Total points: 48</h3>
+            <table id='toadd_31' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_31",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_31",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_31",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_31",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>M25 Aldershot</td><td data-sort='16.0'>9 August 2027</td><td>Final</td><td data-sort='16'>16</td></tr><tr><td>M25 Roehampton</td><td data-sort='3.0'>16 August 2027</td><td>QF</td><td data-sort='3'>3</td></tr></tbody></table></details></div><div class='card' id='Millen_Hurrion'><h2>Millen Hurrion</h2><h3>Total points: 48</h3>
             <details id="details_counted_88" open
                      onclick="toggleArrow('details_counted_88', 'arrow_counted_88')">
                 <summary>
@@ -806,7 +768,7 @@ function scrollToPlayer(id) {
                 <summary>
                     To be added tournaments (1)
                 </summary>
-            <table id='toadd_11' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_11",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_11",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_11",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_11",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>M25 Roehampton</td><td data-sort='3.0'>16 August 2027</td><td>QF</td><td data-sort='3'>3</td></tr></tbody></table></details></div><div class='card' id='Lui_Maxted'><h2>Lui Maxted</h2><h3>Total points: 123</h3>
+            <table id='toadd_11' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_11",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_11",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_11",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_11",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>M25 Roehampton</td><td data-sort='8.0'>16 August 2027</td><td>SF</td><td data-sort='8'>8</td></tr></tbody></table></details></div><div class='card' id='Lui_Maxted'><h2>Lui Maxted</h2><h3>Total points: 123</h3>
             <details id="details_counted_74" open
                      onclick="toggleArrow('details_counted_74', 'arrow_counted_74')">
                 <summary>
@@ -824,7 +786,7 @@ function scrollToPlayer(id) {
                 <summary>
                     To be added tournaments (1)
                 </summary>
-            <table id='toadd_74' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_74",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_74",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_74",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_74",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>M25 Roehampton</td><td data-sort='1.0'>16 August 2027</td><td>R16</td><td data-sort='1'>1</td></tr></tbody></table></details></div><div class='card' id='Aidan_McHugh'><h2>Aidan McHugh</h2><h3>Total points: 84</h3>
+            <table id='toadd_74' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_74",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_74",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_74",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_74",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>M25 Roehampton</td><td data-sort='8.0'>16 August 2027</td><td>SF</td><td data-sort='8'>8</td></tr></tbody></table></details></div><div class='card' id='Aidan_McHugh'><h2>Aidan McHugh</h2><h3>Total points: 84</h3>
             <details id="details_counted_0" open
                      onclick="toggleArrow('details_counted_0', 'arrow_counted_0')">
                 <summary>
@@ -890,7 +852,7 @@ function scrollToPlayer(id) {
                 <summary>
                     To be added tournaments (1)
                 </summary>
-            <table id='toadd_20' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_20",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_20",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_20",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_20",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>ATP Masters 1000 Canada</td><td data-sort='50.0'>9 August 2027</td><td>R32</td><td data-sort='50'>50</td></tr></tbody></table></details></div><div class='card' id='Alexander_Okonkwo'><h2>Alexander Okonkwo</h2><h3>Total points: 0</h3>
+            <table id='toadd_20' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_20",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_20",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_20",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_20",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>ATP Masters 1000 Canada</td><td data-sort='100.0'>9 August 2027</td><td>R16</td><td data-sort='100'>100</td></tr></tbody></table></details></div><div class='card' id='Alexander_Okonkwo'><h2>Alexander Okonkwo</h2><h3>Total points: 0</h3>
             <details id="details_counted_5" open
                      onclick="toggleArrow('details_counted_5', 'arrow_counted_5')">
                 <summary>
@@ -1022,13 +984,7 @@ function scrollToPlayer(id) {
                 <summary>
                     Counted tournaments (3)
                 </summary>
-            <table id='counted_107' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_107",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_107",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("counted_107",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_107",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("counted_107",4)'>Reason to count<span class='arrow'></span></th></tr></thead><tbody><tr><td>M15 Dublin</td><td data-sort='202608'>17 August 2026</td><td>R16</td><td data-sort='1'>1</td><td>Other best 18</td></tr><tr><td>M15 Heraklion</td><td data-sort='202610'>5 October 2026</td><td>QF</td><td data-sort='2'>2</td><td>Other best 18</td></tr><tr><td>M25 Sheffield</td><td data-sort='202611'>2 November 2026</td><td>QF</td><td data-sort='3'>3</td><td>Other best 18</td></tr></tbody></table></details>
-            <details id="details_toadd_107"
-                     onclick="toggleArrow('details_toadd_107', 'arrow_toadd_107')">
-                <summary>
-                    To be added tournaments (1)
-                </summary>
-            <table id='toadd_107' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_107",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_107",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_107",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_107",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>M25 Roehampton</td><td data-sort='3.0'>16 August 2027</td><td>R16</td><td data-sort='3'>3</td></tr></tbody></table></details></div><div class='card' id='James_Story'><h2>James Story</h2><h3>Total points: 72</h3>
+            <table id='counted_107' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_107",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_107",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("counted_107",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_107",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("counted_107",4)'>Reason to count<span class='arrow'></span></th></tr></thead><tbody><tr><td>M15 Dublin</td><td data-sort='202608'>17 August 2026</td><td>R16</td><td data-sort='1'>1</td><td>Other best 18</td></tr><tr><td>M15 Heraklion</td><td data-sort='202610'>5 October 2026</td><td>QF</td><td data-sort='2'>2</td><td>Other best 18</td></tr><tr><td>M25 Sheffield</td><td data-sort='202611'>2 November 2026</td><td>QF</td><td data-sort='3'>3</td><td>Other best 18</td></tr></tbody></table></details></div><div class='card' id='James_Story'><h2>James Story</h2><h3>Total points: 72</h3>
             <details id="details_counted_56" open
                      onclick="toggleArrow('details_counted_56', 'arrow_counted_56')">
                 <summary>
@@ -1064,7 +1020,7 @@ function scrollToPlayer(id) {
                 <summary>
                     To be added tournaments (2)
                 </summary>
-            <table id='toadd_94' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_94",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_94",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_94",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_94",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>M25 Aldershot</td><td data-sort='25.0'>9 August 2027</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>M25 Roehampton</td><td data-sort='1.0'>16 August 2027</td><td>R16</td><td data-sort='1'>1</td></tr></tbody></table></details></div><div class='card' id='Connor_Thomson'><h2>Connor Thomson</h2><h3>Total points: 7</h3>
+            <table id='toadd_94' data-sort-asc='true'><thead><tr><th onclick='sortTable("toadd_94",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("toadd_94",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("toadd_94",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("toadd_94",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>M25 Aldershot</td><td data-sort='25.0'>9 August 2027</td><td>Winner</td><td data-sort='25'>25</td></tr><tr><td>M25 Roehampton</td><td data-sort='8.0'>16 August 2027</td><td>SF</td><td data-sort='8'>8</td></tr></tbody></table></details></div><div class='card' id='Connor_Thomson'><h2>Connor Thomson</h2><h3>Total points: 7</h3>
             <details id="details_counted_26" open
                      onclick="toggleArrow('details_counted_26', 'arrow_counted_26')">
                 <summary>
@@ -1143,4 +1099,26 @@ function scrollToPlayer(id) {
                     Counted tournaments (1)
                 </summary>
             <table id='counted_10' data-sort-asc='true'><thead><tr><th onclick='sortTable("counted_10",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("counted_10",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("counted_10",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("counted_10",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("counted_10",4)'>Reason to count<span class='arrow'></span></th></tr></thead><tbody><tr><td>M25 Aldershot</td><td data-sort='202608'>24 August 2026</td><td>R16</td><td data-sort='1'>1</td><td>Other best 18</td></tr></tbody></table></details></div><div class='card' id='Alex_Zuckerman'><h2>Alex Zuckerman</h2><h3>Total points: 0</h3></div><div id="footer"></div>
-       <script src="header.js"></script>
+       <!-- Searchable drop down -->
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function filterFunction() {
+  const input = document.getElementById("myInput");
+  const filter = input.value.toUpperCase();
+  const div = document.getElementById("myDropdown");
+  const a = div.getElementsByTagName("a");
+  for (let i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+</script><script src="header.js"></script>

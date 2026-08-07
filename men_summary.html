@@ -3,101 +3,7 @@
 <head>
 <meta charset="UTF-8">
 
-<style>
-    :root {
-    --header-height: 200px;
-    --selector-height: 57px;
-    --sticky-offset: calc(var(--header-height) + var(--selector-height));
-}
-
-body {
-    font-family: Arial, sans-serif; 
-    background:#f5f5f5; 
-    max-width:1400px;
-    margin:auto;
-}
-
-/* Sticky site header */
-#header-banner {
-    position: sticky;
-    top: 0;
-    height: var(--header-height);
-    z-index: 9999;
-}
-
-/* Sticky player selector under header */
-#player-select-container {
-    position: sticky;
-    top: var(--header-height);
-    z-index: 9998;
-    background: #fff;
-    padding: 12px;
-    border-bottom: 2px solid #ccc;
-}
-
-/* Table styling */
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 10px 0;
-}
-
-th, td {
-    border: 1px solid #ccc;
-    padding: 6px;
-    text-align: center;
-}
-
-/* Sticky table header under selector */
-th {
-    background: #3a7;
-    color: #fff;
-    cursor: pointer;
-    position: sticky;
-    top: var(--sticky-offset);
-    z-index: 9997;
-}
-
-th .arrow {
-    font-size: 12px;
-    margin-left: 4px;
-}
-
-tr:nth-child(even) {
-    background: #f7f7f7;
-}
-
-.card {
-
-    background:#fff;
-    
-    border: 1px solid #ccc;
-    border-radius: 8px;
-        box-shadow:0 2px 6px rgba(0,0,0,0.1);
-    padding: 15px;
-    margin: 15px auto auto;
-}
-
-summary {
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.style-select {
-        
-        font-size: 16px;
-        padding: 6px;
-    }
-
-
-
-    #playerSelect {
-        
-        font-size: 16px;
-        padding: 6px;
-    }
-    </style>
+<link rel="stylesheet" type="text/css" href="base_style.css">
 <style>
 .arrow-up {
     color: green;
@@ -383,7 +289,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>315</td>
       <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>24</td>
-      <td>WTT M25 Southaven, MS</td>
+      <td> </td>
       <td> </td>
       <td>0 pts on 17 Aug 2026</td>
       <td>6</td>
@@ -474,7 +380,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>477</td>
       <td><span class="arrow-down">&#9660;</span> -24</td>
       <td>25</td>
-      <td>WTT M25 Roehampton</td>
+      <td> </td>
       <td> </td>
       <td>4 pts on 17 Aug 2026</td>
       <td>2</td>
@@ -513,7 +419,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>557</td>
       <td><span class="arrow-down">&#9660;</span> -1</td>
       <td>25</td>
-      <td>WTT M25 Roehampton</td>
+      <td> </td>
       <td> </td>
       <td>8 pts on 17 Aug 2026</td>
       <td>–</td>
@@ -604,7 +510,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>874</td>
       <td><span class="arrow-up">&#9650;</span> 7</td>
       <td>27</td>
-      <td>WTT M25 Roehampton</td>
+      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -617,7 +523,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>894</td>
       <td><span class="arrow-up">&#9650;</span> 9</td>
       <td>19</td>
-      <td>WTT M25 Roehampton</td>
+      <td> </td>
       <td>WTT M25 Idanha-a-Nova Qualifying</td>
       <td>1 pts on 17 Aug 2026</td>
       <td>–</td>
@@ -656,7 +562,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>953</td>
       <td><span class="arrow-up">&#9650;</span> 1</td>
       <td>28</td>
-      <td>WTT M25 Roehampton</td>
+      <td> </td>
       <td>WTT M15 Turku</td>
       <td>1 pts on 12 Oct 2026</td>
       <td>1</td>
@@ -721,7 +627,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1049</td>
       <td><span class="arrow-down">&#9660;</span> -4</td>
       <td>20</td>
-      <td>WTT M25 Roehampton Qualifying</td>
+      <td> </td>
       <td>WTT M15 Turku Qualifying</td>
       <td>1 pts on 28 Sep 2026</td>
       <td>1</td>
@@ -747,7 +653,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1096</td>
       <td><span class="arrow-down">&#9660;</span> -24</td>
       <td>20</td>
-      <td>WTT M25 Roehampton Qualifying</td>
+      <td> </td>
       <td> </td>
       <td>1 pts on 24 Aug 2026</td>
       <td>1</td>
@@ -773,7 +679,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1120</td>
       <td><span class="arrow-down">&#9660;</span> -27</td>
       <td>23</td>
-      <td>WTT M25 Roehampton</td>
+      <td> </td>
       <td>WTT M15 Turku Qualifying</td>
       <td>2 pts on 17 Aug 2026</td>
       <td>1</td>
@@ -799,7 +705,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1224</td>
       <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>21</td>
-      <td>WTT M25 Roehampton Qualifying</td>
+      <td> </td>
       <td> </td>
       <td>1 pts on 17 Aug 2026</td>
       <td>1</td>
@@ -812,7 +718,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1226</td>
       <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>33</td>
-      <td>WTT M25 Roehampton Qualifying</td>
+      <td> </td>
       <td> </td>
       <td>1 pts on 17 Aug 2026</td>
       <td>1</td>
@@ -838,7 +744,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1259</td>
       <td><span class="arrow-down">&#9660;</span> -4</td>
       <td>20</td>
-      <td>WTT M25 Roehampton Qualifying</td>
+      <td> </td>
       <td> </td>
       <td>1 pts on 28 Sep 2026</td>
       <td>–</td>
@@ -851,7 +757,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1331</td>
       <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>22</td>
-      <td>WTT M25 Roehampton Qualifying</td>
+      <td> </td>
       <td> </td>
       <td>0 pts on 17 Aug 2026</td>
       <td>–</td>
@@ -890,7 +796,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1377</td>
       <td><span class="arrow-right">&#10148;</span> 0</td>
       <td>28</td>
-      <td>WTT M25 Roehampton Qualifying</td>
+      <td> </td>
       <td> </td>
       <td>1 pts on 17 Aug 2026</td>
       <td>–</td>
@@ -903,7 +809,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1435</td>
       <td><span class="arrow-down">&#9660;</span> -4</td>
       <td>20</td>
-      <td>WTT M25 Roehampton Qualifying</td>
+      <td> </td>
       <td> </td>
       <td>1 pts on 7 Jun 2027</td>
       <td>–</td>
@@ -929,7 +835,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1512</td>
       <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>22</td>
-      <td>WTT M25 Roehampton (WC)</td>
+      <td> </td>
       <td> </td>
       <td>4 pts on 28 Jun 2027</td>
       <td>–</td>
@@ -942,7 +848,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1530</td>
       <td><span class="arrow-down">&#9660;</span> -5</td>
       <td>17</td>
-      <td>WTT M25 Roehampton Qualifying</td>
+      <td> </td>
       <td> </td>
       <td>1 pts on 2 Nov 2026</td>
       <td>–</td>
@@ -955,7 +861,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1555</td>
       <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>27</td>
-      <td>WTT M25 Roehampton Qualifying</td>
+      <td> </td>
       <td>WTT M25 Idanha-a-Nova Qualifying</td>
       <td>1 pts on 7 Sep 2026</td>
       <td>–</td>
@@ -981,7 +887,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1576</td>
       <td><span class="arrow-down">&#9660;</span> -1</td>
       <td>18</td>
-      <td>WTT M25 Roehampton (WC)</td>
+      <td> </td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1007,7 +913,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1704</td>
       <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>20</td>
-      <td>WTT M25 Roehampton Qualifying</td>
+      <td> </td>
       <td> </td>
       <td>1 pts on 7 Sep 2026</td>
       <td>–</td>
@@ -1111,7 +1017,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>2081</td>
       <td><span class="arrow-down">&#9660;</span> -4</td>
       <td>26</td>
-      <td>WTT M25 Roehampton Qualifying</td>
+      <td> </td>
       <td> </td>
       <td>1 pts on 30 Nov 2026</td>
       <td>–</td>
@@ -1150,7 +1056,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>2203</td>
       <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>28</td>
-      <td>WTT M25 Roehampton Qualifying</td>
+      <td> </td>
       <td> </td>
       <td>0 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -1176,7 +1082,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>2203</td>
       <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>22</td>
-      <td>WTT M25 Roehampton Qualifying</td>
+      <td> </td>
       <td> </td>
       <td>0 pts on 7 Sep 2026</td>
       <td>–</td>
@@ -1215,7 +1121,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>2237</td>
       <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>26</td>
-      <td>WTT M25 Roehampton Qualifying</td>
+      <td> </td>
       <td> </td>
       <td>1 pts on 14 Sep 2026</td>
       <td>–</td>
@@ -1224,24 +1130,11 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td> </td>
     </tr>
     <tr>
-      <td>Hugo Coquelin</td>
-      <td>–</td>
-      <td></td>
-      <td>20</td>
-      <td>WTT M25 Roehampton (WC)</td>
-      <td> </td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td> </td>
-    </tr>
-    <tr>
       <td>Max Benaim</td>
       <td>–</td>
       <td></td>
       <td>28</td>
-      <td>WTT M25 Roehampton Qualifying</td>
+      <td> </td>
       <td>WTT M15 Turku Qualifying</td>
       <td>0 pts on 26 Jul 2027</td>
       <td>–</td>
@@ -1254,48 +1147,9 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td></td>
       <td>26</td>
-      <td>WTT M25 Roehampton Qualifying</td>
+      <td> </td>
       <td>WTT M15 Turku Qualifying</td>
       <td>0 pts on 19 Jul 2027</td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Mattias Southcombe</td>
-      <td>–</td>
-      <td></td>
-      <td>23</td>
-      <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Conor Brady</td>
-      <td>–</td>
-      <td></td>
-      <td>19</td>
-      <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>William McLennaghan</td>
-      <td>–</td>
-      <td></td>
-      <td>24</td>
-      <td>WTT M25 Roehampton Qualifying</td>
-      <td> </td>
-      <td></td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
@@ -1380,19 +1234,6 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td> </td>
     </tr>
     <tr>
-      <td>Liam Channon</td>
-      <td>–</td>
-      <td></td>
-      <td>18</td>
-      <td>WTT M25 Roehampton Qualifying (QWC)</td>
-      <td> </td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td> </td>
-    </tr>
-    <tr>
       <td>Alex Mirrington</td>
       <td>–</td>
       <td></td>
@@ -1450,32 +1291,6 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td></td>
       <td>20</td>
       <td>UTR PTT Hamburg</td>
-      <td> </td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Vincent Fletcher</td>
-      <td>–</td>
-      <td></td>
-      <td>17</td>
-      <td>WTT M25 Roehampton Qualifying (QWC)</td>
-      <td> </td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Rafe Samuel</td>
-      <td>–</td>
-      <td></td>
-      <td>18</td>
-      <td>WTT M25 Roehampton Qualifying (QWC)</td>
       <td> </td>
       <td></td>
       <td>–</td>

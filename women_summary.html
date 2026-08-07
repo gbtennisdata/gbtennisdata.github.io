@@ -3,101 +3,7 @@
 <head>
 <meta charset="UTF-8">
 
-<style>
-    :root {
-    --header-height: 200px;
-    --selector-height: 57px;
-    --sticky-offset: calc(var(--header-height) + var(--selector-height));
-}
-
-body {
-    font-family: Arial, sans-serif; 
-    background:#f5f5f5; 
-    max-width:1400px;
-    margin:auto;
-}
-
-/* Sticky site header */
-#header-banner {
-    position: sticky;
-    top: 0;
-    height: var(--header-height);
-    z-index: 9999;
-}
-
-/* Sticky player selector under header */
-#player-select-container {
-    position: sticky;
-    top: var(--header-height);
-    z-index: 9998;
-    background: #fff;
-    padding: 12px;
-    border-bottom: 2px solid #ccc;
-}
-
-/* Table styling */
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 10px 0;
-}
-
-th, td {
-    border: 1px solid #ccc;
-    padding: 6px;
-    text-align: center;
-}
-
-/* Sticky table header under selector */
-th {
-    background: #3a7;
-    color: #fff;
-    cursor: pointer;
-    position: sticky;
-    top: var(--sticky-offset);
-    z-index: 9997;
-}
-
-th .arrow {
-    font-size: 12px;
-    margin-left: 4px;
-}
-
-tr:nth-child(even) {
-    background: #f7f7f7;
-}
-
-.card {
-
-    background:#fff;
-    
-    border: 1px solid #ccc;
-    border-radius: 8px;
-        box-shadow:0 2px 6px rgba(0,0,0,0.1);
-    padding: 15px;
-    margin: 15px auto auto;
-}
-
-summary {
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.style-select {
-        
-        font-size: 16px;
-        padding: 6px;
-    }
-
-
-
-    #playerSelect {
-        
-        font-size: 16px;
-        padding: 6px;
-    }
-    </style>
+<link rel="stylesheet" type="text/css" href="base_style.css">
 <style>
 .arrow-up {
     color: green;
@@ -162,7 +68,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>72</td>
       <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>30</td>
-      <td>WTA 1000 Toronto</td>
+      <td> </td>
       <td>WTA 1000 Cincinnati</td>
       <td>10 pts on 14 Aug 2026</td>
       <td>25</td>
@@ -201,7 +107,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>144</td>
       <td><span class="arrow-down">&#9660;</span> -1</td>
       <td>30</td>
-      <td>WTA 1000 Toronto Qualifying</td>
+      <td> </td>
       <td> </td>
       <td>20 pts on 14 Sep 2026</td>
       <td>12</td>
@@ -253,7 +159,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>335</td>
       <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>18</td>
-      <td>WTT W35 Roehampton</td>
+      <td> </td>
       <td>WTT W35 Aldershot</td>
       <td>4 pts on 24 Aug 2026</td>
       <td>1</td>
@@ -292,7 +198,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>386</td>
       <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>28</td>
-      <td>WTT W35 Roehampton</td>
+      <td> </td>
       <td>WTT W35 Aldershot</td>
       <td>8 pts on 14 Aug 2026</td>
       <td>1</td>
@@ -305,7 +211,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>425</td>
       <td><span class="arrow-up">&#9650;</span> 12</td>
       <td>25</td>
-      <td>WTT W35 Roehampton</td>
+      <td> </td>
       <td>WTT W35 Aldershot</td>
       <td>1 pts on 24 Aug 2026</td>
       <td>1</td>
@@ -319,7 +225,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-up">&#9650;</span> 68</td>
       <td>24</td>
       <td>WTT W35 Roehampton</td>
-      <td>WTT W35 Aldershot Qualifying</td>
+      <td>WTT W35 Aldershot</td>
       <td>4 pts on 24 Aug 2026</td>
       <td>1</td>
       <td>1</td>
@@ -331,7 +237,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>450</td>
       <td><span class="arrow-up">&#9650;</span> 25</td>
       <td>34</td>
-      <td>WTA 1000 Toronto Qualifying</td>
+      <td> </td>
       <td> </td>
       <td>2 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -357,8 +263,8 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>465</td>
       <td><span class="arrow-up">&#9650;</span> 20</td>
       <td>24</td>
-      <td>WTT W35 Roehampton</td>
-      <td>WTT W35 Aldershot Qualifying</td>
+      <td> </td>
+      <td>WTT W35 Aldershot</td>
       <td>6 pts on 24 Aug 2026</td>
       <td>1</td>
       <td>1</td>
@@ -371,7 +277,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -7</td>
       <td>26</td>
       <td>WTT W35 Roehampton</td>
-      <td>WTT W35 Aldershot Qualifying</td>
+      <td>WTT W35 Aldershot</td>
       <td>1 pts on 24 Aug 2026</td>
       <td>1</td>
       <td>1</td>
@@ -422,7 +328,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>615</td>
       <td><span class="arrow-down">&#9660;</span> -10</td>
       <td>23</td>
-      <td>WTT W35 Roehampton (WC)</td>
+      <td> </td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td>8 pts on 14 Aug 2026</td>
       <td>–</td>
@@ -448,7 +354,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>649</td>
       <td><span class="arrow-down">&#9660;</span> -8</td>
       <td>27</td>
-      <td>WTT W35 Roehampton Qualifying</td>
+      <td> </td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td>4 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -474,7 +380,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>820</td>
       <td><span class="arrow-up">&#9650;</span> 9</td>
       <td>25</td>
-      <td>WTT W35 Roehampton Qualifying</td>
+      <td> </td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td>4 pts on 8 Feb 2027</td>
       <td>–</td>
@@ -526,7 +432,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>929</td>
       <td><span class="arrow-down">&#9660;</span> -10</td>
       <td>18</td>
-      <td>WTT W35 Roehampton Qualifying</td>
+      <td> </td>
       <td> </td>
       <td>1 pts on 26 Oct 2026</td>
       <td>–</td>
@@ -539,7 +445,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1038</td>
       <td><span class="arrow-down">&#9660;</span> -9</td>
       <td>19</td>
-      <td>WTT W35 Roehampton Qualifying</td>
+      <td> </td>
       <td>WTT W35 Aldershot Qualifying</td>
       <td>3 pts on 26 Oct 2026</td>
       <td>–</td>
@@ -552,8 +458,8 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1116</td>
       <td><span class="arrow-up">&#9650;</span> 9</td>
       <td>19</td>
-      <td>WTT W35 Roehampton Qualifying</td>
-      <td>WTT W35 Aldershot (Alternate)</td>
+      <td> </td>
+      <td>WTT W35 Aldershot Qualifying</td>
       <td>1 pts on 14 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -566,7 +472,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>28</td>
       <td>WTT W75 Ourense (Doubles)</td>
-      <td> </td>
+      <td>WTT W35 Aldershot (Doubles)</td>
       <td>3 pts on 14 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -578,8 +484,8 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1150</td>
       <td><span class="arrow-up">&#9650;</span> 4</td>
       <td>26</td>
-      <td>WTT W35 Roehampton Qualifying</td>
-      <td>WTT W35 Aldershot (Alternate)</td>
+      <td> </td>
+      <td>WTT W35 Aldershot Qualifying</td>
       <td>1 pts on 14 Sep 2026</td>
       <td>–</td>
       <td>–</td>
@@ -592,7 +498,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -13</td>
       <td>17</td>
       <td> </td>
-      <td>WTT W35 Aldershot (Alternate)</td>
+      <td>WTT W35 Aldershot Qualifying</td>
       <td>1 pts on 24 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -604,7 +510,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1227</td>
       <td><span class="arrow-down">&#9660;</span> -13</td>
       <td>18</td>
-      <td>WTT W35 Roehampton Qualifying</td>
+      <td> </td>
       <td>WTT W35 Aldershot (Alternate)</td>
       <td>5 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -630,8 +536,8 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1263</td>
       <td><span class="arrow-down">&#9660;</span> -13</td>
       <td>23</td>
-      <td>WTT W15 Hameenlinna Qualifying</td>
-      <td>WTT W15 Bucharest Qualifying</td>
+      <td> </td>
+      <td> </td>
       <td>1 pts on 7 Dec 2026</td>
       <td>–</td>
       <td>–</td>
@@ -643,7 +549,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1268</td>
       <td><span class="arrow-down">&#9660;</span> -14</td>
       <td>19</td>
-      <td>WTT W35 Roehampton Qualifying</td>
+      <td> </td>
       <td>WTT W35 Aldershot (Alternate)</td>
       <td>1 pts on 21 Sep 2026</td>
       <td>–</td>
@@ -708,7 +614,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1377</td>
       <td><span class="arrow-down">&#9660;</span> -12</td>
       <td>29</td>
-      <td>Northumberland Open</td>
+      <td>Northumberland Open (Doubles)</td>
       <td> </td>
       <td>3 pts on 24 Aug 2026</td>
       <td>–</td>
@@ -747,8 +653,8 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1525</td>
       <td><span class="arrow-down">&#9660;</span> -14</td>
       <td>20</td>
-      <td>WTT W15 Astana Qualifying</td>
-      <td>WTT W15 Astana Qualifying</td>
+      <td> </td>
+      <td> </td>
       <td>1 pts on 16 Nov 2026</td>
       <td>–</td>
       <td>–</td>
@@ -760,7 +666,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1531</td>
       <td><span class="arrow-down">&#9660;</span> -13</td>
       <td>21</td>
-      <td>WTT W35 Roehampton (Doubles WC)</td>
+      <td> </td>
       <td>WTT W35 Aldershot (Alternate)</td>
       <td>1 pts on 14 Aug 2026</td>
       <td>–</td>
@@ -799,21 +705,8 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td></td>
       <td>28</td>
-      <td>WTA 1000 Toronto (Doubles)</td>
-      <td>WTA 1000 Toronto (Doubles) / WTA 1000 Cincinnati (Doubles)</td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
       <td> </td>
-    </tr>
-    <tr>
-      <td>Madeleine Brooks</td>
-      <td>–</td>
-      <td></td>
-      <td>29</td>
-      <td>WTA125 Warsaw (Doubles)</td>
-      <td> </td>
+      <td>WTA 1000 Cincinnati (Doubles)</td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -825,8 +718,8 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td></td>
       <td>21</td>
-      <td>WTT W35 Roehampton (Doubles WC)</td>
       <td> </td>
+      <td>WTT W35 Aldershot (Alternate)</td>
       <td>1 pts on 24 Aug 2026</td>
       <td>–</td>
       <td>–</td>
@@ -834,51 +727,12 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td> </td>
     </tr>
     <tr>
-      <td>Edie Griffiths</td>
-      <td>–</td>
-      <td></td>
-      <td>17</td>
-      <td>WTT W35 Roehampton Qualifying (QWC)</td>
-      <td> </td>
-      <td>4 pts on 17 May 2027</td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Kristina Paskauskas</td>
-      <td>–</td>
-      <td></td>
-      <td>22</td>
-      <td>WTT W35 Roehampton Qualifying (QWC)</td>
-      <td> </td>
-      <td>1 pts on 21 Dec 2026</td>
-      <td>–</td>
-      <td>–</td>
-      <td>821</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Savannah Dada-Mascoll</td>
-      <td>–</td>
-      <td></td>
-      <td>22</td>
-      <td>WTT W35 Roehampton (WC)</td>
-      <td> </td>
-      <td>1 pts on 14 Jun 2027</td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td> </td>
-    </tr>
-    <tr>
       <td>Eva Shaw</td>
       <td>–</td>
       <td></td>
       <td>21</td>
-      <td>WTT W35 Roehampton Qualifying (QWC)</td>
       <td> </td>
+      <td>WTT W35 Aldershot (Alternate)</td>
       <td>1 pts on 12 Jul 2027</td>
       <td>–</td>
       <td>–</td>
@@ -886,38 +740,25 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td> </td>
     </tr>
     <tr>
-      <td>Sophie Bekker</td>
-      <td>–</td>
-      <td></td>
-      <td>17</td>
-      <td>WTT W35 Roehampton Qualifying (QWC)</td>
-      <td> </td>
-      <td>1 pts on 24 Aug 2026</td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Ellie Blackford</td>
+      <td>Swasthika Arunkumar</td>
       <td>–</td>
       <td></td>
       <td>20</td>
-      <td>WTT W35 Roehampton Qualifying (QWC)</td>
       <td> </td>
-      <td></td>
+      <td>WTT W35 Aldershot (Alternate)</td>
+      <td>1 pts on 7 Jun 2027</td>
       <td>–</td>
       <td>–</td>
       <td>–</td>
       <td> </td>
     </tr>
     <tr>
-      <td>Immi Haddad</td>
+      <td>Eloise Newberry</td>
       <td>–</td>
       <td></td>
-      <td>21</td>
-      <td>UTR PTT Hamburg</td>
+      <td>18</td>
       <td> </td>
+      <td>WTT W35 Aldershot (Alternate)</td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -929,7 +770,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td></td>
       <td>24</td>
-      <td>British Tour Newcastle</td>
+      <td>Northumberland Open (Doubles)</td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -942,47 +783,8 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td></td>
       <td>15</td>
-      <td> </td>
+      <td>British Tour Newcastle</td>
       <td>WT J100 Krakow</td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Liv Zingg</td>
-      <td>–</td>
-      <td></td>
-      <td>15</td>
-      <td>WT J200 Rutesheim</td>
-      <td> </td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Alice Haddad</td>
-      <td>–</td>
-      <td></td>
-      <td>17</td>
-      <td>WTJ100 Harare</td>
-      <td> </td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Julia Reynolds</td>
-      <td>–</td>
-      <td></td>
-      <td>16</td>
-      <td>WTJ100 Harare</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1007,21 +809,8 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td></td>
       <td>16</td>
-      <td>WT J100 Maaseik</td>
+      <td> </td>
       <td>British Tour Cumberland Qualifying</td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Tanishka Naveen</td>
-      <td>–</td>
-      <td></td>
-      <td>15</td>
-      <td>WT J100 Istanbul</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1035,19 +824,6 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>17</td>
       <td> </td>
       <td>British Tour Cumberland</td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Matilda Cabrera Burns</td>
-      <td>–</td>
-      <td></td>
-      <td>17</td>
-      <td>WT J100 Vienna</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1100,19 +876,6 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td> </td>
       <td>WT J100 Krakow</td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Eva Hutchins</td>
-      <td>–</td>
-      <td></td>
-      <td>17</td>
-      <td>WT J100 Maaseik (WC)</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
