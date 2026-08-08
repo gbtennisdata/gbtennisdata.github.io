@@ -15,27 +15,36 @@ async function loadFooter() {
 
 // Attach dropdown logic AFTER header loads
 function attachHeaderEvents() {
-    const pills = document.querySelectorAll(".nav-pill[data-dropdown]");
-    const women = document.getElementById("dropdown-women");
-    const men = document.getElementById("dropdown-men");
-    const us-college = document.getElementById("dropdown-us-college");
+    const pills = document.querySelectorAll(".nav-pill[data-target]");
+    const dropdowns = document.querySelectorAll(".dropdown");
 
+    // Handle pill clicks
     pills.forEach(pill => {
-        pill.addEventListener("click", () => {
-            const section = pill.dataset.dropdown;
+        pill.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevents document click listener from triggering immediately
+            
+            const targetId = pill.dataset.target;
+            const targetDropdown = document.getElementById(targetId);
 
-            if (section === "women") {
-                women.classList.toggle("hidden");
-                men.classList.add("hidden");
-                us-college.classlist.add("hidden");
-            } else if (section === "men") {
-                men.classList.toggle("hidden");
-                women.classList.add("hidden");
-                us-college.classlist.add("hidden");
-            } else {
-                us-college.classList.toggle("hidden");
-                women.classList.add("hidden");
-                men.classlist.add("hidden");                
+            dropdowns.forEach(dropdown => {
+                if (dropdown === targetDropdown) {
+                    dropdown.classList.toggle("hidden");
+                } else {
+                    dropdown.classList.add("hidden");
+                }
+            });
+        });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener("click", (event) => {
+        dropdowns.forEach(dropdown => {
+            // Check if click was outside the dropdown and outside any nav pill
+            const clickedInsideDropdown = dropdown.contains(event.target);
+            const clickedOnPill = Array.from(pills).some(pill => pill.contains(event.target));
+
+            if (!clickedInsideDropdown && !clickedOnPill) {
+                dropdown.classList.add("hidden");
             }
         });
     });
