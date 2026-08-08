@@ -18,6 +18,7 @@ function attachHeaderEvents() {
     const pills = document.querySelectorAll(".nav-pill[data-dropdown]");
     const women = document.getElementById("dropdown-women");
     const men = document.getElementById("dropdown-men");
+    const us-college = document.getElementById("dropdown-us-college");
 
     pills.forEach(pill => {
         pill.addEventListener("click", () => {
@@ -26,9 +27,15 @@ function attachHeaderEvents() {
             if (section === "women") {
                 women.classList.toggle("hidden");
                 men.classList.add("hidden");
-            } else {
+                us-college.classlist.add("hidden");
+            } else if (section === "men") {
                 men.classList.toggle("hidden");
                 women.classList.add("hidden");
+                us-college.classlist.add("hidden");
+            } else {
+                us-college.classList.toggle("hidden");
+                women.classList.add("hidden");
+                men.classlist.add("hidden");                
             }
         });
     });
