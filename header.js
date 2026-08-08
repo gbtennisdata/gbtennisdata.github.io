@@ -27,15 +27,15 @@ function attachHeaderEvents() {
             if (section === "women") {
                 women.classList.toggle("hidden");
                 men.classList.add("hidden");
-                usCollege.classlist.add("hidden");
+                usCollege.classList.add("hidden");
             } else if (section === "men") {
                 men.classList.toggle("hidden");
                 women.classList.add("hidden");
-                usCollege.classlist.add("hidden");
+                usCollege.classList.add("hidden");
             } else {
                 usCollege.classList.toggle("hidden");
                 women.classList.add("hidden");
-                men.classlist.add("hidden");                
+                men.classList.add("hidden");                
             }
         });
     });
