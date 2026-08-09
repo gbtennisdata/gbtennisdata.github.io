@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset='UTF-8'>
-<title>Player Stats</title>
+<title>GB Tennis Data: Women Wild cards</title>
 
 <link rel="stylesheet" type="text/css" href="base_style.css">
 <style>
@@ -90,18 +90,18 @@ table.gb-tennis-table thead tr:nth-child(2) th:first-child {
         color: #333; /* Ensure data cells are dark */
     }
 
-    /* Player Column - SPECIFIC FIX */
+    /* Player Column */
     table.gb-tennis-table td:first-child, 
     table.gb-tennis-table th:first-child {
         text-align: left;
-        font-weight: 600;
+        /*font-weight: 600;*/
         background-color: #fff; /*#f8f9fa !important;*/
-        position: sticky;
+        /*position: sticky;*/
         left: 0;
         z-index: 20;
         border-right: 2px solid #ccc;
         min-width: 150px;
-        color: #2c3e50 !important; /* FORCE dark text for player names */
+        color: #2c3e50 !important; 
     }
     
     /* Corner cell (if exists) */
@@ -117,7 +117,7 @@ table.gb-tennis-table thead tr:nth-child(2) th:first-child {
     table.gb-tennis-table td:last-child {
         font-weight: bold;
         background-color: #d2faf3 !important;
-        color: #c0392b;
+        /*color: #c0392b;*/
         border-left: 2px solid #bdc3c7;
     }
     /*table.gb-tennis-table tr:nth-child(even) td:last-child { background-color: #f9ebea !important; }*/
@@ -137,11 +137,13 @@ table.gb-tennis-table thead tr:nth-child(2) th:first-child {
 .detail-table { width: 90%; margin: 10px auto; border-collapse: collapse; }
 .detail-table td { border: 1px solid #ddd; padding: 6px; }
 .detail-table th { background-color: #3a7; color: white; padding: 6px; }
+    
 /* OVERRIDE parent table's white-on-white rule */
-table.detail-table thead tr th:first-child {
+table.detail-table thead tr:first-child th:first-child {
     background-color: #3a7 !important;
     color: white !important;
 }
+
 /* FULL OVERRIDE FOR DETAIL TABLE */
 table.detail-table th {
     background-color: #3a7 !important;
@@ -172,6 +174,19 @@ table.detail-table td {
     background-color: #fff !important;
 }
 
+table.detail-table {
+    width: 100%;
+    table-layout: fixed;          /* Prevents runaway column expansion */
+    max-width: 1000px;             /* Prevents columns being too wide on desktop */
+}
+
+table.detail-table th,
+table.detail-table td {
+    min-width: 80px;              /* Prevents squashing on mobile */
+    word-wrap: break-word;        /* Allows long text to wrap instead of stretching */
+}
+
+
 
 .expand-toggle:hover { background-color: #e8f4f8 !important; color:#004494 !important; }
 </style>
@@ -181,10 +196,10 @@ table.detail-table td {
 <div id="header-banner"></div>
 <div id="content-spacer"></div>
 <div id="content">
-<h2>Player Tournament Stats</h2>
+<h2>Women's singles wild cards 2026</h2>
 
 <div style="font-family: sans-serif; margin-bottom: 15px; color: #2c3e50;">
-    Women are restricted on the number of wild cards they can receive. The WTA only 
+    Women are restricted on the number of wild cards they can receive in a calendar year. The WTA only 
     count wild cards the player earned WTA points with towards these totals, but this
     table shows all wild cards played with. Players that received a wild card but did not play
     are excluded from this table.<p> 
@@ -198,12 +213,13 @@ table.detail-table td {
     A player can earn up to 3 merit wild cards.<br>
     <li>W15: As W100 to W35 but counted separately.<br>
     </list><p>Additional wild cards or exemptions apply to players with long service, champions of majors or WTA finals, 
-    or players who reached No 1 in the rankings<br>
-    16 year olds may only earn ranking points from 4 wild cards.<br>
-    15 and 14 year olds may only earn ranking points from 3 wild cards.<P>
+    or players who reached No 1 in the singles rankings<br>
+    16 year olds may only earn ranking points from 4 wild cards between birthdays.<br>
+    15 and 14 year olds may only earn ranking points from 3 wild cards between birthdays.<P>
     <strong>Summary:</strong> 
     <span style="color: #e74c3c;">69</span> women have played with  
-    <span style="color: #27ae60;">146</span> wild cards in 2026.
+    <span style="color: #27ae60;">146</span> wild cards in 2026.<P>
+    <A HREF=women_singles_wildcards_by_week.html>View wild cards by week</a>
 </div>
 
 <p><i>Click a player's name to expand details.</i></p>
@@ -242,7 +258,7 @@ table.detail-table td {
 <th class="expand-toggle" data-target="detail-Esther_Adeshina" style="cursor:pointer; font-weight:bold; color:#0056b3;">Esther Adeshina</th>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -251,7 +267,7 @@ table.detail-table td {
 <td>-</td>
 <td>2</td>
 <td>-</td>
-<td>-</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -263,33 +279,33 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>20 April</td>
-<td>W50</td>
+<td>W50 Roehampton</td>
 <td>Main Draw</td>
-<td>Roehampton</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 <tr>
 <td>20 April</td>
-<td>W50</td>
+<td>W50 Roehampton</td>
 <td>Main Draw</td>
-<td>Roehampton</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 <tr>
 <td>22 June</td>
-<td>GS</td>
+<td>GS Wimbledon</td>
 <td>Qualifying</td>
-<td>Wimbledon</td>
 <td>QR2</td>
+<td>20</td>
 </tr>
 </tbody>
 </table>
@@ -302,10 +318,10 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
 <td>1</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -320,33 +336,33 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>16 February</td>
-<td>WTA125</td>
+<td>WTA125 Oeiras</td>
 <td>Main Draw</td>
-<td>Oeiras</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 <tr>
-<td>01 June</td>
-<td>WTA125</td>
+<td>1 June</td>
+<td>WTA125 Birmingham</td>
 <td>Qualifying</td>
-<td>Birmingham</td>
 <td>QR1</td>
+<td>1</td>
 </tr>
 <tr>
 <td>22 June</td>
-<td>WTA250</td>
+<td>WTA250 Eastbourne</td>
 <td>Qualifying</td>
-<td>Eastbourne</td>
 <td>QR1</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -365,7 +381,7 @@ table.detail-table td {
 <td>-</td>
 <td>1</td>
 <td>3</td>
-<td>-</td>
+<td>4</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -377,40 +393,40 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>02 February</td>
-<td>W35</td>
+<td>2 February</td>
+<td>W35 Sheffield</td>
 <td>Qualifying</td>
-<td>Sheffield</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 <tr>
 <td>27 July</td>
-<td>W35</td>
+<td>W35 Aldershot</td>
 <td>Main Draw</td>
-<td>Aldershot</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 <tr>
-<td>03 August</td>
-<td>W35</td>
+<td>3 August</td>
+<td>W35 Roehampton</td>
 <td>Qualifying</td>
-<td>Roehampton</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 <tr>
 <td>10 August</td>
-<td>W35</td>
+<td>W35 Aldershot</td>
 <td>Qualifying</td>
-<td>Aldershot</td>
-<td>QR1</td>
+<td>FQR</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -429,7 +445,7 @@ table.detail-table td {
 <td>-</td>
 <td>3</td>
 <td>-</td>
-<td>-</td>
+<td>3</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -441,33 +457,33 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>13 July</td>
-<td>W50</td>
+<td>W50 Nottingham</td>
 <td>Main Draw</td>
-<td>Nottingham</td>
 <td>R16</td>
+<td>6</td>
 </tr>
 <tr>
 <td>27 July</td>
-<td>W35</td>
+<td>W35 Aldershot</td>
 <td>Main Draw</td>
-<td>Aldershot</td>
 <td>QF</td>
+<td>7</td>
 </tr>
 <tr>
-<td>03 August</td>
-<td>W35</td>
+<td>3 August</td>
+<td>W35 Roehampton</td>
 <td>Main Draw</td>
-<td>Roehampton</td>
 <td>QF</td>
+<td>7</td>
 </tr>
 </tbody>
 </table>
@@ -486,7 +502,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>2</td>
-<td>-</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -498,26 +514,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>03 August</td>
-<td>W35</td>
+<td>3 August</td>
+<td>W35 Roehampton</td>
 <td>Qualifying</td>
-<td>Roehampton</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 <tr>
 <td>10 August</td>
-<td>W35</td>
+<td>W35 Aldershot</td>
 <td>Qualifying</td>
-<td>Aldershot</td>
 <td>QR1</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -530,7 +546,7 @@ table.detail-table td {
 <td>-</td>
 <td>4</td>
 <td>-</td>
-<td>-</td>
+<td>4</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -548,40 +564,40 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>05 January</td>
-<td>WTA250</td>
+<td>5 January</td>
+<td>WTA250 Auckland</td>
 <td>Main Draw</td>
-<td>Auckland</td>
 <td>R16</td>
+<td>30</td>
 </tr>
 <tr>
 <td>23 February</td>
-<td>WTA500</td>
+<td>WTA500 Merida</td>
 <td>Main Draw</td>
-<td>Merida</td>
 <td>QF</td>
+<td>108</td>
 </tr>
 <tr>
-<td>08 June</td>
-<td>WTA500</td>
+<td>8 June</td>
+<td>WTA500 London</td>
 <td>Main Draw</td>
-<td>London</td>
 <td>SF</td>
+<td>195</td>
 </tr>
 <tr>
 <td>22 June</td>
-<td>WTA500</td>
+<td>WTA500 Bad Homburg</td>
 <td>Main Draw</td>
-<td>Bad Homburg</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -600,10 +616,10 @@ table.detail-table td {
 <td>-</td>
 <td>2</td>
 <td>-</td>
-<td>-</td>
+<td>2</td>
 <td>1</td>
 <td>-</td>
-<td>-</td>
+<td>1</td>
 <td>3</td>
 </tr>
 <tr class="detail-row" id="detail-Melissa_Boyden" style="display:none;">
@@ -612,33 +628,33 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>05 January</td>
-<td>W35</td>
+<td>5 January</td>
+<td>W35 Antalya</td>
 <td>Main Draw</td>
-<td>Antalya</td>
 <td>R32</td>
+<td>3</td>
 </tr>
 <tr>
 <td>22 June</td>
-<td>W15</td>
+<td>W15 Galati</td>
 <td>Main Draw</td>
-<td>Galati</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 <tr>
-<td>06 July</td>
-<td>W35</td>
+<td>6 July</td>
+<td>W35 Buzau</td>
 <td>Main Draw</td>
-<td>Buzau</td>
 <td>R16</td>
+<td>4</td>
 </tr>
 </tbody>
 </table>
@@ -648,16 +664,16 @@ table.detail-table td {
 <th class="expand-toggle" data-target="detail-Daniella_Britton" style="cursor:pointer; font-weight:bold; color:#0056b3;">Daniella Britton</th>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
 <td>1</td>
 <td>-</td>
-<td>-</td>
+<td>1</td>
 <td>1</td>
 <td>-</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -669,33 +685,33 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>27 April</td>
-<td>W35</td>
+<td>W35 Nottingham</td>
 <td>Main Draw</td>
-<td>Nottingham</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 <tr>
-<td>08 June</td>
-<td>WTA125</td>
+<td>8 June</td>
+<td>WTA125 Ilkley</td>
 <td>Main Draw</td>
-<td>Ilkley</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 <tr>
 <td>22 June</td>
-<td>GS</td>
+<td>GS Wimbledon</td>
 <td>Qualifying</td>
-<td>Wimbledon</td>
 <td>QR1</td>
+<td>2</td>
 </tr>
 </tbody>
 </table>
@@ -708,10 +724,10 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
-<td>-</td>
 <td>1</td>
 <td>-</td>
+<td>1</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -726,26 +742,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>01 June</td>
-<td>WTA125</td>
+<td>1 June</td>
+<td>WTA125 Birmingham</td>
 <td>Qualifying</td>
-<td>Birmingham</td>
 <td>QR1</td>
+<td>1</td>
 </tr>
 <tr>
-<td>08 June</td>
-<td>WTA500</td>
+<td>8 June</td>
+<td>WTA500 London</td>
 <td>Qualifying</td>
-<td>London</td>
 <td>QR1</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -764,7 +780,7 @@ table.detail-table td {
 <td>-</td>
 <td>2</td>
 <td>-</td>
-<td>-</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -776,26 +792,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>27 April</td>
-<td>W35</td>
+<td>W35 Nottingham</td>
 <td>Main Draw</td>
-<td>Nottingham</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 <tr>
 <td>13 July</td>
-<td>W50</td>
+<td>W50 Nottingham</td>
 <td>Main Draw</td>
-<td>Nottingham</td>
 <td>R1</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -814,7 +830,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -826,19 +842,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>13 July</td>
-<td>W50</td>
+<td>W50 Nottingham</td>
 <td>Qualifying</td>
-<td>Nottingham</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -857,7 +873,7 @@ table.detail-table td {
 <td>-</td>
 <td>1</td>
 <td>1</td>
-<td>-</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -869,26 +885,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>04 May</td>
-<td>W35</td>
+<td>4 May</td>
+<td>W35 Platja d’Aro</td>
 <td>Qualifying</td>
-<td>Platja d’Aro</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 <tr>
 <td>25 May</td>
-<td>W35</td>
+<td>W35 Bol</td>
 <td>Main Draw</td>
-<td>Bol</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -907,7 +923,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -919,19 +935,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>27 July</td>
-<td>W35</td>
+<td>W35 Aldershot</td>
 <td>Qualifying</td>
-<td>Aldershot</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -950,7 +966,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -962,19 +978,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>02 February</td>
-<td>W35</td>
+<td>2 February</td>
+<td>W35 Sheffield</td>
 <td>Qualifying</td>
-<td>Sheffield</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -993,7 +1009,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1005,19 +1021,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>29 June</td>
-<td>W100</td>
+<td>W100 Cary</td>
 <td>Qualifying</td>
-<td>Cary</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -1036,7 +1052,7 @@ table.detail-table td {
 <td>-</td>
 <td>5</td>
 <td>-</td>
-<td>-</td>
+<td>5</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1048,47 +1064,47 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>02 February</td>
-<td>W35</td>
+<td>2 February</td>
+<td>W35 Sheffield</td>
 <td>Main Draw</td>
-<td>Sheffield</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 <tr>
 <td>20 April</td>
-<td>W50</td>
+<td>W50 Roehampton</td>
 <td>Main Draw</td>
-<td>Roehampton</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 <tr>
 <td>27 April</td>
-<td>W35</td>
+<td>W35 Nottingham</td>
 <td>Main Draw</td>
-<td>Nottingham</td>
 <td>R16</td>
+<td>4</td>
 </tr>
 <tr>
-<td>04 May</td>
-<td>W35</td>
+<td>4 May</td>
+<td>W35 Nottingham</td>
 <td>Main Draw</td>
-<td>Nottingham</td>
 <td>R16</td>
+<td>4</td>
 </tr>
 <tr>
 <td>27 July</td>
-<td>W35</td>
+<td>W35 Aldershot</td>
 <td>Main Draw</td>
-<td>Aldershot</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -1104,10 +1120,10 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>2</td>
 <td>1</td>
-<td>-</td>
+<td>3</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1119,40 +1135,40 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>08 June</td>
-<td>WTA125</td>
+<td>8 June</td>
+<td>WTA125 Ilkley</td>
 <td>Qualifying</td>
-<td>Ilkley</td>
 <td>QR1</td>
+<td>1</td>
 </tr>
 <tr>
 <td>27 July</td>
-<td>W35</td>
+<td>W35 Aldershot</td>
 <td>Main Draw</td>
-<td>Aldershot</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 <tr>
-<td>03 August</td>
-<td>W35</td>
+<td>3 August</td>
+<td>W35 Roehampton</td>
 <td>Main Draw</td>
-<td>Roehampton</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 <tr>
 <td>10 August</td>
-<td>W35</td>
+<td>W35 Aldershot</td>
 <td>Qualifying</td>
-<td>Aldershot</td>
-<td>QR1</td>
+<td>FQR</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1162,13 +1178,13 @@ table.detail-table td {
 <th class="expand-toggle" data-target="detail-Harriet_Dart" style="cursor:pointer; font-weight:bold; color:#0056b3;">Harriet Dart</th>
 <td>1</td>
 <td>-</td>
-<td>-</td>
+<td>1</td>
 <td>3</td>
 <td>-</td>
-<td>-</td>
+<td>3</td>
 <td>1</td>
 <td>-</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1183,47 +1199,47 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>01 June</td>
-<td>WTA125</td>
+<td>1 June</td>
+<td>WTA125 Birmingham</td>
 <td>Main Draw</td>
-<td>Birmingham</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 <tr>
-<td>08 June</td>
-<td>WTA500</td>
+<td>8 June</td>
+<td>WTA500 London</td>
 <td>Main Draw</td>
-<td>London</td>
 <td>R16</td>
+<td>60</td>
 </tr>
 <tr>
 <td>15 June</td>
-<td>WTA250</td>
+<td>WTA250 Nottingham</td>
 <td>Main Draw</td>
-<td>Nottingham</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 <tr>
 <td>22 June</td>
-<td>WTA250</td>
+<td>WTA250 Eastbourne</td>
 <td>Main Draw</td>
-<td>Eastbourne</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 <tr>
 <td>29 June</td>
-<td>GS</td>
+<td>GS Wimbledon</td>
 <td>Main Draw</td>
-<td>Wimbledon</td>
 <td>R128</td>
+<td>10</td>
 </tr>
 </tbody>
 </table>
@@ -1242,7 +1258,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>2</td>
-<td>-</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1254,26 +1270,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>12 January</td>
-<td>W50</td>
+<td>W50 Manchester</td>
 <td>Qualifying</td>
-<td>Manchester</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 <tr>
-<td>02 February</td>
-<td>W35</td>
+<td>2 February</td>
+<td>W35 Sheffield</td>
 <td>Qualifying</td>
-<td>Sheffield</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -1283,13 +1299,13 @@ table.detail-table td {
 <th class="expand-toggle" data-target="detail-Alicia_Dudeney" style="cursor:pointer; font-weight:bold; color:#0056b3;">Alicia Dudeney</th>
 <td>1</td>
 <td>-</td>
-<td>-</td>
 <td>1</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
+<td>2</td>
 <td>2</td>
 <td>-</td>
-<td>-</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1304,47 +1320,47 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>01 June</td>
-<td>WTA125</td>
+<td>1 June</td>
+<td>WTA125 Birmingham</td>
 <td>Main Draw</td>
-<td>Birmingham</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 <tr>
-<td>08 June</td>
-<td>WTA125</td>
+<td>8 June</td>
+<td>WTA125 Ilkley</td>
 <td>Main Draw</td>
-<td>Ilkley</td>
 <td>R16</td>
+<td>15</td>
 </tr>
 <tr>
 <td>15 June</td>
-<td>WTA250</td>
+<td>WTA250 Nottingham</td>
 <td>Qualifying</td>
-<td>Nottingham</td>
 <td>R32</td>
+<td>12</td>
 </tr>
 <tr>
 <td>22 June</td>
-<td>WTA250</td>
+<td>WTA250 Eastbourne</td>
 <td>Main Draw</td>
-<td>Eastbourne</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 <tr>
 <td>29 June</td>
-<td>GS</td>
+<td>GS Wimbledon</td>
 <td>Main Draw</td>
-<td>Wimbledon</td>
 <td>R128</td>
+<td>10</td>
 </tr>
 </tbody>
 </table>
@@ -1354,7 +1370,7 @@ table.detail-table td {
 <th class="expand-toggle" data-target="detail-Katy_Dunne" style="cursor:pointer; font-weight:bold; color:#0056b3;">Katy Dunne</th>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1363,7 +1379,7 @@ table.detail-table td {
 <td>-</td>
 <td>1</td>
 <td>-</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1375,26 +1391,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>02 February</td>
-<td>W35</td>
+<td>2 February</td>
+<td>W35 Sheffield</td>
 <td>Main Draw</td>
-<td>Sheffield</td>
 <td>SF</td>
+<td>14</td>
 </tr>
 <tr>
 <td>22 June</td>
-<td>GS</td>
+<td>GS Wimbledon</td>
 <td>Qualifying</td>
-<td>Wimbledon</td>
 <td>QR1</td>
+<td>2</td>
 </tr>
 </tbody>
 </table>
@@ -1413,7 +1429,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1425,19 +1441,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>02 February</td>
-<td>W35</td>
+<td>2 February</td>
+<td>W35 Sheffield</td>
 <td>Qualifying</td>
-<td>Sheffield</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -1459,7 +1475,7 @@ table.detail-table td {
 <td>-</td>
 <td>1</td>
 <td>-</td>
-<td>-</td>
+<td>1</td>
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Ria_Ferguson" style="display:none;">
@@ -1468,19 +1484,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>18 May</td>
-<td>W15</td>
+<td>W15 Kayseri</td>
 <td>Main Draw</td>
-<td>Kayseri</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -1496,10 +1512,10 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>1</td>
 <td>3</td>
-<td>-</td>
+<td>4</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1511,47 +1527,47 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>04 May</td>
-<td>W35</td>
+<td>4 May</td>
+<td>W35 Nottingham</td>
 <td>Main Draw</td>
-<td>Nottingham</td>
 <td>R16</td>
+<td>4</td>
 </tr>
 <tr>
-<td>08 June</td>
-<td>WTA125</td>
+<td>8 June</td>
+<td>WTA125 Ilkley</td>
 <td>Qualifying</td>
-<td>Ilkley</td>
 <td>QR2</td>
+<td>4</td>
 </tr>
 <tr>
 <td>27 July</td>
-<td>W35</td>
+<td>W35 Aldershot</td>
 <td>Qualifying</td>
-<td>Aldershot</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 <tr>
-<td>03 August</td>
-<td>W35</td>
+<td>3 August</td>
+<td>W35 Roehampton</td>
 <td>Qualifying</td>
-<td>Roehampton</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 <tr>
 <td>10 August</td>
-<td>W35</td>
+<td>W35 Aldershot</td>
 <td>Qualifying</td>
-<td>Aldershot</td>
-<td>QR1</td>
+<td>FQR</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1570,7 +1586,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>2</td>
-<td>-</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1582,26 +1598,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>12 January</td>
-<td>W50</td>
+<td>W50 Manchester</td>
 <td>Qualifying</td>
-<td>Manchester</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 <tr>
 <td>20 April</td>
-<td>W50</td>
+<td>W50 Roehampton</td>
 <td>Qualifying</td>
-<td>Roehampton</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -1620,7 +1636,7 @@ table.detail-table td {
 <td>-</td>
 <td>1</td>
 <td>-</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1632,19 +1648,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>13 July</td>
-<td>W50</td>
+<td>W50 Nottingham</td>
 <td>Main Draw</td>
-<td>Nottingham</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -1663,7 +1679,7 @@ table.detail-table td {
 <td>-</td>
 <td>1</td>
 <td>-</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1675,19 +1691,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>27 April</td>
-<td>W100</td>
+<td>W100 Charlottesville</td>
 <td>Main Draw</td>
-<td>Charlottesville</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -1700,7 +1716,7 @@ table.detail-table td {
 <td>-</td>
 <td>2</td>
 <td>-</td>
-<td>-</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1718,26 +1734,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>08 June</td>
-<td>WTA500</td>
+<td>8 June</td>
+<td>WTA500 London</td>
 <td>Main Draw</td>
-<td>London</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 <tr>
 <td>15 June</td>
-<td>WTA250</td>
+<td>WTA250 Nottingham</td>
 <td>Main Draw</td>
-<td>Nottingham</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -1747,16 +1763,16 @@ table.detail-table td {
 <th class="expand-toggle" data-target="detail-Hannah_Klugman" style="cursor:pointer; font-weight:bold; color:#0056b3;">Hannah Klugman</th>
 <td>1</td>
 <td>-</td>
-<td>-</td>
+<td>1</td>
 <td>1</td>
 <td>2</td>
-<td>-</td>
+<td>3</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>4</td>
 <td>-</td>
-<td>-</td>
+<td>4</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1768,75 +1784,75 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>12 January</td>
-<td>W50</td>
+<td>W50 Manchester</td>
 <td>Main Draw</td>
-<td>Manchester</td>
 <td>R16</td>
+<td>6</td>
 </tr>
 <tr>
 <td>26 January</td>
-<td>W35</td>
+<td>W35 Birmingham</td>
 <td>Main Draw</td>
-<td>Birmingham</td>
 <td>QF</td>
+<td>8</td>
 </tr>
 <tr>
-<td>02 February</td>
-<td>W35</td>
+<td>2 February</td>
+<td>W35 Sheffield</td>
 <td>Main Draw</td>
-<td>Sheffield</td>
 <td>QF</td>
+<td>8</td>
 </tr>
 <tr>
-<td>01 June</td>
-<td>WTA125</td>
+<td>1 June</td>
+<td>WTA125 Birmingham</td>
 <td>Qualifying</td>
-<td>Birmingham</td>
 <td>QR1</td>
+<td>1</td>
 </tr>
 <tr>
-<td>08 June</td>
-<td>WTA500</td>
+<td>8 June</td>
+<td>WTA500 London</td>
 <td>Qualifying</td>
-<td>London</td>
 <td>QR1</td>
+<td>1</td>
 </tr>
 <tr>
 <td>15 June</td>
-<td>WTA250</td>
+<td>WTA250 Nottingham</td>
 <td>Qualifying</td>
-<td>Nottingham</td>
 <td>R16</td>
+<td>42</td>
 </tr>
 <tr>
 <td>22 June</td>
-<td>WTA250</td>
+<td>WTA250 Eastbourne</td>
 <td>Main Draw</td>
-<td>Eastbourne</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 <tr>
 <td>29 June</td>
-<td>GS</td>
+<td>GS Wimbledon</td>
 <td>Main Draw</td>
-<td>Wimbledon</td>
 <td>R128</td>
+<td>10</td>
 </tr>
 <tr>
 <td>13 July</td>
-<td>W50</td>
+<td>W50 Nottingham</td>
 <td>Main Draw</td>
-<td>Nottingham</td>
 <td>SF</td>
+<td>20</td>
 </tr>
 </tbody>
 </table>
@@ -1852,7 +1868,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1867,19 +1883,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>08 June</td>
-<td>WTA125</td>
+<td>8 June</td>
+<td>WTA125 Ilkley</td>
 <td>Qualifying</td>
-<td>Ilkley</td>
 <td>QR1</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -1898,7 +1914,7 @@ table.detail-table td {
 <td>-</td>
 <td>4</td>
 <td>-</td>
-<td>-</td>
+<td>4</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1910,40 +1926,40 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>20 April</td>
-<td>W50</td>
+<td>W50 Roehampton</td>
 <td>Main Draw</td>
-<td>Roehampton</td>
 <td>R16</td>
+<td>6</td>
 </tr>
 <tr>
 <td>27 April</td>
-<td>W35</td>
+<td>W35 Nottingham</td>
 <td>Main Draw</td>
-<td>Nottingham</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 <tr>
-<td>04 May</td>
-<td>W35</td>
+<td>4 May</td>
+<td>W35 Nottingham</td>
 <td>Main Draw</td>
-<td>Nottingham</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 <tr>
-<td>03 August</td>
-<td>W35</td>
+<td>3 August</td>
+<td>W35 Roehampton</td>
 <td>Main Draw</td>
-<td>Roehampton</td>
 <td>QF</td>
+<td>7</td>
 </tr>
 </tbody>
 </table>
@@ -1962,7 +1978,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1974,19 +1990,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>20 April</td>
-<td>W50</td>
+<td>W50 Roehampton</td>
 <td>Qualifying</td>
-<td>Roehampton</td>
 <td>R32</td>
+<td>2</td>
 </tr>
 </tbody>
 </table>
@@ -2002,7 +2018,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2017,19 +2033,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>23 March</td>
-<td>WTA125</td>
+<td>WTA125 Dubrovnik</td>
 <td>Qualifying</td>
-<td>Dubrovnik</td>
 <td>QR1</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -2051,7 +2067,7 @@ table.detail-table td {
 <td>-</td>
 <td>1</td>
 <td>1</td>
-<td>-</td>
+<td>2</td>
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Emilija_Lebedevaite" style="display:none;">
@@ -2060,26 +2076,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>05 January</td>
-<td>W15</td>
+<td>5 January</td>
+<td>W15 Monastir</td>
 <td>Qualifying</td>
-<td>Monastir</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 <tr>
 <td>12 January</td>
-<td>W15</td>
+<td>W15 Monastir</td>
 <td>Main Draw</td>
-<td>Monastir</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -2098,7 +2114,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2110,19 +2126,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>04 May</td>
-<td>W35</td>
+<td>4 May</td>
+<td>W35 Nottingham</td>
 <td>Qualifying</td>
-<td>Nottingham</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -2141,7 +2157,7 @@ table.detail-table td {
 <td>-</td>
 <td>2</td>
 <td>-</td>
-<td>-</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2153,26 +2169,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>26 January</td>
-<td>W35</td>
+<td>W35 Birmingham</td>
 <td>Main Draw</td>
-<td>Birmingham</td>
 <td>R16</td>
+<td>4</td>
 </tr>
 <tr>
-<td>02 February</td>
-<td>W35</td>
+<td>2 February</td>
+<td>W35 Sheffield</td>
 <td>Main Draw</td>
-<td>Sheffield</td>
 <td>QF</td>
+<td>8</td>
 </tr>
 </tbody>
 </table>
@@ -2191,7 +2207,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2203,19 +2219,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>27 April</td>
-<td>W35</td>
+<td>W35 Nottingham</td>
 <td>Qualifying</td>
-<td>Nottingham</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -2225,7 +2241,7 @@ table.detail-table td {
 <th class="expand-toggle" data-target="detail-Ella_Mcdonald" style="cursor:pointer; font-weight:bold; color:#0056b3;">Ella Mcdonald</th>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2246,19 +2262,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>22 June</td>
-<td>GS</td>
+<td>GS Wimbledon</td>
 <td>Qualifying</td>
-<td>Wimbledon</td>
 <td>QR1</td>
+<td>2</td>
 </tr>
 </tbody>
 </table>
@@ -2280,7 +2296,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Jasmine_Mian" style="display:none;">
@@ -2289,19 +2305,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>13 July</td>
-<td>W15</td>
+<td>W15 Monastir</td>
 <td>Qualifying</td>
-<td>Monastir</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -2311,10 +2327,10 @@ table.detail-table td {
 <th class="expand-toggle" data-target="detail-Lily_Miyazaki" style="cursor:pointer; font-weight:bold; color:#0056b3;">Lily Miyazaki</th>
 <td>-</td>
 <td>1</td>
-<td>-</td>
-<td>-</td>
 <td>1</td>
 <td>-</td>
+<td>1</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2332,26 +2348,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>08 June</td>
-<td>WTA500</td>
+<td>8 June</td>
+<td>WTA500 London</td>
 <td>Qualifying</td>
-<td>London</td>
 <td>QR1</td>
+<td>1</td>
 </tr>
 <tr>
 <td>22 June</td>
-<td>GS</td>
+<td>GS Wimbledon</td>
 <td>Qualifying</td>
-<td>Wimbledon</td>
 <td>QR1</td>
+<td>2</td>
 </tr>
 </tbody>
 </table>
@@ -2370,7 +2386,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>2</td>
-<td>-</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2382,26 +2398,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>12 January</td>
-<td>W50</td>
+<td>W50 Manchester</td>
 <td>Qualifying</td>
-<td>Manchester</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 <tr>
-<td>04 May</td>
-<td>W35</td>
+<td>4 May</td>
+<td>W35 Nottingham</td>
 <td>Qualifying</td>
-<td>Nottingham</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -2420,7 +2436,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>2</td>
-<td>-</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2432,26 +2448,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>27 April</td>
-<td>W35</td>
+<td>W35 Nottingham</td>
 <td>Qualifying</td>
-<td>Nottingham</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 <tr>
-<td>04 May</td>
-<td>W35</td>
+<td>4 May</td>
+<td>W35 Nottingham</td>
 <td>Qualifying</td>
-<td>Nottingham</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -2470,7 +2486,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2482,19 +2498,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>20 April</td>
-<td>W50</td>
+<td>W50 Roehampton</td>
 <td>Qualifying</td>
-<td>Roehampton</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -2516,7 +2532,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Mirabelle_Njoze" style="display:none;">
@@ -2525,19 +2541,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>23 March</td>
-<td>W15</td>
+<td>W15 Sharm El Sheikh</td>
 <td>Qualifying</td>
-<td>Sharm El Sheikh</td>
 <td>QR2</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -2556,7 +2572,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2568,19 +2584,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>06 July</td>
-<td>W50</td>
+<td>6 July</td>
+<td>W50 Columbus, Ohio</td>
 <td>Qualifying</td>
-<td>Columbus, Ohio</td>
 <td>QR2</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -2599,7 +2615,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2611,19 +2627,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>03 August</td>
-<td>W35</td>
+<td>3 August</td>
+<td>W35 Roehampton</td>
 <td>Qualifying</td>
-<td>Roehampton</td>
 <td>QR2</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -2642,7 +2658,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>2</td>
-<td>-</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2654,26 +2670,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>27 July</td>
-<td>W35</td>
+<td>W35 Aldershot</td>
 <td>Qualifying</td>
-<td>Aldershot</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 <tr>
 <td>10 August</td>
-<td>W35</td>
+<td>W35 Aldershot</td>
 <td>Qualifying</td>
-<td>Aldershot</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -2692,7 +2708,7 @@ table.detail-table td {
 <td>-</td>
 <td>1</td>
 <td>-</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2704,19 +2720,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>18 May</td>
-<td>W35</td>
+<td>W35 Estepona</td>
 <td>Main Draw</td>
-<td>Estepona</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -2735,7 +2751,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2747,19 +2763,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>02 February</td>
-<td>W35</td>
+<td>2 February</td>
+<td>W35 Sheffield</td>
 <td>Qualifying</td>
-<td>Sheffield</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -2781,7 +2797,7 @@ table.detail-table td {
 <td>-</td>
 <td>1</td>
 <td>1</td>
-<td>-</td>
+<td>2</td>
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Maya_Prija" style="display:none;">
@@ -2790,26 +2806,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>16 February</td>
-<td>W15</td>
+<td>W15 Sharm El Sheikh</td>
 <td>Qualifying</td>
-<td>Sharm El Sheikh</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 <tr>
 <td>23 February</td>
-<td>W15</td>
+<td>W15 Sharm El Sheikh</td>
 <td>Main Draw</td>
-<td>Sharm El Sheikh</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -2828,7 +2844,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2840,19 +2856,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>13 July</td>
-<td>W50</td>
+<td>W50 Nottingham</td>
 <td>Qualifying</td>
-<td>Nottingham</td>
 <td>QR2</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -2862,7 +2878,7 @@ table.detail-table td {
 <th class="expand-toggle" data-target="detail-Amelia_Rajecki" style="cursor:pointer; font-weight:bold; color:#0056b3;">Amelia Rajecki</th>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2871,7 +2887,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2883,26 +2899,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>12 January</td>
-<td>W50</td>
+<td>W50 Manchester</td>
 <td>Qualifying</td>
-<td>Manchester</td>
 <td>QR2</td>
+<td>1</td>
 </tr>
 <tr>
 <td>22 June</td>
-<td>GS</td>
+<td>GS Wimbledon</td>
 <td>Qualifying</td>
-<td>Wimbledon</td>
 <td>QR1</td>
+<td>2</td>
 </tr>
 </tbody>
 </table>
@@ -2921,7 +2937,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2933,19 +2949,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>20 April</td>
-<td>W50</td>
+<td>W50 Roehampton</td>
 <td>Qualifying</td>
-<td>Roehampton</td>
 <td>QR2</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -2964,7 +2980,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>2</td>
-<td>-</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2976,26 +2992,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>12 January</td>
-<td>W50</td>
+<td>W50 Manchester</td>
 <td>Qualifying</td>
-<td>Manchester</td>
 <td>QR2</td>
+<td>None</td>
 </tr>
 <tr>
-<td>04 May</td>
-<td>W35</td>
+<td>4 May</td>
+<td>W35 Nottingham</td>
 <td>Qualifying</td>
-<td>Nottingham</td>
 <td>QR2</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -3014,7 +3030,7 @@ table.detail-table td {
 <td>-</td>
 <td>1</td>
 <td>-</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3026,19 +3042,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>11 May</td>
-<td>W35</td>
+<td>W35 Hurghada</td>
 <td>Main Draw</td>
-<td>Hurghada</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -3060,7 +3076,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>2</td>
-<td>-</td>
+<td>2</td>
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Ioana_Staliana_Scripcariu" style="display:none;">
@@ -3069,26 +3085,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>11 May</td>
-<td>W15</td>
+<td>W15 Bucharest</td>
 <td>Qualifying</td>
-<td>Bucharest</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 <tr>
-<td>01 June</td>
-<td>W15</td>
+<td>1 June</td>
+<td>W15 Focsani</td>
 <td>Qualifying</td>
-<td>Focsani</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -3107,7 +3123,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>2</td>
-<td>-</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3119,26 +3135,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>27 July</td>
-<td>W35</td>
+<td>W35 Aldershot</td>
 <td>Qualifying</td>
-<td>Aldershot</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 <tr>
-<td>03 August</td>
-<td>W35</td>
+<td>3 August</td>
+<td>W35 Roehampton</td>
 <td>Qualifying</td>
-<td>Roehampton</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -3154,7 +3170,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3169,19 +3185,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>16 February</td>
-<td>WTA125</td>
+<td>WTA125 Oeiras</td>
 <td>Qualifying</td>
-<td>Oeiras</td>
 <td>QR2</td>
+<td>4</td>
 </tr>
 </tbody>
 </table>
@@ -3200,7 +3216,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3212,19 +3228,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>13 July</td>
-<td>W50</td>
+<td>W50 Nottingham</td>
 <td>Qualifying</td>
-<td>Nottingham</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -3243,7 +3259,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3255,19 +3271,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>27 July</td>
-<td>W35</td>
+<td>W35 Aldershot</td>
 <td>Qualifying</td>
-<td>Aldershot</td>
 <td>QR2</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -3280,13 +3296,13 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
 <td>2</td>
 <td>-</td>
-<td>-</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3298,33 +3314,33 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>20 April</td>
-<td>W50</td>
+<td>W50 Roehampton</td>
 <td>Main Draw</td>
-<td>Roehampton</td>
 <td>R16</td>
+<td>6</td>
 </tr>
 <tr>
 <td>22 June</td>
-<td>WTA250</td>
+<td>WTA250 Eastbourne</td>
 <td>Qualifying</td>
-<td>Eastbourne</td>
 <td>QR1</td>
+<td>1</td>
 </tr>
 <tr>
-<td>03 August</td>
-<td>W35</td>
+<td>3 August</td>
+<td>W35 Roehampton</td>
 <td>Main Draw</td>
-<td>Roehampton</td>
 <td>R32</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -3343,7 +3359,7 @@ table.detail-table td {
 <td>-</td>
 <td>1</td>
 <td>-</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3355,19 +3371,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>12 January</td>
-<td>W50</td>
+<td>W50 Manchester</td>
 <td>Main Draw</td>
-<td>Manchester</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -3377,13 +3393,13 @@ table.detail-table td {
 <th class="expand-toggle" data-target="detail-Mika_Stojsavljevic" style="cursor:pointer; font-weight:bold; color:#0056b3;">Mika Stojsavljevic</th>
 <td>1</td>
 <td>-</td>
-<td>-</td>
 <td>1</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
+<td>2</td>
 <td>1</td>
 <td>-</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3398,40 +3414,40 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>01 June</td>
-<td>WTA125</td>
+<td>1 June</td>
+<td>WTA125 Birmingham</td>
 <td>Main Draw</td>
-<td>Birmingham</td>
 <td>QF</td>
+<td>27</td>
 </tr>
 <tr>
-<td>08 June</td>
-<td>WTA500</td>
+<td>8 June</td>
+<td>WTA500 London</td>
 <td>Main Draw</td>
-<td>London</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 <tr>
 <td>15 June</td>
-<td>WTA250</td>
+<td>WTA250 Nottingham</td>
 <td>Qualifying</td>
-<td>Nottingham</td>
 <td>QR1</td>
+<td>1</td>
 </tr>
 <tr>
 <td>29 June</td>
-<td>GS</td>
+<td>GS Wimbledon</td>
 <td>Main Draw</td>
-<td>Wimbledon</td>
 <td>R128</td>
+<td>10</td>
 </tr>
 </tbody>
 </table>
@@ -3441,13 +3457,13 @@ table.detail-table td {
 <th class="expand-toggle" data-target="detail-Katie_Swan" style="cursor:pointer; font-weight:bold; color:#0056b3;">Katie Swan</th>
 <td>1</td>
 <td>-</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
 <td>2</td>
 <td>-</td>
-<td>-</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3462,33 +3478,33 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>01 June</td>
-<td>WTA125</td>
+<td>1 June</td>
+<td>WTA125 Birmingham</td>
 <td>Main Draw</td>
-<td>Birmingham</td>
 <td>R16</td>
+<td>15</td>
 </tr>
 <tr>
-<td>08 June</td>
-<td>WTA125</td>
+<td>8 June</td>
+<td>WTA125 Ilkley</td>
 <td>Main Draw</td>
-<td>Ilkley</td>
 <td>QF</td>
+<td>27</td>
 </tr>
 <tr>
 <td>29 June</td>
-<td>GS</td>
+<td>GS Wimbledon</td>
 <td>Main Draw</td>
-<td>Wimbledon</td>
 <td>R64</td>
+<td>70</td>
 </tr>
 </tbody>
 </table>
@@ -3507,7 +3523,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3519,19 +3535,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>13 July</td>
-<td>W50</td>
+<td>W50 Nottingham</td>
 <td>Qualifying</td>
-<td>Nottingham</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -3550,7 +3566,7 @@ table.detail-table td {
 <td>-</td>
 <td>2</td>
 <td>-</td>
-<td>-</td>
+<td>2</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3562,26 +3578,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>19 January</td>
-<td>W75</td>
+<td>W75 Manama</td>
 <td>Main Draw</td>
-<td>Manama</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 <tr>
 <td>26 January</td>
-<td>W75</td>
+<td>W75 Manama</td>
 <td>Main Draw</td>
-<td>Manama</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -3591,10 +3607,10 @@ table.detail-table td {
 <th class="expand-toggle" data-target="detail-Heather_Watson" style="cursor:pointer; font-weight:bold; color:#0056b3;">Heather Watson</th>
 <td>-</td>
 <td>1</td>
-<td>-</td>
-<td>-</td>
 <td>1</td>
 <td>-</td>
+<td>1</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3612,26 +3628,26 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>08 June</td>
-<td>WTA500</td>
+<td>8 June</td>
+<td>WTA500 London</td>
 <td>Qualifying</td>
-<td>London</td>
 <td>QR2</td>
+<td>13</td>
 </tr>
 <tr>
 <td>22 June</td>
-<td>GS</td>
+<td>GS Wimbledon</td>
 <td>Qualifying</td>
-<td>Wimbledon</td>
 <td>QR3</td>
+<td>30</td>
 </tr>
 </tbody>
 </table>
@@ -3650,7 +3666,7 @@ table.detail-table td {
 <td>-</td>
 <td>-</td>
 <td>1</td>
-<td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3662,19 +3678,19 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>13 July</td>
-<td>W50</td>
+<td>W50 Nottingham</td>
 <td>Qualifying</td>
-<td>Nottingham</td>
 <td>QR1</td>
+<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -3684,13 +3700,13 @@ table.detail-table td {
 <th class="expand-toggle" data-target="detail-Mimi_Xu" style="cursor:pointer; font-weight:bold; color:#0056b3;">Mimi Xu</th>
 <td>1</td>
 <td>-</td>
-<td>-</td>
-<td>-</td>
-<td>2</td>
-<td>-</td>
 <td>1</td>
 <td>-</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
 <td>-</td>
+<td>1</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3705,40 +3721,40 @@ table.detail-table td {
 <thead>
 <tr style="text-align: center;">
 <th>Week beginning</th>
-<th>Level</th>
-<th>Entry</th>
 <th>Tournament</th>
+<th>Draw</th>
 <th>Round reached</th>
+<th>Ranking points</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>08 June</td>
-<td>WTA125</td>
+<td>8 June</td>
+<td>WTA125 Ilkley</td>
 <td>Main Draw</td>
-<td>Ilkley</td>
 <td>R32</td>
+<td>1</td>
 </tr>
 <tr>
 <td>15 June</td>
-<td>WTA250</td>
+<td>WTA250 Nottingham</td>
 <td>Qualifying</td>
-<td>Nottingham</td>
 <td>QR1</td>
+<td>1</td>
 </tr>
 <tr>
 <td>22 June</td>
-<td>WTA250</td>
+<td>WTA250 Eastbourne</td>
 <td>Qualifying</td>
-<td>Eastbourne</td>
 <td>QR1</td>
+<td>1</td>
 </tr>
 <tr>
 <td>29 June</td>
-<td>GS</td>
+<td>GS Wimbledon</td>
 <td>Main Draw</td>
-<td>Wimbledon</td>
 <td>R128</td>
+<td>10</td>
 </tr>
 </tbody>
 </table>

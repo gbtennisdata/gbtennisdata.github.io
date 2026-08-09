@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Tournament Winners</title>
+<title>Tournament Winners</title><link rel='stylesheet' type='text/css' href='base_style.css'>
 <style>
 body { font-family: Arial, sans-serif; background:#f5f5f5; margin:0; padding:20px; }
 
@@ -46,21 +46,8 @@ body { font-family: Arial, sans-serif; background:#f5f5f5; margin:0; padding:20p
 
 .card h2 { margin-top:0; }
 
-table {
-    width:100%;
-    border-collapse:collapse;
-    margin-top:10px;
-    table-layout: fixed;
-}
-
-th, td {
-    padding:8px;
-    border-bottom:1px solid #ddd;
-    text-align:left;
-    word-wrap: break-word;
-}
-
-th { background:#f0f0f0; }
+table th {position:sticky !important;
+    top: var(--header-height) !important;}
 
 th:nth-child(1), td:nth-child(1) { width: 30%; }
 th:nth-child(2), td:nth-child(2) { width: 20%; }
@@ -78,7 +65,7 @@ th:nth-child(3), td:nth-child(3) { width: 50%; }
     </div>
 
     <div class="stat">
-        <h3>GS</h3>
+        <h3>Grand Slam</h3>
         <p>0</p>
     </div>
 
@@ -133,7 +120,7 @@ th:nth-child(3), td:nth-child(3) { width: 50%; }
 
         <div class="stat">
             <h3>Alicia Dudeney</h3>
-            <p>8 titles</p>
+            <p>7 titles</p>
         </div>
         
         <div class="stat">
@@ -267,6 +254,11 @@ th:nth-child(3), td:nth-child(3) { width: 50%; }
   </thead>
   <tbody>
     <tr>
+      <td>Amelia Rajecki</td>
+      <td>W35 Roehampton</td>
+      <td>August 2026</td>
+    </tr>
+    <tr>
       <td>Alicia Dudeney</td>
       <td>W35 Estepona</td>
       <td>May 2026</td>
@@ -311,11 +303,6 @@ th:nth-child(3), td:nth-child(3) { width: 50%; }
       <td>W35 Wagga Wagga</td>
       <td>September 2025</td>
     </tr>
-    <tr>
-      <td>Alicia Dudeney</td>
-      <td>W35 Roehampton</td>
-      <td>August 2025</td>
-    </tr>
   </tbody>
 </table>
 </div>
@@ -348,7 +335,7 @@ th:nth-child(3), td:nth-child(3) { width: 50%; }
     <tr>
       <td>Indi Spink</td>
       <td>W15 Manacor</td>
-      <td>March 2026</td>
+      <td>February 2026</td>
     </tr>
     <tr>
       <td>Sofia Johnson</td>
