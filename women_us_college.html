@@ -16,6 +16,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const yearSelect = document.getElementById("yearFilter");
     const confSelect = document.getElementById("confFilter");
 
+    function getColumnCounts(colIndex) {
+        const counts = {};
+        rows.forEach(row => {
+            const cell = row.children[colIndex];
+            if (!cell) return;
+            const val = cell.textContent.trim();
+            if (!val) return;
+            counts[val] = (counts[val] || 0) + 1;
+        });
+        return counts;
+    }
+
     // Helper: extract unique values from a column
     function getUnique(colIndex) {
         return [...new Set(rows.map(r => r.children[colIndex].innerText.trim()))]
@@ -23,18 +35,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Populate dropdowns
-    function populate(select, values) {
+    function populate(select, values, counts) {
         values.sort().forEach(v => {
             const opt = document.createElement("option");
+            const count = counts && counts[v] ? counts[v] : 0;
             opt.value = v;
-            opt.textContent = v;
+            opt.textContent = `${v} (${count})`;;
             select.appendChild(opt);
         });
     }
+    
+    const teamCounts = getColumnCounts(1);
+    const yearCounts = getColumnCounts(2);
+    const confCounts = getColumnCounts(3);
 
-    populate(teamSelect, getUnique(1));   // Team column
-    populate(yearSelect, getUnique(2));   // Year column
-    populate(confSelect, getUnique(3));   // Conference column
+    populate(teamSelect, getUnique(1), teamCounts);   // Team column
+    populate(yearSelect, getUnique(2), yearCounts);   // Year column
+    populate(confSelect, getUnique(3), confCounts);   // Conference column
 
     // Filtering logic
     function applyFilters() {
@@ -68,8 +85,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <div id="content">
 
-<h1>Provisional Women's Div I US College rosters 2026-27</h1>
-<p>These are provisional rosters to be confirmed, based on the 2025-26 rosters and reported transfers and incomings.</p>
+<h1>Women's Div I US College rosters 2026-27</h1>
+<p>Student-athletes are confirmed to be on roster for 2026-27 unless stated.</p>
 
 <div id='player-select-container'>
     <label>Team:
@@ -168,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <td></td>
     </tr>
     <tr>
-      <td>Hep Oluwadare</td>
+      <td>Hephzibah Oluwadare</td>
       <td>Ohio State</td>
       <td>2nd</td>
       <td>Big Ten</td>
@@ -402,15 +419,6 @@ document.addEventListener("DOMContentLoaded", function () {
       <td></td>
     </tr>
     <tr>
-      <td>Lucia Cassidy</td>
-      <td></td>
-      <td>2nd</td>
-      <td>American</td>
-      <td></td>
-      <td></td>
-      <td>Previously Florida Atlantic (1st year). Not on published 2026-27 roster</td>
-    </tr>
-    <tr>
       <td>Sarah Copley</td>
       <td>Marshall</td>
       <td>2nd</td>
@@ -582,15 +590,6 @@ document.addEventListener("DOMContentLoaded", function () {
       <td>Redshirt</td>
     </tr>
     <tr>
-      <td>Francesca Simpson</td>
-      <td></td>
-      <td>2nd</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Previously Coastal Carolina (1st year). Not on published 2026-27 roster</td>
-    </tr>
-    <tr>
       <td>Sirena Waas</td>
       <td>Virginia Tech</td>
       <td>2nd</td>
@@ -697,24 +696,6 @@ document.addEventListener("DOMContentLoaded", function () {
       <td></td>
       <td></td>
       <td>Transfer Idaho State (1st and 2nd years)</td>
-    </tr>
-    <tr>
-      <td>Rebecca Fisher</td>
-      <td></td>
-      <td>3rd</td>
-      <td>Coastal Athletic Ass</td>
-      <td></td>
-      <td></td>
-      <td>Previously Monmount (1st and 2nd years). Not on published 2026-27 roster</td>
-    </tr>
-    <tr>
-      <td>Isabella Gibson</td>
-      <td></td>
-      <td>3rd</td>
-      <td>Big East</td>
-      <td></td>
-      <td></td>
-      <td>Previously DePaul (1st and 2nd years). Not on published 2026-27 roster</td>
     </tr>
     <tr>
       <td>Anjali Kotecha</td>
@@ -861,7 +842,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <td>2026-27 roster not yet available</td>
     </tr>
     <tr>
-      <td>Imogen Haddad</td>
+      <td>Immi Haddad</td>
       <td>USC</td>
       <td>4th</td>
       <td>Big Ten</td>

@@ -16,6 +16,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const yearSelect = document.getElementById("yearFilter");
     const confSelect = document.getElementById("confFilter");
 
+    function getColumnCounts(colIndex) {
+        const counts = {};
+        rows.forEach(row => {
+            const cell = row.children[colIndex];
+            if (!cell) return;
+            const val = cell.textContent.trim();
+            if (!val) return;
+            counts[val] = (counts[val] || 0) + 1;
+        });
+        return counts;
+    }
+
     // Helper: extract unique values from a column
     function getUnique(colIndex) {
         return [...new Set(rows.map(r => r.children[colIndex].innerText.trim()))]
@@ -23,18 +35,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Populate dropdowns
-    function populate(select, values) {
+    function populate(select, values, counts) {
         values.sort().forEach(v => {
             const opt = document.createElement("option");
+            const count = counts && counts[v] ? counts[v] : 0;
             opt.value = v;
-            opt.textContent = v;
+            opt.textContent = `${v} (${count})`;;
             select.appendChild(opt);
         });
     }
+    
+    const teamCounts = getColumnCounts(1);
+    const yearCounts = getColumnCounts(2);
+    const confCounts = getColumnCounts(3);
 
-    populate(teamSelect, getUnique(1));   // Team column
-    populate(yearSelect, getUnique(2));   // Year column
-    populate(confSelect, getUnique(3));   // Conference column
+    populate(teamSelect, getUnique(1), teamCounts);   // Team column
+    populate(yearSelect, getUnique(2), yearCounts);   // Year column
+    populate(confSelect, getUnique(3), confCounts);   // Conference column
 
     // Filtering logic
     function applyFilters() {
@@ -68,8 +85,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <div id="content">
 
-<h1>Provisional Men's Div I US College rosters 2026-27</h1>
-<p>These are provisional rosters to be confirmed, based on the 2025-26 rosters and reported transfers and incomings.</p>
+<h1>Men's Div I US College rosters 2026-27</h1>
+<p>Student-athletes are confirmed to be on roster for 2026-27 unless stated.</p>
 
 <div id='player-select-container'>
     <label>Team:
@@ -285,6 +302,15 @@ document.addEventListener("DOMContentLoaded", function () {
       <td></td>
     </tr>
     <tr>
+      <td>Charlie Ruffell</td>
+      <td>Campbell</td>
+      <td>1st</td>
+      <td>Coastal Athletic</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
       <td>Rafe Samuel</td>
       <td>Denver</td>
       <td>1st</td>
@@ -292,24 +318,6 @@ document.addEventListener("DOMContentLoaded", function () {
       <td></td>
       <td></td>
       <td></td>
-    </tr>
-    <tr>
-      <td>Harry Abel</td>
-      <td></td>
-      <td>2nd</td>
-      <td>Coastal Athletic</td>
-      <td></td>
-      <td></td>
-      <td>Not on published 2026-27 roster. Previously UNC Wilmington (1st year)</td>
-    </tr>
-    <tr>
-      <td>Joshua Ashton</td>
-      <td></td>
-      <td>2nd</td>
-      <td>Summit</td>
-      <td></td>
-      <td></td>
-      <td>Not on published 2026-27 roster. Previously Denver (1st year)</td>
     </tr>
     <tr>
       <td>Arthur Attrill</td>
@@ -616,15 +624,6 @@ document.addEventListener("DOMContentLoaded", function () {
       <td></td>
       <td></td>
       <td></td>
-    </tr>
-    <tr>
-      <td>Aryan Singh</td>
-      <td></td>
-      <td>3rd</td>
-      <td>Sun Belt</td>
-      <td></td>
-      <td></td>
-      <td>Not on published 2026-27 roster. Previously Georgia State (1st and 2nd years)</td>
     </tr>
     <tr>
       <td>Benn Wrann</td>
