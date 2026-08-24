@@ -1,0 +1,1544 @@
+
+<html>
+<head>
+<meta charset='UTF-8'>
+<title>GB Tennis Data: Women Wild cards</title>
+
+<link rel="stylesheet" type="text/css" href="base_style.css">
+<style>
+    table.gb-tennis-table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+        color: #333;
+    }
+    
+    /* DEFAULT Header Style */
+    table.gb-tennis-table th {
+        font-weight: 600;
+        padding: 8px 4px;
+        text-align: center;
+        /*text-transform: uppercase;*/
+        border: 1px solid rgba(255,255,255,0.3);
+        /* Remove global white color to prevent white-on-white if bg fails */
+        color: #333; 
+    }
+
+    /* Force White Text ONLY for headers that HAVE a background color */
+    /* We will rely on inline styles for background, so this ensures text is visible */
+    table.gb-tennis-table th[style*="background-color"] {
+        color: #ffffff !important;
+    }
+    
+/* 1. Base styles for all sticky table headers */
+table.gb-tennis-table thead th {
+    position: sticky;
+    z-index: 9997;
+    background-color: #fff; /* Prevents text from showing underneath */
+}
+
+
+/* 2. First header row styling and positioning */
+table.gb-tennis-table thead tr:first-child th {
+    top: var(--header-height);
+    font-size: 12px;
+    border-bottom: 2px solid #fff;
+    z-index: 9998; /* Keeps top row above the second row */
+}
+
+/* 3. Second header row positioning (Pushed down below the 1st row) */
+table.gb-tennis-table thead tr:nth-child(2) th {
+    /* Replace '40px' with the exact height of your first header row */
+    top: calc(var(--header-height) + 28px); 
+    z-index: 9997;
+}
+
+/* 4. Handle intersection of sticky column (left) and sticky row (top) for row 1 */
+table.gb-tennis-table thead tr:first-child th:first-child {
+    position: sticky;
+    left: 0;
+    top: var(--header-height);
+    z-index: 9999; /* Highest priority for top-left corner */
+    background-color: #fff !important;
+}
+
+/* 5. Handle intersection for row 2 corner cell */
+table.gb-tennis-table thead tr:nth-child(2) th:first-child {
+    position: sticky;
+    left: 0;
+    top: calc(var(--header-height) + 28px);
+    z-index: 9996;
+    background-color: #fff !important;
+}
+
+    /* Hard Borders */
+    table.gb-tennis-table td:nth-child(3n+1), 
+    table.gb-tennis-table th:nth-child(3n+1) {
+        border-right: 3px solid #aaa !important;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+    table.gb-tennis-table td:first-child, table.gb-tennis-table th:first-child,
+    table.gb-tennis-table td:last-child, table.gb-tennis-table th:last-child {
+        border-right: 1px solid #e0e0e0 !important;
+        box-shadow: none !important;
+    }
+
+    table.gb-tennis-table td {
+        padding: 6px 4px;
+        border: 1px solid #e0e0e0;
+        text-align: center;
+        background-color: #fff;
+        color: #333; /* Ensure data cells are dark */
+    }
+
+    /* Player Column - SPECIFIC FIX */
+    table.gb-tennis-table td:first-child, 
+    table.gb-tennis-table th:first-child {
+        text-align: left;
+        font-weight: 600;
+        background-color: #fff; /*#f8f9fa !important;*/
+        position: sticky;
+        left: 0;
+        z-index: 20;
+        border-right: 2px solid #ccc;
+        min-width: 150px;
+        color: #2c3e50 !important; /* FORCE dark text for player names */
+    }
+    
+    /* Corner cell (if exists) */
+    table.gb-tennis-table thead tr th:first-child {
+        /*background-color: #fff !important;*/
+        z-index: 30;
+        /*color: #ffffff !important;*/
+    }
+
+    table.gb-tennis-table tr:nth-child(even) td { background-color: #f8f9fa; }
+    table.gb-tennis-table tr:nth-child(even) td:first-child { background-color: #e9ecef !important; }
+    
+    table.gb-tennis-table td:last-child {
+        font-weight: bold;
+        background-color: #d2faf3 !important;
+        /*color: #c0392b;*/
+        border-left: 2px solid #bdc3c7;
+    }
+    /*table.gb-tennis-table tr:nth-child(even) td:last-child { background-color: #f9ebea !important; }*/
+    
+    table.gb-tennis-table tr:hover td { background-color: #e8f4f8; }
+    /*table.gb-tennis-table tr:hover td:first-child { background-color: #d6eaf8 !important; }*/
+    /*table.gb-tennis-table tr:hover td:last-child { background-color: #fadbd8 !important; }*/
+
+
+
+    
+
+</style>     
+
+
+<style>
+.detail-table { width: 90%; margin: 10px auto; border-collapse: collapse; }
+.detail-table td { border: 1px solid #ddd; padding: 6px; }
+.detail-table th { background-color: #3a7; color: white; padding: 6px; }
+/* OVERRIDE parent table's white-on-white rule */
+table.detail-table thead tr:first-child th:first-child {
+    background-color: #3a7 !important;
+    color: white !important;
+}
+/* FULL OVERRIDE FOR DETAIL TABLE */
+table.detail-table th {
+    background-color: #3a7 !important;
+    color: white !important;
+    font-size: 14px !important;
+}
+
+/* Fix top-left header cell */
+table.detail-table thead tr th:first-child {
+    background-color: #3a7 !important;
+    color: grey !important;
+}
+
+/* Override parent last-column styling */
+table.detail-table td:last-child {
+    background-color: #fff !important;
+    color: #333 !important;
+    font-weight: normal !important;
+    border-left: 1px solid #ddd !important;
+}
+/* FIX: Remove parent last-column colour when it contains a detail table */
+table.gb-tennis-table td:last-child:has(table.detail-table) {
+    background-color: transparent !important;
+}
+
+/* Ensure detail-table cells stay white */
+table.detail-table td {
+    background-color: #fff !important;
+}
+
+table.detail-table {
+    width: 100%;
+    table-layout: fixed;          /* Prevents runaway column expansion */
+    max-width: 900px;             /* Prevents columns being too wide on desktop */
+}
+
+table.detail-table th,
+table.detail-table td {
+    min-width: 80px;              /* Prevents squashing on mobile */
+    word-wrap: break-word;        /* Allows long text to wrap instead of stretching */
+}
+@media (max-width: 480px) {
+    table.detail-table th,
+    table.detail-table td {
+        min-width: 60px;
+        font-size: 0.9rem;        /* Slightly smaller text on mobile */
+        padding: 4px;             /* Reduce padding to save space */
+    }
+}
+
+.expand-toggle:hover { background-color: #e8f4f8 !important; color:#004494 !important; }
+</style>
+
+</head>
+<body>
+<div id="header-banner"></div>
+<div id="content-spacer"></div>
+<div id="content">
+<h2>Women's doubles wild cards 2026</h2>
+
+<div style="font-family: sans-serif; margin-bottom: 15px; color: #2c3e50;">
+    Women are restricted on the number of wild cards they can receive in a calendar year. The WTA only 
+    count wild cards the player earned WTA points with towards these totals, but this
+    table shows all wild cards played with. Players that received a wild card but did not play
+    are excluded from this table.<p> 
+    Wild cards allowances are split into "buckets".<br>
+    <list>
+    <li>Grand Slams: Unlimited<br>
+    <li>WTA Tour: 6 wild cards, of which no more than 3 can be main draw wild cards<br>
+    <li>WTA 125: 3 wild cards<br>
+    <li>W100 to W35: 6 wild cards, of which no more than 3 can be main draw wild cards. 
+    A "merit" wild card can be earned for each tournament a player wins a match as a main draw wild card. 
+    A player can earn up to 3 merit wild cards.<br>
+    <li>W15: As W100 to W35 but counted separately.<br>
+    </list><p>Additional wild cards or exemptions apply to players with long service, champions of majors or WTA finals, 
+    or players who reached No 1 in the singles rankings<br>
+    16 year olds may only earn ranking points from 4 wild cards between birthdays.<br>
+    15 and 14 year olds may only earn ranking points from 3 wild cards between birthdays.<P>
+    <strong>Summary:</strong> 
+    <span style="color: #e74c3c;">32</span> women have played with  
+    <span style="color: #27ae60;">46</span> wild cards in 2026.<P>
+    <A HREF=women_singles_wildcards_by_week.html>View wild cards by week</a>
+</div>
+
+<p><i>Click a player's name to expand details.</i></p>
+<table class="dataframe gb-tennis-table">
+<thead>
+<tr>
+<th style="background:none;"></th>
+<th colspan="2" halign="left" style="background-color:#27ae60; color:white;">Grand Slam</th>
+<th colspan="2" halign="left" style="background-color:#2980b9; color:white;">WTA Tour</th>
+<th colspan="2" halign="left" style="background-color:#8e44ad; color:white;">WTA 125</th>
+<th colspan="2" halign="left" style="background-color:#d35400; color:white;">W100 to W35</th>
+<th style="background-color:#c0392b; color:white;">All</th>
+</tr>
+<tr>
+<th style="background:none;"></th>
+<th style="background-color:#1e8449; color:white;">Main Draw</th>
+<th style="background-color:#1e8449; color:white;">Total</th>
+<th style="background-color:#1f618d; color:white;">Main Draw</th>
+<th style="background-color:#1f618d; color:white;">Total</th>
+<th style="background-color:#6c3483; color:white;">Main Draw</th>
+<th style="background-color:#6c3483; color:white;">Total</th>
+<th style="background-color:#a04000; color:white;">Main Draw</th>
+<th style="background-color:#a04000; color:white;">Total</th>
+<th style="background-color:#922b21; color:white;">Total</th>
+</tr>
+</thead>
+<tbody><tr>
+<th class="expand-toggle" data-target="detail-Emily_Appleton" style="cursor:pointer; font-weight:bold; color:#0056b3;">Emily Appleton</th>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Emily_Appleton" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>22 June</td>
+<td>WTA250 Eastbourne</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Katie_Boulter" style="cursor:pointer; font-weight:bold; color:#0056b3;">Katie Boulter</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>2</td>
+</tr>
+<tr class="detail-row" id="detail-Katie_Boulter" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 June</td>
+<td>WTA500 London</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+<tr>
+<td>29 June</td>
+<td>GS Wimbledon</td>
+<td>Main Draw</td>
+<td>R64</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Melissa_Boyden" style="cursor:pointer; font-weight:bold; color:#0056b3;">Melissa Boyden</th>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Melissa_Boyden" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6 July</td>
+<td>W35 Buzau</td>
+<td>Main Draw</td>
+<td>QF</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Amelie_Brooks" style="cursor:pointer; font-weight:bold; color:#0056b3;">Amelie Brooks</th>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Amelie_Brooks" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>26 January</td>
+<td>W35 Birmingham</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Madeleine_Brooks" style="cursor:pointer; font-weight:bold; color:#0056b3;">Madeleine Brooks</th>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Madeleine_Brooks" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>29 June</td>
+<td>GS Wimbledon</td>
+<td>Main Draw</td>
+<td>R64</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Jodie_Burrage" style="cursor:pointer; font-weight:bold; color:#0056b3;">Jodie Burrage</th>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>2</td>
+</tr>
+<tr class="detail-row" id="detail-Jodie_Burrage" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 June</td>
+<td>WTA125 Birmingham</td>
+<td>Main Draw</td>
+<td>QF</td>
+<td>27</td>
+</tr>
+<tr>
+<td>29 June</td>
+<td>GS Wimbledon</td>
+<td>Main Draw</td>
+<td>R64</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Tegan_Bush" style="cursor:pointer; font-weight:bold; color:#0056b3;">Tegan Bush</th>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Tegan_Bush" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>26 January</td>
+<td>W35 Birmingham</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Freya_Christie" style="cursor:pointer; font-weight:bold; color:#0056b3;">Freya Christie</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>2</td>
+</tr>
+<tr class="detail-row" id="detail-Freya_Christie" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>22 June</td>
+<td>WTA250 Eastbourne</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+<tr>
+<td>29 June</td>
+<td>GS Wimbledon</td>
+<td>Main Draw</td>
+<td>R64</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Jasmine_Conway" style="cursor:pointer; font-weight:bold; color:#0056b3;">Jasmine Conway</th>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Jasmine_Conway" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3 August</td>
+<td>W35 Roehampton</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Ruby_Cooling" style="cursor:pointer; font-weight:bold; color:#0056b3;">Ruby Cooling</th>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Ruby_Cooling" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>27 July</td>
+<td>W35 Aldershot</td>
+<td>Main Draw</td>
+<td>SF</td>
+<td>14</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Savannah_Dada_Mascoll" style="cursor:pointer; font-weight:bold; color:#0056b3;">Savannah Dada-Mascoll</th>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Savannah_Dada_Mascoll" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>27 July</td>
+<td>W35 Aldershot</td>
+<td>Main Draw</td>
+<td>Winner</td>
+<td>35</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Harriet_Dart" style="cursor:pointer; font-weight:bold; color:#0056b3;">Harriet Dart</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>2</td>
+</tr>
+<tr class="detail-row" id="detail-Harriet_Dart" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>15 June</td>
+<td>WTA250 Nottingham</td>
+<td>Main Draw</td>
+<td>Winner</td>
+<td>250</td>
+</tr>
+<tr>
+<td>29 June</td>
+<td>GS Wimbledon</td>
+<td>Main Draw</td>
+<td>R64</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Alicia_Dudeney" style="cursor:pointer; font-weight:bold; color:#0056b3;">Alicia Dudeney</th>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>4</td>
+</tr>
+<tr class="detail-row" id="detail-Alicia_Dudeney" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 June</td>
+<td>WTA125 Ilkley</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+<tr>
+<td>15 June</td>
+<td>WTA250 Nottingham</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+<tr>
+<td>22 June</td>
+<td>WTA250 Eastbourne</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+<tr>
+<td>29 June</td>
+<td>GS Wimbledon</td>
+<td>Main Draw</td>
+<td>R64</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Sophia_Hurrion" style="cursor:pointer; font-weight:bold; color:#0056b3;">Sophia Hurrion</th>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Sophia_Hurrion" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>27 July</td>
+<td>W35 Aldershot</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Lauryn_John_Baptiste" style="cursor:pointer; font-weight:bold; color:#0056b3;">Lauryn John-Baptiste</th>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Lauryn_John_Baptiste" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>26 January</td>
+<td>W35 Birmingham</td>
+<td>Main Draw</td>
+<td>QF</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Sofia_Johnson" style="cursor:pointer; font-weight:bold; color:#0056b3;">Sofia Johnson</th>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="detail-row" id="detail-Sofia_Johnson" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4 May</td>
+<td>W100 Indian Harbour Beach</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+<tr>
+<td>27 July</td>
+<td>WTA250 Memphis</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Allegra_Korpanec_Davies" style="cursor:pointer; font-weight:bold; color:#0056b3;">Allegra Korpanec Davies</th>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Allegra_Korpanec_Davies" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3 August</td>
+<td>W35 Roehampton</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Annabelle_Lammas" style="cursor:pointer; font-weight:bold; color:#0056b3;">Annabelle Lammas</th>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Annabelle_Lammas" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12 January</td>
+<td>W35 Antalya</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Maia_Lumsden" style="cursor:pointer; font-weight:bold; color:#0056b3;">Maia Lumsden</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>2</td>
+</tr>
+<tr class="detail-row" id="detail-Maia_Lumsden" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>15 June</td>
+<td>WTA250 Nottingham</td>
+<td>Main Draw</td>
+<td>Winner</td>
+<td>250</td>
+</tr>
+<tr>
+<td>29 June</td>
+<td>GS Wimbledon</td>
+<td>Main Draw</td>
+<td>R64</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Aisling_Mcgrane" style="cursor:pointer; font-weight:bold; color:#0056b3;">Aisling Mcgrane</th>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Aisling_Mcgrane" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>27 July</td>
+<td>W35 Aldershot</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Ciara_Moore" style="cursor:pointer; font-weight:bold; color:#0056b3;">Ciara Moore</th>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Ciara_Moore" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3 August</td>
+<td>W35 Roehampton</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Jaquelyn_Ogunwale" style="cursor:pointer; font-weight:bold; color:#0056b3;">Jaquelyn Ogunwale</th>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Jaquelyn_Ogunwale" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3 August</td>
+<td>W35 Roehampton</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Kristina_Paskauskas" style="cursor:pointer; font-weight:bold; color:#0056b3;">Kristina Paskauskas</th>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Kristina_Paskauskas" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>27 July</td>
+<td>W35 Aldershot</td>
+<td>Main Draw</td>
+<td>Winner</td>
+<td>35</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Emma_Raducanu" style="cursor:pointer; font-weight:bold; color:#0056b3;">Emma Raducanu</th>
+<td>-</td>
+<td>-</td>
+<td>2</td>
+<td>2</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>2</td>
+</tr>
+<tr class="detail-row" id="detail-Emma_Raducanu" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2 March</td>
+<td>WTA1000 Indian Wells</td>
+<td>Main Draw</td>
+<td>R32</td>
+<td>10</td>
+</tr>
+<tr>
+<td>8 June</td>
+<td>WTA500 London</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Amelia_Rajecki" style="cursor:pointer; font-weight:bold; color:#0056b3;">Amelia Rajecki</th>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Amelia_Rajecki" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>29 June</td>
+<td>GS Wimbledon</td>
+<td>Main Draw</td>
+<td>R64</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Eden_Silva" style="cursor:pointer; font-weight:bold; color:#0056b3;">Eden Silva</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>2</td>
+</tr>
+<tr class="detail-row" id="detail-Eden_Silva" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>22 June</td>
+<td>WTA250 Eastbourne</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+<tr>
+<td>29 June</td>
+<td>GS Wimbledon</td>
+<td>Main Draw</td>
+<td>R64</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Hollie_Smart" style="cursor:pointer; font-weight:bold; color:#0056b3;">Hollie Smart</th>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Hollie_Smart" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>27 July</td>
+<td>W35 Aldershot</td>
+<td>Main Draw</td>
+<td>SF</td>
+<td>14</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Mika_Stojsavljevic" style="cursor:pointer; font-weight:bold; color:#0056b3;">Mika Stojsavljevic</th>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>2</td>
+</tr>
+<tr class="detail-row" id="detail-Mika_Stojsavljevic" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 June</td>
+<td>WTA125 Birmingham</td>
+<td>Main Draw</td>
+<td>QF</td>
+<td>27</td>
+</tr>
+<tr>
+<td>29 June</td>
+<td>GS Wimbledon</td>
+<td>Main Draw</td>
+<td>R64</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Heather_Watson" style="cursor:pointer; font-weight:bold; color:#0056b3;">Heather Watson</th>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Heather_Watson" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>29 June</td>
+<td>GS Wimbledon</td>
+<td>Main Draw</td>
+<td>R64</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Emma_Wilson" style="cursor:pointer; font-weight:bold; color:#0056b3;">Emma Wilson</th>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Emma_Wilson" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>26 January</td>
+<td>W35 Birmingham</td>
+<td>Main Draw</td>
+<td>QF</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Mimi_Xu" style="cursor:pointer; font-weight:bold; color:#0056b3;">Mimi Xu</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>3</td>
+</tr>
+<tr class="detail-row" id="detail-Mimi_Xu" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 June</td>
+<td>WTA125 Ilkley</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+<tr>
+<td>15 June</td>
+<td>WTA250 Nottingham</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+<tr>
+<td>29 June</td>
+<td>GS Wimbledon</td>
+<td>Main Draw</td>
+<td>R64</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<th class="expand-toggle" data-target="detail-Summer_Yardley" style="cursor:pointer; font-weight:bold; color:#0056b3;">Summer Yardley</th>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="detail-row" id="detail-Summer_Yardley" style="display:none;">
+<td colspan="9" style="background:#f1f1f1; padding:15px;">
+<table class="dataframe detail-table">
+<thead>
+<tr style="text-align: center;">
+<th>Week beginning</th>
+<th>Tournament</th>
+<th>Draw</th>
+<th>Round reached</th>
+<th>Ranking points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>26 January</td>
+<td>W35 Birmingham</td>
+<td>Main Draw</td>
+<td>R16</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="footer"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    let openRow = null;  // track currently open detail row
+
+    document.querySelectorAll(".expand-toggle").forEach(cell => {
+        cell.addEventListener("click", () => {
+
+            const targetId = cell.dataset.target;
+            const detailRow = document.getElementById(targetId);
+
+            // If clicking the already-open row → collapse it
+            if (openRow === detailRow) {
+                detailRow.style.display = "none";
+                openRow = null;
+                return;
+            }
+
+            // Collapse previously open row
+            if (openRow) {
+                openRow.style.display = "none";
+            }
+
+            // Expand new row
+            detailRow.style.display = "table-row";
+            openRow = detailRow;
+        });
+    });
+});
+</script>
+
+<script src="header.js"></script>
+
+
+</body>
+</html>
