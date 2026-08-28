@@ -119,7 +119,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-up">&#9650;</span> 12</td>
       <td>30</td>
       <td>US Open Qualifying</td>
-      <td> </td>
+      <td>US Open (Doubles)</td>
       <td>WTA125 Barranquilla</td>
       <td>20 pts on 14 Sep 2026</td>
       <td>12</td>
@@ -205,7 +205,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td> </td>
       <td>W50 Leiria Qualifying</td>
       <td>WTA125 Antalya Qualifying</td>
-      <td>4 pts on 14 Sep 2026</td>
+      <td>9 pts on 14 Sep 2026</td>
       <td>2</td>
       <td>1</td>
       <td>199</td>
@@ -275,7 +275,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td> </td>
       <td>W15 Grodzisk Mazowiecki</td>
       <td> </td>
-      <td>15 pts on 12 Oct 2026</td>
+      <td>1 pts on 14 Sep 2026</td>
       <td>1</td>
       <td>1</td>
       <td>347</td>
@@ -1113,7 +1113,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td></td>
       <td>28</td>
       <td>WTA 500 Monterrey (Doubles)</td>
-      <td> </td>
+      <td>US Open (Doubles)</td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1127,7 +1127,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td></td>
       <td>31</td>
       <td>WTA 500 Monterrey (Doubles)</td>
-      <td> </td>
+      <td>US Open (Doubles)</td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1861,6 +1861,9 @@ function classifyEventWomen(val) {
         if (/^J\d/.test(t))
             results.push("Junior");
 
+        if (t.startsWith("US Open Juniors"))
+            results.push("Junior");
+
         if (t.startsWith("UTR")) results.push("UTR");
         else if (t.startsWith("British Tour")) results.push("British Tour");
         
@@ -1902,12 +1905,16 @@ function classifyEventMen(val) {
         if (/^J\d/.test(t))
             results.push("Junior");
 
+        if (t.startsWith("US Open Juniors"))
+            results.push("Junior");
+
 
         // Other circuits
         if (t.startsWith("UTR")) results.push("UTR");
         else if (t.startsWith("British Tour")) results.push("British Tour");
         
-        if (t.startsWith("US College (") || t.startsWith("ITA") || t.startsWith("NCAA")) results.push("US College");
+        if (t.startsWith("US College")) results.push("US College");
+        if (t.startsWith("ITA") || t.startsWith("NCAA")) results.push("US College");
 
         // Always include tournament name
         results.push(t);
