@@ -140,7 +140,7 @@ body {
 /* For better mobile touch support, we use :focus-within or JS, but here is a CSS-only hover/focus approach */
 .dropdown:hover .dropdown-content,
 .dropdown:focus-within .dropdown-content {
-    max-height: 300px;
+    max-height: 500px;
 }
 
 .arrow {
