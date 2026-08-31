@@ -1,5 +1,14 @@
-
-<link rel="stylesheet" type="text/css" href="base_style.css">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tournaments that count towards British women's ranking points for the last 52 weeks">
+  <title>women's singles ranking points breakdown – GB Tennis Data</title>
+  <link rel="stylesheet" type="text/css" href="base_style.css">
+</head>
+</body>
+<div id=header-container></div>
+    
 
 
 <script>
@@ -56,53 +65,19 @@ window.addEventListener("resize", updateSelectorHeight);
     }
     </script>
     
-        <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const header = document.getElementById("header-banner");
 
-    function updateHeaderHeight() {
-        const h = header.offsetHeight;
-        document.documentElement.style.setProperty("--header-height", h + "px");
-    }
 
-    updateHeaderHeight();
-    window.addEventListener("resize", updateHeaderHeight);
-});
-</script>
-
-<script>
-function scrollToPlayer(id) {
-    const el = document.getElementById(id);
-    const header = document.getElementById("header-banner");
-    const dropdown = document.getElementById("player-select-container");
-
-    if (!el) return;
-
-    const headerHeight = header.offsetHeight;
-    const dropdownHeight = dropdown.offsetHeight;
-
-    const totalOffset = headerHeight + dropdownHeight + 20; // extra padding
-
-    const elementTop = el.getBoundingClientRect().top + window.scrollY;
-
-    window.scrollTo({
-        top: elementTop - totalOffset,
-        behavior: 'smooth'
-    });
-}
-</script>
-
-    <div id="header-banner"></div>
+    
     <div id='player-select-container'>
         <label for='playerSelect'><strong>Select Player:</strong></label>
         <select id='playerSelect' onchange="scrollToPlayer(this.value)">
             <option value='' disabled selected>Choose player...</option>
             <option value='Esther_Adeshina'>Esther Adeshina</option><option value='Vic_Allen'>Vic Allen</option><option value='Emily_Appleton'>Emily Appleton</option><option value='Swasthika_Arunkumar'>Swasthika Arunkumar</option><option value='Naiktha_Bains'>Naiktha Bains</option><option value='Amarni_Banks'>Amarni Banks</option><option value='Aryana_Bartlett'>Aryana Bartlett</option><option value='Sophie_Bekker'>Sophie Bekker</option><option value='Brooke_Black'>Brooke Black</option><option value='Ellie_Blackford'>Ellie Blackford</option><option value='Angelica_Blake'>Angelica Blake</option><option value='Anna_Boron'>Anna Boron</option><option value='Katie_Boulter'>Katie Boulter</option><option value='Melissa_Boyden'>Melissa Boyden</option><option value='Daniella_Britton'>Daniella Britton</option><option value='Amelie_Brooks'>Amelie Brooks</option><option value='Jodie_Burrage'>Jodie Burrage</option><option value='Tegan_Bush'>Tegan Bush</option><option value='Lucia_Cassidy'>Lucia Cassidy</option><option value='Antoinette_Chastang_Cooper'>Antoinette Chastang Cooper</option><option value='Isabelle_Cherny'>Isabelle Cherny</option><option value='Rosie_Cho'>Rosie Cho</option><option value='Freya_Christie'>Freya Christie</option><option value='Chloe_Cleaver'>Chloe Cleaver</option><option value='Emma_Cohen'>Emma Cohen</option><option value='Jasmine_Conway'>Jasmine Conway</option><option value='Ruby_Cooling'>Ruby Cooling</option><option value='Heidi_Crncan'>Heidi Crncan</option><option value='Savannah_Dada-Mascoll'>Savannah Dada-Mascoll</option><option value='Harriet_Dart'>Harriet Dart</option><option value='Megan_Davies'>Megan Davies</option><option value='Sophie_Dick'>Sophie Dick</option><option value='Alicia_Dudeney'>Alicia Dudeney</option><option value='Katy_Dunne'>Katy Dunne</option><option value='Elizabeth_Evans'>Elizabeth Evans</option><option value='Ria_Ferguson'>Ria Ferguson</option><option value='Amelia_Fortescue'>Amelia Fortescue</option><option value='Francesca_Franchi'>Francesca Franchi</option><option value='Meira_Geras'>Meira Geras</option><option value='Alice_Gillan'>Alice Gillan</option><option value='Edie_Griffiths'>Edie Griffiths</option><option value='Immi_Haddad'>Immi Haddad</option><option value='Georgina_Hays'>Georgina Hays</option><option value='Allegra_Hodson'>Allegra Hodson</option><option value='Sophia_Hurrion'>Sophia Hurrion</option><option value='Lily_Hutchings'>Lily Hutchings</option><option value='Holly_Hutchinson'>Holly Hutchinson</option><option value='Alexandra_James'>Alexandra James</option><option value='Lauryn_John-Baptiste'>Lauryn John-Baptiste</option><option value='Sofia_Johnson'>Sofia Johnson</option><option value='Fran_Jones'>Fran Jones</option><option value='Sonay_Kartal'>Sonay Kartal</option><option value='Scarlet_Kavanagh'>Scarlet Kavanagh</option><option value='Karina_Kiss'>Karina Kiss</option><option value='Hannah_Klugman'>Hannah Klugman</option><option value='Megan_Knight'>Megan Knight</option><option value='Ophelia_Korpanec_Davies'>Ophelia Korpanec Davies</option><option value='Allegra_Korpanec_Davies'>Allegra Korpanec Davies</option><option value='Vlada_Kozak'>Vlada Kozak</option><option value='Annabelle_Lammas'>Annabelle Lammas</option><option value='Akosua_Larbu-Mensah'>Akosua Larbu-Mensah</option><option value='Emilija_Lebedevaite'>Emilija Lebedevaite</option><option value='Sofia_Maine'>Sofia Maine</option><option value='Eliz_Maloney'>Eliz Maloney</option><option value='Poppy_Marston'>Poppy Marston</option><option value='Jizel_Matos_Sequeira_Fernandes'>Jizel Matos Sequeira Fernandes</option><option value='Scarlett_May-Matthews'>Scarlett May-Matthews</option><option value='Ella_Mcdonald'>Ella Mcdonald</option><option value='Jasmine_Mian'>Jasmine Mian</option><option value='Elizabeth_Mirica'>Elizabeth Mirica</option><option value='Georgiana_Mititelu'>Georgiana Mititelu</option><option value='Lily_Miyazaki'>Lily Miyazaki</option><option value='Ciara_Moore'>Ciara Moore</option><option value='Zara_Mughal'>Zara Mughal</option><option value='Sophie_Munks'>Sophie Munks</option><option value='Talia_Neilsen-Gatenby'>Talia Neilsen-Gatenby</option><option value='Eloise_Newberry'>Eloise Newberry</option><option value='Lois_Newberry'>Lois Newberry</option><option value='Mirabelle_Njoze'>Mirabelle Njoze</option><option value='Jaquelyn_Ogunwale'>Jaquelyn Ogunwale</option><option value='Hephzibah_Oluwadare'>Hephzibah Oluwadare</option><option value='Clarice_Ouvarova'>Clarice Ouvarova</option><option value='Gabriela_Pacheco-Lagoda'>Gabriela Pacheco-Lagoda</option><option value='Kristina_Paskauskas'>Kristina Paskauskas</option><option value='Gabia_Paskauskas'>Gabia Paskauskas</option><option value='Erin_Pearce'>Erin Pearce</option><option value='Freya_Peet'>Freya Peet</option><option value='Daniela_Piani'>Daniela Piani</option><option value='Grace_Piper'>Grace Piper</option><option value='Elizabeth_Prangley'>Elizabeth Prangley</option><option value='Maya_Prija'>Maya Prija</option><option value='Teodora_Prisadnikova'>Teodora Prisadnikova</option><option value='Marelie_Raath'>Marelie Raath</option><option value='Emma_Raducanu'>Emma Raducanu</option><option value='Amelia_Rajecki'>Amelia Rajecki</option><option value='Leticia_Romanova'>Leticia Romanova</option><option value='Sophie_Ryland'>Sophie Ryland</option><option value='April_Sackflame'>April Sackflame</option><option value='Lara_Savic'>Lara Savic</option><option value='Athina_Schlepphorst'>Athina Schlepphorst</option><option value='Ioana-Staliana_Scripcariu'>Ioana-Staliana Scripcariu</option><option value='Eva_Shaw'>Eva Shaw</option><option value='Eden_Silva'>Eden Silva</option><option value='Mille_Skelton'>Mille Skelton</option><option value='Hollie_Smart'>Hollie Smart</option><option value='Indi_Spink'>Indi Spink</option><option value='Ranah_Stoiber'>Ranah Stoiber</option><option value='Mika_Stojsavljevic'>Mika Stojsavljevic</option><option value='Katie_Swan'>Katie Swan</option><option value='Mia_Tinsley'>Mia Tinsley</option><option value='Francesca_Tye'>Francesca Tye</option><option value='Maria_Ustic'>Maria Ustic</option><option value='Mia_Wainwright'>Mia Wainwright</option><option value='Isabella_Walker'>Isabella Walker</option><option value='Heather_Watson'>Heather Watson</option><option value='Emily_Webley-Smith'>Emily Webley-Smith</option><option value='Zainab_Williams'>Zainab Williams</option><option value='Ava_Williamson'>Ava Williamson</option><option value='Emma_Wilson'>Emma Wilson</option><option value='Isabella_Wong'>Isabella Wong</option><option value='Daisy_Wootton'>Daisy Wootton</option><option value='Mimi_Xu'>Mimi Xu</option><option value='Summer_Yardley'>Summer Yardley</option><option value='Pui_Yin_Lung'>Pui Yin Lung</option>
         </select>
-        Last updated: 31 August 10:21AM
+        Last updated: 31 August 8:53PM
     </div>
     
-    <div class='card' id='Esther_Adeshina'><h2>Esther Adeshina</h2><h3>Total points: 123</h3>
+    <div id=content-container><div class='card' id='Esther_Adeshina'><h2>Esther Adeshina</h2><h3>Total points: 123</h3>
         <details id="details_counted_41" open
                  onclick="toggleArrow('details_counted_41', 'arrow_counted_41')">
             <summary>
@@ -294,7 +269,7 @@ function scrollToPlayer(id) {
             <summary>
                 To Add tournaments (2)
             </summary>
-        <table id='to_add_70' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_70",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_70",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("to_add_70",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_70",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("to_add_70",4)'>Replacing<span class='arrow'></span></th></tr></thead><tbody><tr><td> US Open</td><td>13 September 2027</td><td>QR1</td><td data-sort='2'>2</td><td>US Open (20 pts)</td></tr><tr><td>W50 Leiria</td><td>13 September 2027</td><td>FQR</td><td data-sort='1'>1</td><td>Nothing: Additional tournament</td></tr></tbody></table></details></div><div class='card' id='Tegan_Bush'><h2>Tegan Bush</h2><h3>Total points: 10</h3>
+        <table id='to_add_70' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_70",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_70",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("to_add_70",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_70",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("to_add_70",4)'>Replacing<span class='arrow'></span></th></tr></thead><tbody><tr><td> US Open</td><td>13 September 2027</td><td>QR1</td><td data-sort='2'>2</td><td>US Open (20 pts)</td></tr><tr><td>W50 Leiria</td><td>13 September 2027</td><td>R32</td><td data-sort='2'>2</td><td>Nothing: Additional tournament</td></tr></tbody></table></details></div><div class='card' id='Tegan_Bush'><h2>Tegan Bush</h2><h3>Total points: 10</h3>
         <details id="details_counted_118" open
                  onclick="toggleArrow('details_counted_118', 'arrow_counted_118')">
             <summary>
@@ -414,7 +389,7 @@ function scrollToPlayer(id) {
             <summary>
                 To Add tournaments (1)
             </summary>
-        <table id='to_add_54' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_54",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_54",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("to_add_54",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_54",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("to_add_54",4)'>Replacing<span class='arrow'></span></th></tr></thead><tbody><tr><td> US Open</td><td>13 September 2027</td><td>R128</td><td data-sort='40'>40</td><td>US Open (20 pts)</td></tr></tbody></table></details></div><div class='card' id='Megan_Davies'><h2>Megan Davies</h2><h3>Total points: 1</h3>
+        <table id='to_add_54' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_54",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_54",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("to_add_54",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_54",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("to_add_54",4)'>Replacing<span class='arrow'></span></th></tr></thead><tbody><tr><td> US Open</td><td>13 September 2027</td><td>R64</td><td data-sort='110'>110</td><td>US Open (20 pts)</td></tr></tbody></table></details></div><div class='card' id='Megan_Davies'><h2>Megan Davies</h2><h3>Total points: 1</h3>
         <details id="details_counted_86" open
                  onclick="toggleArrow('details_counted_86', 'arrow_counted_86')">
             <summary>
@@ -498,13 +473,7 @@ function scrollToPlayer(id) {
             <summary>
                 Not Counted tournaments (7)
             </summary>
-        <table id='not_counted_2' data-sort-asc='true'><thead><tr><th onclick='sortTable("not_counted_2",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("not_counted_2",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("not_counted_2",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("not_counted_2",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>W35 Sheffield</td><td>15 February 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>W15 Manacor</td><td>22 February 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>W15 Monastir</td><td>3 May 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>W35 Nottingham</td><td>17 May 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>W35 Aldershot</td><td>12 August 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>W35 Roehampton</td><td>16 August 2027</td><td>QR2</td><td data-sort='-'>-</td></tr><tr><td>W15 Logrono</td><td>29 August 2027</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details>
-        <details id="details_to_add_2" 
-                 onclick="toggleArrow('details_to_add_2', 'arrow_to_add_2')">
-            <summary>
-                To Add tournaments (1)
-            </summary>
-        <table id='to_add_2' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_2",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_2",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("to_add_2",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_2",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("to_add_2",4)'>Replacing<span class='arrow'></span></th></tr></thead><tbody><tr><td>W15 Torello</td><td>13 September 2027</td><td>R16</td><td data-sort='1'>1</td><td>Logrono (10 pts)</td></tr></tbody></table></details></div><div class='card' id='Edie_Griffiths'><h2>Edie Griffiths</h2><h3>Total points: 14</h3>
+        <table id='not_counted_2' data-sort-asc='true'><thead><tr><th onclick='sortTable("not_counted_2",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("not_counted_2",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("not_counted_2",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("not_counted_2",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>W35 Sheffield</td><td>15 February 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>W15 Manacor</td><td>22 February 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>W15 Monastir</td><td>3 May 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>W35 Nottingham</td><td>17 May 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>W35 Aldershot</td><td>12 August 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>W35 Roehampton</td><td>16 August 2027</td><td>QR2</td><td data-sort='-'>-</td></tr><tr><td>W15 Logrono</td><td>29 August 2027</td><td>R32</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='Edie_Griffiths'><h2>Edie Griffiths</h2><h3>Total points: 14</h3>
         <details id="details_counted_26" open
                  onclick="toggleArrow('details_counted_26', 'arrow_counted_26')">
             <summary>
@@ -612,7 +581,7 @@ function scrollToPlayer(id) {
             <summary>
                 To Add tournaments (1)
             </summary>
-        <table id='to_add_107' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_107",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_107",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("to_add_107",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_107",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("to_add_107",4)'>Replacing<span class='arrow'></span></th></tr></thead><tbody><tr><td>W50 Leiria</td><td>13 September 2027</td><td>FQR</td><td data-sort='1'>1</td><td>Nothing: Additional tournament</td></tr></tbody></table></details></div><div class='card' id='Fran_Jones'><h2>Fran Jones</h2><h3>Total points: 751</h3>
+        <table id='to_add_107' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_107",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_107",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("to_add_107",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_107",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("to_add_107",4)'>Replacing<span class='arrow'></span></th></tr></thead><tbody><tr><td>W50 Leiria</td><td>13 September 2027</td><td>R32</td><td data-sort='2'>2</td><td>Nothing: Additional tournament</td></tr></tbody></table></details></div><div class='card' id='Fran_Jones'><h2>Fran Jones</h2><h3>Total points: 751</h3>
         <details id="details_counted_43" open
                  onclick="toggleArrow('details_counted_43', 'arrow_counted_43')">
             <summary>
@@ -840,13 +809,7 @@ function scrollToPlayer(id) {
             <summary>
                 Not Counted tournaments (10)
             </summary>
-        <table id='not_counted_33' data-sort-asc='true'><thead><tr><th onclick='sortTable("not_counted_33",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("not_counted_33",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("not_counted_33",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("not_counted_33",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>W50 Roehampton</td><td>3 May 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>W35 Nottingham</td><td>17 May 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>W35 Nottingham</td><td>17 May 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>W15 Monastir</td><td>7 June 2027</td><td>QR2</td><td data-sort='-'>-</td></tr><tr><td>W15 Monastir</td><td>7 June 2027</td><td>QR3</td><td data-sort='-'>-</td></tr><tr><td>W15 Monastir</td><td>14 June 2027</td><td>QR2</td><td data-sort='-'>-</td></tr><tr><td>W15 Monastir</td><td>12 July 2027</td><td>QR2</td><td data-sort='-'>-</td></tr><tr><td>W15 Monastir</td><td>19 July 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>W50 Nottingham</td><td>19 July 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>W35 Aldershot</td><td>12 August 2027</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details>
-        <details id="details_to_add_33" 
-                 onclick="toggleArrow('details_to_add_33', 'arrow_to_add_33')">
-            <summary>
-                To Add tournaments (1)
-            </summary>
-        <table id='to_add_33' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_33",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_33",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("to_add_33",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_33",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("to_add_33",4)'>Replacing<span class='arrow'></span></th></tr></thead><tbody><tr><td>W15 Monastir</td><td>13 September 2027</td><td>R16</td><td data-sort='1'>1</td><td>Nothing: Additional tournament</td></tr></tbody></table></details></div><div class='card' id='Lois_Newberry'><h2>Lois Newberry</h2><h3>Total points: 10</h3>
+        <table id='not_counted_33' data-sort-asc='true'><thead><tr><th onclick='sortTable("not_counted_33",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("not_counted_33",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("not_counted_33",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("not_counted_33",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>W50 Roehampton</td><td>3 May 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>W35 Nottingham</td><td>17 May 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>W35 Nottingham</td><td>17 May 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>W15 Monastir</td><td>7 June 2027</td><td>QR2</td><td data-sort='-'>-</td></tr><tr><td>W15 Monastir</td><td>7 June 2027</td><td>QR3</td><td data-sort='-'>-</td></tr><tr><td>W15 Monastir</td><td>14 June 2027</td><td>QR2</td><td data-sort='-'>-</td></tr><tr><td>W15 Monastir</td><td>12 July 2027</td><td>QR2</td><td data-sort='-'>-</td></tr><tr><td>W15 Monastir</td><td>19 July 2027</td><td>R32</td><td data-sort='-'>-</td></tr><tr><td>W50 Nottingham</td><td>19 July 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>W35 Aldershot</td><td>12 August 2027</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div class='card' id='Lois_Newberry'><h2>Lois Newberry</h2><h3>Total points: 10</h3>
         <details id="details_counted_81" open
                  onclick="toggleArrow('details_counted_81', 'arrow_counted_81')">
             <summary>
@@ -1254,5 +1217,40 @@ function scrollToPlayer(id) {
             <summary>
                 Not Counted tournaments (2)
             </summary>
-        <table id='not_counted_99' data-sort-asc='true'><thead><tr><th onclick='sortTable("not_counted_99",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("not_counted_99",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("not_counted_99",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("not_counted_99",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>W35 Nottingham</td><td>17 May 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>W50 Nottingham</td><td>19 July 2027</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div id="footer"></div>
-       <script src="header.js"></script>
+        <table id='not_counted_99' data-sort-asc='true'><thead><tr><th onclick='sortTable("not_counted_99",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("not_counted_99",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("not_counted_99",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("not_counted_99",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>W35 Nottingham</td><td>17 May 2027</td><td>QR1</td><td data-sort='-'>-</td></tr><tr><td>W50 Nottingham</td><td>19 July 2027</td><td>QR1</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div id="footer-container"></div>
+       <script src="header.js"></script>        <script>
+document.addEventListener("headerLoaded", function () {
+    const header = document.getElementById("header-container");
+
+    function updateHeaderHeight() {
+        const h = header.offsetHeight;
+        document.documentElement.style.setProperty("--header-height", h + "px");
+    }
+
+    updateHeaderHeight();
+    window.addEventListener("resize", updateHeaderHeight);
+});
+
+</script>
+
+<script>
+function scrollToPlayer(id) {
+    const el = document.getElementById(id);
+    const header = document.getElementById("header-container");
+    const dropdown = document.getElementById("player-select-container");
+
+    if (!el) return;
+
+    const headerHeight = header.offsetHeight;
+    const dropdownHeight = dropdown.offsetHeight;
+
+    const totalOffset = headerHeight + dropdownHeight + 20; // extra padding
+
+    const elementTop = el.getBoundingClientRect().top + window.scrollY;
+
+    window.scrollTo({
+        top: elementTop - totalOffset,
+        behavior: 'smooth'
+    });
+}
+</script></body></html>

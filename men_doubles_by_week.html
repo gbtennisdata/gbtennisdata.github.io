@@ -1,6 +1,14 @@
-
-<link rel="stylesheet" type="text/css" href="base_style.css">
-
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="British men's doubles ranking points that drop over the next 52 weeks">
+  <title>men's doubles points dropping by week – GB Tennis Data</title>
+  <link rel="stylesheet" type="text/css" href="base_style.css">
+</head>
+</body>
+<div id=header-container></div>
+    
     <script>
     function sortTable(tableId, colIndex) {
         var table = document.getElementById(tableId);
@@ -37,8 +45,8 @@
     </script>
     
         <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const header = document.getElementById("header-banner");
+document.addEventListener("headerLoaded", function () {
+    const header = document.getElementById("header-container");
 
     function updateHeaderHeight() {
         const h = header.offsetHeight;
@@ -48,12 +56,13 @@ document.addEventListener("DOMContentLoaded", function () {
     updateHeaderHeight();
     window.addEventListener("resize", updateHeaderHeight);
 });
+
 </script>
 
 <script>
 function scrollToPlayer(id) {
     const el = document.getElementById(id);
-    const header = document.getElementById("header-banner");
+    const header = document.getElementById("header-container");
     const dropdown = document.getElementById("player-select-container");
 
     if (!el) return;
@@ -72,7 +81,7 @@ function scrollToPlayer(id) {
 }
 </script>
 
-    <div id="header-banner"></div>
+    
     <div id='player-select-container'>
         <label for='playerSelect'><strong>Select Week:</strong></label>
         <select id='playerSelect' onchange="scrollToPlayer(this.value)">
@@ -80,7 +89,7 @@ function scrollToPlayer(id) {
             <option value='week_0'>14 September 2026</option><option value='week_1'>21 September 2026</option><option value='week_2'>28 September 2026</option><option value='week_3'>5 October 2026</option><option value='week_4'>12 October 2026</option><option value='week_5'>19 October 2026</option><option value='week_6'>26 October 2026</option><option value='week_7'>2 November 2026</option><option value='week_8'>9 November 2026</option><option value='week_9'>16 November 2026</option><option value='week_10'>23 November 2026</option><option value='week_11'>30 November 2026</option><option value='week_12'>7 December 2026</option><option value='week_13'>14 December 2026</option><option value='week_14'>21 December 2026</option><option value='week_15'>28 December 2026</option><option value='week_16'>11 January 2027</option><option value='week_17'>18 January 2027</option><option value='week_18'>1 February 2027</option><option value='week_19'>8 February 2027</option><option value='week_20'>15 February 2027</option><option value='week_21'>22 February 2027</option><option value='week_22'>1 March 2027</option><option value='week_23'>15 March 2027</option><option value='week_24'>29 March 2027</option><option value='week_25'>5 April 2027</option><option value='week_26'>12 April 2027</option><option value='week_27'>19 April 2027</option><option value='week_28'>3 May 2027</option><option value='week_29'>17 May 2027</option><option value='week_30'>24 May 2027</option><option value='week_31'>7 June 2027</option><option value='week_32'>14 June 2027</option><option value='week_33'>21 June 2027</option><option value='week_34'>28 June 2027</option><option value='week_35'>12 July 2027</option><option value='week_36'>19 July 2027</option><option value='week_37'>26 July 2027</option><option value='week_38'>2 August 2027</option><option value='week_39'>9 August 2027</option><option value='week_40'>23 August 2027</option><option value='week_41'>30 August 2027</option><option value='week_42'>13 September 2027</option>
         </select>
     </div>
-    <h2>Points dropping by week</h2><div class='card' id='week_0'><h2>7 September 2026</h2>No ranking update expected. Middle Monday of US Open</div><div class='card' id='week_0'><h2>14 September 2026</h2><p><strong>Total drops:</strong> 38</p>
+    <div id=content-container><h2>Points dropping by week</h2><div class='card' id='week_0'><h2>7 September 2026</h2>No ranking update expected. Middle Monday of US Open</div><div class='card' id='week_0'><h2>14 September 2026</h2><p><strong>Total drops:</strong> 38</p>
         <details id="details_counted_0" open
                  onclick="toggleArrow('details_counted_0', 'arrow_counted_0')">
             <summary>
@@ -482,5 +491,5 @@ function scrollToPlayer(id) {
             <summary>
                 To Add tournaments (6)
             </summary>
-        <table id='to_add_42' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_42",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("to_add_42",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_42",2)'>Partner<span class='arrow'></span></th><th onclick='sortTable("to_add_42",3)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_42",4)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Oliver Okonkwo</td><td>M15 Champaign</td><td>T Bowers</td><td>QF</td><td data-sort='2'>2</td></tr><tr><td>Finn Reilly</td><td>M15 Hurghada</td><td>A Funk</td><td>QF</td><td data-sort='2'>2</td></tr><tr><td>Roan Jones</td><td>M15 Monastir</td><td>R Dhokia</td><td>Final</td><td data-sort='8'>8</td></tr><tr><td>Rahul Dhokia</td><td>M15 Monastir</td><td>R Jones</td><td>Final</td><td data-sort='8'>8</td></tr><tr><td>Josh Manuel</td><td>M15 Monastir</td><td>R Lefevre</td><td>QF</td><td data-sort='2'>2</td></tr><tr><td>Jeremy Gschwendtner</td><td>M15 Pecs</td><td>F Tenti</td><td>Final</td><td data-sort='8'>8</td></tr></tbody></table></details></div><div id="footer"></div>
+        <table id='to_add_42' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_42",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("to_add_42",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_42",2)'>Partner<span class='arrow'></span></th><th onclick='sortTable("to_add_42",3)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_42",4)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Oliver Okonkwo</td><td>M15 Champaign</td><td>T Bowers</td><td>QF</td><td data-sort='2'>2</td></tr><tr><td>Finn Reilly</td><td>M15 Hurghada</td><td>A Funk</td><td>QF</td><td data-sort='2'>2</td></tr><tr><td>Roan Jones</td><td>M15 Monastir</td><td>R Dhokia</td><td>Final</td><td data-sort='8'>8</td></tr><tr><td>Rahul Dhokia</td><td>M15 Monastir</td><td>R Jones</td><td>Final</td><td data-sort='8'>8</td></tr><tr><td>Josh Manuel</td><td>M15 Monastir</td><td>R Lefevre</td><td>QF</td><td data-sort='2'>2</td></tr><tr><td>Jeremy Gschwendtner</td><td>M15 Pecs</td><td>F Tenti</td><td>Final</td><td data-sort='8'>8</td></tr></tbody></table></details></div></div><div id="footer-container"></div>
        <script src="header.js"></script>

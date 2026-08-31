@@ -1,5 +1,5 @@
 :root {
-    --header-height: 200px;
+    --header-height: 60px;
     --selector-height: 57px;
     --sticky-offset: calc(var(--header-height) + var(--selector-height));
 }
@@ -9,21 +9,207 @@ body {
     background:#f5f5f5; 
     max-width:1400px;
     margin:auto;
+    padding-top: var(--header-height); /* 60px */
 }
 
-/* Sticky site header */
-#header-banner {
-    position: sticky;
+/* --- Fixed Header Container --- */
+.fixed-header {
+    position: fixed;
     top: 0;
-    height: var(--header-height);
-    z-index: 9999;
+    left: 0;
+    width: 100%;
+    height: 60px;
+   // background-color: #2c3e50;
+    background: linear-gradient(135deg, #33aa77 0%, #2e8b63 100%);
+    color: white;
+    z-index: 100000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+}
+
+.header-container {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: flex-start/*space-between*/;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+}
+
+.logo {
+    font-size: 2.0rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    z-index: 1001; /* Above hamburger */
+}
+
+/* --- Hamburger Menu (Mobile Default) --- */
+.nav-toggle {
+    display: none; /* Hide checkbox */
+}
+
+.nav-toggle-label {
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001; /* Above menu */
+}
+
+.hamburger, .hamburger::before, .hamburger::after {
+    content: '';
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.hamburger::before { transform: translateY(-8px); }
+.hamburger::after { transform: translateY(5px); }
+
+/* Hamburger Animation when Checked */
+.nav-toggle:checked + .nav-toggle-label .hamburger {
+    background: transparent;
+}
+.nav-toggle:checked + .nav-toggle-label .hamburger::before {
+    transform: rotate(45deg) translateY(0);
+}
+.nav-toggle:checked + .nav-toggle-label .hamburger::after {
+    transform: rotate(-45deg) translateY(0);
+}
+
+/* --- Navigation Menu (Mobile Styles) --- */
+.nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #34495e;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    z-index: 1000;
+}
+
+.nav-toggle:checked ~ .nav-menu {
+    max-height: 500px; /* Adjust based on content */
+}
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu > ul > li {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav-menu a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.nav-menu a:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* Mobile Dropdown Logic */
+.dropdown-content {
+    background-color: #2c3e50;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.dropdown-content li a {
+    padding-left: 40px; /* Indent sub-items */
+    font-size: 0.9rem;
+}
+
+/* Use checkbox hack for mobile dropdowns if needed, or simple CSS hover/touch */
+/* For better mobile touch support, we use :focus-within or JS, but here is a CSS-only hover/focus approach */
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+    max-height: 300px;
+}
+
+.arrow {
+    font-size: 0.7rem;
+    float: right;
+    margin-top: 4px;
+}
+
+/* --- Desktop Styles (Min-width 768px) --- */
+@media (min-width: 768px) {
+    .nav-toggle-label {
+        display: none; /* Hide hamburger */
+    }
+
+    .nav-menu {
+        position: static;
+        width: auto;
+        max-height: none;
+        background: transparent;
+        overflow: visible;
+    }
+
+    .nav-menu > ul {
+        display: flex;
+        gap: 5px;
+    }
+
+    .nav-menu > ul > li {
+        border-bottom: none;
+        position: relative;
+    }
+
+    .nav-menu a {
+        padding: 10px 15px;
+    }
+
+    /* Desktop Dropdown */
+    .dropdown-content {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #34495e;
+        min-width: 200px;
+        max-height: 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        border-radius: 0 0 4px 4px;
+	z-index: 12000;
+    }
+
+    .dropdown:hover .dropdown-content {
+        max-height: 500px;
+    }
+
+    .dropdown-content li a {
+        padding-left: 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .arrow {
+        margin-left: 5px;
+        float: none;
+    }
 }
 
 /* Sticky player selector under header */
 #player-select-container {
     position: sticky;
     top: var(--header-height);
-    z-index: 9998;
+    z-index: 3000;
     background: #fff;
     padding: 12px;
     border-bottom: 2px solid #ccc;
@@ -49,7 +235,7 @@ th {
     cursor: pointer;
     position: sticky;
     top: var(--sticky-offset);
-    z-index: 9997;
+    z-index: 4000;
 }
 
 th .arrow {
@@ -91,3 +277,19 @@ summary {
         font-size: 16px;
         padding: 6px;
     }
+
+#content-container {
+    position: relative;
+    z-index: 2000;
+    padding: 5px;
+    }
+
+.content-sticky {
+  position: sticky;
+  top: var(--header-height); 
+  z-index: 2500;             /* above content, below player-select */
+  padding: 8px 12px;
+  background: #f5f5f5;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}

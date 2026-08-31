@@ -1,53 +1,60 @@
-<div class="footer-content">
-    <span class="footer-title">GB Tennis Data</span>
-
-<!--    <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="women_summary.html">Women</a>
-        <a href="men_summary.html">Men</a>
-    </div>-->
-
-    <div class="footer-note">
-          <p>© 2026 GB Tennis Data. <br>
+<!-- footer.html -->
+<footer class="site-footer" role="contentinfo">
+<!--  <nav aria-label="Footer navigation" class="footer-nav">
+    <ul>
+      <li><a href="/about">About</a></li>
+      <li><a href="/services">Services</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/privacy">Privacy Policy</a></li>
+      <li><a href="/accessibility">Accessibility Statement</a></li>
+    </ul>
+  </nav>
+  <p class="footer-copy">&copy; 2026 Site Name. All rights reserved.</p>
+-->
+© 2026 GB Tennis Data.<br>
 GB Tennis Data has no affliation with World Tennis, WTA, ATP, LTA or any tennis organisation. All data is from public sources.<br>
-This is a hobby site and should not be used for any official purposes. 
-This site does not currently use cookies.</p>
-
-    </div>
-</div>
+This is a hobby site and should not be used for any official purposes. This site does not currently use cookies.
+</footer>   
 
 <style>
-    #footer {
-        background: #3a7;
-        color: #fff;
-        padding: 20px;
-        text-align: center;
-        font-family: Arial, sans-serif;
-        border-top: 3px solid #2a5;
-        margin-top: 40px;
-    }
+/* Add to your stylesheet */
+.site-footer {
+  margin-top: 2rem;
+  padding: 1.5rem 1rem;
+  /*background: #2c3e50;*/
+  /*color: #ffffff;*/
+  text-align: center;
+}
 
-    .footer-title {
-        font-size: 20px;
-        font-weight: bold;
-        display: block;
-        margin-bottom: 10px;
-    }
+.footer-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.75rem;
+}
 
-    .footer-links a {
-        color: #fff;
-        margin: 0 10px;
-        text-decoration: none;
-        font-weight: bold;
-    }
+.footer-nav a {
+  color: #ffffff;
+  text-decoration: underline;
+  padding: 0.5rem;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
 
-    .footer-links a:hover {
-        text-decoration: underline;
-    }
+.footer-nav a:hover,
+.footer-nav a:focus {
+  color: #dcef23;
+  outline: 3px solid #dcef23;
+  outline-offset: 2px;
+}
 
-    .footer-note {
-        margin-top: 10px;
-        font-size: 14px;
-        opacity: 0.8;
-    }
+.footer-copy {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #bdc3c7; /* 4.5:1+ on #2c3e50 */
+}   
 </style>

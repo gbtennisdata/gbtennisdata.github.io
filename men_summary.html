@@ -1,9 +1,15 @@
 
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-
-<link rel="stylesheet" type="text/css" href="base_style.css"> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Summary of British men">
+  <title>men's summary – GB Tennis Data</title>
+  <link rel="stylesheet" type="text/css" href="base_style.css">
+</head>
+</body>
+<div id=header-container></div>
+    
 <style>
 .arrow-up {
     color: green;
@@ -20,9 +26,7 @@
     font-weight: 700;
 }
 </style>
-</head>
-<body>
-<div id="header-banner"></div>
+<div id=content-container>
 <h2>Men's Summary</h2>
 Players are sorted by singles ranking, WTT ranking then doubles ranking.<br>
 Last played represents last played a pro tour singles match. Players not playing pro matches 
@@ -2458,14 +2462,14 @@ function initFilters(gender) {
 }
 </script>
 
-<script>
+</div><script>
 document.addEventListener("DOMContentLoaded", function() {
     initFilters(gender);
 });
 </script>
 
 
-<div id="footer"></div>
+<div id="footer-container"></div>
 <script src="header.js"></script>
 </body>
 </html>

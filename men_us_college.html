@@ -1,7 +1,15 @@
 
-<html>
+<html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="base_style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="British men in US College">
+  <title>Men's US College roster – GB Tennis Data</title>
+  <link rel="stylesheet" type="text/css" href="base_style.css">
+</head>
+</body>
+<div id=header-container></div>
+    
 <style>
     .roster-table td:nth-child(1) { text-align: left; }  /* Player column */
     .roster-table td:nth-child(7) { text-align: left; }  /* Notes column */
@@ -79,9 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-</head>
-<body>
-<div id="header-banner"></div>
 
 <div id="content">
 
@@ -108,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
     </label>
 </div>
 
+<div id=content-container>
 <table class="dataframe roster-table left-align-player left-align-notes">
   <thead>
     <tr style="text-align: center;">
@@ -799,8 +805,9 @@ document.addEventListener("DOMContentLoaded", function () {
   </tbody>
 </table>
 </div>
+</div>
 
-<div id="footer"></div>
+<div id="footer-container"></div>
 
 <script src="header.js"></script>
 </body>

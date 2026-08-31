@@ -1,5 +1,14 @@
-
-<link rel="stylesheet" type="text/css" href="base_style.css">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tournaments that count towards British women's ranking points for the last 52 weeks">
+  <title>women's doubles ranking points breakdown – GB Tennis Data</title>
+  <link rel="stylesheet" type="text/css" href="base_style.css">
+</head>
+</body>
+<div id=header-container></div>
+    
 
 
 <script>
@@ -56,53 +65,19 @@ window.addEventListener("resize", updateSelectorHeight);
     }
     </script>
     
-        <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const header = document.getElementById("header-banner");
 
-    function updateHeaderHeight() {
-        const h = header.offsetHeight;
-        document.documentElement.style.setProperty("--header-height", h + "px");
-    }
 
-    updateHeaderHeight();
-    window.addEventListener("resize", updateHeaderHeight);
-});
-</script>
-
-<script>
-function scrollToPlayer(id) {
-    const el = document.getElementById(id);
-    const header = document.getElementById("header-banner");
-    const dropdown = document.getElementById("player-select-container");
-
-    if (!el) return;
-
-    const headerHeight = header.offsetHeight;
-    const dropdownHeight = dropdown.offsetHeight;
-
-    const totalOffset = headerHeight + dropdownHeight + 20; // extra padding
-
-    const elementTop = el.getBoundingClientRect().top + window.scrollY;
-
-    window.scrollTo({
-        top: elementTop - totalOffset,
-        behavior: 'smooth'
-    });
-}
-</script>
-
-    <div id="header-banner"></div>
+    
     <div id='player-select-container'>
         <label for='playerSelect'><strong>Select Player:</strong></label>
         <select id='playerSelect' onchange="scrollToPlayer(this.value)">
             <option value='' disabled selected>Choose player...</option>
             <option value='Esther_Adeshina'>Esther Adeshina</option><option value='Vic_Allen'>Vic Allen</option><option value='Soumeya_Anane'>Soumeya Anane</option><option value='Emily_Appleton'>Emily Appleton</option><option value='Swasthika_Arunkumar'>Swasthika Arunkumar</option><option value='Naiktha_Bains'>Naiktha Bains</option><option value='Amarni_Banks'>Amarni Banks</option><option value='Alicia_Barnett'>Alicia Barnett</option><option value='Brooke_Black'>Brooke Black</option><option value='Katie_Boulter'>Katie Boulter</option><option value='Melissa_Boyden'>Melissa Boyden</option><option value='Daniella_Britton'>Daniella Britton</option><option value='Aimee_Bromfield'>Aimee Bromfield</option><option value='Amelie_Brooks'>Amelie Brooks</option><option value='Madeleine_Brooks'>Madeleine Brooks</option><option value='Jodie_Burrage'>Jodie Burrage</option><option value='Tegan_Bush'>Tegan Bush</option><option value='Lucia_Cassidy'>Lucia Cassidy</option><option value='Antoinette_Chastang_Cooper'>Antoinette Chastang Cooper</option><option value='Isabelle_Cherny'>Isabelle Cherny</option><option value='Rosie_Cho'>Rosie Cho</option><option value='Freya_Christie'>Freya Christie</option><option value='Charlotte_Clarke'>Charlotte Clarke</option><option value='Chloe_Cleaver'>Chloe Cleaver</option><option value='Jasmine_Conway'>Jasmine Conway</option><option value='Ruby_Cooling'>Ruby Cooling</option><option value='Savannah_Dada-Mascoll'>Savannah Dada-Mascoll</option><option value='Harriet_Dart'>Harriet Dart</option><option value='Megan_Davies'>Megan Davies</option><option value='Alicia_Dudeney'>Alicia Dudeney</option><option value='Katy_Dunne'>Katy Dunne</option><option value='Elizabeth_Evans'>Elizabeth Evans</option><option value='Ria_Ferguson'>Ria Ferguson</option><option value='Edie_Griffiths'>Edie Griffiths</option><option value='Gigi_Hays'>Gigi Hays</option><option value='Georgina_Hays'>Georgina Hays</option><option value='Sophia_Hurrion'>Sophia Hurrion</option><option value='Lily_Hutchings'>Lily Hutchings</option><option value='Holly_Hutchinson'>Holly Hutchinson</option><option value='Lauryn_John-Baptiste'>Lauryn John-Baptiste</option><option value='Sofia_Johnson'>Sofia Johnson</option><option value='Sonay_Kartal'>Sonay Kartal</option><option value='Scarlet_Kavanagh'>Scarlet Kavanagh</option><option value='Hannah_Klugman'>Hannah Klugman</option><option value='Allegra_Korpanec_Davies'>Allegra Korpanec Davies</option><option value='Ophelia_Korpanec_Davies'>Ophelia Korpanec Davies</option><option value='Vlada_Kozak'>Vlada Kozak</option><option value='Annabelle_Lammas'>Annabelle Lammas</option><option value='Maia_Lumsden'>Maia Lumsden</option><option value='Eliz_Maloney'>Eliz Maloney</option><option value='Ella_Mcdonald'>Ella Mcdonald</option><option value='Aisling_Mcgrane'>Aisling Mcgrane</option><option value='Jasmine_Mian'>Jasmine Mian</option><option value='Georgiana_Mititelu'>Georgiana Mititelu</option><option value='Lily_Miyazaki'>Lily Miyazaki</option><option value='Ciara_Moore'>Ciara Moore</option><option value='Sam_Murray_Sharan'>Sam Murray Sharan</option><option value='Talia_Neilson-Gatenby'>Talia Neilson-Gatenby</option><option value='Eloise_Newberry'>Eloise Newberry</option><option value='Olivia_Nicholls'>Olivia Nicholls</option><option value='Jaquelyn_Ogunwale'>Jaquelyn Ogunwale</option><option value='Hephzibah_Oluwadare'>Hephzibah Oluwadare</option><option value='Clarice_Ouvarova'>Clarice Ouvarova</option><option value='Gabriela_Pacheco-Lagoda'>Gabriela Pacheco-Lagoda</option><option value='Kristina_Paskauskas'>Kristina Paskauskas</option><option value='Gabia_Paskauskas'>Gabia Paskauskas</option><option value='Freya_Peet'>Freya Peet</option><option value='Grace_Piper'>Grace Piper</option><option value='Emma_Raducanu'>Emma Raducanu</option><option value='Amelia_Rajecki'>Amelia Rajecki</option><option value='Leticia_Romanova'>Leticia Romanova</option><option value='Emma_Sawkings'>Emma Sawkings</option><option value='Athina_Schlepphorst'>Athina Schlepphorst</option><option value='Eva_Shaw'>Eva Shaw</option><option value='Eden_Silva'>Eden Silva</option><option value='Hollie_Smart'>Hollie Smart</option><option value='Indi_Spink'>Indi Spink</option><option value='Ranah_Stoiber'>Ranah Stoiber</option><option value='Mika_Stojsavljevic'>Mika Stojsavljevic</option><option value='Katie_Swan'>Katie Swan</option><option value='Mia_Wainwright'>Mia Wainwright</option><option value='Heather_Watson'>Heather Watson</option><option value='Emily_Webley-Smith'>Emily Webley-Smith</option><option value='Emma_Wilson'>Emma Wilson</option><option value='Isabella_Wong'>Isabella Wong</option><option value='Mimi_Xu'>Mimi Xu</option><option value='Summer_Yardley'>Summer Yardley</option>
         </select>
-        Last updated: 30 August 8:49AM
+        Last updated: 31 August 8:53PM
     </div>
     
-    <div class='card' id='Esther_Adeshina'><h2>Esther Adeshina</h2><h3>Total points: 203</h3>
+    <div id=content-container><div class='card' id='Esther_Adeshina'><h2>Esther Adeshina</h2><h3>Total points: 203</h3>
         <details id="details_counted_28" open
                  onclick="toggleArrow('details_counted_28', 'arrow_counted_28')">
             <summary>
@@ -810,5 +785,40 @@ function scrollToPlayer(id) {
             <summary>
                 Not Counted tournaments (8)
             </summary>
-        <table id='not_counted_81' data-sort-asc='true'><thead><tr><th onclick='sortTable("not_counted_81",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("not_counted_81",1)'>Partner<span class='arrow'></span></th><th onclick='sortTable("not_counted_81",2)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("not_counted_81",3)'>Round<span class='arrow'></span></th><th onclick='sortTable("not_counted_81",4)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>W75 Glasgow</td><td>J Otzipka</td><td>2 November 2026</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>W35 Birmingham</td><td>T Bush</td><td>8 February 2027</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>W35 Sheffield</td><td>M Aikawa</td><td>15 February 2027</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>W50 Roehampton</td><td>A Brooks</td><td>3 May 2027</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>W35 Nottingham</td><td>J Otzipka</td><td>17 May 2027</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>W35 Nottingham</td><td>A Hsu</td><td>17 May 2027</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>W50 Nottingham</td><td>L Hutchings</td><td>19 July 2027</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>W15 Monastir</td><td>L Cassidy</td><td>12 July 2027</td><td>R16</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div id="footer"></div>
-       <script src="header.js"></script>
+        <table id='not_counted_81' data-sort-asc='true'><thead><tr><th onclick='sortTable("not_counted_81",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("not_counted_81",1)'>Partner<span class='arrow'></span></th><th onclick='sortTable("not_counted_81",2)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("not_counted_81",3)'>Round<span class='arrow'></span></th><th onclick='sortTable("not_counted_81",4)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>W75 Glasgow</td><td>J Otzipka</td><td>2 November 2026</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>W35 Birmingham</td><td>T Bush</td><td>8 February 2027</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>W35 Sheffield</td><td>M Aikawa</td><td>15 February 2027</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>W50 Roehampton</td><td>A Brooks</td><td>3 May 2027</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>W35 Nottingham</td><td>J Otzipka</td><td>17 May 2027</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>W35 Nottingham</td><td>A Hsu</td><td>17 May 2027</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>W50 Nottingham</td><td>L Hutchings</td><td>19 July 2027</td><td>R16</td><td data-sort='1'>1</td></tr><tr><td>W15 Monastir</td><td>L Cassidy</td><td>12 July 2027</td><td>R16</td><td data-sort='-'>-</td></tr></tbody></table></details></div><div id="footer-container"></div>
+       <script src="header.js"></script>        <script>
+document.addEventListener("headerLoaded", function () {
+    const header = document.getElementById("header-container");
+
+    function updateHeaderHeight() {
+        const h = header.offsetHeight;
+        document.documentElement.style.setProperty("--header-height", h + "px");
+    }
+
+    updateHeaderHeight();
+    window.addEventListener("resize", updateHeaderHeight);
+});
+
+</script>
+
+<script>
+function scrollToPlayer(id) {
+    const el = document.getElementById(id);
+    const header = document.getElementById("header-container");
+    const dropdown = document.getElementById("player-select-container");
+
+    if (!el) return;
+
+    const headerHeight = header.offsetHeight;
+    const dropdownHeight = dropdown.offsetHeight;
+
+    const totalOffset = headerHeight + dropdownHeight + 20; // extra padding
+
+    const elementTop = el.getBoundingClientRect().top + window.scrollY;
+
+    window.scrollTo({
+        top: elementTop - totalOffset,
+        behavior: 'smooth'
+    });
+}
+</script></body></html>

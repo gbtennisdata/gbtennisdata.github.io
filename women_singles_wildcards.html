@@ -1,209 +1,75 @@
 
-<html>
+<html lang="en">
 <head>
-<meta charset='UTF-8'>
-<title>GB Tennis Data: Women Wild cards</title>
-
-<link rel="stylesheet" type="text/css" href="base_style.css">
-<style>
-    table.gb-tennis-table {
-        border-collapse: collapse;
-        width: 100%;
-        margin: 20px 0;
-        color: #333;
-    }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="British women singles wild cards">
+  <title>women's singles wild cards – GB Tennis Data</title>
+  <link rel="stylesheet" type="text/css" href="base_style.css">
+</head>
+</body>
+<div id=header-container></div>
     
-    /* DEFAULT Header Style */
-    table.gb-tennis-table th {
-        font-weight: 600;
-        padding: 8px 4px;
-        text-align: center;
-        /*text-transform: uppercase;*/
-        border: 1px solid rgba(255,255,255,0.3);
-        /* Remove global white color to prevent white-on-white if bg fails */
-        color: #333; 
-    }
+<STYLE>
 
-    /* Force White Text ONLY for headers that HAVE a background color */
-    /* We will rely on inline styles for background, so this ensures text is visible */
-    table.gb-tennis-table th[style*="background-color"] {
-        color: #ffffff !important;
-    }
-    
-/* 1. Base styles for all sticky table headers */
-table.gb-tennis-table thead th {
-    position: sticky;
-    z-index: 9997;
-    background-color: #fff; /* Prevents text from showing underneath */
+thead tr:nth-child(2) th {
+  top: calc(var(--sticky-offset) + 30px); /* 40px ≈ height of first row; adjust as needed */
 }
 
+/* --- Row 1 (lighter) --- */
+thead tr:nth-child(1) th:nth-child(2){ background:#27ae60; color:white; }
+thead tr:nth-child(1) th:nth-child(3){ background:#2980b9; color:white; }
+thead tr:nth-child(1) th:nth-child(4){ background:#8e44ad; color:white; }
+thead tr:nth-child(1) th:nth-child(5){ background:#d35400; color:white; }
+thead tr:nth-child(1) th:nth-child(6){ background:#7f8c8d; color:white; }
+thead tr:nth-child(1) th:nth-child(7) { background:#c0392b; color:white; }
 
-/* 2. First header row styling and positioning */
-table.gb-tennis-table thead tr:first-child th {
-    top: var(--header-height);
-    font-size: 12px;
-    border-bottom: 2px solid #fff;
-    z-index: 9998; /* Keeps top row above the second row */
+/* --- Row 2 (darker) --- */
+thead tr:nth-child(2) th:nth-child(2),
+thead tr:nth-child(2) th:nth-child(3),
+thead tr:nth-child(2) th:nth-child(4) { background:#1e8449; color:white; }
+
+thead tr:nth-child(2) th:nth-child(5),
+thead tr:nth-child(2) th:nth-child(6),
+thead tr:nth-child(2) th:nth-child(7) { background:#1f618d; color:white; }
+
+thead tr:nth-child(2) th:nth-child(8),
+thead tr:nth-child(2) th:nth-child(9),
+thead tr:nth-child(2) th:nth-child(10) { background:#6c3483; color:white; }
+
+thead tr:nth-child(2) th:nth-child(11),
+thead tr:nth-child(2) th:nth-child(12),
+thead tr:nth-child(2) th:nth-child(13) { background:#a04000; color:white; }
+
+thead tr:nth-child(2) th:nth-child(14),
+thead tr:nth-child(2) th:nth-child(15),
+thead tr:nth-child(2) th:nth-child(16) { background:#566573; color:white; }
+
+thead tr:nth-child(2) th:nth-child(17) { background:#922b21; color:white; }
+
+thead tr:nth-child(1) th:nth-child(1) {background: white}
+thead tr:nth-child(2) th:nth-child(1) {background: white}
+
+tbody tr:nth-child(even) {
+    background: #f7f7f7;
+}
+tbody tr:nth-child(odd) {
+    background: white;
 }
 
-/* 3. Second header row positioning (Pushed down below the 1st row) */
-table.gb-tennis-table thead tr:nth-child(2) th {
-    /* Replace '40px' with the exact height of your first header row */
-    top: calc(var(--header-height) + 28px); 
-    z-index: 9997;
-}
-
-/* 4. Handle intersection of sticky column (left) and sticky row (top) for row 1 */
-table.gb-tennis-table thead tr:first-child th:first-child {
-    position: sticky;
-    left: 0;
-    top: var(--header-height);
-    z-index: 9999; /* Highest priority for top-left corner */
-    background-color: #fff !important;
-}
-
-/* 5. Handle intersection for row 2 corner cell */
-table.gb-tennis-table thead tr:nth-child(2) th:first-child {
-    position: sticky;
-    left: 0;
-    top: calc(var(--header-height) + 28px);
-    z-index: 9996;
-    background-color: #fff !important;
-}
-
-    /* Hard Borders */
-    table.gb-tennis-table td:nth-child(3n+1), 
-    table.gb-tennis-table th:nth-child(3n+1) {
-        border-right: 3px solid #aaa !important;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    }
-    table.gb-tennis-table td:first-child, table.gb-tennis-table th:first-child,
-    table.gb-tennis-table td:last-child, table.gb-tennis-table th:last-child {
-        border-right: 1px solid #e0e0e0 !important;
-        box-shadow: none !important;
-    }
-
-    table.gb-tennis-table td {
-        padding: 6px 4px;
-        border: 1px solid #e0e0e0;
-        text-align: center;
-        background-color: #fff;
-        color: #333; /* Ensure data cells are dark */
-    }
-
-    /* Player Column - SPECIFIC FIX */
-    table.gb-tennis-table td:first-child, 
-    table.gb-tennis-table th:first-child {
-        text-align: left;
-        font-weight: 600;
-        background-color: #fff; /*#f8f9fa !important;*/
-        position: sticky;
-        left: 0;
-        z-index: 20;
-        border-right: 2px solid #ccc;
-        min-width: 150px;
-        color: #2c3e50 !important; /* FORCE dark text for player names */
-    }
-    
-    /* Corner cell (if exists) */
-    table.gb-tennis-table thead tr th:first-child {
-        /*background-color: #fff !important;*/
-        z-index: 30;
-        /*color: #ffffff !important;*/
-    }
-
-    table.gb-tennis-table tr:nth-child(even) td { background-color: #f8f9fa; }
-    table.gb-tennis-table tr:nth-child(even) td:first-child { background-color: #e9ecef !important; }
-    
-    table.gb-tennis-table td:last-child {
-        font-weight: bold;
-        background-color: #d2faf3 !important;
-        /*color: #c0392b;*/
-        border-left: 2px solid #bdc3c7;
-    }
-    /*table.gb-tennis-table tr:nth-child(even) td:last-child { background-color: #f9ebea !important; }*/
-    
-    table.gb-tennis-table tr:hover td { background-color: #e8f4f8; }
-    /*table.gb-tennis-table tr:hover td:first-child { background-color: #d6eaf8 !important; }*/
-    /*table.gb-tennis-table tr:hover td:last-child { background-color: #fadbd8 !important; }*/
-
-
-
-    
-
-</style>     
-
-
-<style>
-.detail-table { width: 90%; margin: 10px auto; border-collapse: collapse; }
-.detail-table td { border: 1px solid #ddd; padding: 6px; }
-.detail-table th { background-color: #3a7; color: white; padding: 6px; }
-/* OVERRIDE parent table's white-on-white rule */
-table.detail-table thead tr:first-child th:first-child {
-    background-color: #3a7 !important;
-    color: white !important;
-}
-/* FULL OVERRIDE FOR DETAIL TABLE */
 table.detail-table th {
     background-color: #3a7 !important;
     color: white !important;
     font-size: 14px !important;
 }
 
-/* Fix top-left header cell */
-table.detail-table thead tr th:first-child {
-    background-color: #3a7 !important;
-    color: grey !important;
-}
+.detail-table th { background-color: #3a7; color: white; padding: 6px; }
 
-/* Override parent last-column styling */
-table.detail-table td:last-child {
-    background-color: #fff !important;
-    color: #333 !important;
-    font-weight: normal !important;
-    border-left: 1px solid #ddd !important;
-}
-/* FIX: Remove parent last-column colour when it contains a detail table */
-table.gb-tennis-table td:last-child:has(table.detail-table) {
-    background-color: transparent !important;
-}
+</STYLE>
 
-/* Ensure detail-table cells stay white */
-table.detail-table td {
-    background-color: #fff !important;
-}
-
-table.detail-table {
-    width: 100%;
-    table-layout: fixed;          /* Prevents runaway column expansion */
-    max-width: 900px;             /* Prevents columns being too wide on desktop */
-}
-
-table.detail-table th,
-table.detail-table td {
-    min-width: 80px;              /* Prevents squashing on mobile */
-    word-wrap: break-word;        /* Allows long text to wrap instead of stretching */
-}
-@media (max-width: 480px) {
-    table.detail-table th,
-    table.detail-table td {
-        min-width: 60px;
-        font-size: 0.9rem;        /* Slightly smaller text on mobile */
-        padding: 4px;             /* Reduce padding to save space */
-    }
-}
-
-.expand-toggle:hover { background-color: #e8f4f8 !important; color:#004494 !important; }
-</style>
-
-</head>
-<body>
-<div id="header-banner"></div>
-<div id="content-spacer"></div>
-<div id="content">
+<div id="content-container">
 <h2>Women's singles wild cards 2026</h2>
 
-<div style="font-family: sans-serif; margin-bottom: 15px; color: #2c3e50;">
     Women are restricted on the number of wild cards they can receive in a calendar year. The WTA only 
     count wild cards the player earned WTA points with towards these totals, but this
     table shows all wild cards played with. Players that received a wild card but did not play
@@ -221,46 +87,46 @@ table.detail-table td {
     or players who reached No 1 in the singles rankings<br>
     16 year olds may only earn ranking points from 4 wild cards between birthdays.<br>
     15 and 14 year olds may only earn ranking points from 3 wild cards between birthdays.<P>
+    <div class=content-sticky>
     <strong>Summary:</strong> 
     <span style="color: #e74c3c;">69</span> women have played with  
-    <span style="color: #27ae60;">149</span> wild cards in 2026.<P>
-    <A HREF=women_singles_wildcards_by_week.html>View wild cards by week</a>
-</div>
+    <span style="color: #27ae60;">149</span> wild cards in 2026.<br>
+    <i>Click a player's name to expand details.</i>
+    </div>
 
-<p><i>Click a player's name to expand details.</i></p>
-<table class="dataframe gb-tennis-table">
+<table class="dataframe">
 <thead>
 <tr>
-<th style="background:none;"></th>
-<th colspan="3" halign="left" style="background-color:#27ae60; color:white;">Grand Slam</th>
-<th colspan="3" halign="left" style="background-color:#2980b9; color:white;">WTA Tour</th>
-<th colspan="3" halign="left" style="background-color:#8e44ad; color:white;">WTA 125</th>
-<th colspan="3" halign="left" style="background-color:#d35400; color:white;">W100 to W35</th>
-<th colspan="3" halign="left" style="background-color:#7f8c8d; color:white;">W15</th>
-<th style="background-color:#c0392b; color:white;">All</th>
+<th>Player</th>
+<th colspan="3" halign="left">Grand Slam</th>
+<th colspan="3" halign="left">WTA Tour</th>
+<th colspan="3" halign="left">WTA 125</th>
+<th colspan="3" halign="left">W100 to W35</th>
+<th colspan="3" halign="left">W15</th>
+<th>All</th>
 </tr>
 <tr>
-<th style="background:none;"></th>
-<th style="background-color:#1e8449; color:white;">Main Draw</th>
-<th style="background-color:#1e8449; color:white;">Qualifying</th>
-<th style="background-color:#1e8449; color:white;">Total</th>
-<th style="background-color:#1f618d; color:white;">Main Draw</th>
-<th style="background-color:#1f618d; color:white;">Qualifying</th>
-<th style="background-color:#1f618d; color:white;">Total</th>
-<th style="background-color:#6c3483; color:white;">Main Draw</th>
-<th style="background-color:#6c3483; color:white;">Qualifying</th>
-<th style="background-color:#6c3483; color:white;">Total</th>
-<th style="background-color:#a04000; color:white;">Main Draw</th>
-<th style="background-color:#a04000; color:white;">Qualifying</th>
-<th style="background-color:#a04000; color:white;">Total</th>
-<th style="background-color:#566573; color:white;">Main Draw</th>
-<th style="background-color:#566573; color:white;">Qualifying</th>
-<th style="background-color:#566573; color:white;">Total</th>
-<th style="background-color:#922b21; color:white;">Total</th>
+<th></th>
+<th>Main Draw</th>
+<th>Qualifying</th>
+<th>Total</th>
+<th>Main Draw</th>
+<th>Qualifying</th>
+<th>Total</th>
+<th>Main Draw</th>
+<th>Qualifying</th>
+<th>Total</th>
+<th>Main Draw</th>
+<th>Qualifying</th>
+<th>Total</th>
+<th>Main Draw</th>
+<th>Qualifying</th>
+<th>Total</th>
+<th>Total</th>
 </tr>
 </thead>
 <tbody><tr>
-<th class="expand-toggle" data-target="detail-Esther_Adeshina" style="cursor:pointer; font-weight:bold; color:#0056b3;">Esther Adeshina</th>
+<td class="expand-toggle" data-target="detail-Esther_Adeshina" style="cursor: pointer">Esther Adeshina</td>
 <td>-</td>
 <td>1</td>
 <td>1</td>
@@ -279,7 +145,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Esther_Adeshina" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -310,7 +176,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Emily_Appleton" style="cursor:pointer; font-weight:bold; color:#0056b3;">Emily Appleton</th>
+<td class="expand-toggle" data-target="detail-Emily_Appleton" style="cursor: pointer">Emily Appleton</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -329,7 +195,7 @@ table.detail-table td {
 <td>3</td>
 </tr>
 <tr class="detail-row" id="detail-Emily_Appleton" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -367,7 +233,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Sophie_Bekker" style="cursor:pointer; font-weight:bold; color:#0056b3;">Sophie Bekker</th>
+<td class="expand-toggle" data-target="detail-Sophie_Bekker" style="cursor: pointer">Sophie Bekker</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -386,7 +252,7 @@ table.detail-table td {
 <td>4</td>
 </tr>
 <tr class="detail-row" id="detail-Sophie_Bekker" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -431,7 +297,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Brooke_Black" style="cursor:pointer; font-weight:bold; color:#0056b3;">Brooke Black</th>
+<td class="expand-toggle" data-target="detail-Brooke_Black" style="cursor: pointer">Brooke Black</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -450,7 +316,7 @@ table.detail-table td {
 <td>4</td>
 </tr>
 <tr class="detail-row" id="detail-Brooke_Black" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -495,7 +361,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Ellie_Blackford" style="cursor:pointer; font-weight:bold; color:#0056b3;">Ellie Blackford</th>
+<td class="expand-toggle" data-target="detail-Ellie_Blackford" style="cursor: pointer">Ellie Blackford</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -514,7 +380,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Ellie_Blackford" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -545,7 +411,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Katie_Boulter" style="cursor:pointer; font-weight:bold; color:#0056b3;">Katie Boulter</th>
+<td class="expand-toggle" data-target="detail-Katie_Boulter" style="cursor: pointer">Katie Boulter</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -564,7 +430,7 @@ table.detail-table td {
 <td>4</td>
 </tr>
 <tr class="detail-row" id="detail-Katie_Boulter" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -609,7 +475,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Melissa_Boyden" style="cursor:pointer; font-weight:bold; color:#0056b3;">Melissa Boyden</th>
+<td class="expand-toggle" data-target="detail-Melissa_Boyden" style="cursor: pointer">Melissa Boyden</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -628,7 +494,7 @@ table.detail-table td {
 <td>4</td>
 </tr>
 <tr class="detail-row" id="detail-Melissa_Boyden" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -673,7 +539,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Daniella_Britton" style="cursor:pointer; font-weight:bold; color:#0056b3;">Daniella Britton</th>
+<td class="expand-toggle" data-target="detail-Daniella_Britton" style="cursor: pointer">Daniella Britton</td>
 <td>-</td>
 <td>1</td>
 <td>1</td>
@@ -692,7 +558,7 @@ table.detail-table td {
 <td>4</td>
 </tr>
 <tr class="detail-row" id="detail-Daniella_Britton" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -737,7 +603,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Jodie_Burrage" style="cursor:pointer; font-weight:bold; color:#0056b3;">Jodie Burrage</th>
+<td class="expand-toggle" data-target="detail-Jodie_Burrage" style="cursor: pointer">Jodie Burrage</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -756,7 +622,7 @@ table.detail-table td {
 <td>3</td>
 </tr>
 <tr class="detail-row" id="detail-Jodie_Burrage" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -794,7 +660,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Tegan_Bush" style="cursor:pointer; font-weight:bold; color:#0056b3;">Tegan Bush</th>
+<td class="expand-toggle" data-target="detail-Tegan_Bush" style="cursor: pointer">Tegan Bush</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -813,7 +679,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Tegan_Bush" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -844,7 +710,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Lucia_Cassidy" style="cursor:pointer; font-weight:bold; color:#0056b3;">Lucia Cassidy</th>
+<td class="expand-toggle" data-target="detail-Lucia_Cassidy" style="cursor: pointer">Lucia Cassidy</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -863,7 +729,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Lucia_Cassidy" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -887,7 +753,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Isabelle_Cherny" style="cursor:pointer; font-weight:bold; color:#0056b3;">Isabelle Cherny</th>
+<td class="expand-toggle" data-target="detail-Isabelle_Cherny" style="cursor: pointer">Isabelle Cherny</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -906,7 +772,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Isabelle_Cherny" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -937,7 +803,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Rosie_Cho" style="cursor:pointer; font-weight:bold; color:#0056b3;">Rosie Cho</th>
+<td class="expand-toggle" data-target="detail-Rosie_Cho" style="cursor: pointer">Rosie Cho</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -956,7 +822,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Rosie_Cho" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -980,7 +846,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Chloe_Cleaver" style="cursor:pointer; font-weight:bold; color:#0056b3;">Chloe Cleaver</th>
+<td class="expand-toggle" data-target="detail-Chloe_Cleaver" style="cursor: pointer">Chloe Cleaver</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -999,7 +865,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Chloe_Cleaver" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1023,7 +889,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Jasmine_Conway" style="cursor:pointer; font-weight:bold; color:#0056b3;">Jasmine Conway</th>
+<td class="expand-toggle" data-target="detail-Jasmine_Conway" style="cursor: pointer">Jasmine Conway</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1042,7 +908,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Jasmine_Conway" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1066,7 +932,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Ruby_Cooling" style="cursor:pointer; font-weight:bold; color:#0056b3;">Ruby Cooling</th>
+<td class="expand-toggle" data-target="detail-Ruby_Cooling" style="cursor: pointer">Ruby Cooling</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1085,7 +951,7 @@ table.detail-table td {
 <td>5</td>
 </tr>
 <tr class="detail-row" id="detail-Ruby_Cooling" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1137,7 +1003,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Savannah_Dada_Mascoll" style="cursor:pointer; font-weight:bold; color:#0056b3;">Savannah Dada-Mascoll</th>
+<td class="expand-toggle" data-target="detail-Savannah_Dada_Mascoll" style="cursor: pointer">Savannah Dada-Mascoll</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1156,7 +1022,7 @@ table.detail-table td {
 <td>4</td>
 </tr>
 <tr class="detail-row" id="detail-Savannah_Dada_Mascoll" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1201,7 +1067,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Harriet_Dart" style="cursor:pointer; font-weight:bold; color:#0056b3;">Harriet Dart</th>
+<td class="expand-toggle" data-target="detail-Harriet_Dart" style="cursor: pointer">Harriet Dart</td>
 <td>1</td>
 <td>-</td>
 <td>1</td>
@@ -1220,7 +1086,7 @@ table.detail-table td {
 <td>5</td>
 </tr>
 <tr class="detail-row" id="detail-Harriet_Dart" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1272,7 +1138,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Megan_Davies" style="cursor:pointer; font-weight:bold; color:#0056b3;">Megan Davies</th>
+<td class="expand-toggle" data-target="detail-Megan_Davies" style="cursor: pointer">Megan Davies</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1291,7 +1157,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Megan_Davies" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1322,7 +1188,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Alicia_Dudeney" style="cursor:pointer; font-weight:bold; color:#0056b3;">Alicia Dudeney</th>
+<td class="expand-toggle" data-target="detail-Alicia_Dudeney" style="cursor: pointer">Alicia Dudeney</td>
 <td>1</td>
 <td>-</td>
 <td>1</td>
@@ -1341,7 +1207,7 @@ table.detail-table td {
 <td>5</td>
 </tr>
 <tr class="detail-row" id="detail-Alicia_Dudeney" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1393,7 +1259,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Katy_Dunne" style="cursor:pointer; font-weight:bold; color:#0056b3;">Katy Dunne</th>
+<td class="expand-toggle" data-target="detail-Katy_Dunne" style="cursor: pointer">Katy Dunne</td>
 <td>-</td>
 <td>1</td>
 <td>1</td>
@@ -1412,7 +1278,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Katy_Dunne" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1443,7 +1309,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Elizabeth_Evans" style="cursor:pointer; font-weight:bold; color:#0056b3;">Elizabeth Evans</th>
+<td class="expand-toggle" data-target="detail-Elizabeth_Evans" style="cursor: pointer">Elizabeth Evans</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1462,7 +1328,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Elizabeth_Evans" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1486,7 +1352,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Ria_Ferguson" style="cursor:pointer; font-weight:bold; color:#0056b3;">Ria Ferguson</th>
+<td class="expand-toggle" data-target="detail-Ria_Ferguson" style="cursor: pointer">Ria Ferguson</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1505,7 +1371,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Ria_Ferguson" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1529,7 +1395,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Edie_Griffiths" style="cursor:pointer; font-weight:bold; color:#0056b3;">Edie Griffiths</th>
+<td class="expand-toggle" data-target="detail-Edie_Griffiths" style="cursor: pointer">Edie Griffiths</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1548,7 +1414,7 @@ table.detail-table td {
 <td>5</td>
 </tr>
 <tr class="detail-row" id="detail-Edie_Griffiths" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1600,7 +1466,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Lily_Hutchings" style="cursor:pointer; font-weight:bold; color:#0056b3;">Lily Hutchings</th>
+<td class="expand-toggle" data-target="detail-Lily_Hutchings" style="cursor: pointer">Lily Hutchings</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1619,7 +1485,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Lily_Hutchings" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1650,7 +1516,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Lauryn_John_Baptiste" style="cursor:pointer; font-weight:bold; color:#0056b3;">Lauryn John-Baptiste</th>
+<td class="expand-toggle" data-target="detail-Lauryn_John_Baptiste" style="cursor: pointer">Lauryn John-Baptiste</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1669,7 +1535,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Lauryn_John_Baptiste" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1693,7 +1559,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Sofia_Johnson" style="cursor:pointer; font-weight:bold; color:#0056b3;">Sofia Johnson</th>
+<td class="expand-toggle" data-target="detail-Sofia_Johnson" style="cursor: pointer">Sofia Johnson</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1712,7 +1578,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Sofia_Johnson" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1736,7 +1602,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Fran_Jones" style="cursor:pointer; font-weight:bold; color:#0056b3;">Fran Jones</th>
+<td class="expand-toggle" data-target="detail-Fran_Jones" style="cursor: pointer">Fran Jones</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1755,7 +1621,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Fran_Jones" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1786,7 +1652,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Hannah_Klugman" style="cursor:pointer; font-weight:bold; color:#0056b3;">Hannah Klugman</th>
+<td class="expand-toggle" data-target="detail-Hannah_Klugman" style="cursor: pointer">Hannah Klugman</td>
 <td>1</td>
 <td>-</td>
 <td>1</td>
@@ -1805,7 +1671,7 @@ table.detail-table td {
 <td>9</td>
 </tr>
 <tr class="detail-row" id="detail-Hannah_Klugman" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1885,7 +1751,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Megan_Knight" style="cursor:pointer; font-weight:bold; color:#0056b3;">Megan Knight</th>
+<td class="expand-toggle" data-target="detail-Megan_Knight" style="cursor: pointer">Megan Knight</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1904,7 +1770,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Megan_Knight" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1928,7 +1794,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Allegra_Korpanec_Davies" style="cursor:pointer; font-weight:bold; color:#0056b3;">Allegra Korpanec Davies</th>
+<td class="expand-toggle" data-target="detail-Allegra_Korpanec_Davies" style="cursor: pointer">Allegra Korpanec Davies</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -1947,7 +1813,7 @@ table.detail-table td {
 <td>5</td>
 </tr>
 <tr class="detail-row" id="detail-Allegra_Korpanec_Davies" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -1999,7 +1865,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Ophelia_Korpanec_Davies" style="cursor:pointer; font-weight:bold; color:#0056b3;">Ophelia Korpanec Davies</th>
+<td class="expand-toggle" data-target="detail-Ophelia_Korpanec_Davies" style="cursor: pointer">Ophelia Korpanec Davies</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2018,7 +1884,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Ophelia_Korpanec_Davies" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2042,7 +1908,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Vlada_Kozak" style="cursor:pointer; font-weight:bold; color:#0056b3;">Vlada Kozak</th>
+<td class="expand-toggle" data-target="detail-Vlada_Kozak" style="cursor: pointer">Vlada Kozak</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2061,7 +1927,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Vlada_Kozak" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2085,7 +1951,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Emilija_Lebedevaite" style="cursor:pointer; font-weight:bold; color:#0056b3;">Emilija Lebedevaite</th>
+<td class="expand-toggle" data-target="detail-Emilija_Lebedevaite" style="cursor: pointer">Emilija Lebedevaite</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2104,7 +1970,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Emilija_Lebedevaite" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2135,7 +2001,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Sofia_Maine" style="cursor:pointer; font-weight:bold; color:#0056b3;">Sofia Maine</th>
+<td class="expand-toggle" data-target="detail-Sofia_Maine" style="cursor: pointer">Sofia Maine</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2154,7 +2020,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Sofia_Maine" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2178,7 +2044,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Eliz_Maloney" style="cursor:pointer; font-weight:bold; color:#0056b3;">Eliz Maloney</th>
+<td class="expand-toggle" data-target="detail-Eliz_Maloney" style="cursor: pointer">Eliz Maloney</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2197,7 +2063,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Eliz_Maloney" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2228,7 +2094,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Scarlett_May_Matthews" style="cursor:pointer; font-weight:bold; color:#0056b3;">Scarlett May-Matthews</th>
+<td class="expand-toggle" data-target="detail-Scarlett_May_Matthews" style="cursor: pointer">Scarlett May-Matthews</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2247,7 +2113,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Scarlett_May_Matthews" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2271,7 +2137,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Ella_Mcdonald" style="cursor:pointer; font-weight:bold; color:#0056b3;">Ella Mcdonald</th>
+<td class="expand-toggle" data-target="detail-Ella_Mcdonald" style="cursor: pointer">Ella Mcdonald</td>
 <td>-</td>
 <td>1</td>
 <td>1</td>
@@ -2290,7 +2156,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Ella_Mcdonald" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2314,7 +2180,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Jasmine_Mian" style="cursor:pointer; font-weight:bold; color:#0056b3;">Jasmine Mian</th>
+<td class="expand-toggle" data-target="detail-Jasmine_Mian" style="cursor: pointer">Jasmine Mian</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2333,7 +2199,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Jasmine_Mian" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2357,7 +2223,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Lily_Miyazaki" style="cursor:pointer; font-weight:bold; color:#0056b3;">Lily Miyazaki</th>
+<td class="expand-toggle" data-target="detail-Lily_Miyazaki" style="cursor: pointer">Lily Miyazaki</td>
 <td>-</td>
 <td>1</td>
 <td>1</td>
@@ -2376,7 +2242,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Lily_Miyazaki" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2407,7 +2273,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Zara_Mughal" style="cursor:pointer; font-weight:bold; color:#0056b3;">Zara Mughal</th>
+<td class="expand-toggle" data-target="detail-Zara_Mughal" style="cursor: pointer">Zara Mughal</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2426,7 +2292,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Zara_Mughal" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2457,7 +2323,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Sophie_Munks" style="cursor:pointer; font-weight:bold; color:#0056b3;">Sophie Munks</th>
+<td class="expand-toggle" data-target="detail-Sophie_Munks" style="cursor: pointer">Sophie Munks</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2476,7 +2342,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Sophie_Munks" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2507,7 +2373,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Eloise_Newberry" style="cursor:pointer; font-weight:bold; color:#0056b3;">Eloise Newberry</th>
+<td class="expand-toggle" data-target="detail-Eloise_Newberry" style="cursor: pointer">Eloise Newberry</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2526,7 +2392,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Eloise_Newberry" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2550,7 +2416,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Mirabelle_Njoze" style="cursor:pointer; font-weight:bold; color:#0056b3;">Mirabelle Njoze</th>
+<td class="expand-toggle" data-target="detail-Mirabelle_Njoze" style="cursor: pointer">Mirabelle Njoze</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2569,7 +2435,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Mirabelle_Njoze" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2593,7 +2459,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Hephzibah_Oluwadare" style="cursor:pointer; font-weight:bold; color:#0056b3;">Hephzibah Oluwadare</th>
+<td class="expand-toggle" data-target="detail-Hephzibah_Oluwadare" style="cursor: pointer">Hephzibah Oluwadare</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2612,7 +2478,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Hephzibah_Oluwadare" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2636,7 +2502,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Kristina_Paskauskas" style="cursor:pointer; font-weight:bold; color:#0056b3;">Kristina Paskauskas</th>
+<td class="expand-toggle" data-target="detail-Kristina_Paskauskas" style="cursor: pointer">Kristina Paskauskas</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2655,7 +2521,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Kristina_Paskauskas" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2679,7 +2545,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Erin_Pearce" style="cursor:pointer; font-weight:bold; color:#0056b3;">Erin Pearce</th>
+<td class="expand-toggle" data-target="detail-Erin_Pearce" style="cursor: pointer">Erin Pearce</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2698,7 +2564,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Erin_Pearce" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2729,7 +2595,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Freya_Peet" style="cursor:pointer; font-weight:bold; color:#0056b3;">Freya Peet</th>
+<td class="expand-toggle" data-target="detail-Freya_Peet" style="cursor: pointer">Freya Peet</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2748,7 +2614,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Freya_Peet" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2772,7 +2638,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Grace_Piper" style="cursor:pointer; font-weight:bold; color:#0056b3;">Grace Piper</th>
+<td class="expand-toggle" data-target="detail-Grace_Piper" style="cursor: pointer">Grace Piper</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2791,7 +2657,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Grace_Piper" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2815,7 +2681,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Maya_Prija" style="cursor:pointer; font-weight:bold; color:#0056b3;">Maya Prija</th>
+<td class="expand-toggle" data-target="detail-Maya_Prija" style="cursor: pointer">Maya Prija</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2834,7 +2700,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Maya_Prija" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2865,7 +2731,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Marelie_Raath" style="cursor:pointer; font-weight:bold; color:#0056b3;">Marelie Raath</th>
+<td class="expand-toggle" data-target="detail-Marelie_Raath" style="cursor: pointer">Marelie Raath</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2884,7 +2750,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Marelie_Raath" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2908,7 +2774,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Amelia_Rajecki" style="cursor:pointer; font-weight:bold; color:#0056b3;">Amelia Rajecki</th>
+<td class="expand-toggle" data-target="detail-Amelia_Rajecki" style="cursor: pointer">Amelia Rajecki</td>
 <td>-</td>
 <td>1</td>
 <td>1</td>
@@ -2927,7 +2793,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Amelia_Rajecki" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -2958,7 +2824,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Leticia_Romanova" style="cursor:pointer; font-weight:bold; color:#0056b3;">Leticia Romanova</th>
+<td class="expand-toggle" data-target="detail-Leticia_Romanova" style="cursor: pointer">Leticia Romanova</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -2977,7 +2843,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Leticia_Romanova" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -3001,7 +2867,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Lara_Savic" style="cursor:pointer; font-weight:bold; color:#0056b3;">Lara Savic</th>
+<td class="expand-toggle" data-target="detail-Lara_Savic" style="cursor: pointer">Lara Savic</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3020,7 +2886,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Lara_Savic" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -3051,7 +2917,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Athina_Schlepphorst" style="cursor:pointer; font-weight:bold; color:#0056b3;">Athina Schlepphorst</th>
+<td class="expand-toggle" data-target="detail-Athina_Schlepphorst" style="cursor: pointer">Athina Schlepphorst</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3070,7 +2936,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Athina_Schlepphorst" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -3094,7 +2960,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Ioana_Staliana_Scripcariu" style="cursor:pointer; font-weight:bold; color:#0056b3;">Ioana-Staliana Scripcariu</th>
+<td class="expand-toggle" data-target="detail-Ioana_Staliana_Scripcariu" style="cursor: pointer">Ioana-Staliana Scripcariu</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3113,7 +2979,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Ioana_Staliana_Scripcariu" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -3144,7 +3010,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Eva_Shaw" style="cursor:pointer; font-weight:bold; color:#0056b3;">Eva Shaw</th>
+<td class="expand-toggle" data-target="detail-Eva_Shaw" style="cursor: pointer">Eva Shaw</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3163,7 +3029,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Eva_Shaw" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -3194,7 +3060,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Eden_Silva" style="cursor:pointer; font-weight:bold; color:#0056b3;">Eden Silva</th>
+<td class="expand-toggle" data-target="detail-Eden_Silva" style="cursor: pointer">Eden Silva</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3213,7 +3079,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Eden_Silva" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -3237,7 +3103,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Mille_Skelton" style="cursor:pointer; font-weight:bold; color:#0056b3;">Mille Skelton</th>
+<td class="expand-toggle" data-target="detail-Mille_Skelton" style="cursor: pointer">Mille Skelton</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3256,7 +3122,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Mille_Skelton" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -3280,7 +3146,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Hollie_Smart" style="cursor:pointer; font-weight:bold; color:#0056b3;">Hollie Smart</th>
+<td class="expand-toggle" data-target="detail-Hollie_Smart" style="cursor: pointer">Hollie Smart</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3299,7 +3165,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Hollie_Smart" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -3323,7 +3189,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Indi_Spink" style="cursor:pointer; font-weight:bold; color:#0056b3;">Indi Spink</th>
+<td class="expand-toggle" data-target="detail-Indi_Spink" style="cursor: pointer">Indi Spink</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3342,7 +3208,7 @@ table.detail-table td {
 <td>3</td>
 </tr>
 <tr class="detail-row" id="detail-Indi_Spink" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -3380,7 +3246,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Ranah_Stoiber" style="cursor:pointer; font-weight:bold; color:#0056b3;">Ranah Stoiber</th>
+<td class="expand-toggle" data-target="detail-Ranah_Stoiber" style="cursor: pointer">Ranah Stoiber</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3399,7 +3265,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Ranah_Stoiber" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -3423,7 +3289,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Mika_Stojsavljevic" style="cursor:pointer; font-weight:bold; color:#0056b3;">Mika Stojsavljevic</th>
+<td class="expand-toggle" data-target="detail-Mika_Stojsavljevic" style="cursor: pointer">Mika Stojsavljevic</td>
 <td>1</td>
 <td>-</td>
 <td>1</td>
@@ -3442,7 +3308,7 @@ table.detail-table td {
 <td>4</td>
 </tr>
 <tr class="detail-row" id="detail-Mika_Stojsavljevic" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -3487,7 +3353,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Katie_Swan" style="cursor:pointer; font-weight:bold; color:#0056b3;">Katie Swan</th>
+<td class="expand-toggle" data-target="detail-Katie_Swan" style="cursor: pointer">Katie Swan</td>
 <td>1</td>
 <td>-</td>
 <td>1</td>
@@ -3506,7 +3372,7 @@ table.detail-table td {
 <td>3</td>
 </tr>
 <tr class="detail-row" id="detail-Katie_Swan" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -3544,7 +3410,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Mia_Tinsley" style="cursor:pointer; font-weight:bold; color:#0056b3;">Mia Tinsley</th>
+<td class="expand-toggle" data-target="detail-Mia_Tinsley" style="cursor: pointer">Mia Tinsley</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3563,7 +3429,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Mia_Tinsley" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -3587,7 +3453,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Maria_Ustic" style="cursor:pointer; font-weight:bold; color:#0056b3;">Maria Ustic</th>
+<td class="expand-toggle" data-target="detail-Maria_Ustic" style="cursor: pointer">Maria Ustic</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3606,7 +3472,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Maria_Ustic" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -3630,7 +3496,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Heather_Watson" style="cursor:pointer; font-weight:bold; color:#0056b3;">Heather Watson</th>
+<td class="expand-toggle" data-target="detail-Heather_Watson" style="cursor: pointer">Heather Watson</td>
 <td>-</td>
 <td>1</td>
 <td>1</td>
@@ -3649,7 +3515,7 @@ table.detail-table td {
 <td>2</td>
 </tr>
 <tr class="detail-row" id="detail-Heather_Watson" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -3680,7 +3546,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Zainab_Williams" style="cursor:pointer; font-weight:bold; color:#0056b3;">Zainab Williams</th>
+<td class="expand-toggle" data-target="detail-Zainab_Williams" style="cursor: pointer">Zainab Williams</td>
 <td>-</td>
 <td>-</td>
 <td>-</td>
@@ -3699,7 +3565,7 @@ table.detail-table td {
 <td>1</td>
 </tr>
 <tr class="detail-row" id="detail-Zainab_Williams" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -3723,7 +3589,7 @@ table.detail-table td {
 </td>
 </tr>
 <tr>
-<th class="expand-toggle" data-target="detail-Mimi_Xu" style="cursor:pointer; font-weight:bold; color:#0056b3;">Mimi Xu</th>
+<td class="expand-toggle" data-target="detail-Mimi_Xu" style="cursor: pointer">Mimi Xu</td>
 <td>1</td>
 <td>-</td>
 <td>1</td>
@@ -3742,7 +3608,7 @@ table.detail-table td {
 <td>4</td>
 </tr>
 <tr class="detail-row" id="detail-Mimi_Xu" style="display:none;">
-<td colspan="16" style="background:#f1f1f1; padding:15px;">
+<td colspan="17" style="background:#f1f1f1; padding:15px;">
 <table class="dataframe detail-table">
 <thead>
 <tr style="text-align: center;">
@@ -3789,7 +3655,7 @@ table.detail-table td {
 </tbody>
 </table>
 </div>
-<div id="footer"></div>
+<div id="footer-container"></div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
