@@ -1,6 +1,27 @@
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        frame-src https://tnnslive.com;
+        child-src https://tnnslive.com;
+
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com;
+
+        style-src 'self' 'unsafe-inline' https://tnnslive.com;
+
+        img-src 'self' data: https://tnnslive.com;
+
+        font-src 'self' https://tnnslive.com;
+
+        connect-src 'self' https://tnnslive.com;
+
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+        frame-ancestors 'self';
+      ">
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Tournaments that count towards British women's ranking points for the last 52 weeks">
   <title>women's doubles ranking points breakdown – GB Tennis Data</title>
@@ -187,7 +208,7 @@ window.addEventListener("resize", updateSelectorHeight);
         <button id="toggle-filter" class="filter-off">Players adding points</button>
         <button id="toggle-drop-filter" class="filter-off">Players dropping points</button>
 
-        <span class="last-updated">Last updated: 4 September 9:19AM</span>
+        <span class="last-updated">Last updated: 4 September 3:35PM</span>
 
     </div>
 
@@ -455,7 +476,7 @@ window.addEventListener("resize", updateSelectorHeight);
             <summary>
                 To Add tournaments (1)
             </summary>
-        <table id='to_add_75' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_75",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_75",1)'>Partner<span class='arrow'></span></th><th onclick='sortTable("to_add_75",2)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("to_add_75",3)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_75",4)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("to_add_75",5)'>Replacing<span class='arrow'></span></th></tr></thead><tbody><tr><td>W15 Monastir</td><td>C Ansari</td><td>13 September 2027</td><td>SF</td><td data-sort='6'>6</td><td>Nothing: Additional tournament</td></tr></tbody></table></details></div><div class='card' id='Harriet_Dart' data-has-to-add='true' data-drop-match='true'><h2>Harriet Dart</h2><h3>Total points: 1115</h3>
+        <table id='to_add_75' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_75",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_75",1)'>Partner<span class='arrow'></span></th><th onclick='sortTable("to_add_75",2)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("to_add_75",3)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_75",4)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("to_add_75",5)'>Replacing<span class='arrow'></span></th></tr></thead><tbody><tr><td>W15 Monastir</td><td>C Ansari</td><td>13 September 2027</td><td>Final</td><td data-sort='10'>10</td><td>Nothing: Additional tournament</td></tr></tbody></table></details></div><div class='card' id='Harriet_Dart' data-has-to-add='true' data-drop-match='true'><h2>Harriet Dart</h2><h3>Total points: 1115</h3>
         <details id="details_counted_39" open
                  onclick="toggleArrow('details_counted_39', 'arrow_counted_39')">
             <summary>

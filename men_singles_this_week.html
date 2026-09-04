@@ -1,7 +1,28 @@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        frame-src https://tnnslive.com;
+        child-src https://tnnslive.com;
+
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com;
+
+        style-src 'self' 'unsafe-inline' https://tnnslive.com;
+
+        img-src 'self' data: https://tnnslive.com;
+
+        font-src 'self' https://tnnslive.com;
+
+        connect-src 'self' https://tnnslive.com;
+
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+        frame-ancestors 'self';
+      ">
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="British men competing in pro events this week">
   <title>Men in action this week – GB Tennis Data</title>
@@ -19,8 +40,8 @@
 
 <div id='player-select-container'>
 Players in action this week<br>
-Last updated: 4 September 1:39PM
-<iframe src="http://tnnslive.com/widgets/scores?style={-accent-:-rgba(184,233,134,1)-,-backgroundColor-:-rgba(51,170,119,1)-,-color_border-:-rgba(0,0,0,0.04)-,-hide_top_border-:true,-color-:-black-,-color_view_all-:-white-}" width=1300></iframe>
+Last updated: 4 September 3:20PM
+<iframe src="https://tnnslive.com/widgets/scores?style={-accent-:-rgba(184,233,134,1)-,-backgroundColor-:-rgba(51,170,119,1)-,-color_border-:-rgba(0,0,0,0.04)-,-hide_top_border-:true,-color-:-black-,-color_view_all-:-white-}" width=1300></iframe>
 </div>
 
 <div id=content-container>
@@ -31,6 +52,7 @@ Last updated: 4 September 1:39PM
       <th>Player</th>
       <th>Tournament</th>
       <th>Round reached</th>
+      <th>Ranking points</th>
       <th>Live scores</th>
       <th>Draw</th>
     </tr>
@@ -40,6 +62,7 @@ Last updated: 4 September 1:39PM
       <td>Jay Clarke</td>
       <td>Challenger 75 Como</td>
       <td>QF</td>
+      <td>12</td>
       <td><a href="https://www.atptour.com/en/scores/current-challenger/como/3473/live-scores">Live scores</a></td>
       <td><a href="https://www.atptour.com/en/scores/current-challenger/como/3473/draws">Draw</a></td>
     </tr>
@@ -47,6 +70,7 @@ Last updated: 4 September 1:39PM
       <td>Billy Harris</td>
       <td>Challenger 75 Manacor</td>
       <td>QF</td>
+      <td>12</td>
       <td><a href="https://www.atptour.com/en/scores/current-challenger/manacor/7973/live-scores">Live scores</a></td>
       <td><a href="https://www.atptour.com/en/scores/current-challenger/manacor/7973/draws">Draw</a></td>
     </tr>
@@ -54,6 +78,7 @@ Last updated: 4 September 1:39PM
       <td>Jack Pinnington Jones</td>
       <td>Challenger 75 Manacor</td>
       <td>QF</td>
+      <td>12</td>
       <td><a href="https://www.atptour.com/en/scores/current-challenger/manacor/7973/live-scores">Live scores</a></td>
       <td><a href="https://www.atptour.com/en/scores/current-challenger/manacor/7973/draws">Draw</a></td>
     </tr>
@@ -61,6 +86,7 @@ Last updated: 4 September 1:39PM
       <td>Blu Baker</td>
       <td>M15 Bologna</td>
       <td>QF</td>
+      <td>2</td>
       <td><a href="https://www.itftennis.com/en/world-tennis-tour-live/">Live scores</a></td>
       <td><a href="https://www.itftennis.com/en/tournament/m15-bologna/ita/2026/m-itf-ita-2026-014/draws-and-results/">Draw</a></td>
     </tr>
@@ -68,6 +94,7 @@ Last updated: 4 September 1:39PM
       <td>Roan Jones</td>
       <td>M15 Monastir</td>
       <td>SF</td>
+      <td>4</td>
       <td><a href="https://www.itftennis.com/en/world-tennis-tour-live/">Live scores</a></td>
       <td><a href="https://www.itftennis.com/en/tournament/m15-monastir/tun/2026/m-itf-tun-2026-035/draws-and-results/">Draw</a></td>
     </tr>
@@ -80,213 +107,243 @@ Last updated: 4 September 1:39PM
       <th>Player</th>
       <th>Tournament</th>
       <th>Round reached</th>
+      <th>Ranking points</th>
       <th>Live scores</th>
       <th>Draw</th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <td>Jan Choinski</td>
+      <td>US Open</td>
+      <td>R128</td>
+      <td>10</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Arthur Fery</td>
+      <td>US Open</td>
+      <td>R128</td>
+      <td>10</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Cameron Norrie</td>
+      <td>US Open</td>
+      <td>R128</td>
+      <td>10</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
       <td>Max Basing</td>
       <td>Challenger 75 Manacor</td>
       <td>R32</td>
-      <td>None</td>
-      <td>None</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.atptour.com/en/scores/current-challenger/manacor/7973/draws">Draw</a></td>
     </tr>
     <tr>
       <td>Charles Broom</td>
       <td>Challenger 75 Manacor</td>
       <td>FQR</td>
-      <td>None</td>
-      <td>None</td>
+      <td>2</td>
+      <td></td>
+      <td><a href="https://www.atptour.com/en/scores/current-challenger/manacor/7973/draws">Draw</a></td>
     </tr>
     <tr>
       <td>Alastair Gray</td>
       <td>Challenger 75 Manacor</td>
       <td>QR1</td>
-      <td>None</td>
-      <td>None</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.atptour.com/en/scores/current-challenger/manacor/7973/draws">Draw</a></td>
     </tr>
     <tr>
       <td>Lui Maxted</td>
       <td>Challenger 75 Manacor</td>
       <td>QR1</td>
-      <td>None</td>
-      <td>None</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.atptour.com/en/scores/current-challenger/manacor/7973/draws">Draw</a></td>
     </tr>
     <tr>
       <td>Ryan Peniston</td>
       <td>Challenger 75 Manacor</td>
       <td>QR1</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Jan Choinski</td>
-      <td>GS US Open</td>
-      <td>R128</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Arthur Fery</td>
-      <td>GS US Open</td>
-      <td>R128</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Cameron Norrie</td>
-      <td>GS US Open</td>
-      <td>R128</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Louis Allen</td>
-      <td>M15 Buzau</td>
-      <td>FQR</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Jeremy Gschwendtner</td>
-      <td>M15 Buzau</td>
-      <td>SF</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Will Nolan</td>
-      <td>M15 Buzau</td>
-      <td>QR1</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Theo Williamson</td>
-      <td>M15 Haren</td>
-      <td>QR1</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Ali Habib</td>
-      <td>M15 Hurghada</td>
-      <td>R32</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Luke Hooper</td>
-      <td>M15 Hurghada</td>
-      <td>R32</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Finn Reilly</td>
-      <td>M15 Hurghada</td>
-      <td>QR2</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>George Russell</td>
-      <td>M15 Hurghada</td>
-      <td>FQR</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Casper Nicolle</td>
-      <td>M15 Madrid</td>
-      <td>QR2</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Charles Begg-Smith</td>
-      <td>M15 Monastir</td>
-      <td>QR2</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Oscar Brown</td>
-      <td>M15 Monastir</td>
-      <td>R32</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Rahul Dhokia</td>
-      <td>M15 Monastir</td>
-      <td>R32</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Josh Manuel</td>
-      <td>M15 Monastir</td>
-      <td>R16</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Ned Smith</td>
-      <td>M15 Monastir</td>
-      <td>QR1</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Joshua Ward</td>
-      <td>M15 Monastir</td>
-      <td>QR1</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Dilhan Wasnatha</td>
-      <td>M15 Monastir</td>
-      <td>QR2</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Mattias Southcombe</td>
-      <td>M15 Wuning</td>
-      <td>QR2</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Jude Dixon</td>
-      <td>M25 Casablanca</td>
-      <td>QR1</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Finlay Hudson</td>
-      <td>M25 Casablanca</td>
-      <td>QR2</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <td>Rex Wills</td>
-      <td>M25 Casablanca</td>
-      <td>QR1</td>
-      <td>None</td>
-      <td>None</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.atptour.com/en/scores/current-challenger/manacor/7973/draws">Draw</a></td>
     </tr>
     <tr>
       <td>Ying Hou</td>
       <td>M25+H Bagnères-de-Bigorre</td>
       <td>QR1</td>
       <td>None</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Jude Dixon</td>
+      <td>M25 Casablanca</td>
+      <td>QR1</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.itftennis.com/en/tournament/m25-casablanca/mar/2026/m-itf-mar-2026-005/draws-and-results/">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Finlay Hudson</td>
+      <td>M25 Casablanca</td>
+      <td>QR2</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.itftennis.com/en/tournament/m25-casablanca/mar/2026/m-itf-mar-2026-005/draws-and-results/">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Rex Wills</td>
+      <td>M25 Casablanca</td>
+      <td>QR1</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.itftennis.com/en/tournament/m25-casablanca/mar/2026/m-itf-mar-2026-005/draws-and-results/">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Jeremy Gschwendtner</td>
+      <td>M15 Buzau</td>
+      <td>SF</td>
+      <td>4</td>
+      <td></td>
+      <td><a href="https://www.itftennis.com/en/tournament/m15-buzau/rou/2026/m-itf-rou-2026-014/draws-and-results/">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Louis Allen</td>
+      <td>M15 Buzau</td>
+      <td>FQR</td>
       <td>None</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Will Nolan</td>
+      <td>M15 Buzau</td>
+      <td>QR1</td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Theo Williamson</td>
+      <td>M15 Haren</td>
+      <td>QR1</td>
+      <td>None</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Ali Habib</td>
+      <td>M15 Hurghada</td>
+      <td>R32</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.itftennis.com/en/tournament/m15-hurghada/egy/2026/m-itf-egy-2026-023/draws-and-results/">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Luke Hooper</td>
+      <td>M15 Hurghada</td>
+      <td>R32</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.itftennis.com/en/tournament/m15-hurghada/egy/2026/m-itf-egy-2026-023/draws-and-results/">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Finn Reilly</td>
+      <td>M15 Hurghada</td>
+      <td>QR2</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.itftennis.com/en/tournament/m15-hurghada/egy/2026/m-itf-egy-2026-023/draws-and-results/">Draw</a></td>
+    </tr>
+    <tr>
+      <td>George Russell</td>
+      <td>M15 Hurghada</td>
+      <td>FQR</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.itftennis.com/en/tournament/m15-hurghada/egy/2026/m-itf-egy-2026-023/draws-and-results/">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Casper Nicolle</td>
+      <td>M15 Madrid</td>
+      <td>QR2</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.itftennis.com/en/tournament/m15-madrid/esp/2026/m-itf-esp-2026-031/draws-and-results/">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Charles Begg-Smith</td>
+      <td>M15 Monastir</td>
+      <td>QR2</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.itftennis.com/en/tournament/m15-monastir/tun/2026/m-itf-tun-2026-035/draws-and-results/">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Oscar Brown</td>
+      <td>M15 Monastir</td>
+      <td>R32</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.itftennis.com/en/tournament/m15-monastir/tun/2026/m-itf-tun-2026-035/draws-and-results/">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Rahul Dhokia</td>
+      <td>M15 Monastir</td>
+      <td>R32</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.itftennis.com/en/tournament/m15-monastir/tun/2026/m-itf-tun-2026-035/draws-and-results/">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Josh Manuel</td>
+      <td>M15 Monastir</td>
+      <td>R16</td>
+      <td>1</td>
+      <td></td>
+      <td><a href="https://www.itftennis.com/en/tournament/m15-monastir/tun/2026/m-itf-tun-2026-035/draws-and-results/">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Ned Smith</td>
+      <td>M15 Monastir</td>
+      <td>QR1</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.itftennis.com/en/tournament/m15-monastir/tun/2026/m-itf-tun-2026-035/draws-and-results/">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Joshua Ward</td>
+      <td>M15 Monastir</td>
+      <td>QR1</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.itftennis.com/en/tournament/m15-monastir/tun/2026/m-itf-tun-2026-035/draws-and-results/">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Dilhan Wasnatha</td>
+      <td>M15 Monastir</td>
+      <td>QR2</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.itftennis.com/en/tournament/m15-monastir/tun/2026/m-itf-tun-2026-035/draws-and-results/">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Mattias Southcombe</td>
+      <td>M15 Wuning</td>
+      <td>QR2</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.itftennis.com/en/tournament/m15-wuning/chn/2026/m-itf-chn-2026-025/draws-and-results/">Draw</a></td>
     </tr>
   </tbody>
 </table>

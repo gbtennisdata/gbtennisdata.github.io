@@ -1,7 +1,28 @@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        frame-src https://tnnslive.com;
+        child-src https://tnnslive.com;
+
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com;
+
+        style-src 'self' 'unsafe-inline' https://tnnslive.com;
+
+        img-src 'self' data: https://tnnslive.com;
+
+        font-src 'self' https://tnnslive.com;
+
+        connect-src 'self' https://tnnslive.com;
+
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+        frame-ancestors 'self';
+      ">
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="British women competing in pro events this week">
   <title>Women in action this week – GB Tennis Data</title>
@@ -19,125 +40,175 @@
 
 <div id='player-select-container'>
 Players in action this week<br>
-Last updated: 4 September 9:19AM
+Last updated: 4 September 3:35PM
+<iframe src="https://tnnslive.com/widgets/scores?style={-accent-:-rgba(184,233,134,1)-,-backgroundColor-:-rgba(51,170,119,1)-,-color_border-:-rgba(0,0,0,0.04)-,-hide_top_border-:true,-color-:-black-,-color_view_all-:-white-}" width=1300></iframe>
 </div>
 
 <div id=content-container>
+<h2>Still competing</h2>
 <table class="dataframe roster-table left-align-player left-align-notes">
   <thead>
     <tr style="text-align: center;">
       <th>Player</th>
-      <th>Level</th>
+      <th>Partner</th>
       <th>Tournament</th>
       <th>Round reached</th>
-      <th>Status</th>
+      <th>Ranking points</th>
+      <th>Live scores</th>
+      <th>Draw</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Harriet Dart</td>
-      <td>GS</td>
+      <td>M Lumsden</td>
       <td>US Open</td>
       <td>R64</td>
-      <td>Still competing</td>
+      <td>1</td>
+      <td><a href="https://www.usopen.org/en_US/scores/index.html">Live scores</a></td>
+      <td><a href="https://www.usopen.org/en_US/draws/womens-doubles.html">Draw</a></td>
     </tr>
     <tr>
       <td>Maia Lumsden</td>
-      <td>GS</td>
+      <td>H Dart</td>
       <td>US Open</td>
       <td>R64</td>
-      <td>Still competing</td>
+      <td>1</td>
+      <td><a href="https://www.usopen.org/en_US/scores/index.html">Live scores</a></td>
+      <td><a href="https://www.usopen.org/en_US/draws/womens-doubles.html">Draw</a></td>
     </tr>
     <tr>
       <td>Olivia Nicholls</td>
-      <td>GS</td>
+      <td>T Mihalikova</td>
       <td>US Open</td>
       <td>R64</td>
-      <td>Still competing</td>
-    </tr>
-    <tr>
-      <td>Melissa Boyden</td>
-      <td>W15</td>
-      <td>Brasov</td>
-      <td>SF</td>
-      <td>Still competing</td>
-    </tr>
-    <tr>
-      <td>Savannah Dada-Mascoll</td>
-      <td>W15</td>
-      <td>Monastir</td>
-      <td>SF</td>
-      <td>Still competing</td>
-    </tr>
-    <tr>
-      <td>Summer Yardley</td>
-      <td>W15</td>
-      <td>Grodzisk Mazowiecki</td>
-      <td>SF</td>
-      <td>Still competing</td>
+      <td>1</td>
+      <td><a href="https://www.usopen.org/en_US/scores/index.html">Live scores</a></td>
+      <td><a href="https://www.usopen.org/en_US/draws/womens-doubles.html">Draw</a></td>
     </tr>
     <tr>
       <td>Madeleine Brooks</td>
-      <td>W50</td>
-      <td>Leiria</td>
+      <td>A Rajecki</td>
+      <td>W50 Leiria</td>
       <td>SF</td>
-      <td>Still competing</td>
+      <td>20</td>
+      <td><a href="https://www.itftennis.com/en/world-tennis-tour-live/">Live scores</a></td>
+      <td><a href="https://www.itftennis.com/en/tournament/w50-leiria/por/2026/w-itf-por-2026-012/draws-and-results/">Draw</a></td>
     </tr>
     <tr>
       <td>Amelia Rajecki</td>
-      <td>W50</td>
-      <td>Leiria</td>
+      <td>M Brooks</td>
+      <td>W50 Leiria</td>
       <td>SF</td>
-      <td>Still competing</td>
+      <td>20</td>
+      <td><a href="https://www.itftennis.com/en/world-tennis-tour-live/">Live scores</a></td>
+      <td><a href="https://www.itftennis.com/en/tournament/w50-leiria/por/2026/w-itf-por-2026-012/draws-and-results/">Draw</a></td>
     </tr>
     <tr>
-      <td>Amelie Brooks</td>
-      <td>W15</td>
-      <td>Grodzisk Mazowiecki</td>
-      <td>QF</td>
-      <td>Eliminated</td>
+      <td>Melissa Boyden</td>
+      <td>A Iancu</td>
+      <td>W15 Brasov</td>
+      <td>SF</td>
+      <td>6</td>
+      <td><a href="https://www.itftennis.com/en/world-tennis-tour-live/">Live scores</a></td>
+      <td><a href="https://www.itftennis.com/en/tournament/w15-brasov/rou/2026/w-itf-rou-2026-010/draws-and-results/">Draw</a></td>
     </tr>
     <tr>
-      <td>Isabelle Cherny</td>
-      <td>W15</td>
-      <td>Badalona</td>
-      <td>QF</td>
-      <td>Eliminated</td>
+      <td>Savannah Dada-Mascoll</td>
+      <td>C Ansari</td>
+      <td>W15 Monastir</td>
+      <td>Final</td>
+      <td>10</td>
+      <td><a href="https://www.itftennis.com/en/world-tennis-tour-live/">Live scores</a></td>
+      <td><a href="https://www.itftennis.com/en/tournament/w15-monastir/tun/2026/w-itf-tun-2026-031/draws-and-results/">Draw</a></td>
     </tr>
-    <tr>
-      <td>Charlotte Russell</td>
-      <td>W15</td>
-      <td>Grodzisk Mazowiecki</td>
-      <td>R16</td>
-      <td>Eliminated</td>
+  </tbody>
+</table>
+<h2>Knocked out</h2>
+<table class="dataframe roster-table left-align-player left-align-notes">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Partner</th>
+      <th>Tournament</th>
+      <th>Round reached</th>
+      <th>Ranking points</th>
+      <th>Live scores</th>
+      <th>Draw</th>
     </tr>
-    <tr>
-      <td>Mia Wainwright</td>
-      <td>W15</td>
-      <td>Grodzisk Mazowiecki</td>
-      <td>R16</td>
-      <td>Eliminated</td>
-    </tr>
-    <tr>
-      <td>Antoinette Chastang Cooper</td>
-      <td>W50</td>
-      <td>Saint Palais sur Mer</td>
-      <td>R16</td>
-      <td>Eliminated</td>
-    </tr>
+  </thead>
+  <tbody>
     <tr>
       <td>Sofia Johnson</td>
-      <td>W50</td>
-      <td>Leiria</td>
+      <td>M Rapolu</td>
+      <td>W50 Leiria</td>
       <td>QF</td>
-      <td>Eliminated</td>
+      <td>11</td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>Mika Stojsavljevic</td>
-      <td>W50</td>
-      <td>Leiria</td>
+      <td>M Barry</td>
+      <td>W50 Leiria</td>
       <td>R16</td>
-      <td>Eliminated</td>
+      <td>1</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Antoinette Chastang Cooper</td>
+      <td>A Zolotareva</td>
+      <td>W50 Saint Palais sur Mer</td>
+      <td>R16</td>
+      <td>1</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Isabelle Cherny</td>
+      <td>A Giraldi Requena</td>
+      <td>W15 Badalona</td>
+      <td>QF</td>
+      <td>3</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Amelie Brooks</td>
+      <td>M Komano</td>
+      <td>W15 Grodzisk Mazowiecki</td>
+      <td>QF</td>
+      <td>3</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Charlotte Russell</td>
+      <td>M Wainwright</td>
+      <td>W15 Grodzisk Mazowiecki</td>
+      <td>R16</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Mia Wainwright</td>
+      <td>C Russell</td>
+      <td>W15 Grodzisk Mazowiecki</td>
+      <td>R16</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Summer Yardley</td>
+      <td>M Heuser</td>
+      <td>W15 Grodzisk Mazowiecki</td>
+      <td>SF</td>
+      <td>6</td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
