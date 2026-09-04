@@ -295,12 +295,12 @@ summary {
 #content-container {
     position: relative;
     z-index: 2000;
-    padding: 25px;
+    padding: 0px;
     }
 
 .content-sticky {
   position: sticky;
-  top: var(--header-height); 
+  top: 0; 
   z-index: 2500;             /* above content, below player-select */
   padding: 8px 12px;
   background: #f5f5f5;
