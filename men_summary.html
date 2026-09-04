@@ -1,7 +1,28 @@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        frame-src https://tnnslive.com;
+        child-src https://tnnslive.com;
+
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com;
+
+        style-src 'self' 'unsafe-inline' https://tnnslive.com;
+
+        img-src 'self' data: https://tnnslive.com;
+
+        font-src 'self' https://tnnslive.com;
+
+        connect-src 'self' https://tnnslive.com;
+
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+        frame-ancestors 'self';
+      ">
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Summary of British men">
   <title>men's summary – GB Tennis Data</title>
@@ -9,6 +30,7 @@
 </head>
 </body>
 <div id=header-container></div>
+<div class="header-spacer"></div>
     
 <style>
 .arrow-up {
@@ -67,7 +89,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-up">&#9650;</span> 4</td>
       <td>24</td>
       <td>US Open</td>
-      <td> </td>
+      <td>US Open (Doubles)</td>
       <td>Davis Cup</td>
       <td>12 pts on 14 Sep 2026</td>
       <td>6</td>
@@ -95,7 +117,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -1</td>
       <td>30</td>
       <td>US Open</td>
-      <td>CH 100 Tulln</td>
+      <td>Ch 100 Tulln</td>
       <td>Ch 125 Szczecin</td>
       <td>125 pts on 21 Sep 2026</td>
       <td>7</td>
@@ -223,7 +245,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td> </td>
       <td> </td>
       <td>Ch 100 Rennes</td>
-      <td>7 pts on 14 Sep 2026</td>
+      <td>8 pts on 14 Sep 2026</td>
       <td>4</td>
       <td>3</td>
       <td>183</td>
@@ -249,7 +271,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-up">&#9650;</span> 21</td>
       <td>28</td>
       <td>Ch 75 Manacor Qualifying</td>
-      <td>Ch 75 Istanbul</td>
+      <td> </td>
       <td>Ch 100 Rennes</td>
       <td>25 pts on 14 Sep 2026</td>
       <td>4</td>
@@ -361,7 +383,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -2</td>
       <td>27</td>
       <td> </td>
-      <td>Ch 75 Istanbul Qualifying</td>
+      <td> </td>
       <td> </td>
       <td>10 pts on 14 Sep 2026</td>
       <td>3</td>
@@ -377,7 +399,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>Ch 75 Manacor Qualifying</td>
       <td> </td>
       <td>M25 Sintra</td>
-      <td>15 pts on 14 Sep 2026</td>
+      <td>4 pts on 14 Sep 2026</td>
       <td>1</td>
       <td>1</td>
       <td>362</td>
@@ -487,7 +509,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-up">&#9650;</span> 53</td>
       <td>21</td>
       <td> </td>
-      <td>M25 Sintra</td>
+      <td> </td>
       <td> </td>
       <td>2 pts on 14 Sep 2026</td>
       <td>–</td>
@@ -1229,7 +1251,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -15</td>
       <td>26</td>
       <td> </td>
-      <td>M25+H Plaisir Qualifying</td>
+      <td> </td>
       <td>M25 Nevers (Alternate)</td>
       <td>1 pts on 14 Sep 2026</td>
       <td>–</td>
@@ -1410,8 +1432,8 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td></td>
       <td>35</td>
-      <td>US Open (Doubles, Alternate)</td>
-      <td> </td>
+      <td>US Open (Doubles)</td>
+      <td>US Open (Doubles)</td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1424,8 +1446,8 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td></td>
       <td>36</td>
-      <td>US Open (Doubles, Alternate)</td>
-      <td> </td>
+      <td>US Open (Doubles)</td>
+      <td>US Open (Doubles)</td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1469,20 +1491,6 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>M15 Monastir Qualifying</td>
       <td>M15 Monastir Qualifying</td>
       <td> </td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-    </tr>
-    <tr>
-      <td>Conor Brady</td>
-      <td>–</td>
-      <td></td>
-      <td>19</td>
-      <td> </td>
-      <td>M25+H Plaisir Qualifying</td>
-      <td>M25 Nevers (Alternate)</td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1539,20 +1547,6 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>J200 Astana</td>
       <td>J300 Astana</td>
       <td>J300 Beijing</td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-    </tr>
-    <tr>
-      <td>Finnian Bult</td>
-      <td>–</td>
-      <td></td>
-      <td>27</td>
-      <td> </td>
-      <td>M25 Sintra (Alternate)</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1719,7 +1713,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td></td>
       <td>24</td>
       <td>M25+H Bagnères-de-Bigorre (Alternate)</td>
-      <td>M25+H Plaisir (Alternate)</td>
+      <td>M25+H Plaisir Qualifying</td>
       <td> </td>
       <td></td>
       <td>–</td>
@@ -1733,22 +1727,8 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td></td>
       <td>17</td>
       <td>M15 Monastir Qualifying</td>
+      <td>M15 Monastir Qualifying</td>
       <td> </td>
-      <td> </td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-    </tr>
-    <tr>
-      <td>Mason Dace</td>
-      <td>–</td>
-      <td></td>
-      <td>22</td>
-      <td> </td>
-      <td>M25 Sintra Qualifying</td>
-      <td>M25 Sintra (Alternate)</td>
       <td></td>
       <td>–</td>
       <td>–</td>
@@ -1860,6 +1840,20 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td> </td>
       <td>J100 Liepaja Qualifying</td>
+      <td> </td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <td>Maxim Borin</td>
+      <td>–</td>
+      <td></td>
+      <td>–</td>
+      <td> </td>
+      <td>M25 Sintra Qualifying</td>
       <td> </td>
       <td></td>
       <td>–</td>

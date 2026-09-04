@@ -40,3 +40,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 }); 
+
+function updateSelectorHeight() {
+    const selector = document.getElementById("player-select-container");
+    const h = selector.offsetHeight;
+    document.documentElement.style.setProperty("--selector-height", h + "px");
+}
+
+window.addEventListener("load", () => {
+    requestAnimationFrame(updateSelectorHeight);
+});
+
+window.addEventListener("resize", updateSelectorHeight);
