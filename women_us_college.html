@@ -1,7 +1,28 @@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        frame-src https://tnnslive.com;
+        child-src https://tnnslive.com;
+
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com;
+
+        style-src 'self' 'unsafe-inline' https://tnnslive.com;
+
+        img-src 'self' data: https://tnnslive.com;
+
+        font-src 'self' https://tnnslive.com;
+
+        connect-src 'self' https://tnnslive.com;
+
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+        frame-ancestors 'self';
+      ">
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="British women in US College">
   <title>Women's US College roster – GB Tennis Data</title>
@@ -9,6 +30,7 @@
 </head>
 </body>
 <div id=header-container></div>
+<div class="header-spacer"></div>
     
 <style>
     .roster-table td:nth-child(1) { text-align: left; }  /* Player column */
@@ -89,9 +111,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 <div id="content">
-
+<div>
 <h1>Women's Div I US College rosters 2026-27</h1>
-<p>Student-athletes are confirmed to be on roster for 2026-27 unless stated.</p>
+<p>Student-athletes are confirmed to be on roster for 2026-27 unless stated.</p></div>
 
 <div id='player-select-container'>
     <label>Team:
@@ -534,12 +556,12 @@ document.addEventListener("DOMContentLoaded", function () {
     </tr>
     <tr>
       <td>Charlotte Holmes</td>
-      <td>Oakland</td>
+      <td>Texas Rio Grande Valley</td>
       <td>2nd</td>
-      <td>Horizon</td>
+      <td>Southland</td>
       <td></td>
       <td></td>
-      <td>2026-27 roster not yet available</td>
+      <td>Transfer from Oakland</td>
     </tr>
     <tr>
       <td>Gracie Hurley</td>

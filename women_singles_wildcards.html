@@ -1,7 +1,28 @@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        frame-src https://tnnslive.com;
+        child-src https://tnnslive.com;
+
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com;
+
+        style-src 'self' 'unsafe-inline' https://tnnslive.com;
+
+        img-src 'self' data: https://tnnslive.com;
+
+        font-src 'self' https://tnnslive.com;
+
+        connect-src 'self' https://tnnslive.com;
+
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+        frame-ancestors 'self';
+      ">
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="British women singles wild cards">
   <title>women's singles wild cards – GB Tennis Data</title>
@@ -9,11 +30,12 @@
 </head>
 </body>
 <div id=header-container></div>
+<div class="header-spacer"></div>
     
 <STYLE>
 
 thead tr:nth-child(2) th {
-  top: calc(var(--sticky-offset) + 30px); /* 40px ≈ height of first row; adjust as needed */
+  top: calc(var(--sticky-offset) + 25px); /* 40px ≈ height of first row; adjust as needed */
 }
 
 /* --- Row 1 (lighter) --- */
@@ -47,7 +69,7 @@ thead tr:nth-child(2) th:nth-child(16) { background:#566573; color:white; }
 
 thead tr:nth-child(2) th:nth-child(17) { background:#922b21; color:white; }
 
-thead tr:nth-child(1) th:nth-child(1) {background: white}
+thead tr:nth-child(1) th:nth-child(1) {background: white; border: white}
 thead tr:nth-child(2) th:nth-child(1) {background: white}
 
 tbody tr:nth-child(even) {
@@ -55,6 +77,12 @@ tbody tr:nth-child(even) {
 }
 tbody tr:nth-child(odd) {
     background: white;
+}
+
+/* Black divider between categories */
+table th:nth-child(3n+1),
+table td:nth-child(3n+1) {
+    border-right: 3px solid grey;
 }
 
 table.detail-table th {
@@ -87,7 +115,8 @@ table.detail-table th {
     or players who reached No 1 in the singles rankings<br>
     16 year olds may only earn ranking points from 4 wild cards between birthdays.<br>
     15 and 14 year olds may only earn ranking points from 3 wild cards between birthdays.<P>
-    <div class=content-sticky>
+    </div>
+    <div id='player-select-container'>
     <strong>Summary:</strong> 
     <span style="color: #e74c3c;">70</span> women have played with  
     <span style="color: #27ae60;">150</span> wild cards in 2026.<br>
@@ -3917,7 +3946,6 @@ table.detail-table th {
 </tr>
 </tbody>
 </table>
-</div>
 <div id="footer-container"></div>
 
 <script>

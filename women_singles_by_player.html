@@ -1,6 +1,27 @@
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        frame-src https://tnnslive.com;
+        child-src https://tnnslive.com;
+
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com;
+
+        style-src 'self' 'unsafe-inline' https://tnnslive.com;
+
+        img-src 'self' data: https://tnnslive.com;
+
+        font-src 'self' https://tnnslive.com;
+
+        connect-src 'self' https://tnnslive.com;
+
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+        frame-ancestors 'self';
+      ">
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Tournaments that count towards British women's ranking points for the last 52 weeks">
   <title>women's singles ranking points breakdown – GB Tennis Data</title>
@@ -8,10 +29,87 @@
 </head>
 </body>
 <div id=header-container></div>
+<div class="header-spacer"></div>
     
 <style>
+/* Sticky container */
+#player-select-container {
+    position: sticky;
+    top: var(--header-height);
+    z-index: 9998;
+    background: #fff;
+    padding: 12px;
+    border-bottom: 2px solid #ccc;
+}
+
+/* Row layout */
+.player-select-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;   /* keeps everything on one line */
+}
+
+/* Push Last updated to the right */
+.last-updated {
+    margin-left: auto;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Searchable dropdown */
+.searchable-select {
+    position: relative;
+    width: 250px;
+    display: inline-block;
+}
+
+#playerSelectInput {
+    width: 100%;
+    padding: 6px 30px 6px 6px; /* space for arrow */
+    font-size: 16px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+/* Dropdown arrow */
+.searchable-select::after {
+    content: "▼";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #555;
+    pointer-events: none;
+}
+
+/* Options list */
+.options-container {
+    position: absolute;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #aaa;
+    background: white;
+    display: none;
+    z-index: 1000;
+}
+
+.option {
+    padding: 6px;
+    cursor: pointer;
+}
+
+.option:hover {
+    background: #eee;
+}
+
+/* Buttons */
 #toggle-filter,
-#toggle-drop-filter{
+#toggle-drop-filter {
     padding: 8px 14px;
     border: none;
     border-radius: 6px;
@@ -23,7 +121,7 @@
 
 #toggle-filter.filter-on,
 #toggle-drop-filter.filter-on {
-    background: #3a7;   
+    background: #3a7;
     color: white;
 }
 
@@ -32,7 +130,9 @@
     background: #ccc;
     color: #000;
 }
+
 </style>
+
 
 
 
@@ -94,18 +194,30 @@ window.addEventListener("resize", updateSelectorHeight);
     
 
 
-    
-    <div id='player-select-container'>
-        <label for='playerSelect'><strong>Select Player:</strong></label>
-        <select id='playerSelect' onchange="scrollToPlayer(this.value)">
-            <option value='' disabled selected>Choose player...</option>
-            <option value='Esther_Adeshina'>Esther Adeshina</option><option value='Vic_Allen'>Vic Allen</option><option value='Emily_Appleton'>Emily Appleton</option><option value='Swasthika_Arunkumar'>Swasthika Arunkumar</option><option value='Naiktha_Bains'>Naiktha Bains</option><option value='Amarni_Banks'>Amarni Banks</option><option value='Aryana_Bartlett'>Aryana Bartlett</option><option value='Sophie_Bekker'>Sophie Bekker</option><option value='Brooke_Black'>Brooke Black</option><option value='Ellie_Blackford'>Ellie Blackford</option><option value='Angelica_Blake'>Angelica Blake</option><option value='Anna_Boron'>Anna Boron</option><option value='Katie_Boulter'>Katie Boulter</option><option value='Melissa_Boyden'>Melissa Boyden</option><option value='Daniella_Britton'>Daniella Britton</option><option value='Amelie_Brooks'>Amelie Brooks</option><option value='Jodie_Burrage'>Jodie Burrage</option><option value='Tegan_Bush'>Tegan Bush</option><option value='Lucia_Cassidy'>Lucia Cassidy</option><option value='Antoinette_Chastang_Cooper'>Antoinette Chastang Cooper</option><option value='Isabelle_Cherny'>Isabelle Cherny</option><option value='Rosie_Cho'>Rosie Cho</option><option value='Freya_Christie'>Freya Christie</option><option value='Chloe_Cleaver'>Chloe Cleaver</option><option value='Emma_Cohen'>Emma Cohen</option><option value='Jasmine_Conway'>Jasmine Conway</option><option value='Ruby_Cooling'>Ruby Cooling</option><option value='Heidi_Crncan'>Heidi Crncan</option><option value='Savannah_Dada-Mascoll'>Savannah Dada-Mascoll</option><option value='Harriet_Dart'>Harriet Dart</option><option value='Megan_Davies'>Megan Davies</option><option value='Sophie_Dick'>Sophie Dick</option><option value='Alicia_Dudeney'>Alicia Dudeney</option><option value='Katy_Dunne'>Katy Dunne</option><option value='Elizabeth_Evans'>Elizabeth Evans</option><option value='Ria_Ferguson'>Ria Ferguson</option><option value='Amelia_Fortescue'>Amelia Fortescue</option><option value='Francesca_Franchi'>Francesca Franchi</option><option value='Meira_Geras'>Meira Geras</option><option value='Alice_Gillan'>Alice Gillan</option><option value='Edie_Griffiths'>Edie Griffiths</option><option value='Immi_Haddad'>Immi Haddad</option><option value='Georgina_Hays'>Georgina Hays</option><option value='Allegra_Hodson'>Allegra Hodson</option><option value='Sophia_Hurrion'>Sophia Hurrion</option><option value='Lily_Hutchings'>Lily Hutchings</option><option value='Holly_Hutchinson'>Holly Hutchinson</option><option value='Alexandra_James'>Alexandra James</option><option value='Lauryn_John-Baptiste'>Lauryn John-Baptiste</option><option value='Sofia_Johnson'>Sofia Johnson</option><option value='Fran_Jones'>Fran Jones</option><option value='Sonay_Kartal'>Sonay Kartal</option><option value='Scarlet_Kavanagh'>Scarlet Kavanagh</option><option value='Karina_Kiss'>Karina Kiss</option><option value='Hannah_Klugman'>Hannah Klugman</option><option value='Megan_Knight'>Megan Knight</option><option value='Ophelia_Korpanec_Davies'>Ophelia Korpanec Davies</option><option value='Allegra_Korpanec_Davies'>Allegra Korpanec Davies</option><option value='Vlada_Kozak'>Vlada Kozak</option><option value='Annabelle_Lammas'>Annabelle Lammas</option><option value='Akosua_Larbu-Mensah'>Akosua Larbu-Mensah</option><option value='Emilija_Lebedevaite'>Emilija Lebedevaite</option><option value='Sofia_Maine'>Sofia Maine</option><option value='Eliz_Maloney'>Eliz Maloney</option><option value='Poppy_Marston'>Poppy Marston</option><option value='Jizel_Matos_Sequeira_Fernandes'>Jizel Matos Sequeira Fernandes</option><option value='Scarlett_May-Matthews'>Scarlett May-Matthews</option><option value='Ella_Mcdonald'>Ella Mcdonald</option><option value='Daisy_Mewett'>Daisy Mewett</option><option value='Jasmine_Mian'>Jasmine Mian</option><option value='Elizabeth_Mirica'>Elizabeth Mirica</option><option value='Georgiana_Mititelu'>Georgiana Mititelu</option><option value='Lily_Miyazaki'>Lily Miyazaki</option><option value='Ciara_Moore'>Ciara Moore</option><option value='Zara_Mughal'>Zara Mughal</option><option value='Sophie_Munks'>Sophie Munks</option><option value='Talia_Neilsen-Gatenby'>Talia Neilsen-Gatenby</option><option value='Eloise_Newberry'>Eloise Newberry</option><option value='Lois_Newberry'>Lois Newberry</option><option value='Mirabelle_Njoze'>Mirabelle Njoze</option><option value='Jaquelyn_Ogunwale'>Jaquelyn Ogunwale</option><option value='Hephzibah_Oluwadare'>Hephzibah Oluwadare</option><option value='Clarice_Ouvarova'>Clarice Ouvarova</option><option value='Gabriela_Pacheco-Lagoda'>Gabriela Pacheco-Lagoda</option><option value='Kristina_Paskauskas'>Kristina Paskauskas</option><option value='Gabia_Paskauskas'>Gabia Paskauskas</option><option value='Erin_Pearce'>Erin Pearce</option><option value='Freya_Peet'>Freya Peet</option><option value='Daniela_Piani'>Daniela Piani</option><option value='Grace_Piper'>Grace Piper</option><option value='Elizabeth_Prangley'>Elizabeth Prangley</option><option value='Maya_Prija'>Maya Prija</option><option value='Teodora_Prisadnikova'>Teodora Prisadnikova</option><option value='Marelie_Raath'>Marelie Raath</option><option value='Emma_Raducanu'>Emma Raducanu</option><option value='Amelia_Rajecki'>Amelia Rajecki</option><option value='Leticia_Romanova'>Leticia Romanova</option><option value='Sophie_Ryland'>Sophie Ryland</option><option value='April_Sackflame'>April Sackflame</option><option value='Lara_Savic'>Lara Savic</option><option value='Athina_Schlepphorst'>Athina Schlepphorst</option><option value='Ioana-Staliana_Scripcariu'>Ioana-Staliana Scripcariu</option><option value='Eva_Shaw'>Eva Shaw</option><option value='Eden_Silva'>Eden Silva</option><option value='Mille_Skelton'>Mille Skelton</option><option value='Hollie_Smart'>Hollie Smart</option><option value='Indi_Spink'>Indi Spink</option><option value='Ranah_Stoiber'>Ranah Stoiber</option><option value='Mika_Stojsavljevic'>Mika Stojsavljevic</option><option value='Katie_Swan'>Katie Swan</option><option value='Mia_Tinsley'>Mia Tinsley</option><option value='Francesca_Tye'>Francesca Tye</option><option value='Maria_Ustic'>Maria Ustic</option><option value='Mia_Wainwright'>Mia Wainwright</option><option value='Isabella_Walker'>Isabella Walker</option><option value='Heather_Watson'>Heather Watson</option><option value='Emily_Webley-Smith'>Emily Webley-Smith</option><option value='Zainab_Williams'>Zainab Williams</option><option value='Ava_Williamson'>Ava Williamson</option><option value='Emma_Wilson'>Emma Wilson</option><option value='Isabella_Wong'>Isabella Wong</option><option value='Daisy_Wootton'>Daisy Wootton</option><option value='Mimi_Xu'>Mimi Xu</option><option value='Summer_Yardley'>Summer Yardley</option><option value='Pui_Yin_Lung'>Pui Yin Lung</option>
-        </select>
-<button id="toggle-filter" class="filter-off">Players adding points</button>
-<button id="toggle-drop-filter" class="filter-off">Players dropping points</button>
+    <div><h2>Women singles points breakdown</h2></div>
+<div id="player-select-container">
 
-        Last updated: 4 September 4:33PM
+    <div class="player-select-row">
+
+        <div class="searchable-select" id="playerSelectBox">
+            <input type="text" id="playerSelectInput" placeholder="Choose player..." autocomplete="off">
+            <div id="playerSelectOptions" class="options-container">
+                <div class='option' data-value='Esther_Adeshina'>Esther Adeshina</div><div class='option' data-value='Vic_Allen'>Vic Allen</div><div class='option' data-value='Emily_Appleton'>Emily Appleton</div><div class='option' data-value='Swasthika_Arunkumar'>Swasthika Arunkumar</div><div class='option' data-value='Naiktha_Bains'>Naiktha Bains</div><div class='option' data-value='Amarni_Banks'>Amarni Banks</div><div class='option' data-value='Aryana_Bartlett'>Aryana Bartlett</div><div class='option' data-value='Sophie_Bekker'>Sophie Bekker</div><div class='option' data-value='Brooke_Black'>Brooke Black</div><div class='option' data-value='Ellie_Blackford'>Ellie Blackford</div><div class='option' data-value='Angelica_Blake'>Angelica Blake</div><div class='option' data-value='Anna_Boron'>Anna Boron</div><div class='option' data-value='Katie_Boulter'>Katie Boulter</div><div class='option' data-value='Melissa_Boyden'>Melissa Boyden</div><div class='option' data-value='Daniella_Britton'>Daniella Britton</div><div class='option' data-value='Amelie_Brooks'>Amelie Brooks</div><div class='option' data-value='Jodie_Burrage'>Jodie Burrage</div><div class='option' data-value='Tegan_Bush'>Tegan Bush</div><div class='option' data-value='Lucia_Cassidy'>Lucia Cassidy</div><div class='option' data-value='Antoinette_Chastang_Cooper'>Antoinette Chastang Cooper</div><div class='option' data-value='Isabelle_Cherny'>Isabelle Cherny</div><div class='option' data-value='Rosie_Cho'>Rosie Cho</div><div class='option' data-value='Freya_Christie'>Freya Christie</div><div class='option' data-value='Chloe_Cleaver'>Chloe Cleaver</div><div class='option' data-value='Emma_Cohen'>Emma Cohen</div><div class='option' data-value='Jasmine_Conway'>Jasmine Conway</div><div class='option' data-value='Ruby_Cooling'>Ruby Cooling</div><div class='option' data-value='Heidi_Crncan'>Heidi Crncan</div><div class='option' data-value='Savannah_Dada-Mascoll'>Savannah Dada-Mascoll</div><div class='option' data-value='Harriet_Dart'>Harriet Dart</div><div class='option' data-value='Megan_Davies'>Megan Davies</div><div class='option' data-value='Sophie_Dick'>Sophie Dick</div><div class='option' data-value='Alicia_Dudeney'>Alicia Dudeney</div><div class='option' data-value='Katy_Dunne'>Katy Dunne</div><div class='option' data-value='Elizabeth_Evans'>Elizabeth Evans</div><div class='option' data-value='Ria_Ferguson'>Ria Ferguson</div><div class='option' data-value='Amelia_Fortescue'>Amelia Fortescue</div><div class='option' data-value='Francesca_Franchi'>Francesca Franchi</div><div class='option' data-value='Meira_Geras'>Meira Geras</div><div class='option' data-value='Alice_Gillan'>Alice Gillan</div><div class='option' data-value='Edie_Griffiths'>Edie Griffiths</div><div class='option' data-value='Immi_Haddad'>Immi Haddad</div><div class='option' data-value='Georgina_Hays'>Georgina Hays</div><div class='option' data-value='Allegra_Hodson'>Allegra Hodson</div><div class='option' data-value='Sophia_Hurrion'>Sophia Hurrion</div><div class='option' data-value='Lily_Hutchings'>Lily Hutchings</div><div class='option' data-value='Holly_Hutchinson'>Holly Hutchinson</div><div class='option' data-value='Alexandra_James'>Alexandra James</div><div class='option' data-value='Lauryn_John-Baptiste'>Lauryn John-Baptiste</div><div class='option' data-value='Sofia_Johnson'>Sofia Johnson</div><div class='option' data-value='Fran_Jones'>Fran Jones</div><div class='option' data-value='Sonay_Kartal'>Sonay Kartal</div><div class='option' data-value='Scarlet_Kavanagh'>Scarlet Kavanagh</div><div class='option' data-value='Karina_Kiss'>Karina Kiss</div><div class='option' data-value='Hannah_Klugman'>Hannah Klugman</div><div class='option' data-value='Megan_Knight'>Megan Knight</div><div class='option' data-value='Ophelia_Korpanec_Davies'>Ophelia Korpanec Davies</div><div class='option' data-value='Allegra_Korpanec_Davies'>Allegra Korpanec Davies</div><div class='option' data-value='Vlada_Kozak'>Vlada Kozak</div><div class='option' data-value='Annabelle_Lammas'>Annabelle Lammas</div><div class='option' data-value='Akosua_Larbu-Mensah'>Akosua Larbu-Mensah</div><div class='option' data-value='Emilija_Lebedevaite'>Emilija Lebedevaite</div><div class='option' data-value='Sofia_Maine'>Sofia Maine</div><div class='option' data-value='Eliz_Maloney'>Eliz Maloney</div><div class='option' data-value='Poppy_Marston'>Poppy Marston</div><div class='option' data-value='Jizel_Matos_Sequeira_Fernandes'>Jizel Matos Sequeira Fernandes</div><div class='option' data-value='Scarlett_May-Matthews'>Scarlett May-Matthews</div><div class='option' data-value='Ella_Mcdonald'>Ella Mcdonald</div><div class='option' data-value='Daisy_Mewett'>Daisy Mewett</div><div class='option' data-value='Jasmine_Mian'>Jasmine Mian</div><div class='option' data-value='Elizabeth_Mirica'>Elizabeth Mirica</div><div class='option' data-value='Georgiana_Mititelu'>Georgiana Mititelu</div><div class='option' data-value='Lily_Miyazaki'>Lily Miyazaki</div><div class='option' data-value='Ciara_Moore'>Ciara Moore</div><div class='option' data-value='Zara_Mughal'>Zara Mughal</div><div class='option' data-value='Sophie_Munks'>Sophie Munks</div><div class='option' data-value='Talia_Neilsen-Gatenby'>Talia Neilsen-Gatenby</div><div class='option' data-value='Eloise_Newberry'>Eloise Newberry</div><div class='option' data-value='Lois_Newberry'>Lois Newberry</div><div class='option' data-value='Mirabelle_Njoze'>Mirabelle Njoze</div><div class='option' data-value='Jaquelyn_Ogunwale'>Jaquelyn Ogunwale</div><div class='option' data-value='Hephzibah_Oluwadare'>Hephzibah Oluwadare</div><div class='option' data-value='Clarice_Ouvarova'>Clarice Ouvarova</div><div class='option' data-value='Gabriela_Pacheco-Lagoda'>Gabriela Pacheco-Lagoda</div><div class='option' data-value='Kristina_Paskauskas'>Kristina Paskauskas</div><div class='option' data-value='Gabia_Paskauskas'>Gabia Paskauskas</div><div class='option' data-value='Erin_Pearce'>Erin Pearce</div><div class='option' data-value='Freya_Peet'>Freya Peet</div><div class='option' data-value='Daniela_Piani'>Daniela Piani</div><div class='option' data-value='Grace_Piper'>Grace Piper</div><div class='option' data-value='Elizabeth_Prangley'>Elizabeth Prangley</div><div class='option' data-value='Maya_Prija'>Maya Prija</div><div class='option' data-value='Teodora_Prisadnikova'>Teodora Prisadnikova</div><div class='option' data-value='Marelie_Raath'>Marelie Raath</div><div class='option' data-value='Emma_Raducanu'>Emma Raducanu</div><div class='option' data-value='Amelia_Rajecki'>Amelia Rajecki</div><div class='option' data-value='Leticia_Romanova'>Leticia Romanova</div><div class='option' data-value='Sophie_Ryland'>Sophie Ryland</div><div class='option' data-value='April_Sackflame'>April Sackflame</div><div class='option' data-value='Lara_Savic'>Lara Savic</div><div class='option' data-value='Athina_Schlepphorst'>Athina Schlepphorst</div><div class='option' data-value='Ioana-Staliana_Scripcariu'>Ioana-Staliana Scripcariu</div><div class='option' data-value='Eva_Shaw'>Eva Shaw</div><div class='option' data-value='Eden_Silva'>Eden Silva</div><div class='option' data-value='Mille_Skelton'>Mille Skelton</div><div class='option' data-value='Hollie_Smart'>Hollie Smart</div><div class='option' data-value='Indi_Spink'>Indi Spink</div><div class='option' data-value='Ranah_Stoiber'>Ranah Stoiber</div><div class='option' data-value='Mika_Stojsavljevic'>Mika Stojsavljevic</div><div class='option' data-value='Katie_Swan'>Katie Swan</div><div class='option' data-value='Mia_Tinsley'>Mia Tinsley</div><div class='option' data-value='Francesca_Tye'>Francesca Tye</div><div class='option' data-value='Maria_Ustic'>Maria Ustic</div><div class='option' data-value='Mia_Wainwright'>Mia Wainwright</div><div class='option' data-value='Isabella_Walker'>Isabella Walker</div><div class='option' data-value='Heather_Watson'>Heather Watson</div><div class='option' data-value='Emily_Webley-Smith'>Emily Webley-Smith</div><div class='option' data-value='Zainab_Williams'>Zainab Williams</div><div class='option' data-value='Ava_Williamson'>Ava Williamson</div><div class='option' data-value='Emma_Wilson'>Emma Wilson</div><div class='option' data-value='Isabella_Wong'>Isabella Wong</div><div class='option' data-value='Daisy_Wootton'>Daisy Wootton</div><div class='option' data-value='Mimi_Xu'>Mimi Xu</div><div class='option' data-value='Summer_Yardley'>Summer Yardley</div><div class='option' data-value='Pui_Yin_Lung'>Pui Yin Lung</div>
+            </div>
+        </div>
+
+        <button id="toggle-filter" class="filter-off">Players adding points</button>
+        <button id="toggle-drop-filter" class="filter-off">Players dropping points</button>
+
+        <span class="last-updated">Last updated: 5 September 9:11AM</span>
+
     </div>
+
+</div>
+
+
+
+
     
     <div id=content-container><div class='card' id='Esther_Adeshina' data-has-to-add='false' data-drop-match='false'><h2>Esther Adeshina</h2><h3>Total points: 123</h3>
         <details id="details_counted_42" open
@@ -683,7 +795,7 @@ window.addEventListener("resize", updateSelectorHeight);
             <summary>
                 To Add tournaments (1)
             </summary>
-        <table id='to_add_54' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_54",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_54",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("to_add_54",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_54",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("to_add_54",4)'>Replacing<span class='arrow'></span></th></tr></thead><tbody><tr><td>W50 Leiria</td><td>13 September 2027</td><td>QF</td><td data-sort='11'>11</td><td>Nothing: Additional tournament</td></tr></tbody></table></details></div><div class='card' id='Megan_Knight' data-has-to-add='false' data-drop-match='false'><h2>Megan Knight</h2><h3>Total points: 1</h3>
+        <table id='to_add_54' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_54",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_54",1)'>Date dropping<span class='arrow'></span></th><th onclick='sortTable("to_add_54",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_54",3)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("to_add_54",4)'>Replacing<span class='arrow'></span></th></tr></thead><tbody><tr><td>W50 Leiria</td><td>13 September 2027</td><td>SF</td><td data-sort='20'>20</td><td>Nothing: Additional tournament</td></tr></tbody></table></details></div><div class='card' id='Megan_Knight' data-has-to-add='false' data-drop-match='false'><h2>Megan Knight</h2><h3>Total points: 1</h3>
         <details id="details_counted_88" open
                  onclick="toggleArrow('details_counted_88', 'arrow_counted_88')">
             <summary>
@@ -1303,6 +1415,48 @@ document.addEventListener("headerLoaded", function () {
     window.addEventListener("resize", updateHeaderHeight);
 });
 
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const input = document.getElementById("playerSelectInput");
+    const optionsBox = document.getElementById("playerSelectOptions");
+    const options = document.querySelectorAll("#playerSelectOptions .option");
+
+    // Expand dropdown when typing
+    input.addEventListener("input", function () {
+        const query = input.value.toLowerCase();
+
+        optionsBox.style.display = "block";
+
+        options.forEach(opt => {
+            const text = opt.textContent.toLowerCase();
+            opt.style.display = text.includes(query) ? "block" : "none";
+        });
+    });
+
+    // Expand dropdown when clicking the input
+    input.addEventListener("click", function () {
+        optionsBox.style.display = "block";
+    });
+
+    // Select an option
+    options.forEach(opt => {
+        opt.addEventListener("click", function () {
+            input.value = opt.textContent;
+            optionsBox.style.display = "none";
+            scrollToPlayer(opt.dataset.value);
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (e) {
+        if (!document.getElementById("playerSelectBox").contains(e.target)) {
+            optionsBox.style.display = "none";
+        }
+    });
+
+});
 </script>
 
 <script>
