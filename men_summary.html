@@ -119,7 +119,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -1</td>
       <td>30</td>
       <td>US Open</td>
-      <td>Ch 100 Tulln</td>
+      <td>US Open (Doubles)</td>
       <td>Ch 125 Szczecin</td>
       <td>125 pts on 21 Sep 2026</td>
       <td>7</td>
@@ -693,7 +693,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -10</td>
       <td>20</td>
       <td> </td>
-      <td> </td>
+      <td>UTR PTT Newport Beach</td>
       <td> </td>
       <td>1 pts on 28 Sep 2026</td>
       <td>1</td>
@@ -1811,7 +1811,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>Mathias Lescano-Vecchi</td>
       <td>–</td>
       <td></td>
-      <td>–</td>
+      <td>18</td>
       <td> </td>
       <td>M15 Monastir Qualifying</td>
       <td> </td>
@@ -1825,7 +1825,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>Sizya Ernest Kivanda</td>
       <td>–</td>
       <td></td>
-      <td>–</td>
+      <td>34</td>
       <td> </td>
       <td>M25+H Plaisir Qualifying</td>
       <td> </td>
@@ -1839,7 +1839,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>William Durman</td>
       <td>–</td>
       <td></td>
-      <td>–</td>
+      <td>15</td>
       <td> </td>
       <td>J100 Liepaja Qualifying</td>
       <td> </td>
@@ -1853,7 +1853,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>Maxim Borin</td>
       <td>–</td>
       <td></td>
-      <td>–</td>
+      <td>16</td>
       <td> </td>
       <td>M25 Sintra Qualifying</td>
       <td> </td>
@@ -1970,6 +1970,7 @@ function getColumnCounts(colIndex, classifier) {
 
 const PRIORITY_ORDER = [
     "All Pro Tour",
+    "GB Team",
     "Grand Slam",
     "WTA Tour",
     "ATP Tour",
@@ -2107,6 +2108,11 @@ function getTournamentPriority(value, gender) {
     if (MAJORS.includes(value)) {
         return PRIORITY["Grand Slam"];
     }
+    
+    // GB Team / Priority events
+    if (/^(Davis Cup|BJK Cup|United Cup)/i.test(value)) {
+        return PRIORITY["GB Team"];
+    }
 
     // WTA
     if (/^WTA\s*1000/i.test(value)) {
@@ -2240,6 +2246,11 @@ function classifyEventWomen(val) {
         
         if (t.startsWith("WTA") || /^W\d/.test(t) || MAJORS.includes(t))
             results.push("All Pro Tour");
+            
+        // GB Team / Priority events
+        if (/^(Davis Cup|BJK Cup|United Cup)/i.test(value)) {
+            results.push["GB Team"];
+        }
 
         if (t.startsWith("WTA") && !t.startsWith("WTA125"))
             results.push("WTA Tour");
@@ -2285,6 +2296,11 @@ function classifyEventMen(val) {
         if (t.startsWith("ATP") || t.startsWith("Ch") || /^M\d/.test(t) || MAJORS.includes(t))
             results.push("All Pro Tour");
 
+        // GB Team / Priority events
+        if (/^(Davis Cup|BJK Cup|United Cup)/.test(t)) {
+            results.push("GB Team");
+        }
+        
         if (t.startsWith("ATP"))
             results.push("ATP Tour");
 
