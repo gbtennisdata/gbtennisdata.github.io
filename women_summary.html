@@ -111,7 +111,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td>–</td>
       <td>10</td>
-      <td>Last played 12 weeks ago</td>
+      <td>Last played 13 weeks ago</td>
     </tr>
     <tr>
       <td>Fran Jones</td>
@@ -139,7 +139,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td>–</td>
       <td>44</td>
-      <td>Last played 26 weeks ago</td>
+      <td>Last played 27 weeks ago</td>
     </tr>
     <tr>
       <td>Harriet Dart</td>
@@ -223,7 +223,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1</td>
       <td>–</td>
       <td>132</td>
-      <td>Last played 10 weeks ago</td>
+      <td>Last played 11 weeks ago</td>
     </tr>
     <tr>
       <td>Naiktha Bains</td>
@@ -391,7 +391,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td>–</td>
       <td>212</td>
-      <td>Last played 10 weeks ago</td>
+      <td>Last played 11 weeks ago</td>
     </tr>
     <tr>
       <td>Alice Gillan</td>
@@ -433,7 +433,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td>–</td>
       <td>235</td>
-      <td>Last played 15 weeks ago</td>
+      <td>Last played 16 weeks ago</td>
     </tr>
     <tr>
       <td>Allegra Korpanec Davies</td>
@@ -489,7 +489,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td>–</td>
       <td>785</td>
-      <td>Last played 7 weeks ago</td>
+      <td>Last played 8 weeks ago</td>
     </tr>
     <tr>
       <td>Ruby Cooling</td>
@@ -573,7 +573,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td>–</td>
       <td>286</td>
-      <td>Last played 17 weeks ago</td>
+      <td>Last played 18 weeks ago</td>
     </tr>
     <tr>
       <td>Tegan Bush</td>
@@ -657,7 +657,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td>–</td>
       <td>979</td>
-      <td>Last played 35 weeks ago</td>
+      <td>Last played 36 weeks ago</td>
     </tr>
     <tr>
       <td>Emily Webley-Smith</td>
@@ -671,7 +671,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td>–</td>
       <td>240</td>
-      <td>Last played 6 weeks ago</td>
+      <td>Last played 7 weeks ago</td>
     </tr>
     <tr>
       <td>Ciara Moore</td>
@@ -741,7 +741,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td>–</td>
       <td>1482</td>
-      <td>Last played 7 weeks ago</td>
+      <td>Last played 8 weeks ago</td>
     </tr>
     <tr>
       <td>Athina Schlepphorst</td>
@@ -1730,8 +1730,8 @@ function classifyEventWomen(val) {
             results.push("All Pro Tour");
             
         // GB Team / Priority events
-        if (/^(Davis Cup|BJK Cup|United Cup)/i.test(value)) {
-            results.push["GB Team"];
+        if (/^(Davis Cup|BJK Cup|United Cup)/.test(t)) {
+            results.push("GB Team");
         }
 
         if (t.startsWith("WTA") && !t.startsWith("WTA125"))
