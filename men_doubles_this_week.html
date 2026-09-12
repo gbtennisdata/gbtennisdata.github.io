@@ -38,6 +38,19 @@
 <div>
 <h1>Men playing doubles this week</h1>
 
+<style>
+week-table {
+    table-layout: fixed;
+    max-width:1200px;
+}
+
+week-table th:nth-child(1), .roster-table td:nth-child(1) { width: 30%; }
+week-table th:nth-child(2), .roster-table td:nth-child(2) { width: 30%; }
+week-table th:nth-child(3), .roster-table td:nth-child(3) { width: 8%; }
+week-table th:nth-child(4), .roster-table td:nth-child(4) { width: 8%; }
+week-table th:nth-child(5), .roster-table td:nth-child(5) { width: 15%; }
+week-table th:nth-child(6), .roster-table td:nth-child(6) { width: 9%; }
+</stylE>
 
 </div>
 <div id='player-select-container'>
@@ -45,8 +58,8 @@
 </div>
 
 <div id=content-container>
-<h2>Still competing</h2>Last updated: 12 September 5:12PM
-<table class="dataframe roster-table left-align-player left-align-notes">
+<h2>Still competing</h2>Last updated: 12 September 7:42PM
+<table class="dataframe roster-table left-align-player left-align-notes" id="week-table">
   <thead>
     <tr style="text-align: center;">
       <th>Player</th>
@@ -61,9 +74,9 @@
     <tr>
       <td>Neal Skupski (with C Harrison)</td>
       <td>US Open</td>
-      <td>Final</td>
-      <td>1200</td>
-      <td><a href="https://www.usopen.org/en_US/scores/index.html">Live scores</a></td>
+      <td>Winner</td>
+      <td>2000</td>
+      <td></td>
       <td><a href="https://www.usopen.org/en_US/draws/mens-doubles.html">Draw</a></td>
     </tr>
     <tr>
@@ -125,7 +138,7 @@
   </tbody>
 </table>
 <h2>Knocked out</h2>
-<table class="dataframe roster-table left-align-player left-align-notes">
+<table class="dataframe roster-table left-align-player left-align-notes" id="week-table">
   <thead>
     <tr style="text-align: center;">
       <th>Player</th>
