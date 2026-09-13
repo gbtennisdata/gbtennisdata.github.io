@@ -1,7 +1,8 @@
 :root {
     --header-height: 60px;
-    --selector-height: 57px;
-    --sticky-offset: calc(var(--header-height) + var(--selector-height));
+    --selector-height: 0px; /*57px;*/
+    --cardHeader-height: 0px;
+    --sticky-offset: calc(var(--header-height) + var(--selector-height) + var(--cardHeader-height));
 }
 
 body {
@@ -124,7 +125,7 @@ body {
 
 .nav-menu a {
     display: block;
-    padding: 15px 20px;
+    padding: 5px 20px;
     color: white;
     text-decoration: none;
     font-size: 1rem;
@@ -142,9 +143,14 @@ body {
     transition: max-height 0.3s ease-out;
 }
 
+.dropdown:hover .dropdown-content {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
 .dropdown-content li a {
     padding-left: 40px; /* Indent sub-items */
-    font-size: 0.9rem;
+    font-size: 0.7rem;
 }
 
 /* Use checkbox hack for mobile dropdowns if needed, or simple CSS hover/touch */
@@ -203,6 +209,7 @@ body {
 
     .dropdown:hover .dropdown-content {
         max-height: 500px;
+ 	overflow-y: auto;
     }
 
     .dropdown-content li a {
@@ -247,7 +254,7 @@ th {
     color: #fff;
     cursor: pointer;
     position: sticky;
-    top: calc(var(--header-height) + var(--selector-height));
+    top: calc(var(--header-height) + var(--selector-height) + var(--cardHeader-height) - 2px);
     z-index: 4000;
 }
 
@@ -269,6 +276,14 @@ tr:nth-child(even) {
         box-shadow:0 2px 6px rgba(0,0,0,0.1);
     padding: 5px 20px;
     margin: 15px auto auto;
+}
+
+.card-header {
+    position: sticky;
+    top: calc(var(--header-height) + var(--selector-height) - 1px);
+    background: white;
+    z-index: 4001;
+    padding-top:1px;
 }
 
 summary {

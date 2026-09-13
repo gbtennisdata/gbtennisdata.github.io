@@ -36,8 +36,11 @@
     display:flex;
     flex-wrap:wrap;
     gap:20px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top:30px;
     margin-bottom:30px;
+    max-width: 1000px;
 }
 
 .stat {
@@ -46,47 +49,36 @@
     border-radius:10px;
     box-shadow:0 2px 6px rgba(0,0,0,0.1);
     flex:1;
-    min-width:180px;
+    min-width:80px;
     text-align:center;
 }
 
 .stat h3 {
     margin:0;
-    font-size:28px;
+    font-size:18px;
 }
 
 .stat p {
     margin:8px 0 0 0;
-    font-size:28px;
+    font-size:18px;
     font-weight:bold;
 }
 
-.card {
-    background:#fff;
-    border-radius:8px;
-    box-shadow:0 2px 6px rgba(0,0,0,0.1);
-    margin-bottom:20px;
-    padding:16px;
-}
+
 
 .card h2 { margin-top:0; }
 
-table th {position:sticky !important;
-    top: var(--header-height) !important;}
-
-th:nth-child(1), td:nth-child(1) { width: 30%; }
-th:nth-child(2), td:nth-child(2) { width: 20%; }
-th:nth-child(3), td:nth-child(3) { width: 50%; }
 </style>
 </head>
 <body>
-<div id=content-container>
+<div id=content-container style="max-width: 1000px; margin: auto;">
 <h1>Singles Tournament Winners (last 52 weeks)</h1>
+
 
 <div class="dashboard">
     <div class="stat">
         <h3>Total Titles</h3>
-        <p>24</p>
+        <p>25</p>
     </div>
 
     <div class="stat">
@@ -141,7 +133,7 @@ th:nth-child(3), td:nth-child(3) { width: 50%; }
 
     <div class="stat">
         <h3>W15</h3>
-        <p>6</p>
+        <p>7</p>
     </div>
 </div>
 
@@ -163,215 +155,213 @@ th:nth-child(3), td:nth-child(3) { width: 50%; }
             <p>2 titles</p>
         </div>
         </div><div class="card" style="max-width: 900px">
-<h2>WTA250</h2>
-<table style="width:100%;table-layout:fixed;border-collapse:collapse;">
+<div class=card-header><h2>WTA250</h2></div>
+<table style="table-layout:fixed;">
 <thead><tr>
-<th style="width:35%;padding:6px 10px;border-bottom:2px solid #ddd;">Player</th>
-<th style="width:35%;padding:6px 10px;border-bottom:2px solid #ddd;">Tournament</th>
-<th style="width:30%;padding:6px 10px;border-bottom:2px solid #ddd;">Date</th>
+<th style="width:35%;">Player</th>
+<th style="width:35%;">Tournament</th>
+<th style="width:30%;">Date</th>
 </tr></thead>
 <tbody>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Katie Boulter</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Ostrava</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">February 2026</td>
+<td style="width:35%;">Katie Boulter</td>
+<td style="width:35%;">Ostrava</td>
+<td style="width:30%;">February 2026</td>
 </tr>
 </tbody></table>
 
-</div>
 </div>
 <div class="card" style="max-width: 900px">
-<h2>WTA125</h2>
-<table style="width:100%;table-layout:fixed;border-collapse:collapse;">
+<div class=card-header><h2>WTA125</h2></div>
+<table style="table-layout:fixed;">
 <thead><tr>
-<th style="width:35%;padding:6px 10px;border-bottom:2px solid #ddd;">Player</th>
-<th style="width:35%;padding:6px 10px;border-bottom:2px solid #ddd;">Tournament</th>
-<th style="width:30%;padding:6px 10px;border-bottom:2px solid #ddd;">Date</th>
+<th style="width:35%;">Player</th>
+<th style="width:35%;">Tournament</th>
+<th style="width:30%;">Date</th>
 </tr></thead>
 <tbody>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Fran Jones</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Palermo</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">July 2026</td>
+<td style="width:35%;">Fran Jones</td>
+<td style="width:35%;">Palermo</td>
+<td style="width:30%;">July 2026</td>
 </tr>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Fran Jones</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Rome</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">July 2026</td>
+<td style="width:35%;">Fran Jones</td>
+<td style="width:35%;">Rome</td>
+<td style="width:30%;">July 2026</td>
 </tr>
 </tbody></table>
 
-</div>
 </div>
 <div class="card" style="max-width: 900px">
-<h2>W100</h2>
-<table style="width:100%;table-layout:fixed;border-collapse:collapse;">
+<div class=card-header><h2>W100</h2></div>
+<table style="table-layout:fixed;">
 <thead><tr>
-<th style="width:35%;padding:6px 10px;border-bottom:2px solid #ddd;">Player</th>
-<th style="width:35%;padding:6px 10px;border-bottom:2px solid #ddd;">Tournament</th>
-<th style="width:30%;padding:6px 10px;border-bottom:2px solid #ddd;">Date</th>
+<th style="width:35%;">Player</th>
+<th style="width:35%;">Tournament</th>
+<th style="width:30%;">Date</th>
 </tr></thead>
 <tbody>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Mimi Xu</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Wrexham</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">October 2025</td>
+<td style="width:35%;">Mimi Xu</td>
+<td style="width:35%;">Wrexham</td>
+<td style="width:30%;">October 2025</td>
 </tr>
 </tbody></table>
 
-</div>
 </div>
 <div class="card" style="max-width: 900px">
-<h2>W75</h2>
-<table style="width:100%;table-layout:fixed;border-collapse:collapse;">
+<div class=card-header><h2>W75</h2></div>
+<table style="table-layout:fixed;">
 <thead><tr>
-<th style="width:35%;padding:6px 10px;border-bottom:2px solid #ddd;">Player</th>
-<th style="width:35%;padding:6px 10px;border-bottom:2px solid #ddd;">Tournament</th>
-<th style="width:30%;padding:6px 10px;border-bottom:2px solid #ddd;">Date</th>
+<th style="width:35%;">Player</th>
+<th style="width:35%;">Tournament</th>
+<th style="width:30%;">Date</th>
 </tr></thead>
 <tbody>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Katie Swan</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Kurume</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">May 2026</td>
+<td style="width:35%;">Katie Swan</td>
+<td style="width:35%;">Kurume</td>
+<td style="width:30%;">May 2026</td>
 </tr>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Harriet Dart</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Toronto</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">October 2025</td>
+<td style="width:35%;">Harriet Dart</td>
+<td style="width:35%;">Toronto</td>
+<td style="width:30%;">October 2025</td>
 </tr>
 </tbody></table>
 
-</div>
 </div>
 <div class="card" style="max-width: 900px">
-<h2>W50</h2>
-<table style="width:100%;table-layout:fixed;border-collapse:collapse;">
+<div class=card-header><h2>W50</h2></div>
+<table style="table-layout:fixed;">
 <thead><tr>
-<th style="width:35%;padding:6px 10px;border-bottom:2px solid #ddd;">Player</th>
-<th style="width:35%;padding:6px 10px;border-bottom:2px solid #ddd;">Tournament</th>
-<th style="width:30%;padding:6px 10px;border-bottom:2px solid #ddd;">Date</th>
+<th style="width:35%;">Player</th>
+<th style="width:35%;">Tournament</th>
+<th style="width:30%;">Date</th>
 </tr></thead>
 <tbody>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Hannah Klugman</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Leiria</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">August 2026</td>
+<td style="width:35%;">Hannah Klugman</td>
+<td style="width:35%;">Leiria</td>
+<td style="width:30%;">August 2026</td>
 </tr>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Alicia Dudeney</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Nottingham</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">July 2026</td>
+<td style="width:35%;">Alicia Dudeney</td>
+<td style="width:35%;">Nottingham</td>
+<td style="width:30%;">July 2026</td>
 </tr>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Katie Swan</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Brisbane</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">November 2025</td>
+<td style="width:35%;">Katie Swan</td>
+<td style="width:35%;">Brisbane</td>
+<td style="width:30%;">November 2025</td>
 </tr>
 </tbody></table>
 
-</div>
 </div>
 <div class="card" style="max-width: 900px">
-<h2>W35</h2>
-<table style="width:100%;table-layout:fixed;border-collapse:collapse;">
+<div class=card-header><h2>W35</h2></div>
+<table style="table-layout:fixed;">
 <thead><tr>
-<th style="width:35%;padding:6px 10px;border-bottom:2px solid #ddd;">Player</th>
-<th style="width:35%;padding:6px 10px;border-bottom:2px solid #ddd;">Tournament</th>
-<th style="width:30%;padding:6px 10px;border-bottom:2px solid #ddd;">Date</th>
+<th style="width:35%;">Player</th>
+<th style="width:35%;">Tournament</th>
+<th style="width:30%;">Date</th>
 </tr></thead>
 <tbody>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Amelia Rajecki</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Roehampton</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">August 2026</td>
+<td style="width:35%;">Millie Rajecki</td>
+<td style="width:35%;">Roehampton</td>
+<td style="width:30%;">August 2026</td>
 </tr>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Alicia Dudeney</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Estepona</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">May 2026</td>
+<td style="width:35%;">Alicia Dudeney</td>
+<td style="width:35%;">Estepona</td>
+<td style="width:30%;">May 2026</td>
 </tr>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Katie Swan</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Fukuoka</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">May 2026</td>
+<td style="width:35%;">Katie Swan</td>
+<td style="width:35%;">Fukuoka</td>
+<td style="width:30%;">May 2026</td>
 </tr>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Alicia Dudeney</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Nottingham</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">May 2026</td>
+<td style="width:35%;">Alicia Dudeney</td>
+<td style="width:35%;">Nottingham</td>
+<td style="width:30%;">May 2026</td>
 </tr>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Lily Miyazaki</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Nottingham</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">April 2026</td>
+<td style="width:35%;">Lily Miyazaki</td>
+<td style="width:35%;">Nottingham</td>
+<td style="width:30%;">April 2026</td>
 </tr>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Sofia Johnson</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Jackson</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">March 2026</td>
+<td style="width:35%;">Sofia Johnson</td>
+<td style="width:35%;">Jackson</td>
+<td style="width:30%;">March 2026</td>
 </tr>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Mika Stojsavljevic</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Birmingham</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">October 2025</td>
+<td style="width:35%;">Mika Stojsavljevic</td>
+<td style="width:35%;">Birmingham</td>
+<td style="width:30%;">October 2025</td>
 </tr>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Vic Allen</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Quebec City</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">October 2025</td>
+<td style="width:35%;">Vic Allen</td>
+<td style="width:35%;">Quebec City</td>
+<td style="width:30%;">October 2025</td>
 </tr>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Harriet Dart</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Monastir</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">September 2025</td>
+<td style="width:35%;">Harriet Dart</td>
+<td style="width:35%;">Monastir</td>
+<td style="width:30%;">September 2025</td>
 </tr>
 </tbody></table>
 
-</div>
 </div>
 <div class="card" style="max-width: 900px">
-<h2>W15</h2>
-<table style="width:100%;table-layout:fixed;border-collapse:collapse;">
+<div class=card-header><h2>W15</h2></div>
+<table style="table-layout:fixed;">
 <thead><tr>
-<th style="width:35%;padding:6px 10px;border-bottom:2px solid #ddd;">Player</th>
-<th style="width:35%;padding:6px 10px;border-bottom:2px solid #ddd;">Tournament</th>
-<th style="width:30%;padding:6px 10px;border-bottom:2px solid #ddd;">Date</th>
+<th style="width:35%;">Player</th>
+<th style="width:35%;">Tournament</th>
+<th style="width:30%;">Date</th>
 </tr></thead>
 <tbody>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Alicia Dudeney</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Monastir</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">March 2026</td>
+<td style="width:35%;">Immi Haddad</td>
+<td style="width:35%;">Monastir</td>
+<td style="width:30%;">September 2026</td>
 </tr>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Alicia Dudeney</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Monastir</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">March 2026</td>
+<td style="width:35%;">Alicia Dudeney</td>
+<td style="width:35%;">Monastir</td>
+<td style="width:30%;">March 2026</td>
 </tr>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Esther Adeshina</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Victoriaville</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">March 2026</td>
+<td style="width:35%;">Alicia Dudeney</td>
+<td style="width:35%;">Monastir</td>
+<td style="width:30%;">March 2026</td>
 </tr>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Indi Spink</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Manacor</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">February 2026</td>
+<td style="width:35%;">Esther Adeshina</td>
+<td style="width:35%;">Victoriaville</td>
+<td style="width:30%;">March 2026</td>
 </tr>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Sofia Johnson</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Palm Coast</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">February 2026</td>
+<td style="width:35%;">Indi Spink</td>
+<td style="width:35%;">Manacor</td>
+<td style="width:30%;">February 2026</td>
 </tr>
 <tr>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Alice Gillan</td>
-<td style="width:35%;padding:6px 10px;border-bottom:1px solid #eee;">Malta</td>
-<td style="width:30%;padding:6px 10px;border-bottom:1px solid #eee;">October 2025</td>
+<td style="width:35%;">Sofia Johnson</td>
+<td style="width:35%;">Palm Coast</td>
+<td style="width:30%;">February 2026</td>
+</tr>
+<tr>
+<td style="width:35%;">Alice Gillan</td>
+<td style="width:35%;">Malta</td>
+<td style="width:30%;">October 2025</td>
 </tr>
 </tbody></table>
 
-</div>
 </div>
 <div id="footer-container"></div>
 <script src="header.js"></script></body></html>

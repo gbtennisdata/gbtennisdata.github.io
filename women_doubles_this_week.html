@@ -38,6 +38,19 @@
 <div>
 <h1>Women playing doubles this week</h1>
 
+<style>
+week-table {
+    table-layout: fixed;
+    max-width:1200px;
+}
+
+week-table th:nth-child(1), .roster-table td:nth-child(1) { width: 30%; }
+week-table th:nth-child(2), .roster-table td:nth-child(2) { width: 30%; }
+week-table th:nth-child(3), .roster-table td:nth-child(3) { width: 8%; }
+week-table th:nth-child(4), .roster-table td:nth-child(4) { width: 8%; }
+week-table th:nth-child(5), .roster-table td:nth-child(5) { width: 15%; }
+week-table th:nth-child(6), .roster-table td:nth-child(6) { width: 9%; }
+</stylE>
 
 </div>
 <div id='player-select-container'>
@@ -45,13 +58,13 @@
 </div>
 
 <div id=content-container>
-<h2>Still competing</h2>Last updated: 12 September 4:26PM
-<table class="dataframe roster-table left-align-player left-align-notes">
+<h2>Still competing</h2>Last updated: 13 September 6:50PM
+<table class="dataframe roster-table left-align-player left-align-notes" id="week-table">
   <thead>
     <tr style="text-align: center;">
       <th>Player</th>
       <th>Tournament</th>
-      <th>Round reached</th>
+      <th>Round</th>
       <th>Ranking points</th>
       <th>Live scores</th>
       <th>Draw</th>
@@ -74,15 +87,39 @@
       <td><a href="https://www.wtatennis.com/tournaments/2075/guadalajara-500/2026/scores">Live scores</a></td>
       <td><a href="https://www.wtatennis.com/tournaments/2075/guadalajara-500/2026/draws">Draw</a></td>
     </tr>
+    <tr>
+      <td>Madeleine Brooks (with R Brantmeier)</td>
+      <td>WTA125 Caldas da Rainha</td>
+      <td>R16</td>
+      <td>1</td>
+      <td><a href="https://www.wtatennis.com/tournaments/1136/caldas-da-rainha-125/2026/scores">Live scores</a></td>
+      <td><a href="https://www.wtatennis.com/tournaments/1136/caldas-da-rainha-125/2026/draws">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Emily Webley-Smith (with M Ayukawa)</td>
+      <td>WTA125 Caldas da Rainha</td>
+      <td>R16</td>
+      <td>1</td>
+      <td><a href="https://www.wtatennis.com/tournaments/1136/caldas-da-rainha-125/2026/scores">Live scores</a></td>
+      <td><a href="https://www.wtatennis.com/tournaments/1136/caldas-da-rainha-125/2026/draws">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Freya Christie & Eden Silva</td>
+      <td>WTA125 Valencia</td>
+      <td>R16</td>
+      <td>1</td>
+      <td><a href="https://www.wtatennis.com/tournaments/2061/valencia-125/2026/scores">Live scores</a></td>
+      <td><a href="https://www.wtatennis.com/tournaments/2061/valencia-125/2026/draws">Draw</a></td>
+    </tr>
   </tbody>
 </table>
 <h2>Knocked out</h2>
-<table class="dataframe roster-table left-align-player left-align-notes">
+<table class="dataframe roster-table left-align-player left-align-notes" id="week-table">
   <thead>
     <tr style="text-align: center;">
       <th>Player</th>
       <th>Tournament</th>
-      <th>Round reached</th>
+      <th>Round</th>
       <th>Ranking points</th>
       <th>Live scores</th>
       <th>Draw</th>

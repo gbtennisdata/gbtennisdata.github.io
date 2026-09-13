@@ -43,8 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function updateSelectorHeight() {
     const selector = document.getElementById("player-select-container");
-    const h = selector.offsetHeight;
+    const cardHeader = document.querySelector(".card-header");
+
+    // Default values
+    let h = 0;
+    let ch = 0;
+
+    if (selector) {
+        h = selector.getBoundingClientRect().height;
+    }
+
+    if (cardHeader) {
+        ch = cardHeader.getBoundingClientRect().height;
+    }
+
     document.documentElement.style.setProperty("--selector-height", h + "px");
+    document.documentElement.style.setProperty("--cardHeader-height", ch + "px");
 }
 
 window.addEventListener("load", () => {
