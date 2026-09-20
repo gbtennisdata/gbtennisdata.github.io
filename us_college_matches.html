@@ -46,20 +46,83 @@
 <style>
   body { font-family: sans-serif; font-size: 0.95em; max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
   /*.card { border: 1px solid #ddd; border-radius: 8px; margin-bottom: 1.5rem; overflow: hidden; }*/
-  .card-header {  padding: 0.75rem 1rem; font-size: 1.1rem; font-weight: bold; z-index: 001;}
+  .card-header {  padding: 0.75rem 1rem; font-size: 1.1rem; font-weight: bold; z-index: 1001;}
   .card-body { padding: 1rem; }
-  .matches table { width: 100%; border-collapse: collapse; border: none; margin-bottom: 1rem; table-layout: fixed; } 
+  .matches table { width: 100%; border-collapse: separate; border-spacing: 0; border: none; margin-bottom: 1rem; table-layout: fixed; } 
   col.col-player { width: 36%; }
   col.col-vs { width: 3%; }
   col.col-opponent { width: 36%; }
   col.col-score { width: 25%; }
-  .matches th, td {font-size:0.95em; text-align: left; padding: 0.4rem 0.6rem; border: none; border-bottom: 1px solid #eee; overflow: hidden; text-overflow: ellipsis; }
-  .matches th { background: #f5f5f5; }
-  .group-header td { background: #3a7; color: #fff; font-weight: bold; }
+  .matches th, td {font-size:0.95em; text-align: left; padding: 0.4rem 0.6rem; border: none; 
+      border-bottom: 1px solid #eee; overflow: hidden; text-overflow: ellipsis; }
+  .matches th { background: #f5f5f5;    }
+  .group-header td { background: #3a7; color: #fff; font-weight: bold; position:sticky; 
+      top: calc(var(--header-height) + var(--selector-height) + var(--cardHeader-height) - 2px); z-index: 001;}
   .round-header td { font-weight: bold; color: #555; padding-left: 1.2rem; }
 </style>
 
 
+  <div class="card">
+    <div class="card-header">Latest results</div>
+    <div class="card-body">
+      <table class=matches>
+        <colgroup>
+          <col class="col-player">
+          <col class="col-vs">
+          <col class="col-opponent">
+          <col class="col-score">
+        </colgroup>
+        <tr class="group-header"><td colspan="4">Women &ndash; Singles &ndash; Pre-qualifying</td></tr>
+        <tr class="round-header"><td colspan="4">PQR2 of 3</td></tr>
+        <tr><td class=matches>[13] Tegan Bush (Louisiana State) <span style="font-size:0.8em; color:#808080;">[WTN: 14.29]</span></td><td class=matches>vs</td><td class=matches>Anna Grigoreva (Arkansas State) <span style="font-size:0.8em; color:#808080;">[WTN: 15.61]</span></td><td class=matches>Tegan wins 5-7 6-3 6-2</td></tr>
+        <tr><td class=matches>[21] Jasmine Conway (North Carolina State) <span style="font-size:0.8em; color:#808080;">[WTN: 14.6]</span></td><td class=matches>vs</td><td class=matches>Isabella Wong (UC Santa Barbara) <span style="font-size:0.8em; color:#808080;">[WTN: 15.42]</span></td><td class=matches>Jasmine wins 6-3 6-3</td></tr>
+        <tr><td class=matches>Jaquelyn Ogunwale (Miami) <span style="font-size:0.8em; color:#808080;">[WTN: 14.85]</span></td><td class=matches>vs</td><td class=matches>Claudia Gasparovic (Oklahoma State) <span style="font-size:0.8em; color:#808080;">[WTN: 15.33]</span></td><td class=matches>Jaquelyn wins 6-4 6-2</td></tr>
+      </table>
+      <table class=matches>
+        <colgroup>
+          <col class="col-player">
+          <col class="col-vs">
+          <col class="col-opponent">
+          <col class="col-score">
+        </colgroup>
+        <tr class="group-header"><td colspan="4">Men &ndash; Singles &ndash; Pre-qualifying</td></tr>
+        <tr class="round-header"><td colspan="4">PQR2 of 3</td></tr>
+        <tr><td class=matches>Kyran Magimay (Notre Dame) <span style="font-size:0.8em; color:#808080;">[WTN: 6.72]</span></td><td class=matches>vs</td><td class=matches>Tarek Erlewein (Drexel) <span style="font-size:0.8em; color:#808080;">[WTN: 7.35]</span></td><td class=matches>Kyran wins 4-6 6-4 6-2</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">Monday 21 September 2026</div>
+    <div class="card-body">
+      <table class=matches>
+        <colgroup>
+          <col class="col-player">
+          <col class="col-vs">
+          <col class="col-opponent">
+          <col class="col-score">
+        </colgroup>
+        <tr class="group-header"><td colspan="4">Women &ndash; Singles &ndash; Qualifying</td></tr>
+        <tr class="round-header"><td colspan="4">QR1 of 2</td></tr>
+        <tr><td class=matches>[17] Allegra Korpanec Davies (Florida) <span style="font-size:0.8em; color:#808080;">[WTN: 13.21]</span></td><td class=matches>vs</td><td class=matches>Sankavi Gownder (Wake Forest) <span style="font-size:0.8em; color:#808080;">[WTN: 13.95]</span></td><td class=matches></td></tr>
+        <tr><td class=matches>[8] Hannah Read (San Diego) <span style="font-size:0.8em; color:#808080;">[WTN: 13.78]</span></td><td class=matches>vs</td><td class=matches>Veronika Kliuch (Oklahoma State) <span style="font-size:0.8em; color:#808080;">[WTN: 14]</span></td><td class=matches></td></tr>
+        <tr><td class=matches>[13] Brooke Black (Florida) <span style="font-size:0.8em; color:#808080;">[WTN: 12.49]</span></td><td class=matches>vs</td><td class=matches>Qualifier 8 (Unk) <span style="font-size:0.8em; color:#808080;">[WTN: 14.01 to 15.99]</span></td><td class=matches></td></tr>
+      </table>
+      <table class=matches>
+        <colgroup>
+          <col class="col-player">
+          <col class="col-vs">
+          <col class="col-opponent">
+          <col class="col-score">
+        </colgroup>
+        <tr class="group-header"><td colspan="4">Women &ndash; Doubles &ndash; Qualifying</td></tr>
+        <tr class="round-header"><td colspan="4">QR1 of 2</td></tr>
+        <tr><td class=matches>Jasmine Conway & Amelie Smejkalova [WC] (North Carolina State) <span style="font-size:0.8em; color:#808080;">[WTN: 15.24 & 14.93]</span></td><td class=matches>vs</td><td class=matches>[9] Jermine Sherif & Karolina Kozakova (Washington) <span style="font-size:0.8em; color:#808080;">[WTN: 15.13 & 15.15]</span></td><td class=matches></td></tr>
+        <tr><td class=matches>Marelie Raath & Neena Feldman (Northwestern) <span style="font-size:0.8em; color:#808080;">[WTN: 14.97 & 15.30]</span></td><td class=matches>vs</td><td class=matches>[2] Vivian Yang & Alyssa James (Virginia) <span style="font-size:0.8em; color:#808080;">[WTN: 13.38 & 14.49]</span></td><td class=matches></td></tr>
+        <tr><td class=matches>[9] Allegra Korpanec Davies & Capucine Jauffret (Florida) <span style="font-size:0.8em; color:#808080;">[WTN: 15.25 & 14.35]</span></td><td class=matches>vs</td><td class=matches>Kaede Usui & Ellison Reynoldson (Wisconsin) <span style="font-size:0.8em; color:#808080;">[WTN: 15.15 & 14.64]</span></td><td class=matches></td></tr>
+        <tr><td class=matches>Ranah Stoiber & Anastasiia Gureva [WC] (Georgia) <span style="font-size:0.8em; color:#808080;">[WTN: 13.55 & 15.10]</span></td><td class=matches>vs</td><td class=matches>[9] Bianca Molnar & Gabriella Rawles (Notre Dame) <span style="font-size:0.8em; color:#808080;">[WTN: 14.66 & 14.82]</span></td><td class=matches></td></tr>
+      </table>
+    </div>
+  </div>
   <div class="card">
     <div class="card-header">Sunday 20 September 2026</div>
     <div class="card-body">
@@ -71,10 +134,14 @@
           <col class="col-score">
         </colgroup>
         <tr class="group-header"><td colspan="4">Women &ndash; Singles &ndash; Pre-qualifying</td></tr>
+        <tr class="round-header"><td colspan="4">Final PQR</td></tr>
+        <tr><td class=matches>[13] Tegan Bush (Louisiana State) <span style="font-size:0.8em; color:#808080;">[WTN: 14.29]</span></td><td class=matches>vs</td><td class=matches>[21] Nika Hurkacz (California) <span style="font-size:0.8em; color:#808080;">[WTN: 14.49]</span></td><td class=matches></td></tr>
+        <tr><td class=matches>[21] Jasmine Conway (North Carolina State) <span style="font-size:0.8em; color:#808080;">[WTN: 14.6]</span></td><td class=matches>vs</td><td class=matches>TBD (TBD) <span style="font-size:0.8em; color:#808080;">[WTN: 15.42]</span></td><td class=matches></td></tr>
+        <tr><td class=matches>Jaquelyn Ogunwale (Miami) <span style="font-size:0.8em; color:#808080;">[WTN: 14.85]</span></td><td class=matches>vs</td><td class=matches>[14] Mara Gae (Virginia) <span style="font-size:0.8em; color:#808080;">[WTN: 14.34]</span></td><td class=matches></td></tr>
         <tr class="round-header"><td colspan="4">PQR2 of 3</td></tr>
-        <tr><td class=matches>[13] Tegan Bush (Louisiana State) <span style="font-size:0.8em; color:#808080;">[WTN: 14.29]</span></td><td class=matches>vs</td><td class=matches>Anna Grigoreva (Arkansas State) <span style="font-size:0.8em; color:#808080;">[WTN: 15.61]</span></td><td class=matches></td></tr>
-        <tr><td class=matches>[21] Jasmine Conway (North Carolina State) <span style="font-size:0.8em; color:#808080;">[WTN: 14.6]</span></td><td class=matches>vs</td><td class=matches>Isabella Wong (UC Santa Barbara) <span style="font-size:0.8em; color:#808080;">[WTN: 15.42]</span></td><td class=matches></td></tr>
-        <tr><td class=matches>Jaquelyn Ogunwale (Miami) <span style="font-size:0.8em; color:#808080;">[WTN: 14.85]</span></td><td class=matches>vs</td><td class=matches>Claudia Gasparovic (Oklahoma State) <span style="font-size:0.8em; color:#808080;">[WTN: 15.33]</span></td><td class=matches></td></tr>
+        <tr><td class=matches>[13] Tegan Bush (Louisiana State) <span style="font-size:0.8em; color:#808080;">[WTN: 14.29]</span></td><td class=matches>vs</td><td class=matches>Anna Grigoreva (Arkansas State) <span style="font-size:0.8em; color:#808080;">[WTN: 15.61]</span></td><td class=matches>Tegan wins 5-7 6-3 6-2</td></tr>
+        <tr><td class=matches>[21] Jasmine Conway (North Carolina State) <span style="font-size:0.8em; color:#808080;">[WTN: 14.6]</span></td><td class=matches>vs</td><td class=matches>Isabella Wong (UC Santa Barbara) <span style="font-size:0.8em; color:#808080;">[WTN: 15.42]</span></td><td class=matches>Jasmine wins 6-3 6-3</td></tr>
+        <tr><td class=matches>Jaquelyn Ogunwale (Miami) <span style="font-size:0.8em; color:#808080;">[WTN: 14.85]</span></td><td class=matches>vs</td><td class=matches>Claudia Gasparovic (Oklahoma State) <span style="font-size:0.8em; color:#808080;">[WTN: 15.33]</span></td><td class=matches>Jaquelyn wins 6-4 6-2</td></tr>
       </table>
       <table class=matches>
         <colgroup>
@@ -84,8 +151,10 @@
           <col class="col-score">
         </colgroup>
         <tr class="group-header"><td colspan="4">Men &ndash; Singles &ndash; Pre-qualifying</td></tr>
+        <tr class="round-header"><td colspan="4">Final PQR</td></tr>
+        <tr><td class=matches>Kyran Magimay (Notre Dame) <span style="font-size:0.8em; color:#808080;">[WTN: 6.72]</span></td><td class=matches>vs</td><td class=matches>[1] Niels Ratiu (UNC Chapel Hill) <span style="font-size:0.8em; color:#808080;">[WTN: 6.07]</span></td><td class=matches></td></tr>
         <tr class="round-header"><td colspan="4">PQR2 of 3</td></tr>
-        <tr><td class=matches>Kyran Magimay (Notre Dame) <span style="font-size:0.8em; color:#808080;">[WTN: 6.72]</span></td><td class=matches>vs</td><td class=matches>Tarek Erlewein (Drexel) <span style="font-size:0.8em; color:#808080;">[WTN: 7.35]</span></td><td class=matches></td></tr>
+        <tr><td class=matches>Kyran Magimay (Notre Dame) <span style="font-size:0.8em; color:#808080;">[WTN: 6.72]</span></td><td class=matches>vs</td><td class=matches>Tarek Erlewein (Drexel) <span style="font-size:0.8em; color:#808080;">[WTN: 7.35]</span></td><td class=matches>Kyran wins 4-6 6-4 6-2</td></tr>
         <tr><td class=matches>[21] Hugo Coquelin (Vanderbilt) <span style="font-size:0.8em; color:#808080;">[WTN: 6.39]</span></td><td class=matches>vs</td><td class=matches>Mason Landreth (Mississippi) <span style="font-size:0.8em; color:#808080;">[WTN: 7.41]</span></td><td class=matches></td></tr>
         <tr><td class=matches>Ferran Redza (Santa Clara) <span style="font-size:0.8em; color:#808080;">[WTN: 7.45]</span></td><td class=matches>vs</td><td class=matches>Jeremy Zhang (Illinois) <span style="font-size:0.8em; color:#808080;">[WTN: 6.65]</span></td><td class=matches></td></tr>
       </table>
@@ -296,6 +365,6 @@ Jack Berry & Cristian Pensavalle (Oral Roberts) [WC]<br>
 <div id="footer-container"></div>
 
         <script src="header.js"></script>
-    
+        
 </body>
 </html>
