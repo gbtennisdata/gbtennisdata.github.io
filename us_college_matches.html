@@ -24,7 +24,7 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="GB players Matches for the ITA Regional Championships">
-  <title>ITA Regional Championships – GB Tennis Data</title>
+  <title>ITA Regional Championships â€“ GB Tennis Data</title>
   <link rel="stylesheet" type="text/css" href="base_style.css">
 </head>
 </body>
@@ -32,13 +32,20 @@
 <div class="header-spacer"></div>
     
 <h2>ITA Regional Championships</h2>
-    <div id=player-select-container>The ITA Regional Championships is the second of 3 possible attempts to qualify for the NCAA Individuals Championships in November.<p> 
-    NCAA qualification:<br>
-    Singles: Finalists in each region<br>
-    Doubles: Winner in each region<p>
+    The ITA Regional Championships is the second of 3 possible attempts to qualify for the NCAA Individuals Championships in November.<p> 
     Who will join Mimi Xu in singles and Flora Johnson in doubles as NCAA qualifiers so far?<p>
     Matches and results for British student-athletes below. Possible entries for the regionals not yet started are 
-    at the bottom of the page.
+    at the bottom of the page.<p>
+    NCAA qualification:<br>
+    Singles: Finalists in each region<br>
+    Doubles: Winner in each region
+<div id=player-select-container>Buttons to only show 
+    <button id="btn-yesterday" class="filter-off">7 October</button>
+    <button id="btn-today" class="filter-off">8 October</button>
+    <button id="btn-tomorrow" class="filter-off">9 October</button>
+    <button id="btn-reset" class="filter-off">Reset</button>
+        
+
 </div>
 <style>
   body { font-family: sans-serif; font-size: 0.95em; max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
@@ -57,10 +64,39 @@
   .group-header td { background: #3a7; color: #fff; font-weight: bold; position:sticky; 
       top: calc(var(--header-height) + var(--selector-height) + var(--cardHeader-height) - 2px); z-index: 001;}
   .round-header td { font-weight: bold; color: #555; padding-left: 1.2rem; }
+/* Buttons */
+#btn-yesterday,
+#btn-today,
+#btn-tomorrow,
+#btn-reset {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #ccc;
+    color: #000;
+    font-weight: 600;
+}
+
+#btn-yesterday.filter-on,
+#btn-today.filter-on,
+#btn-tomorrow.filter-on {
+    background: #3a7;
+    color: white;
+}
+
+#btn-yesterday.filter-off,
+#btn-today.filter-off,
+#btn-tomorrow.filter-off,
+#btn-reset.filter-off {
+    background: #ccc;
+    color: #000;
+}   
+
 </style>
 
 
-  <div class="card">
+  <div class="card" data-date="latest">
     <div class="card-header">Latest results</div>
     <div class="card-body">
       <table class=matches>
@@ -112,7 +148,7 @@
       </table>
     </div>
   </div>
-  <div class="card">
+  <div class="card" data-date="2026-10-09">
     <div class="card-header">Friday 9 October 2026</div>
     <div class="card-body">
       <table class=matches>
@@ -137,6 +173,7 @@
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfMiamiW/Tournaments/draws/E813D533-EB05-49E4-8AE3-DAD5CEC84CCD target=_blank>Southeast</a></td><td class=matches>[5] Gabia Paskauskas (Florida) <span style="font-size:0.8em; color:#808080;">[WTN: 15.45]</span></td><td class=matches>vs</td><td class=matches>Qualifier (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfMiamiW/Tournaments/draws/E813D533-EB05-49E4-8AE3-DAD5CEC84CCD target=_blank>Southeast</a></td><td class=matches>[9] Ranah Stoiber (Georgia) <span style="font-size:0.8em; color:#808080;">[WTN: 13.63]</span></td><td class=matches>vs</td><td class=matches>Anna Perelman (Miami) <span style="font-size:0.8em; color:#808080;">[WTN: 14.48]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/LouisianaStateUniversityW/Tournaments/draws/F1DDD608-5E65-4D94-96A0-0DFFDE34C7A6 target=_blank>Southern</a></td><td class=matches>[9] Tegan Bush (Louisiana State) <span style="font-size:0.8em; color:#808080;">[WTN: 14.79]</span></td><td class=matches>vs</td><td class=matches>Qualifier (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/BaylorUniversityW/Tournaments/draws/1B8C429E-F948-4A24-94A7-67CD972E97CE target=_blank>Texas</a></td><td class=matches>Teodora Prisadnikova (Texas Tech) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
       </table>
       <table class=matches>
         <colgroup>
@@ -148,9 +185,25 @@
         </colgroup>
         <tr class="group-header"><td colspan="5">Men &ndash; Singles &ndash; Main Draw</td></tr>
         <tr class="round-header"><td colspan="5">R64</td></tr>
-        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/AuburnUniversityM/Tournaments/draws/0EF1721B-99D6-4B6E-959F-53332BC86B2B target=_blank>Southern</a></td><td class=matches>Freddy Blaydes (Auburn) <span style="font-size:0.8em; color:#808080;">[WTN: ]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
-        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/AuburnUniversityM/Tournaments/draws/0EF1721B-99D6-4B6E-959F-53332BC86B2B target=_blank>Southern</a></td><td class=matches>Conor Flynn (Alabama at Birmingham) <span style="font-size:0.8em; color:#808080;">[WTN: ]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/VirginiaTechM/Tournaments/draws/9240D909-18C5-4DD4-B6CA-17B0CB67CDE7 target=_blank>Atlantic</a></td><td class=matches>Ilias Hirani Worthington (Old Dominion) <span style="font-size:0.8em; color:#808080;">[WTN: ]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/VirginiaTechM/Tournaments/draws/9240D909-18C5-4DD4-B6CA-17B0CB67CDE7 target=_blank>Atlantic</a></td><td class=matches>Zechariah Hamrouni (Old Dominion) <span style="font-size:0.8em; color:#808080;">[WTN: ]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/VirginiaTechM/Tournaments/draws/9240D909-18C5-4DD4-B6CA-17B0CB67CDE7 target=_blank>Atlantic</a></td><td class=matches>Oliver Hague (William & Mary) <span style="font-size:0.8em; color:#808080;">[WTN: ]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfSouthCarolinaM/Tournaments/draws/C9A0D9B8-B84F-4869-937D-5FD09ECBD56B target=_blank>Carolina</a></td><td class=matches>Billy Moxon (South Carolina) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfSouthCarolinaM/Tournaments/draws/C9A0D9B8-B84F-4869-937D-5FD09ECBD56B target=_blank>Carolina</a></td><td class=matches>Charlie Robertson (South Carolina) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfSouthCarolinaM/Tournaments/draws/C9A0D9B8-B84F-4869-937D-5FD09ECBD56B target=_blank>Carolina</a></td><td class=matches>Charlie Swaine (South Carolina) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfSouthCarolinaM/Tournaments/draws/C9A0D9B8-B84F-4869-937D-5FD09ECBD56B target=_blank>Carolina</a></td><td class=matches>Jesse Clarkson (Presbyterian) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfSouthCarolinaM/Tournaments/draws/C9A0D9B8-B84F-4869-937D-5FD09ECBD56B target=_blank>Carolina</a></td><td class=matches>Jack Curtis (Elon) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfSouthCarolinaM/Tournaments/draws/C9A0D9B8-B84F-4869-937D-5FD09ECBD56B target=_blank>Carolina</a></td><td class=matches>Jack Deveney (Wofford) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/HarvardUniversityM/Tournaments/draws/FB694703-C5A1-4CF5-B7DC-1BB99DBBC678 target=_blank>New England</a></td><td class=matches>Yegor Boyev (Le Moyne) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>Alex English (Bellarmine) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>Aaron Dawson (Southern Indiana) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>Liam Channon (Purdue) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>Hugo Coquelin (Vanderbilt) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>Ryan Parkins (Bellarmine) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>Ellison Minnaar (Indianapolis) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/AuburnUniversityM/Tournaments/draws/0EF1721B-99D6-4B6E-959F-53332BC86B2B target=_blank>Southern</a></td><td class=matches>Sebastian Harrison (Samford) <span style="font-size:0.8em; color:#808080;">[WTN: ]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/AuburnUniversityM/Tournaments/draws/0EF1721B-99D6-4B6E-959F-53332BC86B2B target=_blank>Southern</a></td><td class=matches>Conor Flynn (Alabama at Birmingham) <span style="font-size:0.8em; color:#808080;">[WTN: ]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/AuburnUniversityM/Tournaments/draws/0EF1721B-99D6-4B6E-959F-53332BC86B2B target=_blank>Southern</a></td><td class=matches>Freddy Blaydes (Auburn) <span style="font-size:0.8em; color:#808080;">[WTN: ]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/TexasChristianUniversityM/Tournaments/draws/87042583-40DC-450F-AFC2-0F35A7AF9489 target=_blank>Texas</a></td><td class=matches>Oliver Bonding (TCU) <span style="font-size:0.8em; color:#808080;">[WTN: ]</span></td><td class=matches>vs</td><td class=matches>TBD (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
       </table>
       <table class=matches>
@@ -167,19 +220,24 @@
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfIllinoisW/Tournaments/draws/4B7EC5A8-D4B8-4CB0-89BF-964E0FE2A7C9 target=_blank>Midwest</a></td><td class=matches>[3] Flora Johnson & Hephzibah Oluwadare (Ohio State) <span style="font-size:0.8em; color:#808080;">[WTN: 13.65 & 15.10]</span></td><td class=matches>vs</td><td class=matches>Emmerson White & Elizabeth Stuckslager (Marquette) <span style="font-size:0.8em; color:#808080;">[WTN: 18.32 & 20.38]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfIllinoisW/Tournaments/draws/4B7EC5A8-D4B8-4CB0-89BF-964E0FE2A7C9 target=_blank>Midwest</a></td><td class=matches>Eleanor Cochran & Helin Alvarez (DePaul) <span style="font-size:0.8em; color:#808080;">[WTN: 17.00 & 17.30]</span></td><td class=matches>vs</td><td class=matches>[14] Erica Jessel & Phillipa F&#228;rber (Northwestern) <span style="font-size:0.8em; color:#808080;">[WTN: 14.86 & 16.3]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfIllinoisW/Tournaments/draws/4B7EC5A8-D4B8-4CB0-89BF-964E0FE2A7C9 target=_blank>Midwest</a></td><td class=matches>[4] Marelie Raath & Neena Feldman (Northwestern) <span style="font-size:0.8em; color:#808080;">[WTN: 15.41 & 15.26]</span></td><td class=matches>vs</td><td class=matches>Jada Iverson & Amber Sharp (Bradley) <span style="font-size:0.8em; color:#808080;">[WTN: 21.06 & 20.91]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/YaleUniversityW/Tournaments/draws/B7E1CDA1-87CD-4A3F-AB40-43C67C7A4F47 target=_blank>New England</a></td><td class=matches>Elizabeth Evans & Andra Braicu (Harvard) <span style="font-size:0.8em; color:#808080;">[WTN: 16.63 & 17.64]</span></td><td class=matches>vs</td><td class=matches>[4] Orly Ogilvy & Leena Friedman (Yale) <span style="font-size:0.8em; color:#808080;">[WTN: 14.94 & 15.23]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/YaleUniversityW/Tournaments/draws/B7E1CDA1-87CD-4A3F-AB40-43C67C7A4F47 target=_blank>New England</a></td><td class=matches>[9] Tamara Kuti & Karolina Lincer (Connecticut) <span style="font-size:0.8em; color:#808080;">[WTN: 16.35 & 16.29]</span></td><td class=matches>vs</td><td class=matches>Olivia Benton & Olivia Cutone (Boston College) <span style="font-size:0.8em; color:#808080;">[WTN: 16.29 & 17.16]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/YaleUniversityW/Tournaments/draws/B7E1CDA1-87CD-4A3F-AB40-43C67C7A4F47 target=_blank>New England</a></td><td class=matches>Amelia Tye & Safina Khabibrakhmanova (Massachusetts) <span style="font-size:0.8em; color:#808080;">[WTN: 17.19 & 17.41]</span></td><td class=matches>vs</td><td class=matches>Isabella Asenov & Caroline Hinshaw (Connecticut) <span style="font-size:0.8em; color:#808080;">[WTN: 18.14 & 16.50]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/UniversityOfCincinnatiW/Tournaments/draws/8510732F-BF9A-440A-B025-14D6B73ED44F target=_blank>Ohio Valley</a></td><td class=matches>[4] Erin Pearce & Mia Yamakita (Vanderbilt) <span style="font-size:0.8em; color:#808080;">[WTN: 15.27 & 14.84]</span></td><td class=matches>vs</td><td class=matches>Lena Peyer & Maria Palacios Vaz (Middle Tennessee State) <span style="font-size:0.8em; color:#808080;">[WTN: 18.11 & 18.07]</span></td><td class=matches></td></tr>
-        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfMiamiW/Tournaments/draws/E813D533-EB05-49E4-8AE3-DAD5CEC84CCD target=_blank>Southeast</a></td><td class=matches>[4] Ranah Stoiber & Emma Dong (Georgia) <span style="font-size:0.8em; color:#808080;">[WTN: 13.98 & 13.79]</span></td><td class=matches>vs</td><td class=matches>Bye (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>Plays winner of Jess&#8217;s match</td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfMiamiW/Tournaments/draws/E813D533-EB05-49E4-8AE3-DAD5CEC84CCD target=_blank>Southeast</a></td><td class=matches>[1] Brooke Black & Valery Gynina (Florida) <span style="font-size:0.8em; color:#808080;">[WTN: 12.88 & 14.38]</span></td><td class=matches>vs</td><td class=matches>Bye (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>Plays winner of Aryana&#8217;s match</td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfMiamiW/Tournaments/draws/E813D533-EB05-49E4-8AE3-DAD5CEC84CCD target=_blank>Southeast</a></td><td class=matches>Jess Gunter & May Fadida (North Florida) <span style="font-size:0.8em; color:#808080;">[WTN: 17.28 & 16.79]</span></td><td class=matches>vs</td><td class=matches>Seri Nayuki & Taylor Goetz (Georgia Tech) <span style="font-size:0.8em; color:#808080;">[WTN: 16.07 & 16.35]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfMiamiW/Tournaments/draws/E813D533-EB05-49E4-8AE3-DAD5CEC84CCD target=_blank>Southeast</a></td><td class=matches>[5] Gabia Paskauskas & Scarlett Nicholson (Florida) <span style="font-size:0.8em; color:#808080;">[WTN: 14.68 & 14.59]</span></td><td class=matches>vs</td><td class=matches>Bye (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfMiamiW/Tournaments/draws/E813D533-EB05-49E4-8AE3-DAD5CEC84CCD target=_blank>Southeast</a></td><td class=matches>Jaquelyn Ogunwale & Berrak Kocak (Miami, Fl) <span style="font-size:0.8em; color:#808080;">[WTN: 15.83 & 17.07]</span></td><td class=matches>vs</td><td class=matches>Africa Burillo Berezak & Sabrina Jaramillo (Florida Gulf Coast) <span style="font-size:0.8em; color:#808080;">[WTN: 17.20 & 17.87]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfMiamiW/Tournaments/draws/E813D533-EB05-49E4-8AE3-DAD5CEC84CCD target=_blank>Southeast</a></td><td class=matches>[8] Given Roach & Eleni Karantali (Georgia Tech) <span style="font-size:0.8em; color:#808080;">[WTN: 14.74 & 15.15]</span></td><td class=matches>vs</td><td class=matches>Bye (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>Plays winner of Jaquelyn&#8217;s match</td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfMiamiW/Tournaments/draws/E813D533-EB05-49E4-8AE3-DAD5CEC84CCD target=_blank>Southeast</a></td><td class=matches>Anjali Kotecha & Cecilie Maeland (Florida Gulf Coast) <span style="font-size:0.8em; color:#808080;">[WTN: 16.23 & 16.70]</span></td><td class=matches>vs</td><td class=matches>Sienna Leeson & Margherita Marcon (South Florida) <span style="font-size:0.8em; color:#808080;">[WTN: 16.18 & 15.84]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfMiamiW/Tournaments/draws/E813D533-EB05-49E4-8AE3-DAD5CEC84CCD target=_blank>Southeast</a></td><td class=matches>Aryana Bartlett & Sydney Stark (North Florida) <span style="font-size:0.8em; color:#808080;">[WTN: 16.29 & 17.01]</span></td><td class=matches>vs</td><td class=matches>Rishitha Reddy Basireddy & Olivia Carneiro (Georgia Tech) <span style="font-size:0.8em; color:#808080;">[WTN: 16.47 & 16.55]</span></td><td class=matches></td></tr>
-        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfMiamiW/Tournaments/draws/E813D533-EB05-49E4-8AE3-DAD5CEC84CCD target=_blank>Southeast</a></td><td class=matches>Jess Gunter & May Fadida (North Florida) <span style="font-size:0.8em; color:#808080;">[WTN: 17.28 & 16.79]</span></td><td class=matches>vs</td><td class=matches>Seri Nayuki & Taylor Goetz (Georgia Tech) <span style="font-size:0.8em; color:#808080;">[WTN: 16.07 & 16.35]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfMiamiW/Tournaments/draws/E813D533-EB05-49E4-8AE3-DAD5CEC84CCD target=_blank>Southeast</a></td><td class=matches>[4] Ranah Stoiber & Emma Dong (Georgia) <span style="font-size:0.8em; color:#808080;">[WTN: 13.98 & 13.79]</span></td><td class=matches>vs</td><td class=matches>Bye (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>Plays winner of Jess&#8217;s match</td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfMiamiW/Tournaments/draws/E813D533-EB05-49E4-8AE3-DAD5CEC84CCD target=_blank>Southeast</a></td><td class=matches>Natalie Crawford & Franziska Heinemann (Georgia Southern) <span style="font-size:0.8em; color:#808080;">[WTN: 18.16 & 17.13]</span></td><td class=matches>vs</td><td class=matches>Ema Baraniakova & Adela Zingorova (Kennesaw State) <span style="font-size:0.8em; color:#808080;">[WTN: 15.03 & 19.03]</span></td><td class=matches></td></tr>
-        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/LouisianaStateUniversityW/Tournaments/draws/F1DDD608-5E65-4D94-96A0-0DFFDE34C7A6 target=_blank>Southern</a></td><td class=matches>Sophie Quagraine & Samara Onwiteaka (Southern, Baton Rouge) <span style="font-size:0.8em; color:#808080;">[WTN: 19.23]</span></td><td class=matches>vs</td><td class=matches>Mathilde Delaney & Emma Ansorge (North Alabama) <span style="font-size:0.8em; color:#808080;">[WTN: 17.23 & 16.51]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/LouisianaStateUniversityW/Tournaments/draws/F1DDD608-5E65-4D94-96A0-0DFFDE34C7A6 target=_blank>Southern</a></td><td class=matches>[6] Tegan Bush & Dora Miskovic (Louisiana State) <span style="font-size:0.8em; color:#808080;">[WTN: 15.24 & 13.90]</span></td><td class=matches>vs</td><td class=matches>Bye (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches>Plays winner of Latesha&#8217;s match</td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/LouisianaStateUniversityW/Tournaments/draws/F1DDD608-5E65-4D94-96A0-0DFFDE34C7A6 target=_blank>Southern</a></td><td class=matches>Sophie Quagraine & Samara Onwiteaka (Southern, Baton Rouge) <span style="font-size:0.8em; color:#808080;">[WTN: 19.23]</span></td><td class=matches>vs</td><td class=matches>Mathilde Delaney & Emma Ansorge (North Alabama) <span style="font-size:0.8em; color:#808080;">[WTN: 17.23 & 16.51]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/LouisianaStateUniversityW/Tournaments/draws/F1DDD608-5E65-4D94-96A0-0DFFDE34C7A6 target=_blank>Southern</a></td><td class=matches>Latesha Grant & DeCora Antoine (Southern, Baton Rouge) <span style="font-size:0.8em; color:#808080;">[WTN: 21.73 & 20.05]</span></td><td class=matches>vs</td><td class=matches>Mia Robinson & Lauren Seye (Mississippi State) <span style="font-size:0.8em; color:#808080;">[WTN: 15.61 & 15.50]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/BaylorUniversityW/Tournaments/draws/1B8C429E-F948-4A24-94A7-67CD972E97CE target=_blank>Texas</a></td><td class=matches>Teodora Prisadnikova & Raegan Farm (Texas Tech) <span style="font-size:0.8em; color:#808080;">[WTN: 16.85 & 15.68]</span></td><td class=matches>vs</td><td class=matches>Natalie Cinkova & Alexia Puiac (Houston) <span style="font-size:0.8em; color:#808080;">[WTN: 17.05 & 15.77]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/BaylorUniversityW/Tournaments/draws/1B8C429E-F948-4A24-94A7-67CD972E97CE target=_blank>Texas</a></td><td class=matches>Maria Ustic & Luna Ivkovic (Baylor) <span style="font-size:0.8em; color:#808080;">[WTN: 15.63 & 16.46]</span></td><td class=matches>vs</td><td class=matches>Abbey Nikolic & Ana Paula Chavez (Stephen F Austin State) <span style="font-size:0.8em; color:#808080;">[WTN: 18.95 & 18.05]</span></td><td class=matches></td></tr>
       </table>
       <table class=matches>
         <colgroup>
@@ -191,24 +249,28 @@
         </colgroup>
         <tr class="group-header"><td colspan="5">Men &ndash; Doubles &ndash; Main Draw</td></tr>
         <tr class="round-header"><td colspan="5">R64</td></tr>
-        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfSouthCarolinaM/Tournaments/draws/C9A0D9B8-B84F-4869-937D-5FD09ECBD56B target=_blank>Carolina</a></td><td class=matches>Billy Moxon & Antonin Witz (South Carolina) <span style="font-size:0.8em; color:#808080;">[WTN: 11.71 & 9.39]</span></td><td class=matches>vs</td><td class=matches>Nathan Andre Halahija & Yonatan Sagiv (North Carolina A&T State) <span style="font-size:0.8em; color:#808080;">[WTN: 9.34 & 18.61]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/VirginiaTechM/Tournaments/draws/9240D909-18C5-4DD4-B6CA-17B0CB67CDE7 target=_blank>Atlantic</a></td><td class=matches>[5] Ilias Hirani Worthington & Piet Steveker (Old Dominion) <span style="font-size:0.8em; color:#808080;">[WTN: 7.40 & 7.90]</span></td><td class=matches>vs</td><td class=matches>Bye (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/VirginiaTechM/Tournaments/draws/9240D909-18C5-4DD4-B6CA-17B0CB67CDE7 target=_blank>Atlantic</a></td><td class=matches>Marcus Weekes & Michael Major (Howard) <span style="font-size:0.8em; color:#808080;">[WTN: 13.37 & 11.26]</span></td><td class=matches>vs</td><td class=matches>[9] Leon Zaorski & Nicolo Consonni (Virginia Commonwealth) <span style="font-size:0.8em; color:#808080;">[WTN: 8.67 & 8.83]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/VirginiaTechM/Tournaments/draws/9240D909-18C5-4DD4-B6CA-17B0CB67CDE7 target=_blank>Atlantic</a></td><td class=matches>[9] Zechariah Hamrouni & Felix Obermair (Old Dominion) <span style="font-size:0.8em; color:#808080;">[WTN: 8.02 & 8.09]</span></td><td class=matches>vs</td><td class=matches>Bye (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/VirginiaTechM/Tournaments/draws/9240D909-18C5-4DD4-B6CA-17B0CB67CDE7 target=_blank>Atlantic</a></td><td class=matches>[9] Oliver Hague & Connor Kruger (William & Mary) <span style="font-size:0.8em; color:#808080;">[WTN: 8.83 & 7.36]</span></td><td class=matches>vs</td><td class=matches>Charlie Spencer & Steve Nguyen (US Naval Academy) <span style="font-size:0.8em; color:#808080;">[WTN: 10.63 & 11.18]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfSouthCarolinaM/Tournaments/draws/C9A0D9B8-B84F-4869-937D-5FD09ECBD56B target=_blank>Carolina</a></td><td class=matches>[9] Charlie Robertson & Gabe Avram (South Carolina) <span style="font-size:0.8em; color:#808080;">[WTN: 5.07 & 7.31]</span></td><td class=matches>vs</td><td class=matches>Daksh Prasad & Jesse Clarkson (Presbyterian) <span style="font-size:0.8em; color:#808080;">[WTN: 11.68 & 12.56]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfSouthCarolinaM/Tournaments/draws/C9A0D9B8-B84F-4869-937D-5FD09ECBD56B target=_blank>Carolina</a></td><td class=matches>Harrison Cooper & Cian Ingles (UNC Asheville) <span style="font-size:0.8em; color:#808080;">[WTN: 11.15 & 11.23]</span></td><td class=matches>vs</td><td class=matches>Lachlan Gaskell & Nicholas Mangiapane (UNC Chapel Hill) <span style="font-size:0.8em; color:#808080;">[WTN: 11.99 & 7.66]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfSouthCarolinaM/Tournaments/draws/C9A0D9B8-B84F-4869-937D-5FD09ECBD56B target=_blank>Carolina</a></td><td class=matches>Harry Abel & Devin Ruhotina (College of Charleston) <span style="font-size:0.8em; color:#808080;">[WTN: 10.24 & ?]</span></td><td class=matches>vs</td><td class=matches>Evan Rigsby & Bardo Bucknell (Furman) <span style="font-size:0.8em; color:#808080;">[WTN: 9.73 & 14.45]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfSouthCarolinaM/Tournaments/draws/C9A0D9B8-B84F-4869-937D-5FD09ECBD56B target=_blank>Carolina</a></td><td class=matches>Daniel Franco Key & Yoel Serekeberhan (UNC Asheville) <span style="font-size:0.8em; color:#808080;">[WTN: 11.83 & 16.80]</span></td><td class=matches>vs</td><td class=matches>Colin Wheat & Brady Gober (Citadel Military College) <span style="font-size:0.8em; color:#808080;">[WTN: 19.14 & 12.35]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfSouthCarolinaM/Tournaments/draws/C9A0D9B8-B84F-4869-937D-5FD09ECBD56B target=_blank>Carolina</a></td><td class=matches>[9] Charlie Swaine & Max Stenzer (South Carolina) <span style="font-size:0.8em; color:#808080;">[WTN: 7.83 & 5.67]</span></td><td class=matches>vs</td><td class=matches>Jack Deveney & Hugo Rask (Wofford) <span style="font-size:0.8em; color:#808080;">[WTN: 8.80 & 12.09]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfSouthCarolinaM/Tournaments/draws/C9A0D9B8-B84F-4869-937D-5FD09ECBD56B target=_blank>Carolina</a></td><td class=matches>Jack Curtis & Nick Fisk (Elon) <span style="font-size:0.8em; color:#808080;">[WTN: 7.91& 9.49]</span></td><td class=matches>vs</td><td class=matches>Jip Mens & Adam Duda (UNC Asheville) <span style="font-size:0.8em; color:#808080;">[WTN: 12.77 & 11.03]</span></td><td class=matches></td></tr>
-        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/HarvardUniversityM/Tournaments/draws/FB694703-C5A1-4CF5-B7DC-1BB99DBBC678 target=_blank>New England</a></td><td class=matches>Calum Jessett & Kacper Krolikowski (Fairfield) <span style="font-size:0.8em; color:#808080;">[WTN: 12.29 & 11.67]</span></td><td class=matches>vs</td><td class=matches>Lochlan Seth & Jack Babka (Colgate) <span style="font-size:0.8em; color:#808080;">[WTN: 15.96 & 15.96]</span></td><td class=matches></td></tr>
-        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/HarvardUniversityM/Tournaments/draws/FB694703-C5A1-4CF5-B7DC-1BB99DBBC678 target=_blank>New England</a></td><td class=matches>Luke Hoyland & Navya Verma (Le Moyne) <span style="font-size:0.8em; color:#808080;">[WTN: 13.48 & 14.22]</span></td><td class=matches>vs</td><td class=matches>Zachary Cohen & David Wu (Harvard) <span style="font-size:0.8em; color:#808080;">[WTN: 10.17 & 10.50]</span></td><td class=matches></td></tr>
-        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/HarvardUniversityM/Tournaments/draws/FB694703-C5A1-4CF5-B7DC-1BB99DBBC678 target=_blank>New England</a></td><td class=matches>Matthew Callum & Lorenzo Bortolaso (Le Moyne) <span style="font-size:0.8em; color:#808080;">[WTN: 14.23 & 14.03]</span></td><td class=matches>vs</td><td class=matches>Ethan Chunh & Magnus Weng (Yale) <span style="font-size:0.8em; color:#808080;">[WTN: 8.36 & 14.28]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/UniversityOfSouthCarolinaM/Tournaments/draws/C9A0D9B8-B84F-4869-937D-5FD09ECBD56B target=_blank>Carolina</a></td><td class=matches>Billy Moxon & Antonin Witz (South Carolina) <span style="font-size:0.8em; color:#808080;">[WTN: 11.71 & 9.39]</span></td><td class=matches>vs</td><td class=matches>Nathan Andre Halahija & Yonatan Sagiv (North Carolina A&T State) <span style="font-size:0.8em; color:#808080;">[WTN: 9.34 & 18.61]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/HarvardUniversityM/Tournaments/draws/FB694703-C5A1-4CF5-B7DC-1BB99DBBC678 target=_blank>New England</a></td><td class=matches>Matthew Ground & Luca Benaibbouche (Fairfield) <span style="font-size:0.8em; color:#808080;">[WTN: 12.17 & 11.60]</span></td><td class=matches>vs</td><td class=matches>[9] Dylan Tsoi & Jason Shuler (Yale) <span style="font-size:0.8em; color:#808080;">[WTN: 7.88 & 7.84]</span></td><td class=matches></td></tr>
-        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>Ellison Minnaar & Cameron Kryscio (Indiana) <span style="font-size:0.8em; color:#808080;">[WTN: 13.89 & 13.01]</span></td><td class=matches>vs</td><td class=matches>Asier Ayllon Prado & John Patrick Popowich (Middle Tennessee State) <span style="font-size:0.8em; color:#808080;">[WTN: 11.26 & 12.12]</span></td><td class=matches></td></tr>
-        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>Preston Taylor & Louis Chusseau (Louisville) <span style="font-size:0.8em; color:#808080;">[WTN: 9.77 & 10.27]</span></td><td class=matches>vs</td><td class=matches>Bode Campbell & Samuel Frizelle (Xavier) <span style="font-size:0.8em; color:#808080;">[WTN: 11.05 & 11.44]</span></td><td class=matches></td></tr>
-        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>[16] Isaac Forde & Tom Sickenberger (Kentucky) <span style="font-size:0.8em; color:#808080;">[WTN: 10.58 & 6.78]</span></td><td class=matches>vs</td><td class=matches>Sturle Hoff Skifelstrand & Mikkel Zinder (Dayton) <span style="font-size:0.8em; color:#808080;">[WTN: 7.77 & 11.62]</span></td><td class=matches></td></tr>
-        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>Ryan Parkins & Colby Berson (Bellarmine) <span style="font-size:0.8em; color:#808080;">[WTN: 11.54 & 10.71]</span></td><td class=matches>vs</td><td class=matches>Matei Daniel Stan & Oliver Thoeny (Lipscomb) <span style="font-size:0.8em; color:#808080;">[WTN: 13.94 & 12.82]</span></td><td class=matches></td></tr>
-        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>Kai Cowcher & Arenui Luethi (East Tennessee State) <span style="font-size:0.8em; color:#808080;">[WTN: 10.70 & 9.99]</span></td><td class=matches>vs</td><td class=matches>Aryan Badlani & Ariel Zauber (Indiana) <span style="font-size:0.8em; color:#808080;">[WTN: 13.27 & 9.56]</span></td><td class=matches></td></tr>
-        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>[3] Hugo Coquelin & Donghyun Hwang (Vanderbilt) <span style="font-size:0.8em; color:#808080;">[WTN: 6.07 & 10.06]</span></td><td class=matches>vs</td><td class=matches>Nolan Howard & Zackary Kimelman (Ball State) <span style="font-size:0.8em; color:#808080;">[WTN: 12.29 & 13.77]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/HarvardUniversityM/Tournaments/draws/FB694703-C5A1-4CF5-B7DC-1BB99DBBC678 target=_blank>New England</a></td><td class=matches>Matthew Callum & Lorenzo Bortolaso (Le Moyne) <span style="font-size:0.8em; color:#808080;">[WTN: 14.23 & 14.03]</span></td><td class=matches>vs</td><td class=matches>Ethan Chunh & Magnus Weng (Yale) <span style="font-size:0.8em; color:#808080;">[WTN: 8.36 & 14.28]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/HarvardUniversityM/Tournaments/draws/FB694703-C5A1-4CF5-B7DC-1BB99DBBC678 target=_blank>New England</a></td><td class=matches>Luke Hoyland & Navya Verma (Le Moyne) <span style="font-size:0.8em; color:#808080;">[WTN: 13.48 & 14.22]</span></td><td class=matches>vs</td><td class=matches>Zachary Cohen & David Wu (Harvard) <span style="font-size:0.8em; color:#808080;">[WTN: 10.17 & 10.50]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/HarvardUniversityM/Tournaments/draws/FB694703-C5A1-4CF5-B7DC-1BB99DBBC678 target=_blank>New England</a></td><td class=matches>Calum Jessett & Kacper Krolikowski (Fairfield) <span style="font-size:0.8em; color:#808080;">[WTN: 12.29 & 11.67]</span></td><td class=matches>vs</td><td class=matches>Lochlan Seth & Jack Babka (Colgate) <span style="font-size:0.8em; color:#808080;">[WTN: 15.96 & 15.96]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>Aaron Dawson & Jy Hibbert (Southern Indiana) <span style="font-size:0.8em; color:#808080;">[WTN: 10.82 & 14.20]</span></td><td class=matches>vs</td><td class=matches>[1] Sam Landau & Braeden Gelletich (Indiana) <span style="font-size:0.8em; color:#808080;">[WTN: 5.24 & 6.44]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>Ryan Parkins & Colby Berson (Bellarmine) <span style="font-size:0.8em; color:#808080;">[WTN: 11.54 & 10.71]</span></td><td class=matches>vs</td><td class=matches>Matei Daniel Stan & Oliver Thoeny (Lipscomb) <span style="font-size:0.8em; color:#808080;">[WTN: 13.94 & 12.82]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>[16] Isaac Forde & Tom Sickenberger (Kentucky) <span style="font-size:0.8em; color:#808080;">[WTN: 10.58 & 6.78]</span></td><td class=matches>vs</td><td class=matches>Sturle Hoff Skifelstrand & Mikkel Zinder (Dayton) <span style="font-size:0.8em; color:#808080;">[WTN: 7.77 & 11.62]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>Preston Taylor & Louis Chusseau (Louisville) <span style="font-size:0.8em; color:#808080;">[WTN: 9.77 & 10.27]</span></td><td class=matches>vs</td><td class=matches>Bode Campbell & Samuel Frizelle (Xavier) <span style="font-size:0.8em; color:#808080;">[WTN: 11.05 & 11.44]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>Ellison Minnaar & Cameron Kryscio (Indiana) <span style="font-size:0.8em; color:#808080;">[WTN: 13.89 & 13.01]</span></td><td class=matches>vs</td><td class=matches>Asier Ayllon Prado & John Patrick Popowich (Middle Tennessee State) <span style="font-size:0.8em; color:#808080;">[WTN: 11.26 & 12.12]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>[3] Hugo Coquelin & Donghyun Hwang (Vanderbilt) <span style="font-size:0.8em; color:#808080;">[WTN: 6.07 & 10.06]</span></td><td class=matches>vs</td><td class=matches>Nolan Howard & Zackary Kimelman (Ball State) <span style="font-size:0.8em; color:#808080;">[WTN: 12.29 & 13.77]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/Competitions/ITA/Tournaments/draws/85FBED32-592E-456F-89D9-5382D5320733 target=_blank>Ohio Valley</a></td><td class=matches>Kai Cowcher & Arenui Luethi (East Tennessee State) <span style="font-size:0.8em; color:#808080;">[WTN: 10.70 & 9.99]</span></td><td class=matches>vs</td><td class=matches>Aryan Badlani & Ariel Zauber (Indiana) <span style="font-size:0.8em; color:#808080;">[WTN: 13.27 & 9.56]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/AuburnUniversityM/Tournaments/draws/0EF1721B-99D6-4B6E-959F-53332BC86B2B target=_blank>Southern</a></td><td class=matches>Conor Flynn & Axel Frechet (Alabama at Birmingham) <span style="font-size:0.8em; color:#808080;">[WTN: 9.34 & 9.43]</span></td><td class=matches>vs</td><td class=matches>Gordan Mileusnic & Vid Maric (Alabama State) <span style="font-size:0.8em; color:#808080;">[WTN: 9.64 & 7.68]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/AuburnUniversityM/Tournaments/draws/0EF1721B-99D6-4B6E-959F-53332BC86B2B target=_blank>Southern</a></td><td class=matches>Sebastian Harrison & Lukas Dvorak (Samford) <span style="font-size:0.8em; color:#808080;">[WTN: 8.94 & 8.61]</span></td><td class=matches>vs</td><td class=matches>William Ribero & William Jade (Louisiana) <span style="font-size:0.8em; color:#808080;">[WTN: 8.71 & 10.63]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/AuburnUniversityM/Tournaments/draws/0EF1721B-99D6-4B6E-959F-53332BC86B2B target=_blank>Southern</a></td><td class=matches>Jakob Bonnett & Vitorio Sardinha (Samford) <span style="font-size:0.8em; color:#808080;">[WTN: 9.74 & 8.73]</span></td><td class=matches>vs</td><td class=matches>Ilie Cazac & Joao Barreto (Jacksonville State) <span style="font-size:0.8em; color:#808080;">[WTN: 10.36 & 10.03]</span></td><td class=matches></td></tr>
@@ -216,7 +278,7 @@
       </table>
     </div>
   </div>
-  <div class="card">
+  <div class="card" data-date="2026-10-08">
     <div class="card-header">Thursday 8 October 2026</div>
     <div class="card-body">
       <table class=matches>
@@ -308,10 +370,16 @@
         <tr class="round-header"><td colspan="5">QF</td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/BrighamYoungUniversityM/Tournaments/draws/0D14C06D-CA61-4FA9-B6C0-C86B29A22C69 target=_blank>Mountain</a></td><td class=matches>[5] Max Relic & Alberto Perez (New Mexico) <span style="font-size:0.8em; color:#808080;">[WTN: 6.92 & 8.40]</span></td><td class=matches>vs</td><td class=matches>[1] Marko Maksimovic & Kemal Arda Karakas (Nevada, Las Vegas) <span style="font-size:0.8em; color:#808080;">[WTN: 4.76 & 7.26]</span></td><td class=matches></td></tr>
         <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/BrighamYoungUniversityM/Tournaments/draws/0D14C06D-CA61-4FA9-B6C0-C86B29A22C69 target=_blank>Mountain</a></td><td class=matches>Matt Upton & Duncan Mccall (Montana) <span style="font-size:0.8em; color:#808080;">[WTN: 10.11 & 9.19]</span></td><td class=matches>vs</td><td class=matches>[2] Izan Orgiles & Arsene Pougault (Boise State) <span style="font-size:0.8em; color:#808080;">[WTN: 7.91 & 6.55]</span></td><td class=matches></td></tr>
+        <tr class="round-header"><td colspan="5">R32</td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/UniversityOfNebraskaM/Tournaments/draws/7114FA36-F761-4586-968A-3BEA1442510D target=_blank>Central</a></td><td class=matches>Felix Brocklemann Evans & Leonard Tramolay (Wichita State) <span style="font-size:0.8em; color:#808080;">[WTN: 10.79 & 8.93]</span></td><td class=matches>vs</td><td class=matches>[15] Christopher Thies & Ilan Hediger (Oklahoma State) <span style="font-size:0.8em; color:#808080;">[WTN: 10.19 & 7.88]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/UniversityOfNebraskaM/Tournaments/draws/7114FA36-F761-4586-968A-3BEA1442510D target=_blank>Central</a></td><td class=matches>Jack Berry & Scott Houben (Oral Roberts) <span style="font-size:0.8em; color:#808080;">[WTN: 13.04 & 14.73]</span></td><td class=matches>vs</td><td class=matches>[12] Henry Lamchinniah & Jeri Lassila (Nebraska) <span style="font-size:0.8em; color:#808080;">[WTN: 7.65 & 6.61]</span></td><td class=matches></td></tr>
+        <tr class="round-header"><td colspan="5">R64</td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/UniversityOfNebraskaM/Tournaments/draws/7114FA36-F761-4586-968A-3BEA1442510D target=_blank>Central</a></td><td class=matches>Alfie King & Sean O Nuallain (Memphis) <span style="font-size:0.8em; color:#808080;">[WTN: 9.99 & 9.74]</span></td><td class=matches>vs</td><td class=matches>Pijus Reklevicius & Romain Azais (Oral Roberts) <span style="font-size:0.8em; color:#808080;">[WTN: 11.72 & 16.19]</span></td><td class=matches></td></tr>
+        <tr><td class=matches><a href=https://colleges.wearecollegetennis.com/competitions/UniversityOfNebraskaM/Tournaments/draws/7114FA36-F761-4586-968A-3BEA1442510D target=_blank>Central</a></td><td class=matches>[5] Sam Reeve & Benjamin Martin (Memphis) <span style="font-size:0.8em; color:#808080;">[WTN: 7.27 & 6.41]</span></td><td class=matches>vs</td><td class=matches>Bye (-) <span style="font-size:0.8em; color:#808080;">[WTN: -]</span></td><td class=matches></td></tr>
       </table>
     </div>
   </div>
-  <div class="card">
+  <div class="card" data-date="2026-10-07">
     <div class="card-header">Wednesday 7 October 2026</div>
     <div class="card-body">
       <table class=matches>
@@ -363,7 +431,7 @@
       </table>
     </div>
   </div>
-  <div class="card">
+  <div class="card" data-date="2026-10-06">
     <div class="card-header">Tuesday 6 October 2026</div>
     <div class="card-body">
       <table class=matches>
@@ -391,7 +459,7 @@
 </style>
 
     
-  <div class="card">
+  <div class="card" >
     <div class="card-header2">Women</div>
     <div class="card-body">
 <div style='padding-top: 9px'><strong>Mountain</strong><br>Tuesday 13  to Saturday 17 October 2026<br>
@@ -471,7 +539,7 @@ Athina Schlepphorst (Pennsylvania)
 <br>
 </div>
 </div> </div></div>
-  <div class="card">
+  <div class="card" >
     <div class="card-header2">Men</div>
     <div class="card-body">
 <div style='padding-top: 9px'><strong>Southeast</strong><br>Wednesday 14  to Monday 19 October 2026<br>
@@ -515,9 +583,96 @@ Southwest region entry list and draws</A> &nearrow;<br>
 </div>
 </div> </div></div>
 </div>
+
 <div id="footer-container"></div>
 
-        <script src="header.js"></script>
-    
+<div class="filter-buttons">
+</div>
+
+<script src="header.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const btnYesterday = document.getElementById("btn-yesterday");
+    const btnToday = document.getElementById("btn-today");
+    const btnTomorrow = document.getElementById("btn-tomorrow");
+    const btnReset = document.getElementById("btn-reset");
+
+    const dateYesterday = "2026-10-07";
+    const dateToday = "2026-10-08";
+    const dateTomorrow = "2026-10-09";
+
+    // Display labels
+    const labelYesterday = "7 October";
+    const labelToday = "8 October";
+    const labelTomorrow = "9 October";
+
+    let showYesterday = false;
+    let showToday = false;
+    let showTomorrow = false;
+
+    function applyFilters() {
+        const anyActive = showYesterday || showToday || showTomorrow;
+
+        document.querySelectorAll(".card").forEach(card => {
+            const cardDate = card.dataset.date;
+
+            let show = true;
+            if (anyActive) {
+                show = (showYesterday && cardDate === dateYesterday)
+                    || (showToday && cardDate === dateToday)
+                    || (showTomorrow && cardDate === dateTomorrow);
+            }
+
+            card.style.display = show ? "block" : "none";
+        });
+    }
+
+    function updateButtonAppearance(btn, active, label) {
+        if (active) {
+            btn.classList.remove("filter-off");
+            btn.classList.add("filter-on");
+            btn.textContent = label;
+        } else {
+            btn.classList.remove("filter-on");
+            btn.classList.add("filter-off");
+            btn.textContent = label;
+        }
+    }
+
+    btnYesterday.onclick = function () {
+        showYesterday = !showYesterday;
+        updateButtonAppearance(btnYesterday, showYesterday,
+            labelYesterday);
+        applyFilters();
+    };
+
+    btnToday.onclick = function () {
+        showToday = !showToday;
+        updateButtonAppearance(btnToday, showToday,
+            labelToday);
+        applyFilters();
+    };
+
+    btnTomorrow.onclick = function () {
+        showTomorrow = !showTomorrow;
+        updateButtonAppearance(btnTomorrow, showTomorrow,
+            labelTomorrow);
+        applyFilters();
+    };
+
+    btnReset.onclick = function () {
+        showYesterday = false;
+        showToday = false;
+        showTomorrow = false;
+        updateButtonAppearance(btnYesterday, false, labelYesterday);
+        updateButtonAppearance(btnToday, false, labelToday);
+        updateButtonAppearance(btnTomorrow, false, labelTomorrow);
+        applyFilters();
+    };
+
+});
+</script>
+
 </body>
 </html>
