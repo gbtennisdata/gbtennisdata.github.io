@@ -44,9 +44,9 @@
     Doubles (Sectionals): Finalists and 3rd place play-off winner in each sectional (3 places in each sectional)
 <div id=player-select-container>Select to only show 
     <!--
-    <button id="btn-yesterday" class="filter-off">1 November</button>
-    <button id="btn-today" class="filter-off">2 November</button>
-    <button id="btn-tomorrow" class="filter-off">3 November</button>
+    <button id="btn-yesterday" class="filter-off">2 November</button>
+    <button id="btn-today" class="filter-off">3 November</button>
+    <button id="btn-tomorrow" class="filter-off">4 November</button>
     -->
     <button id="btn-reset" class="filter-off">All days</button>
         
@@ -206,13 +206,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnTomorrow = document.getElementById("btn-tomorrow");
     const btnReset = document.getElementById("btn-reset");
 
-    const dateYesterday = "2026-11-01";
-    const dateToday = "2026-11-02";
-    const dateTomorrow = "2026-11-03";
+    const dateYesterday = "2026-11-02";
+    const dateToday = "2026-11-03";
+    const dateTomorrow = "2026-11-04";
 
-    const labelYesterday = "1 November";
-    const labelToday = "2 November";
-    const labelTomorrow = "3 November";
+    const labelYesterday = "2 November";
+    const labelToday = "3 November";
+    const labelTomorrow = "4 November";
     
     let showYesterday = false;
     let showToday = false;
