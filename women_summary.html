@@ -174,7 +174,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>205</td>
       <td><span class="arrow-down">&#9660;</span> -13</td>
       <td>27</td>
-      <td>W75 Brisbane</td>
+      <td></td>
       <td>W75 Sydney</td>
       <td>W75 Playford</td>
       <td>50 pts on 16 Nov 2026</td>
@@ -441,7 +441,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -58</td>
       <td>21</td>
       <td></td>
-      <td>NCAA Individuals Doubles Championships</td>
+      <td>NCAA Individuals Singles Championships</td>
       <td></td>
       <td>8 pts on 23 Nov 2026</td>
       <td>–</td>
@@ -483,7 +483,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-up">&#9650;</span> 14</td>
       <td>21</td>
       <td></td>
-      <td></td>
+      <td>NCAA Individuals Doubles Championships</td>
       <td></td>
       <td>1 pts on 12 Aug 2027</td>
       <td>–</td>
@@ -747,7 +747,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>Freya Christie</td>
       <td>1494</td>
       <td><span class="arrow-down">&#9660;</span> -3</td>
-      <td>28</td>
+      <td>29</td>
       <td></td>
       <td></td>
       <td></td>
@@ -1122,6 +1122,20 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>1 point</td>
     </tr>
     <tr>
+      <td>Erin Pearce</td>
+      <td>–</td>
+      <td></td>
+      <td>20</td>
+      <td></td>
+      <td>NCAA Individuals Doubles Championships</td>
+      <td></td>
+      <td></td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+      <td>–</td>
+    </tr>
+    <tr>
       <td>Hephzibah Oluwadare</td>
       <td>–</td>
       <td></td>
@@ -1224,9 +1238,9 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
       <td></td>
       <td>14</td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td>2 pts on 1 Nov 2027</td>
       <td>–</td>
       <td>–</td>
@@ -1410,7 +1424,7 @@ function classifyAge(val) {
 // -------------------------------
 function classifyWeekChange(val) {
     val = stripArrow(val).trim();
-
+    
     if (val === "") return null;
     if (val === "IN" || val === "OUT") return val;
 
@@ -1459,8 +1473,8 @@ function getTournamentPriority(value, gender) {
 
 
 
-
-
+  
+    
     // Add for men
     // Extract level prefix (e.g., "ATP 500", "CH 125", "WTT M25")
     const parts = value.split(" ");
@@ -1478,7 +1492,7 @@ function getTournamentPriority(value, gender) {
     if (MAJORS.includes(value)) {
         return PRIORITY["Grand Slam"];
     }
-
+    
     // GB Team / Priority events
     if (/^(Davis Cup|BJK Cup|United Cup)/i.test(value)) {
         return PRIORITY["GB Team"];
@@ -1613,10 +1627,10 @@ function classifyEventWomen(val) {
         // Category labels
         if (MAJORS.includes(t))
             results.push("Grand Slam")
-
+        
         if (t.startsWith("WTA") || /^W\d/.test(t) || MAJORS.includes(t))
             results.push("All Pro Tour");
-
+            
         // GB Team / Priority events
         if (/^(Davis Cup|BJK Cup|United Cup)/.test(t)) {
             results.push("GB Team");
@@ -1624,7 +1638,7 @@ function classifyEventWomen(val) {
 
         if (t.startsWith("WTA") && !t.startsWith("WTA125"))
             results.push("WTA Tour");
-
+            
         if (t.startsWith("WTA") && t.startsWith("WTA125"))
             results.push("WTA 125 Challenger");
 
@@ -1639,7 +1653,7 @@ function classifyEventWomen(val) {
 
         if (t.startsWith("UTR")) results.push("UTR");
         else if (t.startsWith("British Tour")) results.push("British Tour");
-
+        
         if (t.startsWith("US College")) results.push("US College");
         if (t.startsWith("ITA") || t.startsWith("NCAA")) results.push("US College");
 
@@ -1662,7 +1676,7 @@ function classifyEventMen(val) {
         // Category labels
         if (MAJORS.includes(t))
             results.push("Grand Slam")
-
+        
         if (t.startsWith("ATP") || t.startsWith("Ch") || /^M\d/.test(t) || MAJORS.includes(t))
             results.push("All Pro Tour");
 
@@ -1670,7 +1684,7 @@ function classifyEventMen(val) {
         if (/^(Davis Cup|BJK Cup|United Cup)/.test(t)) {
             results.push("GB Team");
         }
-
+        
         if (t.startsWith("ATP"))
             results.push("ATP Tour");
 
@@ -1690,7 +1704,7 @@ function classifyEventMen(val) {
         // Other circuits
         if (t.startsWith("UTR")) results.push("UTR");
         else if (t.startsWith("British Tour")) results.push("British Tour");
-
+        
         if (t.startsWith("US College")) results.push("US College");
         if (t.startsWith("ITA") || t.startsWith("NCAA")) results.push("US College");
 
@@ -1779,17 +1793,17 @@ function populateDropdown(id, values, counts = null) {
 
         return;
     }
-
+    
     /// WEEK CHANGE DROPDOWNS
     if (id === "weekchange-filter") {
         const grouped = ['Climbers', 'Fallers', 'No Change', 'IN', 'OUT'].filter(g => unique.includes(g))
         sel.innerHTML = "<option value=''>All</option>"
-
+        
         grouped.forEach(v => {
             const label = counts ? `${v} (${counts[v] || 0})` : v;
             sel.innerHTML += `<option value="${v}">${label}</option>`;
         });
-
+        
         return;
 
     }
@@ -1811,7 +1825,7 @@ function populateDropdown(id, values, counts = null) {
     const sortedTournaments = tournaments.sort((a, b) => {
         const pa = getTournamentPriority(a, window.genderSetting);
         const pb = getTournamentPriority(b, window.genderSetting);
-
+    
         if (pa !== pb) return pa - pb;
         return a.localeCompare(b);
     });
@@ -1820,7 +1834,7 @@ function populateDropdown(id, values, counts = null) {
     // BUILD GROUPED DROPDOWN
     // -------------------------------
     sel.innerHTML = "<option value=''>All</option>";
-
+    
 const rendered = new Set();   
 
 sortedGroups.forEach(group => {
@@ -1847,10 +1861,10 @@ sortedGroups.forEach(group => {
     // Add tournaments under the group
     children.forEach(t => {
         if (rendered.has(t)) return;   
-
+        
         const label = counts ? `-- ${t} (${counts[t] || 0})` : `-- ${t}`;
         sel.innerHTML += `<option value="${t}">${label}</option>`;
-
+        
         rendered.add(t);               
     });
 });
