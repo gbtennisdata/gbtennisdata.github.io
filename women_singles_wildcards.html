@@ -1,21 +1,23 @@
 
 <html lang="en">
 <head>
+
 <meta http-equiv="Content-Security-Policy"
       content="
         default-src 'self';
-        frame-src https://tnnslive.com;
-        child-src https://tnnslive.com;
+        
+        frame-src https://tnnslive.com https://*.instagram.com;
+        child-src https://tnnslive.com https://*.instagram.com;
 
-        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com;
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com https://*.instagram.com;
 
-        style-src 'self' 'unsafe-inline' https://tnnslive.com;
+        style-src 'self' 'unsafe-inline' https://tnnslive.com https://*.instagram.com;
 
-        img-src 'self' data: https://tnnslive.com;
+        img-src 'self' data: https://tnnslive.com https://*.instagram.com https://*.cdninstagram.com;
 
         font-src 'self' https://tnnslive.com;
 
-        connect-src 'self' https://tnnslive.com;
+        connect-src 'self' https://tnnslive.com https://*.instagram.com;
 
         object-src 'none';
         base-uri 'self';

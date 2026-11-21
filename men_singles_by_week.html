@@ -1,20 +1,22 @@
 <html lang="en">
 <head>
+
 <meta http-equiv="Content-Security-Policy"
       content="
         default-src 'self';
-        frame-src https://tnnslive.com;
-        child-src https://tnnslive.com;
+        
+        frame-src https://tnnslive.com https://*.instagram.com;
+        child-src https://tnnslive.com https://*.instagram.com;
 
-        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com;
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com https://*.instagram.com;
 
-        style-src 'self' 'unsafe-inline' https://tnnslive.com;
+        style-src 'self' 'unsafe-inline' https://tnnslive.com https://*.instagram.com;
 
-        img-src 'self' data: https://tnnslive.com;
+        img-src 'self' data: https://tnnslive.com https://*.instagram.com https://*.cdninstagram.com;
 
         font-src 'self' https://tnnslive.com;
 
-        connect-src 'self' https://tnnslive.com;
+        connect-src 'self' https://tnnslive.com https://*.instagram.com;
 
         object-src 'none';
         base-uri 'self';
@@ -477,11 +479,11 @@ function scrollToPlayer(id) {
             <summary>
                 To Add tournaments (15)
             </summary>
-        <table id='to_add_41' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_41",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("to_add_41",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_41",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_41",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Toby Samuel</td><td>Challenger 125 Helsinki</td><td>SF </td><td data-sort='35'>35</td></tr><tr><td>Jake Fearnley</td><td>Challenger 125 Helsinki</td><td>R16 </td><td data-sort='8'>8</td></tr><tr><td>Liam Broady</td><td>Challenger 75 Kobe</td><td>SF </td><td data-sort='22'>22</td></tr><tr><td>Billy Harris</td><td>Challenger 75 Kobe</td><td>QF </td><td data-sort='12'>12</td></tr><tr><td>Ollie Tarvet</td><td>Challenger 50 Champaign</td><td>SF </td><td data-sort='14'>14</td></tr><tr><td>Lui Maxted</td><td>Challenger 50 Champaign</td><td>QF (Q)</td><td data-sort='11'>11</td></tr><tr><td>Harry Wendelken</td><td>Challenger 50 Champaign</td><td>QF </td><td data-sort='8'>8</td></tr><tr><td>Aidan McHugh</td><td>Challenger 50 Champaign</td><td>R16 </td><td data-sort='4'>4</td></tr><tr><td>Alastair Gray</td><td>Challenger 50 Champaign</td><td>R16 </td><td data-sort='4'>4</td></tr><tr><td>Giles Hussey</td><td>Challenger 50 Champaign</td><td>R32 (Q)</td><td data-sort='3'>3</td></tr><tr><td>Alexander Okonkwo</td><td>M25 Columbus, OH</td><td>R16 (WC)</td><td data-sort='1'>1</td></tr><tr><td>Blu Baker</td><td>M25 Zamora</td><td>QF </td><td data-sort='3'>3</td></tr><tr><td>Oscar Brown</td><td>M15 Hua Hin</td><td>QF </td><td data-sort='2'>2</td></tr><tr><td>Jamie Connel</td><td>M15 Maanshan</td><td>QF </td><td data-sort='2'>2</td></tr><tr><td>Viktor Frydrych</td><td>M15 Monastir</td><td>R16 </td><td data-sort='1'>1</td></tr></tbody></table></details></div><div class='card' id='week_42'><div class=card-header><h2>29 November 2027</h2><p><strong>Total drops:</strong> 8</p></div>
+        <table id='to_add_41' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_41",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("to_add_41",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_41",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_41",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Toby Samuel</td><td>Challenger 125 Helsinki</td><td>SF </td><td data-sort='35'>35</td></tr><tr><td>Jake Fearnley</td><td>Challenger 125 Helsinki</td><td>R16 </td><td data-sort='8'>8</td></tr><tr><td>Liam Broady</td><td>Challenger 75 Kobe</td><td>Final </td><td data-sort='44'>44</td></tr><tr><td>Billy Harris</td><td>Challenger 75 Kobe</td><td>QF </td><td data-sort='12'>12</td></tr><tr><td>Ollie Tarvet</td><td>Challenger 50 Champaign</td><td>SF </td><td data-sort='14'>14</td></tr><tr><td>Lui Maxted</td><td>Challenger 50 Champaign</td><td>QF (Q)</td><td data-sort='11'>11</td></tr><tr><td>Harry Wendelken</td><td>Challenger 50 Champaign</td><td>QF </td><td data-sort='8'>8</td></tr><tr><td>Aidan McHugh</td><td>Challenger 50 Champaign</td><td>R16 </td><td data-sort='4'>4</td></tr><tr><td>Alastair Gray</td><td>Challenger 50 Champaign</td><td>R16 </td><td data-sort='4'>4</td></tr><tr><td>Giles Hussey</td><td>Challenger 50 Champaign</td><td>R32 (Q)</td><td data-sort='3'>3</td></tr><tr><td>Alexander Okonkwo</td><td>M25 Columbus, OH</td><td>R16 (WC)</td><td data-sort='1'>1</td></tr><tr><td>Blu Baker</td><td>M25 Zamora</td><td>QF </td><td data-sort='3'>3</td></tr><tr><td>Oscar Brown</td><td>M15 Hua Hin</td><td>QF </td><td data-sort='2'>2</td></tr><tr><td>Jamie Connel</td><td>M15 Maanshan</td><td>QF </td><td data-sort='2'>2</td></tr><tr><td>Viktor Frydrych</td><td>M15 Monastir</td><td>R16 </td><td data-sort='1'>1</td></tr></tbody></table></details></div><div class='card' id='week_42'><div class=card-header><h2>29 November 2027</h2><p><strong>Total drops:</strong> 8</p></div>
         <details id="details_to_add_42" open
                  onclick="toggleArrow('details_to_add_42', 'arrow_to_add_42')">
             <summary>
                 To Add tournaments (8)
             </summary>
-        <table id='to_add_42' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_42",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("to_add_42",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_42",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_42",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Will Jansen</td><td>M25 Bradenton, FL</td><td>QF </td><td data-sort='3'>3</td></tr><tr><td>Oliver Bonding</td><td>M25 Bradenton, FL</td><td>QF </td><td data-sort='3'>3</td></tr><tr><td>Blu Baker</td><td>M25 Chihuahua</td><td>QF </td><td data-sort='3'>3</td></tr><tr><td>Stefan Cooper</td><td>M25 Chihuahua</td><td>R16 </td><td data-sort='1'>1</td></tr><tr><td>Henry Searle</td><td>M25 Heraklion</td><td>SF </td><td data-sort='7'>7</td></tr><tr><td>Ben Gusic Wan</td><td>M15 Monastir</td><td>R16 (JR)</td><td data-sort='1'>1</td></tr><tr><td>Henry Best</td><td>M15 Santa Cruz</td><td>QF (Q)</td><td data-sort='2'>2</td></tr><tr><td>Luke Hooper</td><td>M15 Sharm ElSheikh</td><td>R16 (Q)</td><td data-sort='1'>1</td></tr></tbody></table></details></div></div><div id="footer-container"></div>
+        <table id='to_add_42' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_42",0)'>Player<span class='arrow'></span></th><th onclick='sortTable("to_add_42",1)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_42",2)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_42",3)'>Ranking points<span class='arrow'></span></th></tr></thead><tbody><tr><td>Will Jansen</td><td>M25 Bradenton, FL</td><td>SF </td><td data-sort='7'>7</td></tr><tr><td>Oliver Bonding</td><td>M25 Bradenton, FL</td><td>SF </td><td data-sort='7'>7</td></tr><tr><td>Blu Baker</td><td>M25 Chihuahua</td><td>QF </td><td data-sort='3'>3</td></tr><tr><td>Stefan Cooper</td><td>M25 Chihuahua</td><td>R16 </td><td data-sort='1'>1</td></tr><tr><td>Henry Searle</td><td>M25 Heraklion</td><td>Final </td><td data-sort='14'>14</td></tr><tr><td>Ben Gusic Wan</td><td>M15 Monastir</td><td>R16 (JR)</td><td data-sort='1'>1</td></tr><tr><td>Henry Best</td><td>M15 Santa Cruz</td><td>R16 (Q)</td><td data-sort='1'>1</td></tr><tr><td>Luke Hooper</td><td>M15 Sharm ElSheikh</td><td>R16 (Q)</td><td data-sort='1'>1</td></tr></tbody></table></details></div></div><div id="footer-container"></div>
        <script src="header.js"></script>

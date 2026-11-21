@@ -1,20 +1,22 @@
 <html lang="en">
 <head>
+
 <meta http-equiv="Content-Security-Policy"
       content="
         default-src 'self';
-        frame-src https://tnnslive.com;
-        child-src https://tnnslive.com;
+        
+        frame-src https://tnnslive.com https://*.instagram.com;
+        child-src https://tnnslive.com https://*.instagram.com;
 
-        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com;
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com https://*.instagram.com;
 
-        style-src 'self' 'unsafe-inline' https://tnnslive.com;
+        style-src 'self' 'unsafe-inline' https://tnnslive.com https://*.instagram.com;
 
-        img-src 'self' data: https://tnnslive.com;
+        img-src 'self' data: https://tnnslive.com https://*.instagram.com https://*.cdninstagram.com;
 
         font-src 'self' https://tnnslive.com;
 
-        connect-src 'self' https://tnnslive.com;
+        connect-src 'self' https://tnnslive.com https://*.instagram.com;
 
         object-src 'none';
         base-uri 'self';
@@ -512,7 +514,7 @@ window.addEventListener("resize", updateSelectorHeight);
             <summary>
                 To Add tournaments (1)
             </summary>
-        <table id='to_add_89' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_89",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_89",1)'>Partner<span class='arrow'></span></th><th onclick='sortTable("to_add_89",2)'>Date adding<span class='arrow'></span></th><th onclick='sortTable("to_add_89",3)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_89",4)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("to_add_89",5)'>Replacing<span class='arrow'></span></th></tr></thead><tbody><tr><td>W15 Sharm elSheikh</td><td>Y Dmitrichenko</td><td>30 November 2026</td><td>Final </td><td data-sort='10'>10</td><td>Clemson (3 pts)</td></tr></tbody></table></details></div><div class='card' id='Harriet_Dart' data-has-to-add='false' data-drop-match='false'><div class=card-header><h2>Harriet Dart</h2><h3>Total points: 1010</h3></div>
+        <table id='to_add_89' data-sort-asc='true'><thead><tr><th onclick='sortTable("to_add_89",0)'>Tournament<span class='arrow'></span></th><th onclick='sortTable("to_add_89",1)'>Partner<span class='arrow'></span></th><th onclick='sortTable("to_add_89",2)'>Date adding<span class='arrow'></span></th><th onclick='sortTable("to_add_89",3)'>Round<span class='arrow'></span></th><th onclick='sortTable("to_add_89",4)'>Ranking points<span class='arrow'></span></th><th onclick='sortTable("to_add_89",5)'>Replacing<span class='arrow'></span></th></tr></thead><tbody><tr><td>W15 Sharm elSheikh</td><td>Y Dmitrichenko</td><td>30 November 2026</td><td>Winner </td><td data-sort='15'>15</td><td>Clemson (3 pts)</td></tr></tbody></table></details></div><div class='card' id='Harriet_Dart' data-has-to-add='false' data-drop-match='false'><div class=card-header><h2>Harriet Dart</h2><h3>Total points: 1010</h3></div>
         <details id="details_counted_47" open
                  onclick="toggleArrow('details_counted_47', 'arrow_counted_47')">
             <summary>

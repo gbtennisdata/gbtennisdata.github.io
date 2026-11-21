@@ -1,21 +1,23 @@
 
 <html lang="en">
 <head>
+
 <meta http-equiv="Content-Security-Policy"
       content="
         default-src 'self';
-        frame-src https://tnnslive.com;
-        child-src https://tnnslive.com;
+        
+        frame-src https://tnnslive.com https://*.instagram.com;
+        child-src https://tnnslive.com https://*.instagram.com;
 
-        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com;
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com https://*.instagram.com;
 
-        style-src 'self' 'unsafe-inline' https://tnnslive.com;
+        style-src 'self' 'unsafe-inline' https://tnnslive.com https://*.instagram.com;
 
-        img-src 'self' data: https://tnnslive.com;
+        img-src 'self' data: https://tnnslive.com https://*.instagram.com https://*.cdninstagram.com;
 
         font-src 'self' https://tnnslive.com;
 
-        connect-src 'self' https://tnnslive.com;
+        connect-src 'self' https://tnnslive.com https://*.instagram.com;
 
         object-src 'none';
         base-uri 'self';
@@ -245,7 +247,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-up">&#9650;</span> 1</td>
       <td>17</td>
       <td>W75 Trnava Qualifying</td>
-      <td>W50 Ortisei Qualifying</td>
+      <td>W50 Ortisei</td>
       <td>W50 Selva Gardena</td>
       <td>2 pts on 30 Nov 2026</td>
       <td>1</td>
@@ -259,7 +261,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-up">&#9650;</span> 11</td>
       <td>28</td>
       <td>W75 Sydney Qualifying</td>
-      <td>W75 Playford Qualifying</td>
+      <td></td>
       <td></td>
       <td>3 pts on 23 Nov 2026</td>
       <td>1</td>
@@ -413,7 +415,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>19</td>
       <td>W35 Orlando, FL Qualifying</td>
-      <td>W75 Florianópolis Qualifying</td>
+      <td></td>
       <td>W35 Boca Raton, FL</td>
       <td>1 pts on 30 Nov 2026</td>
       <td>–</td>
@@ -511,7 +513,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -3</td>
       <td>20</td>
       <td>W15 Paris</td>
-      <td>W15 Lousada Qualifying</td>
+      <td></td>
       <td></td>
       <td>5 pts on 17 May 2027</td>
       <td>–</td>
@@ -553,7 +555,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -2</td>
       <td>19</td>
       <td>W50 Funchal Qualifying</td>
-      <td>W15 Lousada Qualifying</td>
+      <td></td>
       <td>W15 Monastir Qualifying</td>
       <td>3 pts on 5 Apr 2027</td>
       <td>–</td>
@@ -791,7 +793,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td></td>
       <td>20</td>
       <td></td>
-      <td>W15 Monastir Qualifying</td>
+      <td></td>
       <td>W15 Monastir Qualifying</td>
       <td>1 pts on 14 Dec 2026</td>
       <td>–</td>
@@ -1029,7 +1031,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td></td>
       <td>17</td>
       <td></td>
-      <td>W15 Sharm ElSheikh (JR)</td>
+      <td></td>
       <td>W15 Sharm ElSheikh (JR)</td>
       <td>6 pts on 15 Nov 2027</td>
       <td>–</td>
@@ -1099,7 +1101,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td></td>
       <td>23</td>
       <td></td>
-      <td></td>
+      <td>W15 Lousada Qualifying</td>
       <td></td>
       <td>1 pts on 17 May 2027</td>
       <td>–</td>
@@ -1311,20 +1313,6 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td></td>
       <td></td>
       <td>W15 Antalya Qualifying</td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-    </tr>
-    <tr>
-      <td>Elise van Heuvelen</td>
-      <td>–</td>
-      <td></td>
-      <td>29</td>
-      <td></td>
-      <td>W15 Monastir (Alternate)</td>
-      <td> </td>
       <td></td>
       <td>–</td>
       <td>–</td>

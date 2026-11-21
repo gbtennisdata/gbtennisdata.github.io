@@ -1,21 +1,23 @@
 
 <html lang="en">
 <head>
+
 <meta http-equiv="Content-Security-Policy"
       content="
         default-src 'self';
-        frame-src https://tnnslive.com;
-        child-src https://tnnslive.com;
+        
+        frame-src https://tnnslive.com https://*.instagram.com;
+        child-src https://tnnslive.com https://*.instagram.com;
 
-        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com;
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com https://*.instagram.com;
 
-        style-src 'self' 'unsafe-inline' https://tnnslive.com;
+        style-src 'self' 'unsafe-inline' https://tnnslive.com https://*.instagram.com;
 
-        img-src 'self' data: https://tnnslive.com;
+        img-src 'self' data: https://tnnslive.com https://*.instagram.com https://*.cdninstagram.com;
 
         font-src 'self' https://tnnslive.com;
 
-        connect-src 'self' https://tnnslive.com;
+        connect-src 'self' https://tnnslive.com https://*.instagram.com;
 
         object-src 'none';
         base-uri 'self';
@@ -287,7 +289,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-up">&#9650;</span> 6</td>
       <td>28</td>
       <td>Ch 50 Champaign</td>
-      <td>Ch 50 San Salvador</td>
+      <td></td>
       <td>Ch 50 Trnava</td>
       <td>25 pts on 23 Nov 2026</td>
       <td>4</td>
@@ -315,7 +317,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -20</td>
       <td>28</td>
       <td></td>
-      <td>Ch 75 Playford</td>
+      <td></td>
       <td></td>
       <td>8 pts on 7 Dec 2026</td>
       <td>3</td>
@@ -413,7 +415,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-up">&#9650;</span> 11</td>
       <td>24</td>
       <td>M25 Heraklion</td>
-      <td></td>
+      <td>Ch 50 Hersonissos</td>
       <td>Ch 50 Chisinau</td>
       <td>25 pts on 11 Jan 2027</td>
       <td>–</td>
@@ -455,7 +457,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -16</td>
       <td>27</td>
       <td>Ch 75 Sydney Qualifying</td>
-      <td></td>
+      <td>Ch 75 Playford Qualifying</td>
       <td></td>
       <td>1 pts on 23 Nov 2026</td>
       <td>1</td>
@@ -469,7 +471,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-up">&#9650;</span> 2</td>
       <td>19</td>
       <td>M25 Bradenton</td>
-      <td></td>
+      <td>Ch 50 San Salvador</td>
       <td></td>
       <td>4 pts on 21 Dec 2026</td>
       <td>–</td>
@@ -511,7 +513,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-up">&#9650;</span> 24</td>
       <td>25</td>
       <td></td>
-      <td></td>
+      <td>Ch 50 Ankara Qualifying</td>
       <td>M15 Heraklion</td>
       <td>2 pts on 8 Feb 2027</td>
       <td>–</td>
@@ -525,7 +527,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -5</td>
       <td>25</td>
       <td></td>
-      <td></td>
+      <td>Ch 50 Ankara Qualifying</td>
       <td></td>
       <td>2 pts on 23 Nov 2026</td>
       <td>1</td>
@@ -833,7 +835,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -4</td>
       <td>26</td>
       <td></td>
-      <td>M15 Monastir Qualifying</td>
+      <td>M15 Monastir</td>
       <td>M25 Monastir Qualifying</td>
       <td>1 pts on 15 Feb 2027</td>
       <td>–</td>
@@ -861,7 +863,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-right">&#10148;</span> 0</td>
       <td>26</td>
       <td></td>
-      <td></td>
+      <td>M25 Hradec Kralove Qualifying</td>
       <td>M25 Monastir Qualifying</td>
       <td>1 pts on 1 Nov 2027</td>
       <td>–</td>
@@ -987,7 +989,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -5</td>
       <td>26</td>
       <td></td>
-      <td></td>
+      <td>M15 Madrid Qualifying</td>
       <td></td>
       <td>1 pts on 30 Nov 2026</td>
       <td>–</td>
@@ -1029,7 +1031,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -2</td>
       <td>28</td>
       <td>M15 Santa Cruz Qualifying</td>
-      <td>M15 Santa Cruz (Alternate)</td>
+      <td></td>
       <td>M15 Santa Cruz</td>
       <td>1 pts on 7 Jun 2027</td>
       <td>–</td>
@@ -1041,7 +1043,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>Benjamin Gusic Wan</td>
       <td>1724</td>
       <td><span class="arrow-down">&#9660;</span> -3</td>
-      <td>18</td>
+      <td>19</td>
       <td>M15 Monastir (JR)</td>
       <td>M15 Monastir Qualifying</td>
       <td>M15 Monastir Qualifying</td>
@@ -1099,7 +1101,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td><span class="arrow-down">&#9660;</span> -2</td>
       <td>28</td>
       <td></td>
-      <td>M15 Heraklion Qualifying</td>
+      <td></td>
       <td></td>
       <td>1 pts on 21 Dec 2026</td>
       <td>–</td>
@@ -1211,7 +1213,7 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td></td>
       <td>19</td>
       <td>M25 Vale do Lobo Qualifying</td>
-      <td>M25 Hradec Kralove (Alternate)</td>
+      <td>M25 Hradec Kralove Qualifying</td>
       <td>M15 Heraklion Qualifying</td>
       <td></td>
       <td>–</td>
@@ -1402,20 +1404,6 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
     </tr>
     <tr>
-      <td>Samuel Constantinou</td>
-      <td>–</td>
-      <td></td>
-      <td>22</td>
-      <td></td>
-      <td>M15 Monastir (Alternate)</td>
-      <td></td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-    </tr>
-    <tr>
       <td>Daniel Wright</td>
       <td>–</td>
       <td></td>
@@ -1458,20 +1446,6 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>–</td>
     </tr>
     <tr>
-      <td>Cameron Price</td>
-      <td>–</td>
-      <td></td>
-      <td>27</td>
-      <td></td>
-      <td>M15 Monastir (Alternate)</td>
-      <td></td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-    </tr>
-    <tr>
       <td>Charles Begg-Smith</td>
       <td>–</td>
       <td></td>
@@ -1492,20 +1466,6 @@ Next week: <select id="nextweek-filter" class="style-select"></select>
       <td>23</td>
       <td>M25 Monastir Qualifying</td>
       <td> </td>
-      <td> </td>
-      <td></td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-      <td>–</td>
-    </tr>
-    <tr>
-      <td>Charlie Pycroft</td>
-      <td>–</td>
-      <td></td>
-      <td>23</td>
-      <td></td>
-      <td>M15 Monastir (Alternate)</td>
       <td> </td>
       <td></td>
       <td>–</td>

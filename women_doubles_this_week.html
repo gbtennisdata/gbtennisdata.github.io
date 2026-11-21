@@ -1,21 +1,23 @@
 
 <html lang="en">
 <head>
+
 <meta http-equiv="Content-Security-Policy"
       content="
         default-src 'self';
-        frame-src https://tnnslive.com;
-        child-src https://tnnslive.com;
+        
+        frame-src https://tnnslive.com https://*.instagram.com;
+        child-src https://tnnslive.com https://*.instagram.com;
 
-        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com;
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tnnslive.com https://*.instagram.com;
 
-        style-src 'self' 'unsafe-inline' https://tnnslive.com;
+        style-src 'self' 'unsafe-inline' https://tnnslive.com https://*.instagram.com;
 
-        img-src 'self' data: https://tnnslive.com;
+        img-src 'self' data: https://tnnslive.com https://*.instagram.com https://*.cdninstagram.com;
 
         font-src 'self' https://tnnslive.com;
 
-        connect-src 'self' https://tnnslive.com;
+        connect-src 'self' https://tnnslive.com https://*.instagram.com;
 
         object-src 'none';
         base-uri 'self';
@@ -65,7 +67,7 @@ week-table th:nth-child(6), .roster-table td:nth-child(6) { width: 9%; }
 </div>
 
 <div id=content-container>
-<h2>Still competing</h2>      <!--<span class='last-updated'>Last updated: 20 November 6:34PM</span>--><table class="dataframe roster-table left-align-player left-align-notes" id="week-table">
+<h2>Still competing</h2>      <!--<span class='last-updated'>Last updated: 21 November 10:53AM</span>--><table class="dataframe roster-table left-align-player left-align-notes" id="week-table">
   <thead>
     <tr style="text-align: center;">
       <th>Player</th>
@@ -85,34 +87,31 @@ week-table th:nth-child(6), .roster-table td:nth-child(6) { width: 9%; }
       <td><a href="https://www.world.tennis/en/world-tennis-tour-live/" target="_blank">Live scores</a></td>
       <td><a href="https://www.world.tennis/en/tournament/w75-trnava/svk/2026/w-itf-svk-2026-005/draws-and-results/" target="_blank">Draw</a></td>
     </tr>
-    <tr>
-      <td>Esther Adeshina <span style='font-size:0.8em; color:#808080;'>(& C Zanolini)</span></td>
-      <td>W50 Funchal</td>
-      <td>SF</td>
-      <td>20</td>
-      <td><a href="https://www.world.tennis/en/world-tennis-tour-live/" target="_blank">Live scores</a></td>
-      <td><a href="https://www.world.tennis/en/tournament/w50-funchal/por/2026/w-itf-por-2026-015/draws-and-results/" target="_blank">Draw</a></td>
+  </tbody>
+</table>
+Doubles in Orlando has been cancelled
+<h2>Titles</h2><table class="dataframe roster-table left-align-player left-align-notes" id="week-table">
+  <thead>
+    <tr style="text-align: center;">
+      <th>Player</th>
+      <th>Tournament</th>
+      <th>Round</th>
+      <th>Ranking points</th>
+      <th>Live scores</th>
+      <th>Draw</th>
     </tr>
-    <tr>
-      <td>Vic Allen <span style='font-size:0.8em; color:#808080;'>(& M Bayerlova)</span></td>
-      <td>W50 Heraklion</td>
-      <td>Final</td>
-      <td>33</td>
-      <td><a href="https://www.world.tennis/en/world-tennis-tour-live/" target="_blank">Live scores</a></td>
-      <td><a href="https://www.world.tennis/en/tournament/w50-heraklion/gre/2026/w-itf-gre-2026-009/draws-and-results/" target="_blank">Draw</a></td>
-    </tr>
+  </thead>
+  <tbody>
     <tr>
       <td>Savannah Dada-Mascoll <span style='font-size:0.8em; color:#808080;'>(& Y Dmitrichenko)</span></td>
       <td>W15 Sharm elSheikh</td>
-      <td>Final</td>
-      <td>10</td>
-      <td><a href="https://www.world.tennis/en/world-tennis-tour-live/" target="_blank">Live scores</a></td>
+      <td>Winner</td>
+      <td>15</td>
+      <td></td>
       <td><a href="https://www.world.tennis/en/tournament/w15-sharm-elsheikh/egy/2026/w-itf-egy-2026-033/draws-and-results/" target="_blank">Draw</a></td>
     </tr>
   </tbody>
 </table>
-Doubles in Orlando has been cancelled
-
 <h2>Knocked out</h2><table class="dataframe roster-table left-align-player left-align-notes" id="week-table">
   <thead>
     <tr style="text-align: center;">
@@ -150,6 +149,14 @@ Doubles in Orlando has been cancelled
       <td><a href="https://www.world.tennis/en/tournament/w75-sydney/aus/2026/w-itf-aus-2026-014/draws-and-results/" target="_blank">Draw</a></td>
     </tr>
     <tr>
+      <td>Esther Adeshina <span style='font-size:0.8em; color:#808080;'>(& C Zanolini)</span></td>
+      <td>W50 Funchal</td>
+      <td>SF</td>
+      <td>20</td>
+      <td></td>
+      <td><a href="https://www.world.tennis/en/tournament/w50-funchal/por/2026/w-itf-por-2026-015/draws-and-results/" target="_blank">Draw</a></td>
+    </tr>
+    <tr>
       <td>Mia Wainwright <span style='font-size:0.8em; color:#808080;'>(& K Gardiner)</span></td>
       <td>W50 Funchal</td>
       <td>QF</td>
@@ -172,6 +179,14 @@ Doubles in Orlando has been cancelled
       <td>1</td>
       <td></td>
       <td><a href="https://www.world.tennis/en/tournament/w75-sydney/aus/2026/w-itf-aus-2026-014/draws-and-results/" target="_blank">Draw</a></td>
+    </tr>
+    <tr>
+      <td>Vic Allen <span style='font-size:0.8em; color:#808080;'>(& M Bayerlova)</span></td>
+      <td>W50 Heraklion</td>
+      <td>Final</td>
+      <td>33</td>
+      <td></td>
+      <td><a href="https://www.world.tennis/en/tournament/w50-heraklion/gre/2026/w-itf-gre-2026-009/draws-and-results/" target="_blank">Draw</a></td>
     </tr>
     <tr>
       <td>Brooke Black & Allegra Korpanec Davies</td>
@@ -207,7 +222,7 @@ Doubles in Orlando has been cancelled
     </tr>
   </tbody>
 </table>
-Last updated: 20 November 6:34PM
+Last updated: 21 November 10:53AM
 </div>
 </div>
 
